@@ -1,8 +1,6 @@
 node_modules
 dist
 .DS_Store
-<<<<<<< HEAD
-=======
 demo/demo.js.map
 demo/demo-build.js
 demo/demo-build.js.map
@@ -10,7 +8,6 @@ demo/diff-build.js
 demo/diff-build.js.map
 demo/virtualized-build.js
 demo/virtualized-build.js.map
->>>>>>> 075144b... update demo
 npm-debug.log
 coverage
 index.js
@@ -22,3 +19,5 @@ create-element.js
 highlight.js
 prism-light.js
 demo
+npm-debug.log
+coverage
