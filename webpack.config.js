@@ -7,7 +7,8 @@ module.exports = {
   entry: {
         demo: './demo/index.js',
         diff: './demo/diff.js',
-        virtualized: './demo/virtualized.js'
+        virtualized: './demo/virtualized.js',
+        "prism": "./demo/prism.js"
     },
   output: {
     path: path.join(__dirname, 'demo'),

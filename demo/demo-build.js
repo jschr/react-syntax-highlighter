@@ -91,7 +91,7 @@
 	    var initialCodeString = 'function createStyleObject(classNames, style) {\n  return classNames.reduce((styleObject, className) => {\n    return {...styleObject, ...style[className]};\n  }, {});\n}\n\nfunction createClassNameString(classNames) {\n  return classNames.join(\' \');\n}\n\nfunction createChildren(style, useInlineStyles) {\n  let childrenCount = 0;\n  return children => {\n    childrenCount += 1;\n    return children.map((child, i) => createElement({\n      node: child,\n      style,\n      useInlineStyles,\n      key:`code-segment-${childrenCount}-${i}`\n    }));\n  }\n}\n\nfunction createElement({ node, style, useInlineStyles, key }) {\n  const { properties, type, tagName, value } = node;\n  if (type === "text") {\n    return value;\n  } else if (tagName) {\n    const TagName = tagName;\n    const childrenCreator = createChildren(style, useInlineStyles);\n    const props = (\n      useInlineStyles\n      ?\n      { style: createStyleObject(properties.className, style) }\n      :\n      { className: createClassNameString(properties.className) }\n    );\n    const children = childrenCreator(node.children);\n    return <TagName key={key} {...props}>{children}</TagName>;\n  }\n}\n  ';
 	    _this.state = {
 	      selected: 'tomorrow-night-eighties',
-	      style: __webpack_require__(433).default,
+	      style: __webpack_require__(441).default,
 	      code: initialCodeString,
 	      showLineNumbers: false
 	    };
@@ -130,7 +130,7 @@
 	          {
 	            value: this.state.selected,
 	            onChange: function onChange(e) {
-	              return _this2.setState({ style: __webpack_require__(434)("./" + e.target.value).default, selected: e.target.value });
+	              return _this2.setState({ style: __webpack_require__(442)("./" + e.target.value).default, selected: e.target.value });
 	            }
 	          },
 	          availableStyles.map(function (s) {
@@ -21893,6 +21893,9 @@
 	
 	var _extends3 = _interopRequireDefault(_extends2);
 	
+	exports.createStyleObject = createStyleObject;
+	exports.createClassNameString = createClassNameString;
+	exports.createChildren = createChildren;
 	exports.default = createElement;
 	
 	var _react = __webpack_require__(87);
@@ -22063,7 +22066,7 @@
 	
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 	
-	exports.default = function (lowlight, defaultStyle) {
+	exports.default = function (astGenerator, defaultStyle) {
 	  return function SyntaxHighlighter(_ref6) {
 	    var language = _ref6.language,
 	        children = _ref6.children,
@@ -22072,7 +22075,7 @@
 	        _ref6$customStyle = _ref6.customStyle,
 	        customStyle = _ref6$customStyle === undefined ? {} : _ref6$customStyle,
 	        _ref6$codeTagProps = _ref6.codeTagProps,
-	        codeTagProps = _ref6$codeTagProps === undefined ? {} : _ref6$codeTagProps,
+	        codeTagProps = _ref6$codeTagProps === undefined ? { style: style['code[class*=\"language-\"]'] } : _ref6$codeTagProps,
 	        _ref6$useInlineStyles = _ref6.useInlineStyles,
 	        useInlineStyles = _ref6$useInlineStyles === undefined ? true : _ref6$useInlineStyles,
 	        _ref6$showLineNumbers = _ref6.showLineNumbers,
@@ -22081,35 +22084,44 @@
 	        startingLineNumber = _ref6$startingLineNum === undefined ? 1 : _ref6$startingLineNum,
 	        lineNumberContainerStyle = _ref6.lineNumberContainerStyle,
 	        lineNumberStyle = _ref6.lineNumberStyle,
-	        _ref6$wrapLines = _ref6.wrapLines,
-	        wrapLines = _ref6$wrapLines === undefined ? false : _ref6$wrapLines,
+	        wrapLines = _ref6.wrapLines,
 	        _ref6$lineStyle = _ref6.lineStyle,
 	        lineStyle = _ref6$lineStyle === undefined ? {} : _ref6$lineStyle,
 	        renderer = _ref6.renderer,
-	        rest = (0, _objectWithoutProperties3.default)(_ref6, ['language', 'children', 'style', 'customStyle', 'codeTagProps', 'useInlineStyles', 'showLineNumbers', 'startingLineNumber', 'lineNumberContainerStyle', 'lineNumberStyle', 'wrapLines', 'lineStyle', 'renderer']);
+	        _ref6$PreTag = _ref6.PreTag,
+	        PreTag = _ref6$PreTag === undefined ? 'pre' : _ref6$PreTag,
+	        _ref6$CodeTag = _ref6.CodeTag,
+	        CodeTag = _ref6$CodeTag === undefined ? 'code' : _ref6$CodeTag,
+	        _ref6$code = _ref6.code,
+	        code = _ref6$code === undefined ? Array.isArray(children) ? children[0] : children : _ref6$code,
+	        rest = (0, _objectWithoutProperties3.default)(_ref6, ['language', 'children', 'style', 'customStyle', 'codeTagProps', 'useInlineStyles', 'showLineNumbers', 'startingLineNumber', 'lineNumberContainerStyle', 'lineNumberStyle', 'wrapLines', 'lineStyle', 'renderer', 'PreTag', 'CodeTag', 'code']);
 	
-	    /* custom renderers rely on individual row elements so we need to turn wrapLines on 
-	     * if renderer is provided
+	    /* 
+	     * some custom renderers rely on individual row elements so we need to turn wrapLines on 
+	     * if renderer is provided and wrapLines is undefined
 	    */
-	    wrapLines = renderer ? true : wrapLines;
+	    wrapLines = renderer && wrapLines === undefined ? true : wrapLines;
 	    renderer = renderer || defaultRenderer;
-	    var codeTree = language ? lowlight.highlight(language, children) : lowlight.highlightAuto(children);
-	    var defaultPreStyle = style.hljs || { backgroundColor: '#fff' };
+	    var defaultCodeValue = [{ type: 'text', value: code }];
+	    var codeTree = getCodeTree({ astGenerator: astGenerator, language: language, code: code, defaultCodeValue: defaultCodeValue });
+	    if (codeTree.language === null) {
+	      codeTree.value = defaultCodeValue;
+	    }
+	    var defaultPreStyle = style.hljs || style['pre[class*=\"language-\"]'] || { backgroundColor: '#fff' };
 	    var preProps = useInlineStyles ? (0, _assign2.default)({}, rest, { style: (0, _assign2.default)({}, defaultPreStyle, customStyle) }) : (0, _assign2.default)({}, rest, { className: 'hljs' });
-	
 	    var tree = wrapLines ? wrapLinesInSpan(codeTree, lineStyle) : codeTree.value;
 	    var lineNumbers = showLineNumbers ? _react2.default.createElement(LineNumbers, {
 	      containerStyle: lineNumberContainerStyle,
 	      numberStyle: lineNumberStyle,
 	      startingLineNumber: startingLineNumber,
-	      codeString: children
+	      codeString: code
 	    }) : null;
 	    return _react2.default.createElement(
-	      'pre',
+	      PreTag,
 	      preProps,
 	      lineNumbers,
 	      _react2.default.createElement(
-	        'code',
+	        CodeTag,
 	        codeTagProps,
 	        renderer({ rows: tree, stylesheet: style, useInlineStyles: useInlineStyles })
 	      )
@@ -22173,27 +22185,50 @@
 	function createLineElement(_ref3) {
 	  var children = _ref3.children,
 	      lineNumber = _ref3.lineNumber,
-	      lineStyle = _ref3.lineStyle;
+	      lineStyle = _ref3.lineStyle,
+	      _ref3$className = _ref3.className,
+	      className = _ref3$className === undefined ? [] : _ref3$className;
 	
 	  return {
 	    type: 'element',
 	    tagName: 'span',
 	    properties: {
-	      className: [],
+	      className: className,
 	      style: typeof lineStyle === 'function' ? lineStyle(lineNumber) : lineStyle
 	    },
 	    children: children
 	  };
 	}
 	
-	function wrapLinesInSpan(codeTree, lineStyle) {
-	  var _codeTree$value$reduc = codeTree.value.reduce(function (_ref4, node, index) {
-	    var newTree = _ref4.newTree,
-	        lastLineBreakIndex = _ref4.lastLineBreakIndex;
+	function flattenCodeTree(tree) {
+	  var className = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+	  var newTree = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
 	
-	    var isTextNode = node.type === 'text' || node.children[0].type === 'text';
-	    var value = isTextNode && (node.value || node.children[0].value);
-	    var newLines = isTextNode && getNewLines(value);
+	  for (var i = 0; i < tree.length; i++) {
+	    var node = tree[i];
+	    if (node.type === 'text') {
+	      newTree.push(createLineElement({
+	        children: [node],
+	        className: className
+	      }));
+	    } else if (node.children) {
+	      var classNames = className.concat(node.properties.className);
+	      newTree = newTree.concat(flattenCodeTree(node.children, classNames));
+	    }
+	  }
+	  return newTree;
+	}
+	
+	function wrapLinesInSpan(codeTree, lineStyle) {
+	  var tree = flattenCodeTree(codeTree.value);
+	  var newTree = [];
+	  var lastLineBreakIndex = -1;
+	  var index = 0;
+	
+	  var _loop = function _loop() {
+	    var node = tree[index];
+	    var value = node.children[0].value;
+	    var newLines = getNewLines(value);
 	    if (newLines) {
 	      (function () {
 	        var splitValue = value.split('\n');
@@ -22201,12 +22236,17 @@
 	          var lineNumber = newTree.length + 1;
 	          var newChild = { type: 'text', value: text + '\n' };
 	          if (i === 0) {
-	            var children = codeTree.value.slice(lastLineBreakIndex + 1, index).concat(newChild);
-	            newTree.push(createLineElement({ children: children, lineNumber: lineNumber, lineStyle: lineStyle }));
-	          } else if (i === splitValue.length - 1 && codeTree.value[index + 1] && codeTree.value[index + 1].children) {
-	            codeTree.value[index + 1].children[0].value = '' + text + codeTree.value[index + 1].children[0].value;
-	          } else if (i === splitValue.length - 1 && codeTree.value[index + 1]) {
-	            codeTree.value[index + 1].value = '' + text + codeTree.value[index + 1].value;
+	            var _children = tree.slice(lastLineBreakIndex + 1, index).concat(createLineElement({ children: [newChild], className: node.properties.className }));
+	            newTree.push(createLineElement({ children: _children, lineNumber: lineNumber, lineStyle: lineStyle }));
+	          } else if (i === splitValue.length - 1) {
+	            var stringChild = tree[index + 1] && tree[index + 1].children && tree[index + 1].children[0];
+	            if (stringChild) {
+	              var lastLineInPreviousSpan = { type: 'text', value: '' + text };
+	              var newElem = createLineElement({ children: [lastLineInPreviousSpan], className: node.properties.className });
+	              tree.splice(index + 1, 0, newElem);
+	            } else {
+	              newTree.push(createLineElement({ children: [newChild], lineNumber: lineNumber, lineStyle: lineStyle }));
+	            }
 	          } else {
 	            newTree.push(createLineElement({ children: [newChild], lineNumber: lineNumber, lineStyle: lineStyle }));
 	          }
@@ -22214,22 +22254,25 @@
 	        lastLineBreakIndex = index;
 	      })();
 	    }
-	    return { newTree: newTree, lastLineBreakIndex: lastLineBreakIndex };
-	  }, { newTree: [], lastLineBreakIndex: -1 }),
-	      newTree = _codeTree$value$reduc.newTree,
-	      lastLineBreakIndex = _codeTree$value$reduc.lastLineBreakIndex;
+	    index++;
+	  };
 	
-	  if (lastLineBreakIndex !== codeTree.value.length - 1) {
-	    var children = codeTree.value.slice(lastLineBreakIndex + 1, codeTree.value.length);
-	    newTree.push(createLineElement({ children: children, lineNumber: newTree.length + 1, lineStyle: lineStyle }));
+	  while (index < tree.length) {
+	    _loop();
+	  }
+	  if (lastLineBreakIndex !== tree.length - 1) {
+	    var children = tree.slice(lastLineBreakIndex + 1, tree.length);
+	    if (children && children.length) {
+	      newTree.push(createLineElement({ children: children, lineNumber: newTree.length + 1, lineStyle: lineStyle }));
+	    }
 	  }
 	  return newTree;
 	}
 	
-	function defaultRenderer(_ref5) {
-	  var rows = _ref5.rows,
-	      stylesheet = _ref5.stylesheet,
-	      useInlineStyles = _ref5.useInlineStyles;
+	function defaultRenderer(_ref4) {
+	  var rows = _ref4.rows,
+	      stylesheet = _ref4.stylesheet,
+	      useInlineStyles = _ref4.useInlineStyles;
 	
 	  return rows.map(function (node, i) {
 	    return (0, _createElement2.default)({
@@ -22239,6 +22282,26 @@
 	      key: 'code-segement' + i
 	    });
 	  });
+	}
+	
+	function getCodeTree(_ref5) {
+	  var astGenerator = _ref5.astGenerator,
+	      language = _ref5.language,
+	      code = _ref5.code,
+	      defaultCodeValue = _ref5.defaultCodeValue;
+	
+	  if (astGenerator.getLanguage) {
+	    var hasLanguage = language && astGenerator.getLanguage(language);
+	    if (language === 'text') {
+	      return { value: defaultCodeValue, language: 'text' };
+	    } else if (hasLanguage) {
+	      return astGenerator.highlight(language, code);
+	    } else {
+	      console.log("here");
+	      return astGenerator.highlightAuto(code);
+	    }
+	  }
+	  return language && language !== 'text' ? { value: astGenerator.highlight(code, language) } : { value: defaultCodeValue };
 	}
 
 /***/ },
@@ -22388,18 +22451,8 @@
 /* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/**
-	 * @author Titus Wormer
-	 * @copyright 2016 Titus Wormer
-	 * @license MIT
-	 * @module lowlight
-	 * @fileoverview Virtual syntax highlighting for virtual
-	 *   DOMs and non-HTML things.
-	 */
-	
 	'use strict';
 	
-	/* Expose. */
 	var low = module.exports = __webpack_require__(263);
 	
 	low.registerLanguage('1c', __webpack_require__(265));
@@ -22479,122 +22532,119 @@
 	low.registerLanguage('hsp', __webpack_require__(339));
 	low.registerLanguage('htmlbars', __webpack_require__(340));
 	low.registerLanguage('http', __webpack_require__(341));
-	low.registerLanguage('inform7', __webpack_require__(342));
-	low.registerLanguage('ini', __webpack_require__(343));
-	low.registerLanguage('irpf90', __webpack_require__(344));
-	low.registerLanguage('java', __webpack_require__(345));
-	low.registerLanguage('javascript', __webpack_require__(346));
-	low.registerLanguage('json', __webpack_require__(347));
-	low.registerLanguage('julia', __webpack_require__(348));
-	low.registerLanguage('kotlin', __webpack_require__(349));
-	low.registerLanguage('lasso', __webpack_require__(350));
-	low.registerLanguage('ldif', __webpack_require__(351));
-	low.registerLanguage('less', __webpack_require__(352));
-	low.registerLanguage('lisp', __webpack_require__(353));
-	low.registerLanguage('livecodeserver', __webpack_require__(354));
-	low.registerLanguage('livescript', __webpack_require__(355));
-	low.registerLanguage('lsl', __webpack_require__(356));
-	low.registerLanguage('lua', __webpack_require__(357));
-	low.registerLanguage('makefile', __webpack_require__(358));
-	low.registerLanguage('mathematica', __webpack_require__(359));
-	low.registerLanguage('matlab', __webpack_require__(360));
-	low.registerLanguage('maxima', __webpack_require__(361));
-	low.registerLanguage('mel', __webpack_require__(362));
-	low.registerLanguage('mercury', __webpack_require__(363));
-	low.registerLanguage('mipsasm', __webpack_require__(364));
-	low.registerLanguage('mizar', __webpack_require__(365));
-	low.registerLanguage('perl', __webpack_require__(366));
-	low.registerLanguage('mojolicious', __webpack_require__(367));
-	low.registerLanguage('monkey', __webpack_require__(368));
-	low.registerLanguage('moonscript', __webpack_require__(369));
-	low.registerLanguage('nginx', __webpack_require__(370));
-	low.registerLanguage('nimrod', __webpack_require__(371));
-	low.registerLanguage('nix', __webpack_require__(372));
-	low.registerLanguage('nsis', __webpack_require__(373));
-	low.registerLanguage('objectivec', __webpack_require__(374));
-	low.registerLanguage('ocaml', __webpack_require__(375));
-	low.registerLanguage('openscad', __webpack_require__(376));
-	low.registerLanguage('oxygene', __webpack_require__(377));
-	low.registerLanguage('parser3', __webpack_require__(378));
-	low.registerLanguage('pf', __webpack_require__(379));
-	low.registerLanguage('php', __webpack_require__(380));
-	low.registerLanguage('pony', __webpack_require__(381));
-	low.registerLanguage('powershell', __webpack_require__(382));
-	low.registerLanguage('processing', __webpack_require__(383));
-	low.registerLanguage('profile', __webpack_require__(384));
-	low.registerLanguage('prolog', __webpack_require__(385));
-	low.registerLanguage('protobuf', __webpack_require__(386));
-	low.registerLanguage('puppet', __webpack_require__(387));
-	low.registerLanguage('purebasic', __webpack_require__(388));
-	low.registerLanguage('python', __webpack_require__(389));
-	low.registerLanguage('q', __webpack_require__(390));
-	low.registerLanguage('qml', __webpack_require__(391));
-	low.registerLanguage('r', __webpack_require__(392));
-	low.registerLanguage('rib', __webpack_require__(393));
-	low.registerLanguage('roboconf', __webpack_require__(394));
-	low.registerLanguage('rsl', __webpack_require__(395));
-	low.registerLanguage('ruleslanguage', __webpack_require__(396));
-	low.registerLanguage('rust', __webpack_require__(397));
-	low.registerLanguage('scala', __webpack_require__(398));
-	low.registerLanguage('scheme', __webpack_require__(399));
-	low.registerLanguage('scilab', __webpack_require__(400));
-	low.registerLanguage('scss', __webpack_require__(401));
-	low.registerLanguage('smali', __webpack_require__(402));
-	low.registerLanguage('smalltalk', __webpack_require__(403));
-	low.registerLanguage('sml', __webpack_require__(404));
-	low.registerLanguage('sqf', __webpack_require__(405));
-	low.registerLanguage('sql', __webpack_require__(406));
-	low.registerLanguage('stan', __webpack_require__(407));
-	low.registerLanguage('stata', __webpack_require__(408));
-	low.registerLanguage('step21', __webpack_require__(409));
-	low.registerLanguage('stylus', __webpack_require__(410));
-	low.registerLanguage('subunit', __webpack_require__(411));
-	low.registerLanguage('swift', __webpack_require__(412));
-	low.registerLanguage('taggerscript', __webpack_require__(413));
-	low.registerLanguage('yaml', __webpack_require__(414));
-	low.registerLanguage('tap', __webpack_require__(415));
-	low.registerLanguage('tcl', __webpack_require__(416));
-	low.registerLanguage('tex', __webpack_require__(417));
-	low.registerLanguage('thrift', __webpack_require__(418));
-	low.registerLanguage('tp', __webpack_require__(419));
-	low.registerLanguage('twig', __webpack_require__(420));
-	low.registerLanguage('typescript', __webpack_require__(421));
-	low.registerLanguage('vala', __webpack_require__(422));
-	low.registerLanguage('vbnet', __webpack_require__(423));
-	low.registerLanguage('vbscript', __webpack_require__(424));
-	low.registerLanguage('vbscript-html', __webpack_require__(425));
-	low.registerLanguage('verilog', __webpack_require__(426));
-	low.registerLanguage('vhdl', __webpack_require__(427));
-	low.registerLanguage('vim', __webpack_require__(428));
-	low.registerLanguage('x86asm', __webpack_require__(429));
-	low.registerLanguage('xl', __webpack_require__(430));
-	low.registerLanguage('xquery', __webpack_require__(431));
-	low.registerLanguage('zephir', __webpack_require__(432));
+	low.registerLanguage('hy', __webpack_require__(342));
+	low.registerLanguage('inform7', __webpack_require__(343));
+	low.registerLanguage('ini', __webpack_require__(344));
+	low.registerLanguage('irpf90', __webpack_require__(345));
+	low.registerLanguage('java', __webpack_require__(346));
+	low.registerLanguage('javascript', __webpack_require__(347));
+	low.registerLanguage('jboss-cli', __webpack_require__(348));
+	low.registerLanguage('json', __webpack_require__(349));
+	low.registerLanguage('julia', __webpack_require__(350));
+	low.registerLanguage('julia-repl', __webpack_require__(351));
+	low.registerLanguage('kotlin', __webpack_require__(352));
+	low.registerLanguage('lasso', __webpack_require__(353));
+	low.registerLanguage('ldif', __webpack_require__(354));
+	low.registerLanguage('leaf', __webpack_require__(355));
+	low.registerLanguage('less', __webpack_require__(356));
+	low.registerLanguage('lisp', __webpack_require__(357));
+	low.registerLanguage('livecodeserver', __webpack_require__(358));
+	low.registerLanguage('livescript', __webpack_require__(359));
+	low.registerLanguage('llvm', __webpack_require__(360));
+	low.registerLanguage('lsl', __webpack_require__(361));
+	low.registerLanguage('lua', __webpack_require__(362));
+	low.registerLanguage('makefile', __webpack_require__(363));
+	low.registerLanguage('mathematica', __webpack_require__(364));
+	low.registerLanguage('matlab', __webpack_require__(365));
+	low.registerLanguage('maxima', __webpack_require__(366));
+	low.registerLanguage('mel', __webpack_require__(367));
+	low.registerLanguage('mercury', __webpack_require__(368));
+	low.registerLanguage('mipsasm', __webpack_require__(369));
+	low.registerLanguage('mizar', __webpack_require__(370));
+	low.registerLanguage('perl', __webpack_require__(371));
+	low.registerLanguage('mojolicious', __webpack_require__(372));
+	low.registerLanguage('monkey', __webpack_require__(373));
+	low.registerLanguage('moonscript', __webpack_require__(374));
+	low.registerLanguage('n1ql', __webpack_require__(375));
+	low.registerLanguage('nginx', __webpack_require__(376));
+	low.registerLanguage('nimrod', __webpack_require__(377));
+	low.registerLanguage('nix', __webpack_require__(378));
+	low.registerLanguage('nsis', __webpack_require__(379));
+	low.registerLanguage('objectivec', __webpack_require__(380));
+	low.registerLanguage('ocaml', __webpack_require__(381));
+	low.registerLanguage('openscad', __webpack_require__(382));
+	low.registerLanguage('oxygene', __webpack_require__(383));
+	low.registerLanguage('parser3', __webpack_require__(384));
+	low.registerLanguage('pf', __webpack_require__(385));
+	low.registerLanguage('php', __webpack_require__(386));
+	low.registerLanguage('pony', __webpack_require__(387));
+	low.registerLanguage('powershell', __webpack_require__(388));
+	low.registerLanguage('processing', __webpack_require__(389));
+	low.registerLanguage('profile', __webpack_require__(390));
+	low.registerLanguage('prolog', __webpack_require__(391));
+	low.registerLanguage('protobuf', __webpack_require__(392));
+	low.registerLanguage('puppet', __webpack_require__(393));
+	low.registerLanguage('purebasic', __webpack_require__(394));
+	low.registerLanguage('python', __webpack_require__(395));
+	low.registerLanguage('q', __webpack_require__(396));
+	low.registerLanguage('qml', __webpack_require__(397));
+	low.registerLanguage('r', __webpack_require__(398));
+	low.registerLanguage('rib', __webpack_require__(399));
+	low.registerLanguage('roboconf', __webpack_require__(400));
+	low.registerLanguage('routeros', __webpack_require__(401));
+	low.registerLanguage('rsl', __webpack_require__(402));
+	low.registerLanguage('ruleslanguage', __webpack_require__(403));
+	low.registerLanguage('rust', __webpack_require__(404));
+	low.registerLanguage('scala', __webpack_require__(405));
+	low.registerLanguage('scheme', __webpack_require__(406));
+	low.registerLanguage('scilab', __webpack_require__(407));
+	low.registerLanguage('scss', __webpack_require__(408));
+	low.registerLanguage('shell', __webpack_require__(409));
+	low.registerLanguage('smali', __webpack_require__(410));
+	low.registerLanguage('smalltalk', __webpack_require__(411));
+	low.registerLanguage('sml', __webpack_require__(412));
+	low.registerLanguage('sqf', __webpack_require__(413));
+	low.registerLanguage('sql', __webpack_require__(414));
+	low.registerLanguage('stan', __webpack_require__(415));
+	low.registerLanguage('stata', __webpack_require__(416));
+	low.registerLanguage('step21', __webpack_require__(417));
+	low.registerLanguage('stylus', __webpack_require__(418));
+	low.registerLanguage('subunit', __webpack_require__(419));
+	low.registerLanguage('swift', __webpack_require__(420));
+	low.registerLanguage('taggerscript', __webpack_require__(421));
+	low.registerLanguage('yaml', __webpack_require__(422));
+	low.registerLanguage('tap', __webpack_require__(423));
+	low.registerLanguage('tcl', __webpack_require__(424));
+	low.registerLanguage('tex', __webpack_require__(425));
+	low.registerLanguage('thrift', __webpack_require__(426));
+	low.registerLanguage('tp', __webpack_require__(427));
+	low.registerLanguage('twig', __webpack_require__(428));
+	low.registerLanguage('typescript', __webpack_require__(429));
+	low.registerLanguage('vala', __webpack_require__(430));
+	low.registerLanguage('vbnet', __webpack_require__(431));
+	low.registerLanguage('vbscript', __webpack_require__(432));
+	low.registerLanguage('vbscript-html', __webpack_require__(433));
+	low.registerLanguage('verilog', __webpack_require__(434));
+	low.registerLanguage('vhdl', __webpack_require__(435));
+	low.registerLanguage('vim', __webpack_require__(436));
+	low.registerLanguage('x86asm', __webpack_require__(437));
+	low.registerLanguage('xl', __webpack_require__(438));
+	low.registerLanguage('xquery', __webpack_require__(439));
+	low.registerLanguage('zephir', __webpack_require__(440));
 
 
 /***/ },
 /* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/**
-	 * @author Titus Wormer
-	 * @copyright 2016 Titus Wormer
-	 * @license MIT
-	 * @module lowlight:lowlight
-	 * @fileoverview Virtual syntax highlighting for virtual
-	 *   DOMs and non-HTML things.
-	 */
-	
 	'use strict';
 	
-	/* Dependencies. */
 	var high = __webpack_require__(264);
 	
 	/* The lowlight interface, which has to be compatible
 	 * with highlight.js, as this object is passed to
 	 * highlight.js syntaxes. */
 	
-	/** High constructor. */
 	function High() {}
 	
 	High.prototype = high;
@@ -22609,19 +22659,17 @@
 	low.registerLanguage = registerLanguage;
 	low.getLanguage = getLanguage;
 	
-	/* Methods. */
 	var inherit = high.inherit;
+	var own = {}.hasOwnProperty;
 	
-	/* Constants. */
 	var DEFAULT_PREFIX = 'hljs-';
 	var KEY_INSENSITIVE = 'case_insensitive';
+	var KEY_CACHED_VARIANTS = 'cached_variants';
 	var EMPTY = '';
 	
-	/* Constant characters. */
 	var C_SPACE = ' ';
 	var C_PIPE = '|';
 	
-	/* Constant types. */
 	var T_ELEMENT = 'element';
 	var T_TEXT = 'text';
 	var T_SPAN = 'span';
@@ -22631,11 +22679,7 @@
 	var languages = {};
 	var aliases = {};
 	
-	/* Methods. */
-	var own = {}.hasOwnProperty;
-	
-	/**
-	 * Highlighting with language detection.  Accepts a string
+	/* Highlighting with language detection.  Accepts a string
 	 * with the code to highlight.  Returns an object with the
 	 * following properties:
 	 *
@@ -22644,16 +22688,7 @@
 	 * - value (an HTML string with highlighting markup)
 	 * - secondBest (object with the same structure for
 	 *   second-best heuristically detected language, may
-	 *   be absent).
-	 *
-	 * @param {string} value - Source to highlight.
-	 * @param {Object?} [options={}] - Configuration.
-	 * @param {string} [options.prefix='hljs-'] - Highlight
-	 *   prefix.
-	 * @param {Array.<string>} [options.subset] - List of
-	 *   allowed languages.
-	 * @return {Object} - Highlighted `value`.
-	 */
+	 *   be absent) */
 	function autoHighlight(value, options) {
 	  var settings = options || {};
 	  var prefix = settings.prefix;
@@ -22704,16 +22739,7 @@
 	  return result;
 	}
 	
-	/**
-	 * Highlighting `value` in the language `language`.
-	 *
-	 * @param {string} language - Language name.
-	 * @param {string} value - Source to highlight.
-	 * @param {Object?} [options={}] - Configuration.
-	 * @param {string} [options.prefix='hljs-'] - Highlight
-	 *   prefix.
-	 * @return {Object} - Highlighted `value`.
-	*/
+	/* Highlighting `value` in the language `language`. */
 	function highlight(language, value, options) {
 	  var settings = options || {};
 	  var prefix = settings.prefix;
@@ -22725,12 +22751,7 @@
 	  return normalize(coreHighlight(language, value, true, prefix));
 	}
 	
-	/**
-	 * Register a language.
-	 *
-	 * @param {string} name - Name of language.
-	 * @param {Function} syntax - Syntax constructor.
-	 */
+	/* Register a language. */
 	function registerLanguage(name, syntax) {
 	  var lang = languages[name] = syntax(low);
 	  var values = lang.aliases;
@@ -22744,20 +22765,9 @@
 	  }
 	}
 	
-	/**
-	 * Core highlighting function.  Accepts a language name, or
+	/* Core highlighting function.  Accepts a language name, or
 	 * an alias, and a string with the code to highlight.
-	 * Returns an object with the following properties:
-	 *
-	 * @param {string} name - Language name.
-	 * @param {string} value - Source to highlight.
-	 * @param {boolean} [ignore=false] - Whether to ignore
-	 *   illegals.
-	 * @param {string?} [prefix] - Highlight prefix.
-	 * @param {boolean} [continuation] - Whether to continue
-	 *   processing with `continuation`.
-	 * @return {Object} - Highlighted `value`.
-	*/
+	 * Returns an object with the following properties: */
 	function coreHighlight(name, value, ignore, prefix, continuation) {
 	  var continuations = {};
 	  var stack = [];
@@ -22795,11 +22805,7 @@
 	    match = top.terminators.exec(value);
 	
 	    while (match) {
-	      count = processLexeme(
-	        value.substr(offset, match.index - offset),
-	        match[0]
-	      );
-	
+	      count = processLexeme(value.substring(offset, match.index), match[0]);
 	      offset = top.terminators.lastIndex = match.index + count;
 	      match = top.terminators.exec(value);
 	    }
@@ -23001,7 +23007,7 @@
 	    keyword = top.lexemesRe.exec(modeBuffer);
 	
 	    while (keyword) {
-	      addText(modeBuffer.substr(lastIndex, keyword.index - lastIndex), nodes);
+	      addText(modeBuffer.substring(lastIndex, keyword.index), nodes);
 	
 	      submatch = keywordMatch(top, keyword);
 	
@@ -23127,15 +23133,23 @@
 	  }
 	}
 	
+	function expandMode(mode) {
+	  if (mode.variants && !mode[KEY_CACHED_VARIANTS]) {
+	    mode[KEY_CACHED_VARIANTS] = mode.variants.map(function (variant) {
+	      return inherit(mode, {variants: null}, variant);
+	    });
+	  }
+	
+	  return mode[KEY_CACHED_VARIANTS] || (mode.endsWithParent && [inherit(mode)]) || [mode];
+	}
+	
 	/* Compile a language. */
 	function compileLanguage(language) {
 	  compileMode(language);
-	  return;
 	
 	  /* Compile a language mode, optionally with a parent. */
 	  function compileMode(mode, parent) {
 	    var compiledKeywords = {};
-	    var expandedContains = [];
 	    var terminators;
 	
 	    if (mode.compiled) {
@@ -23198,17 +23212,9 @@
 	      mode.contains = [];
 	    }
 	
-	    mode.contains.forEach(function (c) {
-	      if (c.variants) {
-	        c.variants.forEach(function (v) {
-	          expandedContains.push(inherit(c, v));
-	        });
-	      } else {
-	        expandedContains.push(c === 'self' ? mode : c);
-	      }
-	    });
-	
-	    mode.contains = expandedContains;
+	    mode.contains = Array.prototype.concat.apply([], mode.contains.map(function (c) {
+	      return expandMode(c === 'self' ? mode : c);
+	    }));
 	
 	    mode.contains.forEach(function (c) {
 	      compileMode(c, mode);
@@ -23229,8 +23235,6 @@
 	    mode.terminators = terminators.length ?
 	      langRe(terminators.join(C_PIPE), true) :
 	      {exec: execNoop};
-	
-	    return;
 	
 	    /* Flatten a classname. */
 	    function flatten(className, value) {
@@ -23358,19 +23362,11 @@
 	    languages: undefined
 	  };
 	
-	  // Object map that is used to escape some common HTML characters.
-	  var escapeRegexMap = {
-	    '&': '&amp;',
-	    '<': '&lt;',
-	    '>': '&gt;'
-	  };
 	
 	  /* Utility functions */
 	
 	  function escape(value) {
-	    return value.replace(/[&<>]/gm, function(character) {
-	      return escapeRegexMap[character];
-	    });
+	    return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 	  }
 	
 	  function tag(node) {
@@ -23409,15 +23405,17 @@
 	    }
 	  }
 	
-	  function inherit(parent, obj) {
+	  function inherit(parent) {  // inherit(parent, override_obj, override_obj, ...)
 	    var key;
 	    var result = {};
+	    var objects = Array.prototype.slice.call(arguments, 1);
 	
 	    for (key in parent)
 	      result[key] = parent[key];
-	    if (obj)
+	    objects.forEach(function(obj) {
 	      for (key in obj)
 	        result[key] = obj[key];
+	    });
 	    return result;
 	  }
 	
@@ -23485,7 +23483,7 @@
 	    }
 	
 	    function open(node) {
-	      function attr_str(a) {return ' ' + a.nodeName + '="' + escape(a.value) + '"';}
+	      function attr_str(a) {return ' ' + a.nodeName + '="' + escape(a.value).replace('"', '&quot;') + '"';}
 	      result += '<' + tag(node) + ArrayProto.map.call(node.attributes, attr_str).join('') + '>';
 	    }
 	
@@ -23499,7 +23497,7 @@
 	
 	    while (original.length || highlighted.length) {
 	      var stream = selectStream();
-	      result += escape(value.substr(processed, stream[0].offset - processed));
+	      result += escape(value.substring(processed, stream[0].offset));
 	      processed = stream[0].offset;
 	      if (stream === original) {
 	        /*
@@ -23527,6 +23525,15 @@
 	  }
 	
 	  /* Initialization */
+	
+	  function expand_mode(mode) {
+	    if (mode.variants && !mode.cached_variants) {
+	      mode.cached_variants = mode.variants.map(function(variant) {
+	        return inherit(mode, {variants: null}, variant);
+	      });
+	    }
+	    return mode.cached_variants || (mode.endsWithParent && [inherit(mode)]) || [mode];
+	  }
 	
 	  function compileLanguage(language) {
 	
@@ -23593,15 +23600,9 @@
 	      if (!mode.contains) {
 	        mode.contains = [];
 	      }
-	      var expanded_contains = [];
-	      mode.contains.forEach(function(c) {
-	        if (c.variants) {
-	          c.variants.forEach(function(v) {expanded_contains.push(inherit(c, v));});
-	        } else {
-	          expanded_contains.push(c === 'self' ? mode : c);
-	        }
-	      });
-	      mode.contains = expanded_contains;
+	      mode.contains = Array.prototype.concat.apply([], mode.contains.map(function(c) {
+	        return expand_mode(c === 'self' ? mode : c)
+	      }));
 	      mode.contains.forEach(function(c) {compileMode(c, mode);});
 	
 	      if (mode.starts) {
@@ -23685,7 +23686,7 @@
 	      match = top.lexemesRe.exec(mode_buffer);
 	
 	      while (match) {
-	        result += escape(mode_buffer.substr(last_index, match.index - last_index));
+	        result += escape(mode_buffer.substring(last_index, match.index));
 	        keyword_match = keywordMatch(top, match);
 	        if (keyword_match) {
 	          relevance += keyword_match[1];
@@ -23822,7 +23823,7 @@
 	        match = top.terminators.exec(value);
 	        if (!match)
 	          break;
-	        count = processLexeme(value.substr(index, match.index - index), match[0]);
+	        count = processLexeme(value.substring(index, match.index), match[0]);
 	        index = match.index + count;
 	      }
 	      processLexeme(value.substr(index));
@@ -23900,6 +23901,7 @@
 	          } else if (options.tabReplace) {
 	            return p1.replace(/\t/g, options.tabReplace);
 	          }
+	          return '';
 	      });
 	  }
 	
@@ -24042,7 +24044,7 @@
 	    contains: [hljs.BACKSLASH_ESCAPE]
 	  };
 	  hljs.PHRASAL_WORDS_MODE = {
-	    begin: /\b(a|an|the|are|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|like)\b/
+	    begin: /\b(a|an|the|are|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|they|like|more)\b/
 	  };
 	  hljs.COMMENT = function (begin, end, inherits) {
 	    var mode = hljs.inherit(
@@ -24130,82 +24132,513 @@
 /***/ function(module, exports) {
 
 	module.exports = function(hljs){
-	  var IDENT_RE_RU = '[a-zA-Zа-яА-Я][a-zA-Z0-9_а-яА-Я]*';
-	  var OneS_KEYWORDS = 'возврат дата для если и или иначе иначеесли исключение конецесли ' +
-	    'конецпопытки конецпроцедуры конецфункции конеццикла константа не перейти перем ' +
-	    'перечисление по пока попытка прервать продолжить процедура строка тогда фс функция цикл ' +
-	    'число экспорт';
-	  var OneS_BUILT_IN = 'ansitooem oemtoansi ввестивидсубконто ввестидату ввестизначение ' +
-	    'ввестиперечисление ввестипериод ввестиплансчетов ввестистроку ввестичисло вопрос ' +
-	    'восстановитьзначение врег выбранныйплансчетов вызватьисключение датагод датамесяц ' +
-	    'датачисло добавитьмесяц завершитьработусистемы заголовоксистемы записьжурналарегистрации ' +
-	    'запуститьприложение зафиксироватьтранзакцию значениевстроку значениевстрокувнутр ' +
-	    'значениевфайл значениеизстроки значениеизстрокивнутр значениеизфайла имякомпьютера ' +
-	    'имяпользователя каталогвременныхфайлов каталогиб каталогпользователя каталогпрограммы ' +
-	    'кодсимв командасистемы конгода конецпериодаби конецрассчитанногопериодаби ' +
-	    'конецстандартногоинтервала конквартала конмесяца коннедели лев лог лог10 макс ' +
-	    'максимальноеколичествосубконто мин монопольныйрежим названиеинтерфейса названиенабораправ ' +
-	    'назначитьвид назначитьсчет найти найтипомеченныенаудаление найтиссылки началопериодаби ' +
-	    'началостандартногоинтервала начатьтранзакцию начгода начквартала начмесяца начнедели ' +
-	    'номерднягода номерднянедели номернеделигода нрег обработкаожидания окр описаниеошибки ' +
-	    'основнойжурналрасчетов основнойплансчетов основнойязык открытьформу открытьформумодально ' +
-	    'отменитьтранзакцию очиститьокносообщений периодстр полноеимяпользователя получитьвремята ' +
-	    'получитьдатута получитьдокументта получитьзначенияотбора получитьпозициюта ' +
-	    'получитьпустоезначение получитьта прав праводоступа предупреждение префиксавтонумерации ' +
-	    'пустаястрока пустоезначение рабочаядаттьпустоезначение рабочаядата разделительстраниц ' +
-	    'разделительстрок разм разобратьпозициюдокумента рассчитатьрегистрына ' +
-	    'рассчитатьрегистрыпо сигнал симв символтабуляции создатьобъект сокрл сокрлп сокрп ' +
-	    'сообщить состояние сохранитьзначение сред статусвозврата стрдлина стрзаменить ' +
-	    'стрколичествострок стрполучитьстроку  стрчисловхождений сформироватьпозициюдокумента ' +
-	    'счетпокоду текущаядата текущеевремя типзначения типзначениястр удалитьобъекты ' +
-	    'установитьтана установитьтапо фиксшаблон формат цел шаблон';
-	  var DQUOTE =  {begin: '""'};
-	  var STR_START = {
-	      className: 'string',
-	      begin: '"', end: '"|$',
-	      contains: [DQUOTE]
-	    };
-	  var STR_CONT = {
+	
+	  // общий паттерн для определения идентификаторов
+	  var UNDERSCORE_IDENT_RE = '[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+';
+	  
+	  // v7 уникальные ключевые слова, отсутствующие в v8 ==> keyword
+	  var v7_keywords =
+	  'далее ';
+	
+	  // v8 ключевые слова ==> keyword
+	  var v8_keywords =
+	  'возврат вызватьисключение выполнить для если и из или иначе иначеесли исключение каждого конецесли ' +
+	  'конецпопытки конеццикла не новый перейти перем по пока попытка прервать продолжить тогда цикл экспорт ';
+	
+	  // keyword : ключевые слова
+	  var KEYWORD = v7_keywords + v8_keywords;
+	  
+	  // v7 уникальные директивы, отсутствующие в v8 ==> meta-keyword
+	  var v7_meta_keywords =
+	  'загрузитьизфайла ';
+	
+	  // v8 ключевые слова в инструкциях препроцессора, директивах компиляции, аннотациях ==> meta-keyword
+	  var v8_meta_keywords =
+	  'вебклиент вместо внешнеесоединение клиент конецобласти мобильноеприложениеклиент мобильноеприложениесервер ' +
+	  'наклиенте наклиентенасервере наклиентенасерверебезконтекста насервере насерверебезконтекста область перед ' +
+	  'после сервер толстыйклиентобычноеприложение толстыйклиентуправляемоеприложение тонкийклиент ';
+	
+	  // meta-keyword : ключевые слова в инструкциях препроцессора, директивах компиляции, аннотациях
+	  var METAKEYWORD = v7_meta_keywords + v8_meta_keywords;
+	
+	  // v7 системные константы ==> built_in
+	  var v7_system_constants =
+	  'разделительстраниц разделительстрок символтабуляции ';
+	  
+	  // v7 уникальные методы глобального контекста, отсутствующие в v8 ==> built_in
+	  var v7_global_context_methods =
+	  'ansitooem oemtoansi ввестивидсубконто ввестиперечисление ввестипериод ввестиплансчетов выбранныйплансчетов ' +
+	  'датагод датамесяц датачисло заголовоксистемы значениевстроку значениеизстроки каталогиб каталогпользователя ' +
+	  'кодсимв конгода конецпериодаби конецрассчитанногопериодаби конецстандартногоинтервала конквартала конмесяца ' +
+	  'коннедели лог лог10 максимальноеколичествосубконто названиеинтерфейса названиенабораправ назначитьвид ' +
+	  'назначитьсчет найтиссылки началопериодаби началостандартногоинтервала начгода начквартала начмесяца ' +
+	  'начнедели номерднягода номерднянедели номернеделигода обработкаожидания основнойжурналрасчетов ' +
+	  'основнойплансчетов основнойязык очиститьокносообщений периодстр получитьвремята получитьдатута ' +
+	  'получитьдокументта получитьзначенияотбора получитьпозициюта получитьпустоезначение получитьта ' +
+	  'префиксавтонумерации пропись пустоезначение разм разобратьпозициюдокумента рассчитатьрегистрына ' +
+	  'рассчитатьрегистрыпо симв создатьобъект статусвозврата стрколичествострок сформироватьпозициюдокумента ' +
+	  'счетпокоду текущеевремя типзначения типзначениястр установитьтана установитьтапо фиксшаблон шаблон ';
+	  
+	  // v8 методы глобального контекста ==> built_in
+	  var v8_global_context_methods =
+	  'acos asin atan base64значение base64строка cos exp log log10 pow sin sqrt tan xmlзначение xmlстрока ' +
+	  'xmlтип xmlтипзнч активноеокно безопасныйрежим безопасныйрежимразделенияданных булево ввестидату ввестизначение ' +
+	  'ввестистроку ввестичисло возможностьчтенияxml вопрос восстановитьзначение врег выгрузитьжурналрегистрации ' +
+	  'выполнитьобработкуоповещения выполнитьпроверкуправдоступа вычислить год данныеформывзначение дата день деньгода ' +
+	  'деньнедели добавитьмесяц заблокироватьданныедляредактирования заблокироватьработупользователя завершитьработусистемы ' +
+	  'загрузитьвнешнююкомпоненту закрытьсправку записатьjson записатьxml записатьдатуjson записьжурналарегистрации ' +
+	  'заполнитьзначениясвойств запроситьразрешениепользователя запуститьприложение запуститьсистему зафиксироватьтранзакцию ' +
+	  'значениевданныеформы значениевстрокувнутр значениевфайл значениезаполнено значениеизстрокивнутр значениеизфайла ' +
+	  'изxmlтипа импортмоделиxdto имякомпьютера имяпользователя инициализироватьпредопределенныеданные информацияобошибке ' +
+	  'каталогбиблиотекимобильногоустройства каталогвременныхфайлов каталогдокументов каталогпрограммы кодироватьстроку ' +
+	  'кодлокализацииинформационнойбазы кодсимвола командасистемы конецгода конецдня конецквартала конецмесяца конецминуты ' +
+	  'конецнедели конецчаса конфигурациябазыданныхизмененадинамически конфигурацияизменена копироватьданныеформы ' +
+	  'копироватьфайл краткоепредставлениеошибки лев макс местноевремя месяц мин минута монопольныйрежим найти ' +
+	  'найтинедопустимыесимволыxml найтиокнопонавигационнойссылке найтипомеченныенаудаление найтипоссылкам найтифайлы ' +
+	  'началогода началодня началоквартала началомесяца началоминуты началонедели началочаса начатьзапросразрешенияпользователя ' +
+	  'начатьзапускприложения начатькопированиефайла начатьперемещениефайла начатьподключениевнешнейкомпоненты ' +
+	  'начатьподключениерасширенияработыскриптографией начатьподключениерасширенияработысфайлами начатьпоискфайлов ' +
+	  'начатьполучениекаталогавременныхфайлов начатьполучениекаталогадокументов начатьполучениерабочегокаталогаданныхпользователя ' +
+	  'начатьполучениефайлов начатьпомещениефайла начатьпомещениефайлов начатьсозданиедвоичныхданныхизфайла начатьсозданиекаталога ' +
+	  'начатьтранзакцию начатьудалениефайлов начатьустановкувнешнейкомпоненты начатьустановкурасширенияработыскриптографией ' +
+	  'начатьустановкурасширенияработысфайлами неделягода необходимостьзавершениясоединения номерсеансаинформационнойбазы ' +
+	  'номерсоединенияинформационнойбазы нрег нстр обновитьинтерфейс обновитьнумерациюобъектов обновитьповторноиспользуемыезначения ' +
+	  'обработкапрерыванияпользователя объединитьфайлы окр описаниеошибки оповестить оповеститьобизменении ' +
+	  'отключитьобработчикзапросанастроекклиенталицензирования отключитьобработчикожидания отключитьобработчикоповещения ' +
+	  'открытьзначение открытьиндекссправки открытьсодержаниесправки открытьсправку открытьформу открытьформумодально ' +
+	  'отменитьтранзакцию очиститьжурналрегистрации очиститьнастройкипользователя очиститьсообщения параметрыдоступа ' +
+	  'перейтипонавигационнойссылке переместитьфайл подключитьвнешнююкомпоненту ' +
+	  'подключитьобработчикзапросанастроекклиенталицензирования подключитьобработчикожидания подключитьобработчикоповещения ' +
+	  'подключитьрасширениеработыскриптографией подключитьрасширениеработысфайлами подробноепредставлениеошибки ' +
+	  'показатьвводдаты показатьвводзначения показатьвводстроки показатьвводчисла показатьвопрос показатьзначение ' +
+	  'показатьинформациюобошибке показатьнакарте показатьоповещениепользователя показатьпредупреждение полноеимяпользователя ' +
+	  'получитьcomобъект получитьxmlтип получитьадреспоместоположению получитьблокировкусеансов получитьвремязавершенияспящегосеанса ' +
+	  'получитьвремязасыпанияпассивногосеанса получитьвремяожиданияблокировкиданных получитьданныевыбора ' +
+	  'получитьдополнительныйпараметрклиенталицензирования получитьдопустимыекодылокализации получитьдопустимыечасовыепояса ' +
+	  'получитьзаголовокклиентскогоприложения получитьзаголовоксистемы получитьзначенияотборажурналарегистрации ' +
+	  'получитьидентификаторконфигурации получитьизвременногохранилища получитьимявременногофайла ' +
+	  'получитьимяклиенталицензирования получитьинформациюэкрановклиента получитьиспользованиежурналарегистрации ' +
+	  'получитьиспользованиесобытияжурналарегистрации получитькраткийзаголовокприложения получитьмакетоформления ' +
+	  'получитьмаскувсефайлы получитьмаскувсефайлыклиента получитьмаскувсефайлысервера получитьместоположениепоадресу ' +
+	  'получитьминимальнуюдлинупаролейпользователей получитьнавигационнуюссылку получитьнавигационнуюссылкуинформационнойбазы ' +
+	  'получитьобновлениеконфигурациибазыданных получитьобновлениепредопределенныхданныхинформационнойбазы получитьобщиймакет ' +
+	  'получитьобщуюформу получитьокна получитьоперативнуюотметкувремени получитьотключениебезопасногорежима ' +
+	  'получитьпараметрыфункциональныхопцийинтерфейса получитьполноеимяпредопределенногозначения ' +
+	  'получитьпредставлениянавигационныхссылок получитьпроверкусложностипаролейпользователей получитьразделительпути ' +
+	  'получитьразделительпутиклиента получитьразделительпутисервера получитьсеансыинформационнойбазы ' +
+	  'получитьскоростьклиентскогосоединения получитьсоединенияинформационнойбазы получитьсообщенияпользователю ' +
+	  'получитьсоответствиеобъектаиформы получитьсоставстандартногоинтерфейсаodata получитьструктурухранениябазыданных ' +
+	  'получитьтекущийсеансинформационнойбазы получитьфайл получитьфайлы получитьформу получитьфункциональнуюопцию ' +
+	  'получитьфункциональнуюопциюинтерфейса получитьчасовойпоясинформационнойбазы пользователиос поместитьвовременноехранилище ' +
+	  'поместитьфайл поместитьфайлы прав праводоступа предопределенноезначение представлениекодалокализации представлениепериода ' +
+	  'представлениеправа представлениеприложения представлениесобытияжурналарегистрации представлениечасовогопояса предупреждение ' +
+	  'прекратитьработусистемы привилегированныйрежим продолжитьвызов прочитатьjson прочитатьxml прочитатьдатуjson пустаястрока ' +
+	  'рабочийкаталогданныхпользователя разблокироватьданныедляредактирования разделитьфайл разорватьсоединениесвнешнимисточникомданных ' +
+	  'раскодироватьстроку рольдоступна секунда сигнал символ скопироватьжурналрегистрации смещениелетнеговремени ' +
+	  'смещениестандартноговремени соединитьбуферыдвоичныхданных создатькаталог создатьфабрикуxdto сокрл сокрлп сокрп сообщить ' +
+	  'состояние сохранитьзначение сохранитьнастройкипользователя сред стрдлина стрзаканчиваетсяна стрзаменить стрнайти стрначинаетсяс ' +
+	  'строка строкасоединенияинформационнойбазы стрполучитьстроку стрразделить стрсоединить стрсравнить стрчисловхождений '+
+	  'стрчислострок стршаблон текущаядата текущаядатасеанса текущаяуниверсальнаядата текущаяуниверсальнаядатавмиллисекундах ' +
+	  'текущийвариантинтерфейсаклиентскогоприложения текущийвариантосновногошрифтаклиентскогоприложения текущийкодлокализации ' +
+	  'текущийрежимзапуска текущийязык текущийязыксистемы тип типзнч транзакцияактивна трег удалитьданныеинформационнойбазы ' +
+	  'удалитьизвременногохранилища удалитьобъекты удалитьфайлы универсальноевремя установитьбезопасныйрежим ' +
+	  'установитьбезопасныйрежимразделенияданных установитьблокировкусеансов установитьвнешнююкомпоненту ' +
+	  'установитьвремязавершенияспящегосеанса установитьвремязасыпанияпассивногосеанса установитьвремяожиданияблокировкиданных ' +
+	  'установитьзаголовокклиентскогоприложения установитьзаголовоксистемы установитьиспользованиежурналарегистрации ' +
+	  'установитьиспользованиесобытияжурналарегистрации установитькраткийзаголовокприложения ' +
+	  'установитьминимальнуюдлинупаролейпользователей установитьмонопольныйрежим установитьнастройкиклиенталицензирования ' +
+	  'установитьобновлениепредопределенныхданныхинформационнойбазы установитьотключениебезопасногорежима ' +
+	  'установитьпараметрыфункциональныхопцийинтерфейса установитьпривилегированныйрежим ' +
+	  'установитьпроверкусложностипаролейпользователей установитьрасширениеработыскриптографией ' +
+	  'установитьрасширениеработысфайлами установитьсоединениесвнешнимисточникомданных установитьсоответствиеобъектаиформы ' +
+	  'установитьсоставстандартногоинтерфейсаodata установитьчасовойпоясинформационнойбазы установитьчасовойпояссеанса ' +
+	  'формат цел час часовойпояс часовойпояссеанса число числопрописью этоадресвременногохранилища ';
+	
+	  // v8 свойства глобального контекста ==> built_in
+	  var v8_global_context_property =
+	  'wsссылки библиотекакартинок библиотекамакетовоформлениякомпоновкиданных библиотекастилей бизнеспроцессы ' +
+	  'внешниеисточникиданных внешниеобработки внешниеотчеты встроенныепокупки главныйинтерфейс главныйстиль ' +
+	  'документы доставляемыеуведомления журналыдокументов задачи информацияобинтернетсоединении использованиерабочейдаты ' +
+	  'историяработыпользователя константы критерииотбора метаданные обработки отображениерекламы отправкадоставляемыхуведомлений ' +
+	  'отчеты панельзадачос параметрзапуска параметрысеанса перечисления планывидоврасчета планывидовхарактеристик ' +
+	  'планыобмена планысчетов полнотекстовыйпоиск пользователиинформационнойбазы последовательности проверкавстроенныхпокупок ' +
+	  'рабочаядата расширенияконфигурации регистрыбухгалтерии регистрынакопления регистрырасчета регистрысведений ' +
+	  'регламентныезадания сериализаторxdto справочники средствагеопозиционирования средствакриптографии средствамультимедиа ' +
+	  'средстваотображениярекламы средствапочты средствателефонии фабрикаxdto файловыепотоки фоновыезадания хранилищанастроек ' +
+	  'хранилищевариантовотчетов хранилищенастроекданныхформ хранилищеобщихнастроек хранилищепользовательскихнастроекдинамическихсписков ' +
+	  'хранилищепользовательскихнастроекотчетов хранилищесистемныхнастроек ';
+	
+	  // built_in : встроенные или библиотечные объекты (константы, классы, функции)
+	  var BUILTIN =
+	  v7_system_constants +
+	  v7_global_context_methods + v8_global_context_methods +
+	  v8_global_context_property;
+	  
+	  // v8 системные наборы значений ==> class
+	  var v8_system_sets_of_values =
+	  'webцвета windowsцвета windowsшрифты библиотекакартинок рамкистиля символы цветастиля шрифтыстиля ';
+	
+	  // v8 системные перечисления - интерфейсные ==> class
+	  var v8_system_enums_interface =
+	  'автоматическоесохранениеданныхформывнастройках автонумерациявформе автораздвижениесерий ' +
+	  'анимациядиаграммы вариантвыравниванияэлементовизаголовков вариантуправлениявысотойтаблицы ' +
+	  'вертикальнаяпрокруткаформы вертикальноеположение вертикальноеположениеэлемента видгруппыформы ' +
+	  'виддекорацииформы виддополненияэлементаформы видизмененияданных видкнопкиформы видпереключателя ' +
+	  'видподписейкдиаграмме видполяформы видфлажка влияниеразмеранапузырекдиаграммы горизонтальноеположение ' +
+	  'горизонтальноеположениеэлемента группировкаколонок группировкаподчиненныхэлементовформы ' +
+	  'группыиэлементы действиеперетаскивания дополнительныйрежимотображения допустимыедействияперетаскивания ' +
+	  'интервалмеждуэлементамиформы использованиевывода использованиеполосыпрокрутки ' +
+	  'используемоезначениеточкибиржевойдиаграммы историявыборапривводе источникзначенийоситочекдиаграммы ' +
+	  'источникзначенияразмерапузырькадиаграммы категориягруппыкоманд максимумсерий начальноеотображениедерева ' +
+	  'начальноеотображениесписка обновлениетекстаредактирования ориентациядендрограммы ориентациядиаграммы ' +
+	  'ориентацияметокдиаграммы ориентацияметоксводнойдиаграммы ориентацияэлементаформы отображениевдиаграмме ' +
+	  'отображениевлегендедиаграммы отображениегруппыкнопок отображениезаголовкашкалыдиаграммы ' +
+	  'отображениезначенийсводнойдиаграммы отображениезначенияизмерительнойдиаграммы ' +
+	  'отображениеинтерваладиаграммыганта отображениекнопки отображениекнопкивыбора отображениеобсужденийформы ' +
+	  'отображениеобычнойгруппы отображениеотрицательныхзначенийпузырьковойдиаграммы отображениепанелипоиска ' +
+	  'отображениеподсказки отображениепредупрежденияприредактировании отображениеразметкиполосырегулирования ' +
+	  'отображениестраницформы отображениетаблицы отображениетекстазначениядиаграммыганта ' +
+	  'отображениеуправленияобычнойгруппы отображениефигурыкнопки палитрацветовдиаграммы поведениеобычнойгруппы ' +
+	  'поддержкамасштабадендрограммы поддержкамасштабадиаграммыганта поддержкамасштабасводнойдиаграммы ' +
+	  'поисквтаблицепривводе положениезаголовкаэлементаформы положениекартинкикнопкиформы ' +
+	  'положениекартинкиэлементаграфическойсхемы положениекоманднойпанелиформы положениекоманднойпанелиэлементаформы ' +
+	  'положениеопорнойточкиотрисовки положениеподписейкдиаграмме положениеподписейшкалызначенийизмерительнойдиаграммы ' +
+	  'положениесостоянияпросмотра положениестрокипоиска положениетекстасоединительнойлинии положениеуправленияпоиском ' +
+	  'положениешкалывремени порядокотображенияточекгоризонтальнойгистограммы порядоксерийвлегендедиаграммы ' +
+	  'размеркартинки расположениезаголовкашкалыдиаграммы растягиваниеповертикалидиаграммыганта ' +
+	  'режимавтоотображениясостояния режимвводастроктаблицы режимвыборанезаполненного режимвыделениядаты ' +
+	  'режимвыделениястрокитаблицы режимвыделениятаблицы режимизмененияразмера режимизменениясвязанногозначения ' +
+	  'режимиспользованиядиалогапечати режимиспользованияпараметракоманды режиммасштабированияпросмотра ' +
+	  'режимосновногоокнаклиентскогоприложения режимоткрытияокнаформы режимотображениявыделения ' +
+	  'режимотображениягеографическойсхемы режимотображениязначенийсерии режимотрисовкисеткиграфическойсхемы ' +
+	  'режимполупрозрачностидиаграммы режимпробеловдиаграммы режимразмещениянастранице режимредактированияколонки ' +
+	  'режимсглаживаниядиаграммы режимсглаживанияиндикатора режимсписказадач сквозноевыравнивание ' +
+	  'сохранениеданныхформывнастройках способзаполнениятекстазаголовкашкалыдиаграммы ' +
+	  'способопределенияограничивающегозначениядиаграммы стандартнаягруппакоманд стандартноеоформление ' +
+	  'статусоповещенияпользователя стильстрелки типаппроксимациилиниитрендадиаграммы типдиаграммы ' +
+	  'типединицышкалывремени типимпортасерийслоягеографическойсхемы типлиниигеографическойсхемы типлиниидиаграммы ' +
+	  'типмаркерагеографическойсхемы типмаркерадиаграммы типобластиоформления ' +
+	  'типорганизацииисточникаданныхгеографическойсхемы типотображениясериислоягеографическойсхемы ' +
+	  'типотображенияточечногообъектагеографическойсхемы типотображенияшкалыэлементалегендыгеографическойсхемы ' +
+	  'типпоискаобъектовгеографическойсхемы типпроекциигеографическойсхемы типразмещенияизмерений ' +
+	  'типразмещенияреквизитовизмерений типрамкиэлементауправления типсводнойдиаграммы ' +
+	  'типсвязидиаграммыганта типсоединениязначенийпосериямдиаграммы типсоединенияточекдиаграммы ' +
+	  'типсоединительнойлинии типстороныэлементаграфическойсхемы типформыотчета типшкалырадарнойдиаграммы ' +
+	  'факторлиниитрендадиаграммы фигуракнопки фигурыграфическойсхемы фиксациявтаблице форматдняшкалывремени ' +
+	  'форматкартинки ширинаподчиненныхэлементовформы ';
+	
+	  // v8 системные перечисления - свойства прикладных объектов ==> class
+	  var v8_system_enums_objects_properties =
+	  'виддвижениябухгалтерии виддвижениянакопления видпериодарегистрарасчета видсчета видточкимаршрутабизнеспроцесса ' +
+	  'использованиеагрегатарегистранакопления использованиегруппиэлементов использованиережимапроведения ' +
+	  'использованиесреза периодичностьагрегатарегистранакопления режимавтовремя режимзаписидокумента режимпроведениядокумента ';
+	
+	  // v8 системные перечисления - планы обмена ==> class
+	  var v8_system_enums_exchange_plans =
+	  'авторегистрацияизменений допустимыйномерсообщения отправкаэлементаданных получениеэлементаданных ';
+	
+	  // v8 системные перечисления - табличный документ ==> class
+	  var v8_system_enums_tabular_document =
+	  'использованиерасшифровкитабличногодокумента ориентациястраницы положениеитоговколоноксводнойтаблицы ' +
+	  'положениеитоговстроксводнойтаблицы положениетекстаотносительнокартинки расположениезаголовкагруппировкитабличногодокумента ' +
+	  'способчтениязначенийтабличногодокумента типдвустороннейпечати типзаполненияобластитабличногодокумента ' +
+	  'типкурсоровтабличногодокумента типлиниирисункатабличногодокумента типлинииячейкитабличногодокумента ' +
+	  'типнаправленияпереходатабличногодокумента типотображениявыделениятабличногодокумента типотображениялинийсводнойтаблицы ' +
+	  'типразмещениятекстатабличногодокумента типрисункатабличногодокумента типсмещениятабличногодокумента ' +
+	  'типузоратабличногодокумента типфайлатабличногодокумента точностьпечати чередованиерасположениястраниц ';
+	
+	  // v8 системные перечисления - планировщик ==> class
+	  var v8_system_enums_sheduler =
+	  'отображениевремениэлементовпланировщика ';
+	
+	  // v8 системные перечисления - форматированный документ ==> class
+	  var v8_system_enums_formatted_document =
+	  'типфайлаформатированногодокумента ';
+	
+	  // v8 системные перечисления - запрос ==> class
+	  var v8_system_enums_query =
+	  'обходрезультатазапроса типзаписизапроса ';
+	
+	  // v8 системные перечисления - построитель отчета ==> class
+	  var v8_system_enums_report_builder =
+	  'видзаполнениярасшифровкипостроителяотчета типдобавленияпредставлений типизмеренияпостроителяотчета типразмещенияитогов ';
+	
+	  // v8 системные перечисления - работа с файлами ==> class
+	  var v8_system_enums_files =
+	  'доступкфайлу режимдиалогавыборафайла режимоткрытияфайла ';
+	
+	  // v8 системные перечисления - построитель запроса ==> class
+	  var v8_system_enums_query_builder =
+	  'типизмеренияпостроителязапроса ';
+	
+	  // v8 системные перечисления - анализ данных ==> class
+	  var v8_system_enums_data_analysis =
+	  'видданныханализа методкластеризации типединицыинтервалавременианализаданных типзаполнениятаблицырезультатаанализаданных ' +
+	  'типиспользованиячисловыхзначенийанализаданных типисточникаданныхпоискаассоциаций типколонкианализаданныхдереворешений ' +
+	  'типколонкианализаданныхкластеризация типколонкианализаданныхобщаястатистика типколонкианализаданныхпоискассоциаций ' +
+	  'типколонкианализаданныхпоискпоследовательностей типколонкимоделипрогноза типмерырасстоянияанализаданных ' +
+	  'типотсеченияправилассоциации типполяанализаданных типстандартизациианализаданных типупорядочиванияправилассоциациианализаданных ' +
+	  'типупорядочиванияшаблоновпоследовательностейанализаданных типупрощениядереварешений ';
+	
+	  // v8 системные перечисления - xml, json, xs, dom, xdto, web-сервисы ==> class
+	  var v8_system_enums_xml_json_xs_dom_xdto_ws =
+	  'wsнаправлениепараметра вариантxpathxs вариантзаписидатыjson вариантпростоготипаxs видгруппымоделиxs видфасетаxdto ' +
+	  'действиепостроителяdom завершенностьпростоготипаxs завершенностьсоставноготипаxs завершенностьсхемыxs запрещенныеподстановкиxs ' +
+	  'исключениягруппподстановкиxs категорияиспользованияатрибутаxs категорияограниченияидентичностиxs категорияограниченияпространствименxs ' +
+	  'методнаследованияxs модельсодержимогоxs назначениетипаxml недопустимыеподстановкиxs обработкапробельныхсимволовxs обработкасодержимогоxs ' +
+	  'ограничениезначенияxs параметрыотбораузловdom переносстрокjson позициявдокументеdom пробельныесимволыxml типатрибутаxml типзначенияjson ' +
+	  'типканоническогоxml типкомпонентыxs типпроверкиxml типрезультатаdomxpath типузлаdom типузлаxml формаxml формапредставленияxs ' +
+	  'форматдатыjson экранированиесимволовjson ';
+	
+	  // v8 системные перечисления - система компоновки данных ==> class
+	  var v8_system_enums_data_composition_system =
+	  'видсравнениякомпоновкиданных действиеобработкирасшифровкикомпоновкиданных направлениесортировкикомпоновкиданных ' +
+	  'расположениевложенныхэлементоврезультатакомпоновкиданных расположениеитоговкомпоновкиданных расположениегруппировкикомпоновкиданных ' +
+	  'расположениеполейгруппировкикомпоновкиданных расположениеполякомпоновкиданных расположениереквизитовкомпоновкиданных ' +
+	  'расположениересурсовкомпоновкиданных типбухгалтерскогоостаткакомпоновкиданных типвыводатекстакомпоновкиданных ' +
+	  'типгруппировкикомпоновкиданных типгруппыэлементовотборакомпоновкиданных типдополненияпериодакомпоновкиданных ' +
+	  'типзаголовкаполейкомпоновкиданных типмакетагруппировкикомпоновкиданных типмакетаобластикомпоновкиданных типостаткакомпоновкиданных ' +
+	  'типпериодакомпоновкиданных типразмещениятекстакомпоновкиданных типсвязинаборовданныхкомпоновкиданных типэлементарезультатакомпоновкиданных ' +
+	  'расположениелегендыдиаграммыкомпоновкиданных типпримененияотборакомпоновкиданных режимотображенияэлементанастройкикомпоновкиданных ' +
+	  'режимотображениянастроеккомпоновкиданных состояниеэлементанастройкикомпоновкиданных способвосстановлениянастроеккомпоновкиданных ' +
+	  'режимкомпоновкирезультата использованиепараметракомпоновкиданных автопозицияресурсовкомпоновкиданных '+
+	  'вариантиспользованиягруппировкикомпоновкиданных расположениересурсоввдиаграммекомпоновкиданных фиксациякомпоновкиданных ' +
+	  'использованиеусловногооформлениякомпоновкиданных ';
+	
+	  // v8 системные перечисления - почта ==> class
+	  var v8_system_enums_email =
+	  'важностьинтернетпочтовогосообщения обработкатекстаинтернетпочтовогосообщения способкодированияинтернетпочтовоговложения ' +
+	  'способкодированиянеasciiсимволовинтернетпочтовогосообщения типтекстапочтовогосообщения протоколинтернетпочты ' +
+	  'статусразборапочтовогосообщения ';
+	
+	  // v8 системные перечисления - журнал регистрации ==> class
+	  var v8_system_enums_logbook =
+	  'режимтранзакциизаписижурналарегистрации статустранзакциизаписижурналарегистрации уровеньжурналарегистрации ';
+	
+	  // v8 системные перечисления - криптография ==> class
+	  var v8_system_enums_cryptography =
+	  'расположениехранилищасертификатовкриптографии режимвключениясертификатовкриптографии режимпроверкисертификатакриптографии ' +
+	  'типхранилищасертификатовкриптографии ';
+	
+	  // v8 системные перечисления - ZIP ==> class
+	  var v8_system_enums_zip =
+	  'кодировкаименфайловвzipфайле методсжатияzip методшифрованияzip режимвосстановленияпутейфайловzip режимобработкиподкаталоговzip ' +
+	  'режимсохраненияпутейzip уровеньсжатияzip ';
+	
+	  // v8 системные перечисления - 
+	  // Блокировка данных, Фоновые задания, Автоматизированное тестирование,
+	  // Доставляемые уведомления, Встроенные покупки, Интернет, Работа с двоичными данными ==> class
+	  var v8_system_enums_other =
+	  'звуковоеоповещение направлениепереходакстроке позициявпотоке порядокбайтов режимблокировкиданных режимуправленияблокировкойданных ' +
+	  'сервисвстроенныхпокупок состояниефоновогозадания типподписчикадоставляемыхуведомлений уровеньиспользованиязащищенногосоединенияftp ';
+	
+	  // v8 системные перечисления - схема запроса ==> class
+	  var v8_system_enums_request_schema =
+	  'направлениепорядкасхемызапроса типдополненияпериодамисхемызапроса типконтрольнойточкисхемызапроса типобъединениясхемызапроса ' +
+	  'типпараметрадоступнойтаблицысхемызапроса типсоединениясхемызапроса ';
+	
+	  // v8 системные перечисления - свойства объектов метаданных ==> class
+	  var v8_system_enums_properties_of_metadata_objects =
+	  'httpметод автоиспользованиеобщегореквизита автопрефиксномеразадачи вариантвстроенногоязыка видиерархии видрегистранакопления ' +
+	  'видтаблицывнешнегоисточникаданных записьдвиженийприпроведении заполнениепоследовательностей индексирование ' +
+	  'использованиебазыпланавидоврасчета использованиебыстроговыбора использованиеобщегореквизита использованиеподчинения ' +
+	  'использованиеполнотекстовогопоиска использованиеразделяемыхданныхобщегореквизита использованиереквизита ' +
+	  'назначениеиспользованияприложения назначениерасширенияконфигурации направлениепередачи обновлениепредопределенныхданных ' +
+	  'оперативноепроведение основноепредставлениевидарасчета основноепредставлениевидахарактеристики основноепредставлениезадачи ' +
+	  'основноепредставлениепланаобмена основноепредставлениесправочника основноепредставлениесчета перемещениеграницыприпроведении ' +
+	  'периодичностьномерабизнеспроцесса периодичностьномерадокумента периодичностьрегистрарасчета периодичностьрегистрасведений ' +
+	  'повторноеиспользованиевозвращаемыхзначений полнотекстовыйпоискпривводепостроке принадлежностьобъекта проведение ' +
+	  'разделениеаутентификацииобщегореквизита разделениеданныхобщегореквизита разделениерасширенийконфигурацииобщегореквизита '+
+	  'режимавтонумерацииобъектов режимзаписирегистра режимиспользованиямодальности ' +
+	  'режимиспользованиясинхронныхвызововрасширенийплатформыивнешнихкомпонент режимповторногоиспользованиясеансов ' +
+	  'режимполученияданныхвыборапривводепостроке режимсовместимости режимсовместимостиинтерфейса ' +
+	  'режимуправленияблокировкойданныхпоумолчанию сериикодовпланавидовхарактеристик сериикодовпланасчетов ' +
+	  'сериикодовсправочника созданиепривводе способвыбора способпоискастрокипривводепостроке способредактирования ' +
+	  'типданныхтаблицывнешнегоисточникаданных типкодапланавидоврасчета типкодасправочника типмакета типномерабизнеспроцесса ' +
+	  'типномерадокумента типномеразадачи типформы удалениедвижений ';
+	
+	  // v8 системные перечисления - разные ==> class
+	  var v8_system_enums_differents =
+	  'важностьпроблемыприменениярасширенияконфигурации вариантинтерфейсаклиентскогоприложения вариантмасштабаформклиентскогоприложения ' +
+	  'вариантосновногошрифтаклиентскогоприложения вариантстандартногопериода вариантстандартнойдатыначала видграницы видкартинки ' +
+	  'видотображенияполнотекстовогопоиска видрамки видсравнения видцвета видчисловогозначения видшрифта допустимаядлина допустимыйзнак ' +
+	  'использованиеbyteordermark использованиеметаданныхполнотекстовогопоиска источникрасширенийконфигурации клавиша кодвозвратадиалога ' +
+	  'кодировкаxbase кодировкатекста направлениепоиска направлениесортировки обновлениепредопределенныхданных обновлениеприизмененииданных ' +
+	  'отображениепанелиразделов проверказаполнения режимдиалогавопрос режимзапускаклиентскогоприложения режимокругления режимоткрытияформприложения ' +
+	  'режимполнотекстовогопоиска скоростьклиентскогосоединения состояниевнешнегоисточникаданных состояниеобновленияконфигурациибазыданных ' +
+	  'способвыборасертификатаwindows способкодированиястроки статуссообщения типвнешнейкомпоненты типплатформы типповеденияклавишиenter ' +
+	  'типэлементаинформацииовыполненииобновленияконфигурациибазыданных уровеньизоляциитранзакций хешфункция частидаты';
+	
+	  // class: встроенные наборы значений, системные перечисления (содержат дочерние значения, обращения к которым через разыменование)
+	  var CLASS =
+	  v8_system_sets_of_values +
+	  v8_system_enums_interface +
+	  v8_system_enums_objects_properties +
+	  v8_system_enums_exchange_plans +
+	  v8_system_enums_tabular_document +
+	  v8_system_enums_sheduler +
+	  v8_system_enums_formatted_document +
+	  v8_system_enums_query +
+	  v8_system_enums_report_builder +
+	  v8_system_enums_files +
+	  v8_system_enums_query_builder +
+	  v8_system_enums_data_analysis +
+	  v8_system_enums_xml_json_xs_dom_xdto_ws +
+	  v8_system_enums_data_composition_system +
+	  v8_system_enums_email +
+	  v8_system_enums_logbook +
+	  v8_system_enums_cryptography +
+	  v8_system_enums_zip +
+	  v8_system_enums_other +
+	  v8_system_enums_request_schema +
+	  v8_system_enums_properties_of_metadata_objects +
+	  v8_system_enums_differents;
+	
+	  // v8 общие объекты (у объектов есть конструктор, экземпляры создаются методом НОВЫЙ) ==> type
+	  var v8_shared_object =
+	  'comобъект ftpсоединение httpзапрос httpсервисответ httpсоединение wsопределения wsпрокси xbase анализданных аннотацияxs ' +
+	  'блокировкаданных буфердвоичныхданных включениеxs выражениекомпоновкиданных генераторслучайныхчисел географическаясхема ' +
+	  'географическиекоординаты графическаясхема группамоделиxs данныерасшифровкикомпоновкиданных двоичныеданные дендрограмма ' +
+	  'диаграмма диаграммаганта диалогвыборафайла диалогвыборацвета диалогвыборашрифта диалограсписаниярегламентногозадания ' +
+	  'диалогредактированиястандартногопериода диапазон документdom документhtml документацияxs доставляемоеуведомление ' +
+	  'записьdom записьfastinfoset записьhtml записьjson записьxml записьzipфайла записьданных записьтекста записьузловdom ' +
+	  'запрос защищенноесоединениеopenssl значенияполейрасшифровкикомпоновкиданных извлечениетекста импортxs интернетпочта ' +
+	  'интернетпочтовоесообщение интернетпочтовыйпрофиль интернетпрокси интернетсоединение информациядляприложенияxs ' +
+	  'использованиеатрибутаxs использованиесобытияжурналарегистрации источникдоступныхнастроеккомпоновкиданных ' +
+	  'итераторузловdom картинка квалификаторыдаты квалификаторыдвоичныхданных квалификаторыстроки квалификаторычисла ' +
+	  'компоновщикмакетакомпоновкиданных компоновщикнастроеккомпоновкиданных конструктормакетаоформлениякомпоновкиданных ' +
+	  'конструкторнастроеккомпоновкиданных конструкторформатнойстроки линия макеткомпоновкиданных макетобластикомпоновкиданных ' +
+	  'макетоформлениякомпоновкиданных маскаxs менеджеркриптографии наборсхемxml настройкикомпоновкиданных настройкисериализацииjson ' +
+	  'обработкакартинок обработкарасшифровкикомпоновкиданных обходдереваdom объявлениеатрибутаxs объявлениенотацииxs ' +
+	  'объявлениеэлементаxs описаниеиспользованиясобытиядоступжурналарегистрации ' +
+	  'описаниеиспользованиясобытияотказвдоступежурналарегистрации описаниеобработкирасшифровкикомпоновкиданных ' +
+	  'описаниепередаваемогофайла описаниетипов определениегруппыатрибутовxs определениегруппымоделиxs ' +
+	  'определениеограниченияидентичностиxs определениепростоготипаxs определениесоставноготипаxs определениетипадокументаdom ' +
+	  'определенияxpathxs отборкомпоновкиданных пакетотображаемыхдокументов параметрвыбора параметркомпоновкиданных ' +
+	  'параметрызаписиjson параметрызаписиxml параметрычтенияxml переопределениеxs планировщик полеанализаданных ' +
+	  'полекомпоновкиданных построительdom построительзапроса построительотчета построительотчетаанализаданных ' +
+	  'построительсхемxml поток потоквпамяти почта почтовоесообщение преобразованиеxsl преобразованиекканоническомуxml ' +
+	  'процессорвыводарезультатакомпоновкиданныхвколлекциюзначений процессорвыводарезультатакомпоновкиданныхвтабличныйдокумент ' +
+	  'процессоркомпоновкиданных разыменовательпространствименdom рамка расписаниерегламентногозадания расширенноеимяxml ' +
+	  'результатчтенияданных своднаядиаграмма связьпараметравыбора связьпотипу связьпотипукомпоновкиданных сериализаторxdto ' +
+	  'сертификатклиентаwindows сертификатклиентафайл сертификаткриптографии сертификатыудостоверяющихцентровwindows ' +
+	  'сертификатыудостоверяющихцентровфайл сжатиеданных системнаяинформация сообщениепользователю сочетаниеклавиш ' +
+	  'сравнениезначений стандартнаядатаначала стандартныйпериод схемаxml схемакомпоновкиданных табличныйдокумент ' +
+	  'текстовыйдокумент тестируемоеприложение типданныхxml уникальныйидентификатор фабрикаxdto файл файловыйпоток ' +
+	  'фасетдлиныxs фасетколичестваразрядовдробнойчастиxs фасетмаксимальноговключающегозначенияxs ' +
+	  'фасетмаксимальногоисключающегозначенияxs фасетмаксимальнойдлиныxs фасетминимальноговключающегозначенияxs ' +
+	  'фасетминимальногоисключающегозначенияxs фасетминимальнойдлиныxs фасетобразцаxs фасетобщегоколичестваразрядовxs ' +
+	  'фасетперечисленияxs фасетпробельныхсимволовxs фильтрузловdom форматированнаястрока форматированныйдокумент ' +
+	  'фрагментxs хешированиеданных хранилищезначения цвет чтениеfastinfoset чтениеhtml чтениеjson чтениеxml чтениеzipфайла ' +
+	  'чтениеданных чтениетекста чтениеузловdom шрифт элементрезультатакомпоновкиданных ';
+	
+	  // v8 универсальные коллекции значений ==> type
+	  var v8_universal_collection =
+	  'comsafearray деревозначений массив соответствие списокзначений структура таблицазначений фиксированнаяструктура ' +
+	  'фиксированноесоответствие фиксированныймассив ';
+	
+	  // type : встроенные типы
+	  var TYPE =
+	  v8_shared_object +
+	  v8_universal_collection;
+	
+	  // literal : примитивные типы
+	  var LITERAL = 'null истина ложь неопределено';
+	  
+	  // number : числа
+	  var NUMBERS = hljs.inherit(hljs.NUMBER_MODE);
+	
+	  // string : строки
+	  var STRINGS = {
 	    className: 'string',
-	    begin: '\\|', end: '"|$',
-	    contains: [DQUOTE]
+	    begin: '"|\\|', end: '"|$',
+	    contains: [{begin: '""'}]
+	  };
+	
+	  // number : даты
+	  var DATE = {
+	    begin: "'", end: "'", excludeBegin: true, excludeEnd: true,
+	    contains: [
+	      {
+	        className: 'number',
+	        begin: '\\d{4}([\\.\\\\/:-]?\\d{2}){0,5}'
+	      }
+	    ]
+	  };
+	  
+	  // comment : комментарии
+	  var COMMENTS = hljs.inherit(hljs.C_LINE_COMMENT_MODE);
+	  
+	  // meta : инструкции препроцессора, директивы компиляции
+	  var META = {
+	    className: 'meta',
+	    lexemes: UNDERSCORE_IDENT_RE,
+	    begin: '#|&', end: '$',
+	    keywords: {'meta-keyword': KEYWORD + METAKEYWORD},
+	    contains: [
+	      COMMENTS
+	    ]
+	  };
+	  
+	  // symbol : метка goto
+	  var SYMBOL = {
+	    className: 'symbol',
+	    begin: '~', end: ';|:', excludeEnd: true
+	  };  
+	  
+	  // function : объявление процедур и функций
+	  var FUNCTION = {
+	    className: 'function',
+	    lexemes: UNDERSCORE_IDENT_RE,
+	    variants: [
+	      {begin: 'процедура|функция', end: '\\)', keywords: 'процедура функция'},
+	      {begin: 'конецпроцедуры|конецфункции', keywords: 'конецпроцедуры конецфункции'}
+	    ],
+	    contains: [
+	      {
+	        begin: '\\(', end: '\\)', endsParent : true,
+	        contains: [
+	          {
+	            className: 'params',
+	            lexemes: UNDERSCORE_IDENT_RE,
+	            begin: UNDERSCORE_IDENT_RE, end: ',', excludeEnd: true, endsWithParent: true,
+	            keywords: {
+	              keyword: 'знач',
+	              literal: LITERAL
+	            },
+	            contains: [
+	              NUMBERS,
+	              STRINGS,
+	              DATE
+	            ]
+	          },
+	          COMMENTS
+	        ]
+	      },
+	      hljs.inherit(hljs.TITLE_MODE, {begin: UNDERSCORE_IDENT_RE})
+	    ]
 	  };
 	
 	  return {
 	    case_insensitive: true,
-	    lexemes: IDENT_RE_RU,
-	    keywords: {keyword: OneS_KEYWORDS, built_in: OneS_BUILT_IN},
+	    lexemes: UNDERSCORE_IDENT_RE,
+	    keywords: {
+	      keyword: KEYWORD,
+	      built_in: BUILTIN,
+	      class: CLASS,
+	      type: TYPE,
+	      literal: LITERAL
+	    },
 	    contains: [
-	      hljs.C_LINE_COMMENT_MODE,
-	      hljs.NUMBER_MODE,
-	      STR_START, STR_CONT,
-	      {
-	        className: 'function',
-	        begin: '(процедура|функция)', end: '$',
-	        lexemes: IDENT_RE_RU,
-	        keywords: 'процедура функция',
-	        contains: [
-	          {
-	            begin: 'экспорт', endsWithParent: true,
-	            lexemes: IDENT_RE_RU,
-	            keywords: 'экспорт',
-	            contains: [hljs.C_LINE_COMMENT_MODE]
-	          },
-	          {
-	            className: 'params',
-	            begin: '\\(', end: '\\)',
-	            lexemes: IDENT_RE_RU,
-	            keywords: 'знач',
-	            contains: [STR_START, STR_CONT]
-	          },
-	          hljs.C_LINE_COMMENT_MODE,
-	          hljs.inherit(hljs.TITLE_MODE, {begin: IDENT_RE_RU})
-	        ]
-	      },
-	      {className: 'meta', begin: '#', end: '$'},
-	      {className: 'number', begin: '\'\\d{2}\\.\\d{2}\\.(\\d{2}|\\d{4})\''} // date
-	    ]
-	  };
+	      META,
+	      FUNCTION,
+	      COMMENTS,
+	      SYMBOL,
+	      NUMBERS,
+	      STRINGS,
+	      DATE
+	    ]  
+	  }
 	};
 
 /***/ },
@@ -24753,7 +25186,7 @@
 	    className: 'number',
 	    variants: [
 	      { begin: '\\b(0b[01\']+)' },
-	      { begin: '\\b([\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)(u|U|l|L|ul|UL|f|F|b|B)' },
+	      { begin: '(-?)\\b([\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)(u|U|l|L|ul|UL|f|F|b|B)' },
 	      { begin: '(-?)(\\b0[xX][a-fA-F0-9\']+|(\\b[\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)([eE][-+]?[\\d\']+)?)' }
 	    ],
 	    relevance: 0
@@ -24774,7 +25207,7 @@
 	      hljs.inherit(STRINGS, {className: 'meta-string'}),
 	      {
 	        className: 'meta-string',
-	        begin: '<', end: '>',
+	        begin: /<[^\n>]*>/, end: /$/,
 	        illegal: '\\n',
 	      },
 	      hljs.C_LINE_COMMENT_MODE,
@@ -24786,15 +25219,16 @@
 	
 	  var CPP_KEYWORDS = {
 	    keyword: 'int float while private char catch import module export virtual operator sizeof ' +
-	      'dynamic_cast|10 typedef const_cast|10 const struct for static_cast|10 union namespace ' +
+	      'dynamic_cast|10 typedef const_cast|10 const for static_cast|10 union namespace ' +
 	      'unsigned long volatile static protected bool template mutable if public friend ' +
-	      'do goto auto void enum else break extern using class asm case typeid ' +
+	      'do goto auto void enum else break extern using asm case typeid ' +
 	      'short reinterpret_cast|10 default double register explicit signed typename try this ' +
 	      'switch continue inline delete alignof constexpr decltype ' +
 	      'noexcept static_assert thread_local restrict _Bool complex _Complex _Imaginary ' +
 	      'atomic_bool atomic_char atomic_schar ' +
 	      'atomic_uchar atomic_short atomic_ushort atomic_int atomic_uint atomic_long atomic_ulong atomic_llong ' +
-	      'atomic_ullong new throw return',
+	      'atomic_ullong new throw return ' +
+	      'and or not',
 	    built_in: 'std string cin cout cerr clog stdin stdout stderr stringstream istringstream ostringstream ' +
 	      'auto_ptr deque list queue stack vector map set bitset multiset multimap unordered_set ' +
 	      'unordered_map unordered_multiset unordered_multimap array shared_ptr abort abs acos ' +
@@ -24879,6 +25313,14 @@
 	          hljs.C_LINE_COMMENT_MODE,
 	          hljs.C_BLOCK_COMMENT_MODE,
 	          PREPROCESSOR
+	        ]
+	      },
+	      {
+	        className: 'class',
+	        beginKeywords: 'class struct', end: /[{;:]/,
+	        contains: [
+	          {begin: /</, end: />/, contains: ['self']}, // skip generic stuff
+	          hljs.TITLE_MODE
 	        ]
 	      }
 	    ]),
@@ -25486,7 +25928,8 @@
 	        contains : [
 	          {
 	            begin : hljs.UNDERSCORE_IDENT_RE + '\\s*\\(',
-	            keywords : KEYWORDS + ' ' + SHORTKEYS
+	            keywords : KEYWORDS + ' ' + SHORTKEYS,
+	            relevance: 0
 	          },
 	          hljs.QUOTE_STRING_MODE
 	        ]
@@ -25543,13 +25986,14 @@
 
 	module.exports = function(hljs) {
 	  var BACKTICK_ESCAPE = {
-	    begin: /`[\s\S]/
+	    begin: '`[\\s\\S]'
 	  };
 	
 	  return {
 	    case_insensitive: true,
+	    aliases: [ 'ahk' ],
 	    keywords: {
-	      keyword: 'Break Continue Else Gosub If Loop Return While',
+	      keyword: 'Break Continue Critical Exit ExitApp Gosub Goto New OnExit Pause return SetBatchLines SetTimer Suspend Thread Throw Until ahk_id ahk_class ahk_pid ahk_exe ahk_group',
 	      literal: 'A|0 true false NOT AND OR',
 	      built_in: 'ComSpec Clipboard ClipboardAll ErrorLevel',
 	    },
@@ -25561,16 +26005,26 @@
 	      BACKTICK_ESCAPE,
 	      hljs.inherit(hljs.QUOTE_STRING_MODE, {contains: [BACKTICK_ESCAPE]}),
 	      hljs.COMMENT(';', '$', {relevance: 0}),
+	      hljs.C_BLOCK_COMMENT_MODE,
 	      {
 	        className: 'number',
 	        begin: hljs.NUMBER_RE,
 	        relevance: 0
 	      },
 	      {
-	        className: 'variable', // FIXME
-	        begin: '%', end: '%',
-	        illegal: '\\n',
-	        contains: [BACKTICK_ESCAPE]
+	        className: 'subst', // FIXED
+	        begin: '%(?=[a-zA-Z0-9#_$@])', end: '%',
+	        illegal: '[^a-zA-Z0-9#_$@]'
+	      },
+	      {
+	        className: 'built_in',
+	        begin: '^\\s*\\w+\\s*,'
+	        //I don't really know if this is totally relevant
+	      },
+	      {
+	        className: 'meta', 
+	        begin: '^\\s*#\w+', end:'$',
+	        relevance: 0
 	      },
 	      {
 	        className: 'symbol',
@@ -25919,7 +26373,7 @@
 	
 	  return {
 	    aliases: ['sh', 'zsh'],
-	    lexemes: /-?[a-z\._]+/,
+	    lexemes: /\b-?[a-z\._]+\b/,
 	    keywords: {
 	      keyword:
 	        'if then else elif fi for while in do done case esac function',
@@ -26423,6 +26877,7 @@
 	  LIST.contains = [hljs.COMMENT('comment', ''), NAME, BODY];
 	  BODY.contains = DEFAULT_CONTAINS;
 	  COLLECTION.contains = DEFAULT_CONTAINS;
+	  HINT_COL.contains = [COLLECTION];
 	
 	  return {
 	    aliases: ['clj'],
@@ -26501,7 +26956,7 @@
 	    keyword:
 	      // JS keywords
 	      'in if for while finally new do return else break catch instanceof throw try this ' +
-	      'switch continue typeof delete debugger super ' +
+	      'switch continue typeof delete debugger super yield import export from as default await ' +
 	      // Coffee keywords
 	      'then unless until loop of by when and or is isnt not',
 	    literal:
@@ -26564,9 +27019,16 @@
 	      begin: '@' + JS_IDENT_RE // relevance booster
 	    },
 	    {
-	      begin: '`', end: '`',
+	      subLanguage: 'javascript',
 	      excludeBegin: true, excludeEnd: true,
-	      subLanguage: 'javascript'
+	      variants: [
+	        {
+	          begin: '```', end: '```',
+	        },
+	        {
+	          begin: '`', end: '`',
+	        }
+	      ]
 	    }
 	  ];
 	  SUBST.contains = EXPRESSIONS;
@@ -26944,10 +27406,10 @@
 	  var CRYSTAL_METHOD_RE = '[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\][=?]?';
 	  var CRYSTAL_KEYWORDS = {
 	    keyword:
-	      'abstract alias as asm begin break case class def do else elsif end ensure enum extend for fun if ifdef ' +
-	      'include instance_sizeof is_a? lib macro module next of out pointerof private protected rescue responds_to? ' +
-	      'return require self sizeof struct super then type typeof union unless until when while with yield ' +
-	      '__DIR__ __FILE__ __LINE__',
+	      'abstract alias as as? asm begin break case class def do else elsif end ensure enum extend for fun if ' +
+	      'include instance_sizeof is_a? lib macro module next nil? of out pointerof private protected rescue responds_to? ' +
+	      'return require select self sizeof struct super then type typeof union uninitialized unless until when while with yield ' +
+	      '__DIR__ __END_LINE__ __FILE__ __LINE__',
 	    literal: 'false nil true'
 	  };
 	  var SUBST = {
@@ -26985,6 +27447,22 @@
 	      {begin: '%w?%', end: '%'},
 	      {begin: '%w?-', end: '-'},
 	      {begin: '%w?\\|', end: '\\|'},
+	      {begin: /<<-\w+$/, end: /^\s*\w+$/},
+	    ],
+	    relevance: 0,
+	  };
+	  var Q_STRING = {
+	    className: 'string',
+	    variants: [
+	      {begin: '%q\\(', end: '\\)', contains: recursiveParen('\\(', '\\)')},
+	      {begin: '%q\\[', end: '\\]', contains: recursiveParen('\\[', '\\]')},
+	      {begin: '%q{', end: '}', contains: recursiveParen('{', '}')},
+	      {begin: '%q<', end: '>', contains: recursiveParen('<', '>')},
+	      {begin: '%q/', end: '/'},
+	      {begin: '%q%', end: '%'},
+	      {begin: '%q-', end: '-'},
+	      {begin: '%q\\|', end: '\\|'},
+	      {begin: /<<-'\w+'$/, end: /^\s*\w+$/},
 	    ],
 	    relevance: 0,
 	  };
@@ -27035,6 +27513,7 @@
 	  var CRYSTAL_DEFAULT_CONTAINS = [
 	    EXPANSION,
 	    STRING,
+	    Q_STRING,
 	    REGEXP,
 	    REGEXP2,
 	    ATTRIBUTE,
@@ -27122,12 +27601,11 @@
 	    keyword:
 	      // Normal keywords.
 	      'abstract as base bool break byte case catch char checked const continue decimal ' +
-	      'default delegate do double else enum event explicit extern finally fixed float ' +
-	      'for foreach goto if implicit in int interface internal is lock long ' +
+	      'default delegate do double enum event explicit extern finally fixed float ' +
+	      'for foreach goto if implicit in int interface internal is lock long nameof ' +
 	      'object operator out override params private protected public readonly ref sbyte ' +
 	      'sealed short sizeof stackalloc static string struct switch this try typeof ' +
 	      'uint ulong unchecked unsafe ushort using virtual void volatile while ' +
-	      'nameof ' +
 	      // Contextual keywords.
 	      'add alias ascending async await by descending dynamic equals from get global group into join ' +
 	      'let on orderby partial remove select set value var where yield',
@@ -27191,6 +27669,7 @@
 	  };
 	
 	  var TYPE_IDENT_RE = hljs.IDENT_RE + '(<' + hljs.IDENT_RE + '(\\s*,\\s*' + hljs.IDENT_RE + ')*>)?(\\[\\])?';
+	
 	  return {
 	    aliases: ['csharp'],
 	    keywords: KEYWORDS,
@@ -27224,7 +27703,9 @@
 	      {
 	        className: 'meta',
 	        begin: '#', end: '$',
-	        keywords: {'meta-keyword': 'if else elif endif define undef warning error line region endregion pragma checksum'}
+	        keywords: {
+	          'meta-keyword': 'if else elif endif define undef warning error line region endregion pragma checksum'
+	        }
 	      },
 	      STRING,
 	      hljs.C_NUMBER_MODE,
@@ -27247,15 +27728,23 @@
 	        ]
 	      },
 	      {
+	        // [Attributes("")]
+	        className: 'meta',
+	        begin: '^\\s*\\[', excludeBegin: true, end: '\\]', excludeEnd: true,
+	        contains: [
+	          {className: 'meta-string', begin: /"/, end: /"/}
+	        ]
+	      },
+	      {
 	        // Expression keywords prevent 'keyword Name(...)' from being
 	        // recognized as a function definition
-	        beginKeywords: 'new return throw await',
+	        beginKeywords: 'new return throw await else',
 	        relevance: 0
 	      },
 	      {
 	        className: 'function',
-	        begin: '(' + TYPE_IDENT_RE + '\\s+)+' + hljs.IDENT_RE + '\\s*\\(', returnBegin: true, end: /[{;=]/,
-	        excludeEnd: true,
+	        begin: '(' + TYPE_IDENT_RE + '\\s+)+' + hljs.IDENT_RE + '\\s*\\(', returnBegin: true,
+	        end: /[{;=]/, excludeEnd: true,
 	        keywords: KEYWORDS,
 	        contains: [
 	          {
@@ -27917,21 +28406,16 @@
 	    'specialize strict unaligned varargs ';
 	  var COMMENT_MODES = [
 	    hljs.C_LINE_COMMENT_MODE,
-	    hljs.COMMENT(
-	      /\{/,
-	      /\}/,
-	      {
-	        relevance: 0
-	      }
-	    ),
-	    hljs.COMMENT(
-	      /\(\*/,
-	      /\*\)/,
-	      {
-	        relevance: 10
-	      }
-	    )
+	    hljs.COMMENT(/\{/, /\}/, {relevance: 0}),
+	    hljs.COMMENT(/\(\*/, /\*\)/, {relevance: 10})
 	  ];
+	  var DIRECTIVE = {
+	    className: 'meta',
+	    variants: [
+	      {begin: /\{\$/, end: /\}/},
+	      {begin: /\(\*\$/, end: /\*\)/}
+	    ]
+	  };
 	  var STRING = {
 	    className: 'string',
 	    begin: /'/, end: /'/,
@@ -27956,8 +28440,9 @@
 	        className: 'params',
 	        begin: /\(/, end: /\)/,
 	        keywords: KEYWORDS,
-	        contains: [STRING, CHAR_STRING]
-	      }
+	        contains: [STRING, CHAR_STRING, DIRECTIVE].concat(COMMENT_MODES)
+	      },
+	      DIRECTIVE
 	    ].concat(COMMENT_MODES)
 	  };
 	  return {
@@ -27969,7 +28454,8 @@
 	      STRING, CHAR_STRING,
 	      hljs.NUMBER_MODE,
 	      CLASS,
-	      FUNCTION
+	      FUNCTION,
+	      DIRECTIVE
 	    ].concat(COMMENT_MODES)
 	  };
 	};
@@ -28127,14 +28613,14 @@
 	  return {
 	    aliases: ['docker'],
 	    case_insensitive: true,
-	    keywords: 'from maintainer expose env user onbuild',
+	    keywords: 'from maintainer expose env arg user onbuild stopsignal',
 	    contains: [
 	      hljs.HASH_COMMENT_MODE,
 	      hljs.APOS_STRING_MODE,
 	      hljs.QUOTE_STRING_MODE,
 	      hljs.NUMBER_MODE,
 	      {
-	        beginKeywords: 'run cmd entrypoint volume add copy workdir label healthcheck',
+	        beginKeywords: 'run cmd entrypoint volume add copy workdir label healthcheck shell',
 	        starts: {
 	          end: /[^\\]\n/,
 	          subLanguage: 'bash'
@@ -28637,7 +29123,8 @@
 	      COMMENT,
 	
 	      {begin: '->|<-'} // No markup, relevance booster
-	    ]
+	    ],
+	    illegal: /;/
 	  };
 	};
 
@@ -28770,7 +29257,8 @@
 	      keywords: RUBY_KEYWORDS
 	    },
 	    { // regexp container
-	      begin: '(' + hljs.RE_STARTERS_RE + ')\\s*',
+	      begin: '(' + hljs.RE_STARTERS_RE + '|unless)\\s*',
+	      keywords: 'unless',
 	      contains: [
 	        IRB_OBJECT,
 	        {
@@ -29458,7 +29946,7 @@
 	        contains: [
 	              { // Function title
 	                className: 'title',
-	                begin: /^[a-z][a-z0-9_]+/,
+	                begin: /^[a-z0-9_]+/,
 	              },
 	              PARAMS,
 	              SYMBOLS,
@@ -29526,7 +30014,7 @@
 	              'getpath getPreviousTradingDay getPreviousWeekDay getRow getscalar3D getscalar4D getTrRow getwind glm gradcplx gradMT ' +
 	              'gradMTm gradMTT gradMTTm gradp graphprt graphset hasimag header headermt hess hessMT hessMTg hessMTgw hessMTm ' +
 	              'hessMTmw hessMTT hessMTTg hessMTTgw hessMTTm hessMTw hessp hist histf histp hsec imag indcv indexcat indices indices2 ' +
-	              'indicesf indicesfn indnv indsav indx integrate1d integrateControlCreate intgrat2 intgrat3 inthp1 inthp2 inthp3 inthp4 ' +
+	              'indicesf indicesfn indnv indsav integrate1d integrateControlCreate intgrat2 intgrat3 inthp1 inthp2 inthp3 inthp4 ' +
 	              'inthpControlCreate intquad1 intquad2 intquad3 intrleav intrleavsa intrsect intsimp inv invpd invswp iscplx iscplxf ' +
 	              'isden isinfnanmiss ismiss key keyav keyw lag lag1 lagn lapEighb lapEighi lapEighvb lapEighvi lapgEig lapgEigh lapgEighv ' +
 	              'lapgEigv lapgSchur lapgSvdcst lapgSvds lapgSvdst lapSvdcusv lapSvds lapSvdusv ldlp ldlsol linSolve listwise ln lncdfbvn ' +
@@ -29566,7 +30054,9 @@
 	              'utctodtv utrisol vals varCovMS varCovXS varget vargetl varmall varmares varput varputl vartypef vcm vcms vcx vcxs ' +
 	              'vec vech vecr vector vget view viewxyz vlist vnamecv volume vput vread vtypecv wait waitc walkindex where window ' +
 	              'writer xlabel xlsGetSheetCount xlsGetSheetSize xlsGetSheetTypes xlsMakeRange xlsReadM xlsReadSA xlsWrite xlsWriteM ' +
-	              'xlsWriteSA xpnd xtics xy xyz ylabel ytics zeros zeta zlabel ztics',
+	              'xlsWriteSA xpnd xtics xy xyz ylabel ytics zeros zeta zlabel ztics cdfEmpirical dot h5create h5open h5read h5readAttribute ' +
+	              'h5write h5writeAttribute ldl plotAddErrorBar plotAddSurface plotCDFEmpirical plotSetColormap plotSetContourLabels ' +
+	              'plotSetLegendFont plotSetTextInterpreter plotSetXTicCount plotSetYTicCount plotSetZLevels powerm strjoin strtrim sylvester',
 	    literal: 'DB_AFTER_LAST_ROW DB_ALL_TABLES DB_BATCH_OPERATIONS DB_BEFORE_FIRST_ROW DB_BLOB DB_EVENT_NOTIFICATIONS ' +
 	             'DB_FINISH_QUERY DB_HIGH_PRECISION DB_LAST_INSERT_ID DB_LOW_PRECISION_DOUBLE DB_LOW_PRECISION_INT32 ' +
 	             'DB_LOW_PRECISION_INT64 DB_LOW_PRECISION_NUMBERS DB_MULTIPLE_RESULT_SETS DB_NAMED_PLACEHOLDERS ' +
@@ -30439,7 +30929,7 @@
 	  return {
 	    aliases: ['hx'],
 	    keywords: {
-	      keyword: 'break callback case cast catch continue default do dynamic else enum extern ' +
+	      keyword: 'break case cast catch continue default do dynamic else enum extern ' +
 	               'for function here if import in inline never new override package private get set ' +
 	               'public return static super switch this throw trace try typedef untyped using var while ' +
 	               HAXE_BASIC_TYPES,
@@ -30717,6 +31207,112 @@
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
+	  var keywords = {
+	    'builtin-name':
+	      // keywords
+	      '!= % %= & &= * ** **= *= *map ' +
+	      '+ += , --build-class-- --import-- -= . / // //= ' +
+	      '/= < << <<= <= = > >= >> >>= ' +
+	      '@ @= ^ ^= abs accumulate all and any ap-compose ' +
+	      'ap-dotimes ap-each ap-each-while ap-filter ap-first ap-if ap-last ap-map ap-map-when ap-pipe ' +
+	      'ap-reduce ap-reject apply as-> ascii assert assoc bin break butlast ' +
+	      'callable calling-module-name car case cdr chain chr coll? combinations compile ' +
+	      'compress cond cons cons? continue count curry cut cycle dec ' +
+	      'def default-method defclass defmacro defmacro-alias defmacro/g! defmain defmethod defmulti defn ' +
+	      'defn-alias defnc defnr defreader defseq del delattr delete-route dict-comp dir ' +
+	      'disassemble dispatch-reader-macro distinct divmod do doto drop drop-last drop-while empty? ' +
+	      'end-sequence eval eval-and-compile eval-when-compile even? every? except exec filter first ' +
+	      'flatten float? fn fnc fnr for for* format fraction genexpr ' +
+	      'gensym get getattr global globals group-by hasattr hash hex id ' +
+	      'identity if if* if-not if-python2 import in inc input instance? ' +
+	      'integer integer-char? integer? interleave interpose is is-coll is-cons is-empty is-even ' +
+	      'is-every is-float is-instance is-integer is-integer-char is-iterable is-iterator is-keyword is-neg is-none ' +
+	      'is-not is-numeric is-odd is-pos is-string is-symbol is-zero isinstance islice issubclass ' +
+	      'iter iterable? iterate iterator? keyword keyword? lambda last len let ' +
+	      'lif lif-not list* list-comp locals loop macro-error macroexpand macroexpand-1 macroexpand-all ' +
+	      'map max merge-with method-decorator min multi-decorator multicombinations name neg? next ' +
+	      'none? nonlocal not not-in not? nth numeric? oct odd? open ' +
+	      'or ord partition permutations pos? post-route postwalk pow prewalk print ' +
+	      'product profile/calls profile/cpu put-route quasiquote quote raise range read read-str ' +
+	      'recursive-replace reduce remove repeat repeatedly repr require rest round route ' +
+	      'route-with-methods rwm second seq set-comp setattr setv some sorted string ' +
+	      'string? sum switch symbol? take take-nth take-while tee try unless ' +
+	      'unquote unquote-splicing vars walk when while with with* with-decorator with-gensyms ' +
+	      'xi xor yield yield-from zero? zip zip-longest | |= ~'
+	   };
+	
+	  var SYMBOLSTART = 'a-zA-Z_\\-!.?+*=<>&#\'';
+	  var SYMBOL_RE = '[' + SYMBOLSTART + '][' + SYMBOLSTART + '0-9/;:]*';
+	  var SIMPLE_NUMBER_RE = '[-+]?\\d+(\\.\\d+)?';
+	
+	  var SHEBANG = {
+	    className: 'meta',
+	    begin: '^#!', end: '$'
+	  };
+	
+	  var SYMBOL = {
+	    begin: SYMBOL_RE,
+	    relevance: 0
+	  };
+	  var NUMBER = {
+	    className: 'number', begin: SIMPLE_NUMBER_RE,
+	    relevance: 0
+	  };
+	  var STRING = hljs.inherit(hljs.QUOTE_STRING_MODE, {illegal: null});
+	  var COMMENT = hljs.COMMENT(
+	    ';',
+	    '$',
+	    {
+	      relevance: 0
+	    }
+	  );
+	  var LITERAL = {
+	    className: 'literal',
+	    begin: /\b([Tt]rue|[Ff]alse|nil|None)\b/
+	  };
+	  var COLLECTION = {
+	    begin: '[\\[\\{]', end: '[\\]\\}]'
+	  };
+	  var HINT = {
+	    className: 'comment',
+	    begin: '\\^' + SYMBOL_RE
+	  };
+	  var HINT_COL = hljs.COMMENT('\\^\\{', '\\}');
+	  var KEY = {
+	    className: 'symbol',
+	    begin: '[:]{1,2}' + SYMBOL_RE
+	  };
+	  var LIST = {
+	    begin: '\\(', end: '\\)'
+	  };
+	  var BODY = {
+	    endsWithParent: true,
+	    relevance: 0
+	  };
+	  var NAME = {
+	    keywords: keywords,
+	    lexemes: SYMBOL_RE,
+	    className: 'name', begin: SYMBOL_RE,
+	    starts: BODY
+	  };
+	  var DEFAULT_CONTAINS = [LIST, STRING, HINT, HINT_COL, COMMENT, KEY, COLLECTION, NUMBER, LITERAL, SYMBOL];
+	
+	  LIST.contains = [hljs.COMMENT('comment', ''), NAME, BODY];
+	  BODY.contains = DEFAULT_CONTAINS;
+	  COLLECTION.contains = DEFAULT_CONTAINS;
+	
+	  return {
+	    aliases: ['hylang'],
+	    illegal: /\S/,
+	    contains: [SHEBANG, LIST, STRING, HINT, HINT_COL, COMMENT, KEY, COLLECTION, NUMBER, LITERAL]
+	  }
+	};
+
+/***/ },
+/* 343 */
+/***/ function(module, exports) {
+
+	module.exports = function(hljs) {
 	  var START_BRACKET = '\\[';
 	  var END_BRACKET = '\\]';
 	  return {
@@ -30774,7 +31370,7 @@
 	};
 
 /***/ },
-/* 343 */
+/* 344 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -30844,7 +31440,7 @@
 	};
 
 /***/ },
-/* 344 */
+/* 345 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -30924,7 +31520,7 @@
 	};
 
 /***/ },
-/* 345 */
+/* 346 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -31036,7 +31632,7 @@
 	};
 
 /***/ },
-/* 346 */
+/* 347 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -31211,7 +31807,58 @@
 	};
 
 /***/ },
-/* 347 */
+/* 348 */
+/***/ function(module, exports) {
+
+	module.exports = function (hljs) {
+	  var PARAM = {
+	    begin: /[\w-]+ *=/, returnBegin: true,
+	    relevance: 0,
+	    contains: [{className: 'attr', begin: /[\w-]+/}]
+	  };
+	  var PARAMSBLOCK = {
+	    className: 'params',
+	    begin: /\(/,
+	    end: /\)/,
+	    contains: [PARAM],
+	    relevance : 0
+	  };
+	  var OPERATION = {
+	    className: 'function',
+	    begin: /:[\w\-.]+/,
+	    relevance: 0
+	  };
+	  var PATH = {
+	    className: 'string',
+	    begin: /\B(([\/.])[\w\-.\/=]+)+/,
+	  };
+	  var COMMAND_PARAMS = {
+	    className: 'params',
+	    begin: /--[\w\-=\/]+/,
+	  };
+	  return {
+	    aliases: ['wildfly-cli'],
+	    lexemes: '[a-z\-]+',
+	    keywords: {
+	      keyword: 'alias batch cd clear command connect connection-factory connection-info data-source deploy ' +
+	      'deployment-info deployment-overlay echo echo-dmr help history if jdbc-driver-info jms-queue|20 jms-topic|20 ls ' +
+	      'patch pwd quit read-attribute read-operation reload rollout-plan run-batch set shutdown try unalias ' +
+	      'undeploy unset version xa-data-source', // module
+	      literal: 'true false'
+	    },
+	    contains: [
+	      hljs.HASH_COMMENT_MODE,
+	      hljs.QUOTE_STRING_MODE,
+	      COMMAND_PARAMS,
+	      OPERATION,
+	      PATH,
+	      PARAMSBLOCK
+	    ]
+	  }
+	};
+
+/***/ },
+/* 349 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -31252,110 +31899,90 @@
 	};
 
 /***/ },
-/* 348 */
+/* 350 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
 	  // Since there are numerous special names in Julia, it is too much trouble
 	  // to maintain them by hand. Hence these names (i.e. keywords, literals and
-	  // built-ins) are automatically generated from Julia (v0.3.0 and v0.4.1)
-	  // itself through following scripts for each.
+	  // built-ins) are automatically generated from Julia v0.6 itself through
+	  // the following scripts for each.
 	
 	  var KEYWORDS = {
-	    // # keyword generator
-	    // println("in")
+	    // # keyword generator, multi-word keywords handled manually below
+	    // foreach(println, ["in", "isa", "where"])
 	    // for kw in Base.REPLCompletions.complete_keyword("")
-	    //     println(kw)
+	    //     if !(contains(kw, " ") || kw == "struct")
+	    //         println(kw)
+	    //     end
 	    // end
 	    keyword:
-	      'in abstract baremodule begin bitstype break catch ccall const continue do else elseif end export ' +
-	      'finally for function global if immutable import importall let local macro module quote return try type ' +
-	      'typealias using while',
+	      'in isa where ' +
+	      'baremodule begin break catch ccall const continue do else elseif end export false finally for function ' +
+	      'global if import importall let local macro module quote return true try using while ' +
+	      // legacy, to be deprecated in the next release
+	      'type immutable abstract bitstype typealias ',
 	
 	    // # literal generator
 	    // println("true")
 	    // println("false")
 	    // for name in Base.REPLCompletions.completions("", 0)[1]
 	    //     try
-	    //         s = symbol(name)
-	    //         v = eval(s)
-	    //         if !isa(v, Function) &&
-	    //            !isa(v, DataType) &&
-	    //            !isa(v, IntrinsicFunction) &&
-	    //            !issubtype(typeof(v), Tuple) &&
-	    //            !isa(v, Union) &&
-	    //            !isa(v, Module) &&
-	    //            !isa(v, TypeConstructor) &&
-	    //            !isa(v, TypeVar) &&
-	    //            !isa(v, Colon)
+	    //         v = eval(Symbol(name))
+	    //         if !(v isa Function || v isa Type || v isa TypeVar || v isa Module || v isa Colon)
 	    //             println(name)
 	    //         end
 	    //     end
 	    // end
 	    literal:
-	      // v0.3
-	      'true false ARGS CPU_CORES C_NULL DL_LOAD_PATH DevNull ENDIAN_BOM ENV I|0 Inf Inf16 Inf32 ' +
-	      'InsertionSort JULIA_HOME LOAD_PATH MS_ASYNC MS_INVALIDATE MS_SYNC MergeSort NaN NaN16 NaN32 OS_NAME QuickSort ' +
-	      'RTLD_DEEPBIND RTLD_FIRST RTLD_GLOBAL RTLD_LAZY RTLD_LOCAL RTLD_NODELETE RTLD_NOLOAD RTLD_NOW RoundDown ' +
-	      'RoundFromZero RoundNearest RoundToZero RoundUp STDERR STDIN STDOUT VERSION WORD_SIZE catalan cglobal e|0 eu|0 ' +
-	      'eulergamma golden im nothing pi γ π φ ' +
-	      // v0.4 (diff)
-	      'Inf64 NaN64 RoundNearestTiesAway RoundNearestTiesUp ',
+	      'true false ' +
+	      'ARGS C_NULL DevNull ENDIAN_BOM ENV I Inf Inf16 Inf32 Inf64 InsertionSort JULIA_HOME LOAD_PATH MergeSort ' +
+	      'NaN NaN16 NaN32 NaN64 PROGRAM_FILE QuickSort RoundDown RoundFromZero RoundNearest RoundNearestTiesAway ' +
+	      'RoundNearestTiesUp RoundToZero RoundUp STDERR STDIN STDOUT VERSION catalan e|0 eu|0 eulergamma golden im ' +
+	      'nothing pi γ π φ ',
 	
 	    // # built_in generator:
 	    // for name in Base.REPLCompletions.completions("", 0)[1]
 	    //     try
-	    //         v = eval(symbol(name))
-	    //         if isa(v, DataType) || isa(v, TypeConstructor) || isa(v, TypeVar)
+	    //         v = eval(Symbol(name))
+	    //         if v isa Type || v isa TypeVar
 	    //             println(name)
 	    //         end
 	    //     end
 	    // end
 	    built_in:
-	      // v0.3
-	      'ANY ASCIIString AbstractArray AbstractRNG AbstractSparseArray Any ArgumentError Array Associative Base64Pipe ' +
-	      'Bidiagonal BigFloat BigInt BitArray BitMatrix BitVector Bool BoundsError Box CFILE Cchar Cdouble Cfloat Char ' +
-	      'CharString Cint Clong Clonglong ClusterManager Cmd Coff_t Colon Complex Complex128 Complex32 Complex64 ' +
-	      'Condition Cptrdiff_t Cshort Csize_t Cssize_t Cuchar Cuint Culong Culonglong Cushort Cwchar_t DArray DataType ' +
-	      'DenseArray Diagonal Dict DimensionMismatch DirectIndexString Display DivideError DomainError EOFError ' +
-	      'EachLine Enumerate ErrorException Exception Expr Factorization FileMonitor FileOffset Filter Float16 Float32 ' +
-	      'Float64 FloatRange FloatingPoint Function GetfieldNode GotoNode Hermitian IO IOBuffer IOStream IPv4 IPv6 ' +
-	      'InexactError Int Int128 Int16 Int32 Int64 Int8 IntSet Integer InterruptException IntrinsicFunction KeyError ' +
-	      'LabelNode LambdaStaticData LineNumberNode LoadError LocalProcess MIME MathConst MemoryError MersenneTwister ' +
-	      'Method MethodError MethodTable Module NTuple NewvarNode Nothing Number ObjectIdDict OrdinalRange ' +
-	      'OverflowError ParseError PollingFileWatcher ProcessExitedException ProcessGroup Ptr QuoteNode Range Range1 ' +
-	      'Ranges Rational RawFD Real Regex RegexMatch RemoteRef RepString RevString RopeString RoundingMode Set ' +
-	      'SharedArray Signed SparseMatrixCSC StackOverflowError Stat StatStruct StepRange String SubArray SubString ' +
-	      'SymTridiagonal Symbol SymbolNode Symmetric SystemError Task TextDisplay Timer TmStruct TopNode Triangular ' +
-	      'Tridiagonal Type TypeConstructor TypeError TypeName TypeVar UTF16String UTF32String UTF8String UdpSocket ' +
-	      'Uint Uint128 Uint16 Uint32 Uint64 Uint8 UndefRefError UndefVarError UniformScaling UnionType UnitRange ' +
-	      'Unsigned Vararg VersionNumber WString WeakKeyDict WeakRef Woodbury Zip ' +
-	      // v0.4 (diff)
-	      'AbstractChannel AbstractFloat AbstractString AssertionError Base64DecodePipe Base64EncodePipe BufferStream ' +
-	      'CapturedException CartesianIndex CartesianRange Channel Cintmax_t CompositeException Cstring Cuintmax_t ' +
-	      'Cwstring Date DateTime Dims Enum GenSym GlobalRef HTML InitError InvalidStateException Irrational LinSpace ' +
-	      'LowerTriangular NullException Nullable OutOfMemoryError Pair PartialQuickSort Pipe RandomDevice ' +
-	      'ReadOnlyMemoryError ReentrantLock Ref RemoteException SegmentationFault SerializationState SimpleVector ' +
-	      'TCPSocket Text Tuple UDPSocket UInt UInt128 UInt16 UInt32 UInt64 UInt8 UnicodeError Union UpperTriangular ' +
-	      'Val Void WorkerConfig AbstractMatrix AbstractSparseMatrix AbstractSparseVector AbstractVecOrMat AbstractVector ' +
-	      'DenseMatrix DenseVecOrMat DenseVector Matrix SharedMatrix SharedVector StridedArray StridedMatrix ' +
-	      'StridedVecOrMat StridedVector VecOrMat Vector '
+	      'ANY AbstractArray AbstractChannel AbstractFloat AbstractMatrix AbstractRNG AbstractSerializer AbstractSet ' +
+	      'AbstractSparseArray AbstractSparseMatrix AbstractSparseVector AbstractString AbstractUnitRange AbstractVecOrMat ' +
+	      'AbstractVector Any ArgumentError Array AssertionError Associative Base64DecodePipe Base64EncodePipe Bidiagonal '+
+	      'BigFloat BigInt BitArray BitMatrix BitVector Bool BoundsError BufferStream CachingPool CapturedException ' +
+	      'CartesianIndex CartesianRange Cchar Cdouble Cfloat Channel Char Cint Cintmax_t Clong Clonglong ClusterManager ' +
+	      'Cmd CodeInfo Colon Complex Complex128 Complex32 Complex64 CompositeException Condition ConjArray ConjMatrix ' +
+	      'ConjVector Cptrdiff_t Cshort Csize_t Cssize_t Cstring Cuchar Cuint Cuintmax_t Culong Culonglong Cushort Cwchar_t ' +
+	      'Cwstring DataType Date DateFormat DateTime DenseArray DenseMatrix DenseVecOrMat DenseVector Diagonal Dict ' +
+	      'DimensionMismatch Dims DirectIndexString Display DivideError DomainError EOFError EachLine Enum Enumerate ' +
+	      'ErrorException Exception ExponentialBackOff Expr Factorization FileMonitor Float16 Float32 Float64 Function ' +
+	      'Future GlobalRef GotoNode HTML Hermitian IO IOBuffer IOContext IOStream IPAddr IPv4 IPv6 IndexCartesian IndexLinear ' +
+	      'IndexStyle InexactError InitError Int Int128 Int16 Int32 Int64 Int8 IntSet Integer InterruptException ' +
+	      'InvalidStateException Irrational KeyError LabelNode LinSpace LineNumberNode LoadError LowerTriangular MIME Matrix ' +
+	      'MersenneTwister Method MethodError MethodTable Module NTuple NewvarNode NullException Nullable Number ObjectIdDict ' +
+	      'OrdinalRange OutOfMemoryError OverflowError Pair ParseError PartialQuickSort PermutedDimsArray Pipe ' +
+	      'PollingFileWatcher ProcessExitedException Ptr QuoteNode RandomDevice Range RangeIndex Rational RawFD ' +
+	      'ReadOnlyMemoryError Real ReentrantLock Ref Regex RegexMatch RemoteChannel RemoteException RevString RoundingMode ' +
+	      'RowVector SSAValue SegmentationFault SerializationState Set SharedArray SharedMatrix SharedVector Signed ' +
+	      'SimpleVector Slot SlotNumber SparseMatrixCSC SparseVector StackFrame StackOverflowError StackTrace StepRange ' +
+	      'StepRangeLen StridedArray StridedMatrix StridedVecOrMat StridedVector String SubArray SubString SymTridiagonal ' +
+	      'Symbol Symmetric SystemError TCPSocket Task Text TextDisplay Timer Tridiagonal Tuple Type TypeError TypeMapEntry ' +
+	      'TypeMapLevel TypeName TypeVar TypedSlot UDPSocket UInt UInt128 UInt16 UInt32 UInt64 UInt8 UndefRefError UndefVarError ' +
+	      'UnicodeError UniformScaling Union UnionAll UnitRange Unsigned UpperTriangular Val Vararg VecElement VecOrMat Vector ' +
+	      'VersionNumber Void WeakKeyDict WeakRef WorkerConfig WorkerPool '
 	  };
 	
 	  // ref: http://julia.readthedocs.org/en/latest/manual/variables/#allowed-variable-names
 	  var VARIABLE_NAME_RE = '[A-Za-z_\\u00A1-\\uFFFF][A-Za-z_0-9\\u00A1-\\uFFFF]*';
 	
 	  // placeholder for recursive self-reference
-	  var DEFAULT = { lexemes: VARIABLE_NAME_RE, keywords: KEYWORDS, illegal: /<\// };
-	
-	  var TYPE_ANNOTATION = {
-	    className: 'type',
-	    begin: /::/
-	  };
-	
-	  var SUBTYPE = {
-	    className: 'type',
-	    begin: /<:/
+	  var DEFAULT = {
+	    lexemes: VARIABLE_NAME_RE, keywords: KEYWORDS, illegal: /<\//
 	  };
 	
 	  // ref: http://julia.readthedocs.org/en/latest/manual/integers-and-floating-point-numbers/
@@ -31420,13 +32047,17 @@
 	  DEFAULT.contains = [
 	    NUMBER,
 	    CHAR,
-	    TYPE_ANNOTATION,
-	    SUBTYPE,
 	    STRING,
 	    COMMAND,
 	    MACROCALL,
 	    COMMENT,
-	    hljs.HASH_COMMENT_MODE
+	    hljs.HASH_COMMENT_MODE,
+	    {
+	      className: 'keyword',
+	      begin:
+	        '\\b(((abstract|primitive)\\s+)type|(mutable\\s+)?struct)\\b'
+	    },
+	    {begin: /<:/}  // relevance booster
 	  ];
 	  INTERPOLATION.contains = DEFAULT.contains;
 	
@@ -31434,15 +32065,43 @@
 	};
 
 /***/ },
-/* 349 */
+/* 351 */
 /***/ function(module, exports) {
 
-	module.exports = function (hljs) {
+	module.exports = function(hljs) {
+	  return {
+	    contains: [
+	      {
+	        className: 'meta',
+	        begin: /^julia>/,
+	        relevance: 10,
+	        starts: {
+	          // end the highlighting if we are on a new line and the line does not have at
+	          // least six spaces in the beginning
+	          end: /^(?![ ]{6})/,
+	          subLanguage: 'julia'
+	      },
+	      // jldoctest Markdown blocks are used in the Julia manual and package docs indicate
+	      // code snippets that should be verified when the documentation is built. They can be
+	      // either REPL-like or script-like, but are usually REPL-like and therefore we apply
+	      // julia-repl highlighting to them. More information can be found in Documenter's
+	      // manual: https://juliadocs.github.io/Documenter.jl/latest/man/doctests.html
+	      aliases: ['jldoctest']
+	      }
+	    ]
+	  }
+	};
+
+/***/ },
+/* 352 */
+/***/ function(module, exports) {
+
+	module.exports = function(hljs) {
 	  var KEYWORDS = {
 	    keyword:
 	      'abstract as val var vararg get set class object open private protected public noinline ' +
 	      'crossinline dynamic final enum if else do while for when throw try catch finally ' +
-	      'import package is in fun override companion reified inline ' +
+	      'import package is in fun override companion reified inline lateinit init' +
 	      'interface annotation data sealed internal infix operator out by constructor super ' +
 	      // to be deleted soon
 	      'trait volatile transient native default',
@@ -31470,17 +32129,17 @@
 	  // for string templates
 	  var SUBST = {
 	    className: 'subst',
-	    variants: [
-	      {begin: '\\$' + hljs.UNDERSCORE_IDENT_RE},
-	      {begin: '\\${', end: '}', contains: [hljs.APOS_STRING_MODE, hljs.C_NUMBER_MODE]}
-	    ]
+	    begin: '\\${', end: '}', contains: [hljs.APOS_STRING_MODE, hljs.C_NUMBER_MODE]
+	  };
+	  var VARIABLE = {
+	    className: 'variable', begin: '\\$' + hljs.UNDERSCORE_IDENT_RE
 	  };
 	  var STRING = {
 	    className: 'string',
 	    variants: [
 	      {
 	        begin: '"""', end: '"""',
-	        contains: [SUBST]
+	        contains: [VARIABLE, SUBST]
 	      },
 	      // Can't use built-in modes easily, as we want to use STRING in the meta
 	      // context as 'meta-string' and there's no syntax to remove explicitly set
@@ -31493,7 +32152,7 @@
 	      {
 	        begin: '"', end: '"',
 	        illegal: /\n/,
-	        contains: [hljs.BACKSLASH_ESCAPE, SUBST]
+	        contains: [hljs.BACKSLASH_ESCAPE, VARIABLE, SUBST]
 	      }
 	    ]
 	  };
@@ -31612,7 +32271,7 @@
 	};
 
 /***/ },
-/* 350 */
+/* 353 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -31779,7 +32438,7 @@
 	};
 
 /***/ },
-/* 351 */
+/* 354 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -31806,7 +32465,51 @@
 	};
 
 /***/ },
-/* 352 */
+/* 355 */
+/***/ function(module, exports) {
+
+	module.exports = function (hljs) {
+	  return {
+	    contains: [
+	      {
+	        className: 'function',
+	        begin: '#+' + '[A-Za-z_0-9]*' + '\\(',
+	        end:' {',
+	        returnBegin: true,
+	        excludeEnd: true,
+	        contains : [
+	          {
+	            className: 'keyword',
+	            begin: '#+'
+	          },
+	          {
+	            className: 'title',
+	            begin: '[A-Za-z_][A-Za-z_0-9]*'
+	          },
+	          {
+	            className: 'params',
+	            begin: '\\(', end: '\\)',
+	            endsParent: true,
+	            contains: [
+	              {
+	                className: 'string',
+	                begin: '"',
+	                end: '"'
+	              },
+	              {
+	                className: 'variable',
+	                begin: '[A-Za-z_][A-Za-z_0-9]*'
+	              }
+	            ]
+	          }
+	        ]
+	      }
+	    ]
+	  };
+	};
+
+/***/ },
+/* 356 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -31950,7 +32653,7 @@
 	};
 
 /***/ },
-/* 353 */
+/* 357 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -32057,7 +32760,7 @@
 	};
 
 /***/ },
-/* 354 */
+/* 358 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -32218,7 +32921,7 @@
 	};
 
 /***/ },
-/* 355 */
+/* 359 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -32371,7 +33074,100 @@
 	};
 
 /***/ },
-/* 356 */
+/* 360 */
+/***/ function(module, exports) {
+
+	module.exports = function(hljs) {
+	  var identifier = '([-a-zA-Z$._][\\w\\-$.]*)';
+	  return {
+	    //lexemes: '[.%]?' + hljs.IDENT_RE,
+	    keywords:
+	      'begin end true false declare define global ' +
+	      'constant private linker_private internal ' +
+	      'available_externally linkonce linkonce_odr weak ' +
+	      'weak_odr appending dllimport dllexport common ' +
+	      'default hidden protected extern_weak external ' +
+	      'thread_local zeroinitializer undef null to tail ' +
+	      'target triple datalayout volatile nuw nsw nnan ' +
+	      'ninf nsz arcp fast exact inbounds align ' +
+	      'addrspace section alias module asm sideeffect ' +
+	      'gc dbg linker_private_weak attributes blockaddress ' +
+	      'initialexec localdynamic localexec prefix unnamed_addr ' +
+	      'ccc fastcc coldcc x86_stdcallcc x86_fastcallcc ' +
+	      'arm_apcscc arm_aapcscc arm_aapcs_vfpcc ptx_device ' +
+	      'ptx_kernel intel_ocl_bicc msp430_intrcc spir_func ' +
+	      'spir_kernel x86_64_sysvcc x86_64_win64cc x86_thiscallcc ' +
+	      'cc c signext zeroext inreg sret nounwind ' +
+	      'noreturn noalias nocapture byval nest readnone ' +
+	      'readonly inlinehint noinline alwaysinline optsize ssp ' +
+	      'sspreq noredzone noimplicitfloat naked builtin cold ' +
+	      'nobuiltin noduplicate nonlazybind optnone returns_twice ' +
+	      'sanitize_address sanitize_memory sanitize_thread sspstrong ' +
+	      'uwtable returned type opaque eq ne slt sgt ' +
+	      'sle sge ult ugt ule uge oeq one olt ogt ' +
+	      'ole oge ord uno ueq une x acq_rel acquire ' +
+	      'alignstack atomic catch cleanup filter inteldialect ' +
+	      'max min monotonic nand personality release seq_cst ' +
+	      'singlethread umax umin unordered xchg add fadd ' +
+	      'sub fsub mul fmul udiv sdiv fdiv urem srem ' +
+	      'frem shl lshr ashr and or xor icmp fcmp ' +
+	      'phi call trunc zext sext fptrunc fpext uitofp ' +
+	      'sitofp fptoui fptosi inttoptr ptrtoint bitcast ' +
+	      'addrspacecast select va_arg ret br switch invoke ' +
+	      'unwind unreachable indirectbr landingpad resume ' +
+	      'malloc alloca free load store getelementptr ' +
+	      'extractelement insertelement shufflevector getresult ' +
+	      'extractvalue insertvalue atomicrmw cmpxchg fence ' +
+	      'argmemonly double',
+	    contains: [
+	      {
+	        className: 'keyword',
+	        begin: 'i\\d+'
+	      },
+	      hljs.COMMENT(
+	        ';', '\\n', {relevance: 0}
+	      ),
+	      // Double quote string
+	      hljs.QUOTE_STRING_MODE,
+	      {
+	        className: 'string',
+	        variants: [
+	          // Double-quoted string
+	          { begin: '"', end: '[^\\\\]"' },
+	        ],
+	        relevance: 0
+	      },
+	      {
+	        className: 'title',
+	        variants: [
+	          { begin: '@' + identifier },
+	          { begin: '@\\d+' },
+	          { begin: '!' + identifier },
+	          { begin: '!\\d+' + identifier }
+	        ]
+	      },
+	      {
+	        className: 'symbol',
+	        variants: [
+	          { begin: '%' + identifier },
+	          { begin: '%\\d+' },
+	          { begin: '#\\d+' },
+	        ]
+	      },
+	      {
+	        className: 'number',
+	        variants: [
+	            { begin: '0[xX][a-fA-F0-9]+' },
+	            { begin: '-?\\d+(?:[.]\\d+)?(?:[eE][-+]?\\d+(?:[.]\\d+)?)?' }
+	        ],
+	        relevance: 0
+	      },
+	    ]
+	  };
+	};
+
+/***/ },
+/* 361 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -32458,7 +33254,7 @@
 	};
 
 /***/ },
-/* 357 */
+/* 362 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -32482,14 +33278,24 @@
 	  return {
 	    lexemes: hljs.UNDERSCORE_IDENT_RE,
 	    keywords: {
-	      keyword:
-	        'and break do else elseif end false for if in local nil not or repeat return then ' +
-	        'true until while',
+	      literal: "true false nil",
+	      keyword: "and break do else elseif end for goto if in local not or repeat return then until while",
 	      built_in:
-	        '_G _VERSION assert collectgarbage dofile error getfenv getmetatable ipairs load ' +
-	        'loadfile loadstring module next pairs pcall print rawequal rawget rawset require ' +
-	        'select setfenv setmetatable tonumber tostring type unpack xpcall coroutine debug ' +
-	        'io math os package string table'
+	        //Metatags and globals:
+	        '_G _ENV _VERSION __index __newindex __mode __call __metatable __tostring __len ' +
+	        '__gc __add __sub __mul __div __mod __pow __concat __unm __eq __lt __le assert ' +
+	        //Standard methods and properties:
+	        'collectgarbage dofile error getfenv getmetatable ipairs load loadfile loadstring' +
+	        'module next pairs pcall print rawequal rawget rawset require select setfenv' +
+	        'setmetatable tonumber tostring type unpack xpcall arg self' +
+	        //Library methods and properties (one line per library):
+	        'coroutine resume yield status wrap create running debug getupvalue ' +
+	        'debug sethook getmetatable gethook setmetatable setlocal traceback setfenv getinfo setupvalue getlocal getregistry getfenv ' +
+	        'io lines write close flush open output type read stderr stdin input stdout popen tmpfile ' +
+	        'math log max acos huge ldexp pi cos tanh pow deg tan cosh sinh random randomseed frexp ceil floor rad abs sqrt modf asin min mod fmod log10 atan2 exp sin atan ' +
+	        'os exit setlocale date getenv difftime remove time clock tmpname rename execute package preload loadlib loaded loaders cpath config path seeall ' +
+	        'string sub upper len gfind rep find match char dump gmatch reverse byte format gsub lower ' +
+	        'table setn insert getn foreachi maxn foreach concat sort remove'
 	    },
 	    contains: COMMENTS.concat([
 	      {
@@ -32518,56 +33324,92 @@
 	};
 
 /***/ },
-/* 358 */
+/* 363 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
+	  /* Variables: simple (eg $(var)) and special (eg $@) */
 	  var VARIABLE = {
 	    className: 'variable',
-	    begin: /\$\(/, end: /\)/,
-	    contains: [hljs.BACKSLASH_ESCAPE]
+	    variants: [
+	      {
+	        begin: '\\$\\(' + hljs.UNDERSCORE_IDENT_RE + '\\)',
+	        contains: [hljs.BACKSLASH_ESCAPE],
+	      },
+	      {
+	        begin: /\$[@%<?\^\+\*]/
+	      },
+	    ]
+	  };
+	  /* Quoted string with variables inside */
+	  var QUOTE_STRING = {
+	    className: 'string',
+	    begin: /"/, end: /"/,
+	    contains: [
+	      hljs.BACKSLASH_ESCAPE,
+	      VARIABLE,
+	    ]
+	  };
+	  /* Function: $(func arg,...) */
+	  var FUNC = {
+	    className: 'variable',
+	    begin: /\$\([\w-]+\s/, end: /\)/,
+	    keywords: {
+	      built_in:
+	        'subst patsubst strip findstring filter filter-out sort ' +
+	        'word wordlist firstword lastword dir notdir suffix basename ' +
+	        'addsuffix addprefix join wildcard realpath abspath error warning ' +
+	        'shell origin flavor foreach if or and call eval file value',
+	    },
+	    contains: [
+	      VARIABLE,
+	    ]
+	  };
+	  /* Variable assignment */
+	  var VAR_ASSIG = {
+	    begin: '^' + hljs.UNDERSCORE_IDENT_RE + '\\s*[:+?]?=',
+	    illegal: '\\n',
+	    returnBegin: true,
+	    contains: [
+	      {
+	        begin: '^' + hljs.UNDERSCORE_IDENT_RE, end: '[:+?]?=',
+	        excludeEnd: true,
+	      }
+	    ]
+	  };
+	  /* Meta targets (.PHONY) */
+	  var META = {
+	    className: 'meta',
+	    begin: /^\.PHONY:/, end: /$/,
+	    keywords: {'meta-keyword': '.PHONY'},
+	    lexemes: /[\.\w]+/
+	  };
+	  /* Targets */
+	  var TARGET = {
+	    className: 'section',
+	    begin: /^[^\s]+:/, end: /$/,
+	    contains: [VARIABLE,]
 	  };
 	  return {
 	    aliases: ['mk', 'mak'],
+	    keywords:
+	      'define endef undefine ifdef ifndef ifeq ifneq else endif ' +
+	      'include -include sinclude override export unexport private vpath',
+	    lexemes: /[\w-]+/,
 	    contains: [
 	      hljs.HASH_COMMENT_MODE,
-	      {
-	        begin: /^\w+\s*\W*=/, returnBegin: true,
-	        relevance: 0,
-	        starts: {
-	          end: /\s*\W*=/, excludeEnd: true,
-	          starts: {
-	            end: /$/,
-	            relevance: 0,
-	            contains: [
-	              VARIABLE
-	            ]
-	          }
-	        }
-	      },
-	      {
-	        className: 'section',
-	        begin: /^[\w]+:\s*$/
-	      },
-	      {
-	        className: 'meta',
-	        begin: /^\.PHONY:/, end: /$/,
-	        keywords: {'meta-keyword': '.PHONY'}, lexemes: /[\.\w]+/
-	      },
-	      {
-	        begin: /^\t+/, end: /$/,
-	        relevance: 0,
-	        contains: [
-	          hljs.QUOTE_STRING_MODE,
-	          VARIABLE
-	        ]
-	      }
+	      VARIABLE,
+	      QUOTE_STRING,
+	      FUNC,
+	      VAR_ASSIG,
+	      META,
+	      TARGET,
 	    ]
 	  };
 	};
 
 /***/ },
-/* 359 */
+/* 364 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -32629,7 +33471,7 @@
 	};
 
 /***/ },
-/* 360 */
+/* 365 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -32721,7 +33563,7 @@
 	};
 
 /***/ },
-/* 361 */
+/* 366 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -33131,7 +33973,7 @@
 	};
 
 /***/ },
-/* 362 */
+/* 367 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -33360,7 +34202,7 @@
 	};
 
 /***/ },
-/* 363 */
+/* 368 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -33446,7 +34288,7 @@
 	};
 
 /***/ },
-/* 364 */
+/* 369 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -33536,7 +34378,7 @@
 	};
 
 /***/ },
-/* 365 */
+/* 370 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -33559,7 +34401,7 @@
 	};
 
 /***/ },
-/* 366 */
+/* 371 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -33720,7 +34562,7 @@
 	};
 
 /***/ },
-/* 367 */
+/* 372 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -33749,7 +34591,7 @@
 	};
 
 /***/ },
-/* 368 */
+/* 373 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -33828,7 +34670,7 @@
 	};
 
 /***/ },
-/* 369 */
+/* 374 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -33944,7 +34786,80 @@
 	};
 
 /***/ },
-/* 370 */
+/* 375 */
+/***/ function(module, exports) {
+
+	module.exports = function(hljs) {
+	  return {
+	    case_insensitive: true,
+	    contains: [
+	      {
+	        beginKeywords:
+	          'build create index delete drop explain infer|10 insert merge prepare select update upsert|10',
+	        end: /;/, endsWithParent: true,
+	        keywords: {
+	          // Taken from http://developer.couchbase.com/documentation/server/current/n1ql/n1ql-language-reference/reservedwords.html
+	          keyword:
+	            'all alter analyze and any array as asc begin between binary boolean break bucket build by call ' +
+	            'case cast cluster collate collection commit connect continue correlate cover create database ' +
+	            'dataset datastore declare decrement delete derived desc describe distinct do drop each element ' +
+	            'else end every except exclude execute exists explain fetch first flatten for force from ' +
+	            'function grant group gsi having if ignore ilike in include increment index infer inline inner ' +
+	            'insert intersect into is join key keys keyspace known last left let letting like limit lsm map ' +
+	            'mapping matched materialized merge minus namespace nest not number object offset on ' +
+	            'option or order outer over parse partition password path pool prepare primary private privilege ' +
+	            'procedure public raw realm reduce rename return returning revoke right role rollback satisfies ' +
+	            'schema select self semi set show some start statistics string system then to transaction trigger ' +
+	            'truncate under union unique unknown unnest unset update upsert use user using validate value ' +
+	            'valued values via view when where while with within work xor',
+	          // Taken from http://developer.couchbase.com/documentation/server/4.5/n1ql/n1ql-language-reference/literals.html
+	          literal:
+	            'true false null missing|5',
+	          // Taken from http://developer.couchbase.com/documentation/server/4.5/n1ql/n1ql-language-reference/functions.html
+	          built_in:
+	            'array_agg array_append array_concat array_contains array_count array_distinct array_ifnull array_length ' +
+	            'array_max array_min array_position array_prepend array_put array_range array_remove array_repeat array_replace ' +
+	            'array_reverse array_sort array_sum avg count max min sum greatest least ifmissing ifmissingornull ifnull ' +
+	            'missingif nullif ifinf ifnan ifnanorinf naninf neginfif posinfif clock_millis clock_str date_add_millis ' +
+	            'date_add_str date_diff_millis date_diff_str date_part_millis date_part_str date_trunc_millis date_trunc_str ' +
+	            'duration_to_str millis str_to_millis millis_to_str millis_to_utc millis_to_zone_name now_millis now_str ' +
+	            'str_to_duration str_to_utc str_to_zone_name decode_json encode_json encoded_size poly_length base64 base64_encode ' +
+	            'base64_decode meta uuid abs acos asin atan atan2 ceil cos degrees e exp ln log floor pi power radians random ' +
+	            'round sign sin sqrt tan trunc object_length object_names object_pairs object_inner_pairs object_values ' +
+	            'object_inner_values object_add object_put object_remove object_unwrap regexp_contains regexp_like regexp_position ' +
+	            'regexp_replace contains initcap length lower ltrim position repeat replace rtrim split substr title trim upper ' +
+	            'isarray isatom isboolean isnumber isobject isstring type toarray toatom toboolean tonumber toobject tostring'
+	        },
+	        contains: [
+	          {
+	            className: 'string',
+	            begin: '\'', end: '\'',
+	            contains: [hljs.BACKSLASH_ESCAPE],
+	            relevance: 0
+	          },
+	          {
+	            className: 'string',
+	            begin: '"', end: '"',
+	            contains: [hljs.BACKSLASH_ESCAPE],
+	            relevance: 0
+	          },
+	          {
+	            className: 'symbol',
+	            begin: '`', end: '`',
+	            contains: [hljs.BACKSLASH_ESCAPE],
+	            relevance: 2
+	          },
+	          hljs.C_NUMBER_MODE,
+	          hljs.C_BLOCK_COMMENT_MODE
+	        ]
+	      },
+	      hljs.C_BLOCK_COMMENT_MODE
+	    ]
+	  };
+	};
+
+/***/ },
+/* 376 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -34041,7 +34956,7 @@
 	};
 
 /***/ },
-/* 371 */
+/* 377 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -34100,7 +35015,7 @@
 	};
 
 /***/ },
-/* 372 */
+/* 378 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -34153,7 +35068,7 @@
 	};
 
 /***/ },
-/* 373 */
+/* 379 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -34263,7 +35178,7 @@
 	};
 
 /***/ },
-/* 374 */
+/* 380 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -34358,7 +35273,7 @@
 	};
 
 /***/ },
-/* 375 */
+/* 381 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -34433,7 +35348,7 @@
 	};
 
 /***/ },
-/* 376 */
+/* 382 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -34494,7 +35409,7 @@
 	};
 
 /***/ },
-/* 377 */
+/* 383 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -34568,7 +35483,7 @@
 	};
 
 /***/ },
-/* 378 */
+/* 384 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -34620,7 +35535,7 @@
 	};
 
 /***/ },
-/* 379 */
+/* 385 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -34676,7 +35591,7 @@
 	};
 
 /***/ },
-/* 380 */
+/* 386 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -34807,7 +35722,7 @@
 	};
 
 /***/ },
-/* 381 */
+/* 387 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -34902,7 +35817,7 @@
 	};
 
 /***/ },
-/* 382 */
+/* 388 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -34987,7 +35902,7 @@
 	};
 
 /***/ },
-/* 383 */
+/* 389 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -35039,7 +35954,7 @@
 	};
 
 /***/ },
-/* 384 */
+/* 390 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -35073,7 +35988,7 @@
 	};
 
 /***/ },
-/* 385 */
+/* 391 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -35165,7 +36080,7 @@
 	};
 
 /***/ },
-/* 386 */
+/* 392 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -35205,7 +36120,7 @@
 	};
 
 /***/ },
-/* 387 */
+/* 393 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -35324,7 +36239,7 @@
 	};
 
 /***/ },
-/* 388 */
+/* 394 */
 /***/ function(module, exports) {
 
 	module.exports = // Base deafult colors in PB IDE: background: #FFFFDF; foreground: #000000;
@@ -35386,12 +36301,26 @@
 	};
 
 /***/ },
-/* 389 */
+/* 395 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
+	  var KEYWORDS = {
+	    keyword:
+	      'and elif is global as in if from raise for except finally print import pass return ' +
+	      'exec else break not with class assert yield try while continue del or def lambda ' +
+	      'async await nonlocal|10 None True False',
+	    built_in:
+	      'Ellipsis NotImplemented'
+	  };
 	  var PROMPT = {
 	    className: 'meta',  begin: /^(>>>|\.\.\.) /
+	  };
+	  var SUBST = {
+	    className: 'subst',
+	    begin: /\{/, end: /\}/,
+	    keywords: KEYWORDS,
+	    illegal: /#/
 	  };
 	  var STRING = {
 	    className: 'string',
@@ -35408,6 +36337,14 @@
 	        relevance: 10
 	      },
 	      {
+	        begin: /(fr|rf|f)'''/, end: /'''/,
+	        contains: [PROMPT, SUBST]
+	      },
+	      {
+	        begin: /(fr|rf|f)"""/, end: /"""/,
+	        contains: [PROMPT, SUBST]
+	      },
+	      {
 	        begin: /(u|r|ur)'/, end: /'/,
 	        relevance: 10
 	      },
@@ -35420,6 +36357,14 @@
 	      },
 	      {
 	        begin: /(b|br)"/, end: /"/
+	      },
+	      {
+	        begin: /(fr|rf|f)'/, end: /'/,
+	        contains: [SUBST]
+	      },
+	      {
+	        begin: /(fr|rf|f)"/, end: /"/,
+	        contains: [SUBST]
 	      },
 	      hljs.APOS_STRING_MODE,
 	      hljs.QUOTE_STRING_MODE
@@ -35438,16 +36383,10 @@
 	    begin: /\(/, end: /\)/,
 	    contains: ['self', PROMPT, NUMBER, STRING]
 	  };
+	  SUBST.contains = [STRING, NUMBER, PROMPT];
 	  return {
 	    aliases: ['py', 'gyp'],
-	    keywords: {
-	      keyword:
-	        'and elif is global as in if from raise for except finally print import pass return ' +
-	        'exec else break not with class assert yield try while continue del or def lambda ' +
-	        'async await nonlocal|10 None True False',
-	      built_in:
-	        'Ellipsis NotImplemented'
-	    },
+	    keywords: KEYWORDS,
 	    illegal: /(<\/|->|\?)|=>/,
 	    contains: [
 	      PROMPT,
@@ -35482,7 +36421,7 @@
 	};
 
 /***/ },
-/* 390 */
+/* 396 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -35509,7 +36448,7 @@
 	};
 
 /***/ },
-/* 391 */
+/* 397 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -35530,7 +36469,7 @@
 	        'module console window document Symbol Set Map WeakSet WeakMap Proxy Reflect ' +
 	        'Behavior bool color coordinate date double enumeration font geocircle georectangle ' +
 	        'geoshape int list matrix4x4 parent point quaternion real rect ' +
-	        'size string url var variant vector2d vector3d vector4d' +
+	        'size string url variant vector2d vector3d vector4d' +
 	        'Promise'
 	    };
 	
@@ -35682,7 +36621,7 @@
 	};
 
 /***/ },
-/* 392 */
+/* 398 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -35756,7 +36695,7 @@
 	};
 
 /***/ },
-/* 393 */
+/* 399 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -35787,7 +36726,7 @@
 	};
 
 /***/ },
-/* 394 */
+/* 400 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -35858,7 +36797,170 @@
 	};
 
 /***/ },
-/* 395 */
+/* 401 */
+/***/ function(module, exports) {
+
+	module.exports = // Colors from RouterOS terminal:
+	//   green        - #0E9A00
+	//   teal         - #0C9A9A
+	//   purple       - #99069A
+	//   light-brown  - #9A9900
+	
+	function(hljs) {
+	
+	  var STATEMENTS = 'foreach do while for if from to step else on-error and or not in';
+	
+	  // Global commands: Every global command should start with ":" token, otherwise it will be treated as variable.
+	  var GLOBAL_COMMANDS = 'global local beep delay put len typeof pick log time set find environment terminal error execute parse resolve toarray tobool toid toip toip6 tonum tostr totime';
+	
+	  // Common commands: Following commands available from most sub-menus:
+	  var COMMON_COMMANDS = 'add remove enable disable set get print export edit find run debug error info warning';
+	
+	  var LITERALS = 'true false yes no nothing nil null';
+	
+	  var OBJECTS = 'traffic-flow traffic-generator firewall scheduler aaa accounting address-list address align area bandwidth-server bfd bgp bridge client clock community config connection console customer default dhcp-client dhcp-server discovery dns e-mail ethernet filter firewall firmware gps graphing group hardware health hotspot identity igmp-proxy incoming instance interface ip ipsec ipv6 irq l2tp-server lcd ldp logging mac-server mac-winbox mangle manual mirror mme mpls nat nd neighbor network note ntp ospf ospf-v3 ovpn-server page peer pim ping policy pool port ppp pppoe-client pptp-server prefix profile proposal proxy queue radius resource rip ripng route routing screen script security-profiles server service service-port settings shares smb sms sniffer snmp snooper socks sstp-server system tool tracking type upgrade upnp user-manager users user vlan secret vrrp watchdog web-access wireless pptp pppoe lan wan layer7-protocol lease simple raw';
+	
+	  // print parameters
+	  // Several parameters are available for print command:
+	  // ToDo: var PARAMETERS_PRINT = 'append as-value brief detail count-only file follow follow-only from interval terse value-list without-paging where info';
+	  // ToDo: var OPERATORS = '&& and ! not || or in ~ ^ & << >> + - * /';
+	  // ToDo: var TYPES = 'num number bool boolean str string ip ip6-prefix id time array';
+	  // ToDo: The following tokens serve as delimiters in the grammar: ()  []  {}  :   ;   $   / 
+	
+	  var VAR_PREFIX = 'global local set for foreach';
+	
+	  var VAR = {
+	    className: 'variable',
+	    variants: [
+	      {begin: /\$[\w\d#@][\w\d_]*/},
+	      {begin: /\$\{(.*?)}/}
+	    ]
+	  };
+	  
+	  var QUOTE_STRING = {
+	    className: 'string',
+	    begin: /"/, end: /"/,
+	    contains: [
+	      hljs.BACKSLASH_ESCAPE,
+	      VAR,
+	      {
+	        className: 'variable',
+	        begin: /\$\(/, end: /\)/,
+	        contains: [hljs.BACKSLASH_ESCAPE]
+	      }
+	    ]
+	  };
+	  
+	  var APOS_STRING = {
+	    className: 'string',
+	    begin: /'/, end: /'/
+	  };
+	  
+	  var IPADDR = '((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\b';
+	  var IPADDR_wBITMASK =  IPADDR+'/(3[0-2]|[1-2][0-9]|\\d)';
+	  //////////////////////////////////////////////////////////////////////
+	  return {
+	    aliases: ['routeros', 'mikrotik'],
+	    case_insensitive: true,
+	    lexemes: /:?[\w-]+/,
+	    keywords: {
+	      literal: LITERALS,
+	      keyword: STATEMENTS + ' :' + STATEMENTS.split(' ').join(' :') + ' :' + GLOBAL_COMMANDS.split(' ').join(' :'),
+	    },
+	    contains: [
+	      { // недопустимые конструкции
+	        variants: [
+	          { begin: /^@/, end: /$/, },               // dns
+	          { begin: /\/\*/, end: /\*\//, },          // -- comment
+	          { begin: /%%/, end: /$/, },               // -- comment
+	          { begin: /^'/, end: /$/, },               // Monkey one line comment
+	          { begin: /^\s*\/[\w-]+=/, end: /$/, },    // jboss-cli
+	          { begin: /\/\//, end: /$/, },             // Stan comment
+	          { begin: /^\[\</, end: /\>\]$/, },        // F# class declaration?
+	          { begin: /<\//, end: />/, },              // HTML tags
+	          { begin: /^facet /, end: /\}/, },         // roboconf - лютый костыль )))
+	          { begin: '^1\\.\\.(\\d+)$', end: /$/, },  // tap  
+	        ],
+	        illegal: /./,
+	      },
+	      hljs.COMMENT('^#', '$'),
+	      QUOTE_STRING,
+	      APOS_STRING,
+	      VAR,
+	      { // attribute=value
+	        begin: /[\w-]+\=([^\s\{\}\[\]\(\)]+)/, 
+	        relevance: 0,
+	        returnBegin: true,
+	        contains: [
+	          {
+	            className: 'attribute',
+	            begin: /[^=]+/
+	          },
+	          {
+	            begin: /=/, 
+	            endsWithParent:  true,
+	            relevance: 0,
+	            contains: [
+	              QUOTE_STRING,
+	              APOS_STRING,
+	              VAR,
+	              {
+	                className: 'literal',
+	                begin: '\\b(' + LITERALS.split(' ').join('|') + ')\\b',
+	              },
+	              /*{
+	                // IPv4 addresses and subnets
+	                className: 'number',
+	                variants: [
+	                  {begin: IPADDR_wBITMASK+'(,'+IPADDR_wBITMASK+')*'}, //192.168.0.0/24,1.2.3.0/24
+	                  {begin: IPADDR+'-'+IPADDR},       // 192.168.0.1-192.168.0.3
+	                  {begin: IPADDR+'(,'+IPADDR+')*'}, // 192.168.0.1,192.168.0.34,192.168.24.1,192.168.0.1
+	                ]
+	              }, // */
+	              /*{
+	                // MAC addresses and DHCP Client IDs
+	                className: 'number',
+	                begin: /\b(1:)?([0-9A-Fa-f]{1,2}[:-]){5}([0-9A-Fa-f]){1,2}\b/,
+	              }, //*/
+	              {
+	                // Не форматировать не классифицированные значения. Необходимо для исключения подсветки значений как built_in.
+	                // className: 'number',  
+	                begin: /("[^"]*"|[^\s\{\}\[\]]+)/,
+	              }, //*/
+	            ]
+	          } //*/
+	        ]
+	      },//*/
+	      {
+	        // HEX values
+	        className: 'number',
+	        begin: /\*[0-9a-fA-F]+/,
+	      }, //*/
+	
+	      { 
+	        begin: '\\b(' + COMMON_COMMANDS.split(' ').join('|') + ')([\\s\[\(]|\])',
+	        returnBegin: true,
+	        contains: [
+	          {
+	            className: 'builtin-name', //'function',
+	            begin: /\w+/,
+	          },
+	        ],  
+	      },
+	      
+	      { 
+	        className: 'built_in',
+	        variants: [
+	          {begin: '(\\.\\./|/|\\s)((' + OBJECTS.split(' ').join('|') + ');?\\s)+',relevance: 10,},
+	          {begin: /\.\./,},
+	        ],
+	      },//*/
+	    ]
+	  };
+	};
+
+/***/ },
+/* 402 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -35898,7 +37000,7 @@
 	};
 
 /***/ },
-/* 396 */
+/* 403 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -35963,32 +37065,36 @@
 	};
 
 /***/ },
-/* 397 */
+/* 404 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
-	  var NUM_SUFFIX = '([uif](8|16|32|64|size))\?';
+	  var NUM_SUFFIX = '([ui](8|16|32|64|128|size)|f(32|64))\?';
 	  var KEYWORDS =
 	    'alignof as be box break const continue crate do else enum extern ' +
 	    'false fn for if impl in let loop match mod mut offsetof once priv ' +
 	    'proc pub pure ref return self Self sizeof static struct super trait true ' +
-	    'type typeof unsafe unsized use virtual while where yield move default ' +
-	    'int i8 i16 i32 i64 isize ' +
-	    'uint u8 u32 u64 usize ' +
-	    'float f32 f64 ' +
-	    'str char bool'
+	    'type typeof unsafe unsized use virtual while where yield move default';
 	  var BUILTINS =
-	    // prelude
-	    'Copy Send Sized Sync Drop Fn FnMut FnOnce drop Box ToOwned Clone ' +
+	    // functions
+	    'drop ' +
+	    // types
+	    'i8 i16 i32 i64 i128 isize ' +
+	    'u8 u16 u32 u64 u128 usize ' +
+	    'f32 f64 ' +
+	    'str char bool ' +
+	    'Box Option Result String Vec ' +
+	    // traits
+	    'Copy Send Sized Sync Drop Fn FnMut FnOnce ToOwned Clone Debug ' +
 	    'PartialEq PartialOrd Eq Ord AsRef AsMut Into From Default Iterator ' +
-	    'Extend IntoIterator DoubleEndedIterator ExactSizeIterator Option ' +
-	    'Result SliceConcatExt String ToString Vec ' +
+	    'Extend IntoIterator DoubleEndedIterator ExactSizeIterator ' +
+	    'SliceConcatExt ToString ' +
 	    // macros
 	    'assert! assert_eq! bitflags! bytes! cfg! col! concat! concat_idents! ' +
 	    'debug_assert! debug_assert_eq! env! panic! file! format! format_args! ' +
 	    'include_bin! include_str! line! local_data_key! module_path! ' +
 	    'option_env! print! println! select! stringify! try! unimplemented! ' +
-	    'unreachable! vec! write! writeln! macro_rules!';
+	    'unreachable! vec! write! writeln! macro_rules! assert_ne! debug_assert_ne!';
 	  return {
 	    aliases: ['rs'],
 	    keywords: {
@@ -36008,7 +37114,7 @@
 	      {
 	        className: 'string',
 	        variants: [
-	           { begin: /r(#*)".*?"\1(?!#)/ },
+	           { begin: /r(#*)"(.|\n)*?"\1(?!#)/ },
 	           { begin: /b?'\\?(x\w{2}|u\w{4}|U\w{8}|.)'/ }
 	        ]
 	      },
@@ -36053,7 +37159,7 @@
 	      },
 	      {
 	        className: 'class',
-	        beginKeywords: 'trait enum struct', end: '{',
+	        beginKeywords: 'trait enum struct union', end: '{',
 	        contains: [
 	          hljs.inherit(hljs.UNDERSCORE_TITLE_MODE, {endsParent: true})
 	        ],
@@ -36071,7 +37177,7 @@
 	};
 
 /***/ },
-/* 398 */
+/* 405 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -36190,7 +37296,7 @@
 	};
 
 /***/ },
-/* 399 */
+/* 406 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -36291,7 +37397,10 @@
 	  };
 	
 	  var QUOTED_LIST = {
-	    begin: /'/,
+	    variants: [
+	      { begin: /'/ },
+	      { begin: '`' }
+	    ],
 	    contains: [
 	      {
 	        begin: '\\(', end: '\\)',
@@ -36335,7 +37444,7 @@
 	};
 
 /***/ },
-/* 400 */
+/* 407 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -36393,7 +37502,7 @@
 	};
 
 /***/ },
-/* 401 */
+/* 408 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -36495,7 +37604,26 @@
 	};
 
 /***/ },
-/* 402 */
+/* 409 */
+/***/ function(module, exports) {
+
+	module.exports = function(hljs) {
+	  return {
+	    aliases: ['console'],
+	    contains: [
+	      {
+	        className: 'meta',
+	        begin: '^\\s{0,3}[\\w\\d\\[\\]()@-]*[>%$#]',
+	        starts: {
+	          end: '$', subLanguage: 'bash'
+	        }
+	      },
+	    ]
+	  }
+	};
+
+/***/ },
+/* 410 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -36555,7 +37683,7 @@
 	};
 
 /***/ },
-/* 403 */
+/* 411 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -36609,7 +37737,7 @@
 	};
 
 /***/ },
-/* 404 */
+/* 412 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -36679,11 +37807,24 @@
 	};
 
 /***/ },
-/* 405 */
+/* 413 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
 	  var CPP = hljs.getLanguage('cpp').exports;
+	
+	  // In SQF, a variable start with _
+	  var VARIABLE = {
+	    className: 'variable',
+	    begin: /\b_+[a-zA-Z_]\w*/
+	  };
+	
+	  // In SQF, a function should fit myTag_fnc_myFunction pattern
+	  // https://community.bistudio.com/wiki/Functions_Library_(Arma_3)#Adding_a_Function
+	  var FUNCTION = {
+	    className: 'title',
+	    begin: /[a-zA-Z][a-zA-Z0-9]+_fnc_\w*/
+	  };
 	
 	  // In SQF strings, quotes matching the start are escaped by adding a consecutive.
 	  // Example of single escaped quotes: " "" " and  ' '' '.
@@ -36709,426 +37850,321 @@
 	    keywords: {
 	      keyword:
 	        'case catch default do else exit exitWith for forEach from if ' +
-	        'switch then throw to try while with',
+	        'switch then throw to try waitUntil while with',
 	      built_in:
-	        'or plus abs accTime acos action actionKeys actionKeysImages ' +
-	        'actionKeysNames actionKeysNamesArray actionName activateAddons ' +
-	        'activatedAddons activateKey addAction addBackpack addBackpackCargo ' +
-	        'addBackpackCargoGlobal addBackpackGlobal addCamShake ' +
-	        'addCuratorAddons addCuratorCameraArea addCuratorEditableObjects ' +
-	        'addCuratorEditingArea addCuratorPoints addEditorObject ' +
-	        'addEventHandler addGoggles addGroupIcon addHandgunItem addHeadgear ' +
-	        'addItem addItemCargo addItemCargoGlobal addItemPool ' +
-	        'addItemToBackpack addItemToUniform addItemToVest addLiveStats ' +
-	        'addMagazine addMagazine array addMagazineAmmoCargo ' +
-	        'addMagazineCargo addMagazineCargoGlobal addMagazineGlobal ' +
-	        'addMagazinePool addMagazines addMagazineTurret addMenu addMenuItem ' +
-	        'addMissionEventHandler addMPEventHandler addMusicEventHandler ' +
-	        'addPrimaryWeaponItem addPublicVariableEventHandler addRating ' +
-	        'addResources addScore addScoreSide addSecondaryWeaponItem ' +
-	        'addSwitchableUnit addTeamMember addToRemainsCollector addUniform ' +
-	        'addVehicle addVest addWaypoint addWeapon addWeaponCargo ' +
-	        'addWeaponCargoGlobal addWeaponGlobal addWeaponPool addWeaponTurret ' +
-	        'agent agents AGLToASL aimedAtTarget aimPos airDensityRTD ' +
-	        'airportSide AISFinishHeal alive allControls allCurators allDead ' +
-	        'allDeadMen allDisplays allGroups allMapMarkers allMines ' +
-	        'allMissionObjects allow3DMode allowCrewInImmobile ' +
-	        'allowCuratorLogicIgnoreAreas allowDamage allowDammage ' +
-	        'allowFileOperations allowFleeing allowGetIn allPlayers allSites ' +
-	        'allTurrets allUnits allUnitsUAV allVariables ammo and animate ' +
-	        'animateDoor animationPhase animationState append armoryPoints ' +
-	        'arrayIntersect asin ASLToAGL ASLToATL assert assignAsCargo ' +
-	        'assignAsCargoIndex assignAsCommander assignAsDriver assignAsGunner ' +
-	        'assignAsTurret assignCurator assignedCargo assignedCommander ' +
-	        'assignedDriver assignedGunner assignedItems assignedTarget ' +
-	        'assignedTeam assignedVehicle assignedVehicleRole assignItem ' +
-	        'assignTeam assignToAirport atan atan2 atg ATLToASL attachedObject ' +
-	        'attachedObjects attachedTo attachObject attachTo attackEnabled ' +
-	        'backpack backpackCargo backpackContainer backpackItems ' +
-	        'backpackMagazines backpackSpaceFor behaviour benchmark binocular ' +
-	        'blufor boundingBox boundingBoxReal boundingCenter breakOut breakTo ' +
-	        'briefingName buildingExit buildingPos buttonAction buttonSetAction ' +
-	        'cadetMode call callExtension camCommand camCommit ' +
-	        'camCommitPrepared camCommitted camConstuctionSetParams camCreate ' +
-	        'camDestroy cameraEffect cameraEffectEnableHUD cameraInterest ' +
-	        'cameraOn cameraView campaignConfigFile camPreload camPreloaded ' +
-	        'camPrepareBank camPrepareDir camPrepareDive camPrepareFocus ' +
-	        'camPrepareFov camPrepareFovRange camPreparePos camPrepareRelPos ' +
-	        'camPrepareTarget camSetBank camSetDir camSetDive camSetFocus ' +
-	        'camSetFov camSetFovRange camSetPos camSetRelPos camSetTarget ' +
-	        'camTarget camUseNVG canAdd canAddItemToBackpack ' +
-	        'canAddItemToUniform canAddItemToVest cancelSimpleTaskDestination ' +
-	        'canFire canMove canSlingLoad canStand canUnloadInCombat captive ' +
-	        'captiveNum cbChecked cbSetChecked ceil cheatsEnabled ' +
-	        'checkAIFeature civilian className clearAllItemsFromBackpack ' +
-	        'clearBackpackCargo clearBackpackCargoGlobal clearGroupIcons ' +
-	        'clearItemCargo clearItemCargoGlobal clearItemPool ' +
-	        'clearMagazineCargo clearMagazineCargoGlobal clearMagazinePool ' +
-	        'clearOverlay clearRadio clearWeaponCargo clearWeaponCargoGlobal ' +
-	        'clearWeaponPool closeDialog closeDisplay closeOverlay ' +
-	        'collapseObjectTree combatMode commandArtilleryFire commandChat ' +
-	        'commander commandFire commandFollow commandFSM commandGetOut ' +
-	        'commandingMenu commandMove commandRadio commandStop commandTarget ' +
-	        'commandWatch comment commitOverlay compile compileFinal ' +
-	        'completedFSM composeText configClasses configFile configHierarchy ' +
-	        'configName configProperties configSourceMod configSourceModList ' +
-	        'connectTerminalToUAV controlNull controlsGroupCtrl ' +
-	        'copyFromClipboard copyToClipboard copyWaypoints cos count ' +
-	        'countEnemy countFriendly countSide countType countUnknown ' +
-	        'createAgent createCenter createDialog createDiaryLink ' +
-	        'createDiaryRecord createDiarySubject createDisplay ' +
-	        'createGearDialog createGroup createGuardedPoint createLocation ' +
-	        'createMarker createMarkerLocal createMenu createMine ' +
-	        'createMissionDisplay createSimpleTask createSite createSoundSource ' +
-	        'createTask createTeam createTrigger createUnit createUnit array ' +
-	        'createVehicle createVehicle array createVehicleCrew ' +
-	        'createVehicleLocal crew ctrlActivate ctrlAddEventHandler ' +
-	        'ctrlAutoScrollDelay ctrlAutoScrollRewind ctrlAutoScrollSpeed ' +
-	        'ctrlChecked ctrlClassName ctrlCommit ctrlCommitted ctrlCreate ' +
-	        'ctrlDelete ctrlEnable ctrlEnabled ctrlFade ctrlHTMLLoaded ctrlIDC ' +
-	        'ctrlIDD ctrlMapAnimAdd ctrlMapAnimClear ctrlMapAnimCommit ' +
-	        'ctrlMapAnimDone ctrlMapCursor ctrlMapMouseOver ctrlMapScale ' +
-	        'ctrlMapScreenToWorld ctrlMapWorldToScreen ctrlModel ' +
-	        'ctrlModelDirAndUp ctrlModelScale ctrlParent ctrlPosition ' +
-	        'ctrlRemoveAllEventHandlers ctrlRemoveEventHandler ctrlScale ' +
-	        'ctrlSetActiveColor ctrlSetAutoScrollDelay ctrlSetAutoScrollRewind ' +
-	        'ctrlSetAutoScrollSpeed ctrlSetBackgroundColor ctrlSetChecked ' +
-	        'ctrlSetEventHandler ctrlSetFade ctrlSetFocus ctrlSetFont ' +
-	        'ctrlSetFontH1 ctrlSetFontH1B ctrlSetFontH2 ctrlSetFontH2B ' +
-	        'ctrlSetFontH3 ctrlSetFontH3B ctrlSetFontH4 ctrlSetFontH4B ' +
-	        'ctrlSetFontH5 ctrlSetFontH5B ctrlSetFontH6 ctrlSetFontH6B ' +
-	        'ctrlSetFontHeight ctrlSetFontHeightH1 ctrlSetFontHeightH2 ' +
-	        'ctrlSetFontHeightH3 ctrlSetFontHeightH4 ctrlSetFontHeightH5 ' +
-	        'ctrlSetFontHeightH6 ctrlSetFontP ctrlSetFontPB ' +
-	        'ctrlSetForegroundColor ctrlSetModel ctrlSetModelDirAndUp ' +
-	        'ctrlSetModelScale ctrlSetPosition ctrlSetScale ' +
-	        'ctrlSetStructuredText ctrlSetText ctrlSetTextColor ctrlSetTooltip ' +
-	        'ctrlSetTooltipColorBox ctrlSetTooltipColorShade ' +
-	        'ctrlSetTooltipColorText ctrlShow ctrlShown ctrlText ctrlTextHeight ' +
-	        'ctrlType ctrlVisible curatorAddons curatorCamera curatorCameraArea ' +
-	        'curatorCameraAreaCeiling curatorCoef curatorEditableObjects ' +
-	        'curatorEditingArea curatorEditingAreaType curatorMouseOver ' +
-	        'curatorPoints curatorRegisteredObjects curatorSelected ' +
-	        'curatorWaypointCost currentChannel currentCommand currentMagazine ' +
-	        'currentMagazineDetail currentMagazineDetailTurret ' +
-	        'currentMagazineTurret currentMuzzle currentNamespace currentTask ' +
-	        'currentTasks currentThrowable currentVisionMode currentWaypoint ' +
-	        'currentWeapon currentWeaponMode currentWeaponTurret currentZeroing ' +
-	        'cursorTarget customChat customRadio cutFadeOut cutObj cutRsc ' +
-	        'cutText damage date dateToNumber daytime deActivateKey ' +
-	        'debriefingText debugFSM debugLog deg deleteAt deleteCenter ' +
-	        'deleteCollection deleteEditorObject deleteGroup deleteIdentity ' +
-	        'deleteLocation deleteMarker deleteMarkerLocal deleteRange ' +
-	        'deleteResources deleteSite deleteStatus deleteTeam deleteVehicle ' +
-	        'deleteVehicleCrew deleteWaypoint detach detectedMines ' +
-	        'diag activeMissionFSMs diag activeSQFScripts diag activeSQSScripts ' +
-	        'diag captureFrame diag captureSlowFrame diag fps diag fpsMin ' +
-	        'diag frameNo diag log diag logSlowFrame diag tickTime dialog ' +
-	        'diarySubjectExists didJIP didJIPOwner difficulty difficultyEnabled ' +
-	        'difficultyEnabledRTD direction directSay disableAI ' +
-	        'disableCollisionWith disableConversation disableDebriefingStats ' +
-	        'disableSerialization disableTIEquipment disableUAVConnectability ' +
-	        'disableUserInput displayAddEventHandler displayCtrl displayNull ' +
-	        'displayRemoveAllEventHandlers displayRemoveEventHandler ' +
-	        'displaySetEventHandler dissolveTeam distance distance2D ' +
-	        'distanceSqr distributionRegion doArtilleryFire doFire doFollow ' +
-	        'doFSM doGetOut doMove doorPhase doStop doTarget doWatch drawArrow ' +
-	        'drawEllipse drawIcon drawIcon3D drawLine drawLine3D drawLink ' +
-	        'drawLocation drawRectangle driver drop east echo editObject ' +
-	        'editorSetEventHandler effectiveCommander emptyPositions enableAI ' +
-	        'enableAIFeature enableAttack enableCamShake enableCaustics ' +
-	        'enableCollisionWith enableCopilot enableDebriefingStats ' +
-	        'enableDiagLegend enableEndDialog enableEngineArtillery ' +
-	        'enableEnvironment enableFatigue enableGunLights enableIRLasers ' +
-	        'enableMimics enablePersonTurret enableRadio enableReload ' +
-	        'enableRopeAttach enableSatNormalOnDetail enableSaving ' +
-	        'enableSentences enableSimulation enableSimulationGlobal ' +
-	        'enableTeamSwitch enableUAVConnectability enableUAVWaypoints ' +
-	        'endLoadingScreen endMission engineOn enginesIsOnRTD enginesRpmRTD ' +
-	        'enginesTorqueRTD entities estimatedEndServerTime estimatedTimeLeft ' +
-	        'evalObjectArgument everyBackpack everyContainer exec ' +
-	        'execEditorScript execFSM execVM exp expectedDestination ' +
-	        'eyeDirection eyePos face faction fadeMusic fadeRadio fadeSound ' +
-	        'fadeSpeech failMission fillWeaponsFromPool find findCover ' +
-	        'findDisplay findEditorObject findEmptyPosition ' +
-	        'findEmptyPositionReady findNearestEnemy finishMissionInit finite ' +
-	        'fire fireAtTarget firstBackpack flag flagOwner fleeing floor ' +
-	        'flyInHeight fog fogForecast fogParams forceAddUniform forceEnd ' +
-	        'forceMap forceRespawn forceSpeed forceWalk forceWeaponFire ' +
-	        'forceWeatherChange forEachMember forEachMemberAgent ' +
-	        'forEachMemberTeam format formation formationDirection ' +
-	        'formationLeader formationMembers formationPosition formationTask ' +
-	        'formatText formLeader freeLook fromEditor fuel fullCrew ' +
-	        'gearSlotAmmoCount gearSlotData getAllHitPointsDamage getAmmoCargo ' +
-	        'getArray getArtilleryAmmo getArtilleryComputerSettings ' +
-	        'getArtilleryETA getAssignedCuratorLogic getAssignedCuratorUnit ' +
-	        'getBackpackCargo getBleedingRemaining getBurningValue ' +
-	        'getCargoIndex getCenterOfMass getClientState getConnectedUAV ' +
-	        'getDammage getDescription getDir getDirVisual getDLCs ' +
-	        'getEditorCamera getEditorMode getEditorObjectScope ' +
-	        'getElevationOffset getFatigue getFriend getFSMVariable ' +
-	        'getFuelCargo getGroupIcon getGroupIconParams getGroupIcons ' +
-	        'getHideFrom getHit getHitIndex getHitPointDamage getItemCargo ' +
-	        'getMagazineCargo getMarkerColor getMarkerPos getMarkerSize ' +
-	        'getMarkerType getMass getModelInfo getNumber getObjectArgument ' +
-	        'getObjectChildren getObjectDLC getObjectMaterials getObjectProxy ' +
-	        'getObjectTextures getObjectType getObjectViewDistance ' +
-	        'getOxygenRemaining getPersonUsedDLCs getPlayerChannel getPlayerUID ' +
-	        'getPos getPosASL getPosASLVisual getPosASLW getPosATL ' +
-	        'getPosATLVisual getPosVisual getPosWorld getRepairCargo ' +
-	        'getResolution getShadowDistance getSlingLoad getSpeed ' +
-	        'getSuppression getTerrainHeightASL getText getVariable ' +
-	        'getWeaponCargo getWPPos glanceAt globalChat globalRadio goggles ' +
-	        'goto group groupChat groupFromNetId groupIconSelectable ' +
-	        'groupIconsVisible groupId groupOwner groupRadio groupSelectedUnits ' +
-	        'groupSelectUnit grpNull gunner gusts halt handgunItems ' +
-	        'handgunMagazine handgunWeapon handsHit hasInterface hasWeapon ' +
-	        'hcAllGroups hcGroupParams hcLeader hcRemoveAllGroups hcRemoveGroup ' +
-	        'hcSelected hcSelectGroup hcSetGroup hcShowBar hcShownBar headgear ' +
-	        'hideBody hideObject hideObjectGlobal hint hintC hintCadet ' +
-	        'hintSilent hmd hostMission htmlLoad HUDMovementLevels humidity ' +
-	        'image importAllGroups importance in incapacitatedState independent ' +
-	        'inflame inflamed inGameUISetEventHandler inheritsFrom ' +
-	        'initAmbientLife inputAction inRangeOfArtillery insertEditorObject ' +
-	        'intersect isAbleToBreathe isAgent isArray isAutoHoverOn ' +
-	        'isAutonomous isAutotest isBleeding isBurning isClass ' +
-	        'isCollisionLightOn isCopilotEnabled isDedicated isDLCAvailable ' +
-	        'isEngineOn isEqualTo isFlashlightOn isFlatEmpty isForcedWalk ' +
-	        'isFormationLeader isHidden isInRemainsCollector ' +
-	        'isInstructorFigureEnabled isIRLaserOn isKeyActive isKindOf ' +
-	        'isLightOn isLocalized isManualFire isMarkedForCollection ' +
-	        'isMultiplayer isNil isNull isNumber isObjectHidden isObjectRTD ' +
-	        'isOnRoad isPipEnabled isPlayer isRealTime isServer ' +
-	        'isShowing3DIcons isSteamMission isStreamFriendlyUIEnabled isText ' +
-	        'isTouchingGround isTurnedOut isTutHintsEnabled isUAVConnectable ' +
-	        'isUAVConnected isUniformAllowed isWalking isWeaponDeployed ' +
-	        'isWeaponRested itemCargo items itemsWithMagazines join joinAs ' +
-	        'joinAsSilent joinSilent joinString kbAddDatabase ' +
-	        'kbAddDatabaseTargets kbAddTopic kbHasTopic kbReact kbRemoveTopic ' +
-	        'kbTell kbWasSaid keyImage keyName knowsAbout land landAt ' +
-	        'landResult language laserTarget lbAdd lbClear lbColor lbCurSel ' +
-	        'lbData lbDelete lbIsSelected lbPicture lbSelection lbSetColor ' +
-	        'lbSetCurSel lbSetData lbSetPicture lbSetPictureColor ' +
-	        'lbSetPictureColorDisabled lbSetPictureColorSelected ' +
-	        'lbSetSelectColor lbSetSelectColorRight lbSetSelected lbSetTooltip ' +
-	        'lbSetValue lbSize lbSort lbSortByValue lbText lbValue leader ' +
-	        'leaderboardDeInit leaderboardGetRows leaderboardInit leaveVehicle ' +
-	        'libraryCredits libraryDisclaimers lifeState lightAttachObject ' +
-	        'lightDetachObject lightIsOn lightnings limitSpeed linearConversion ' +
-	        'lineBreak lineIntersects lineIntersectsObjs lineIntersectsSurfaces ' +
-	        'lineIntersectsWith linkItem list listObjects ln lnbAddArray ' +
-	        'lnbAddColumn lnbAddRow lnbClear lnbColor lnbCurSelRow lnbData ' +
-	        'lnbDeleteColumn lnbDeleteRow lnbGetColumnsPosition lnbPicture ' +
-	        'lnbSetColor lnbSetColumnsPos lnbSetCurSelRow lnbSetData ' +
-	        'lnbSetPicture lnbSetText lnbSetValue lnbSize lnbText lnbValue load ' +
-	        'loadAbs loadBackpack loadFile loadGame loadIdentity loadMagazine ' +
-	        'loadOverlay loadStatus loadUniform loadVest local localize ' +
-	        'locationNull locationPosition lock lockCameraTo lockCargo ' +
-	        'lockDriver locked lockedCargo lockedDriver lockedTurret lockTurret ' +
-	        'lockWP log logEntities lookAt lookAtPos magazineCargo magazines ' +
-	        'magazinesAllTurrets magazinesAmmo magazinesAmmoCargo ' +
-	        'magazinesAmmoFull magazinesDetail magazinesDetailBackpack ' +
-	        'magazinesDetailUniform magazinesDetailVest magazinesTurret ' +
-	        'magazineTurretAmmo mapAnimAdd mapAnimClear mapAnimCommit ' +
-	        'mapAnimDone mapCenterOnCamera mapGridPosition ' +
-	        'markAsFinishedOnSteam markerAlpha markerBrush markerColor ' +
-	        'markerDir markerPos markerShape markerSize markerText markerType ' +
-	        'max members min mineActive mineDetectedBy missionConfigFile ' +
-	        'missionName missionNamespace missionStart mod modelToWorld ' +
-	        'modelToWorldVisual moonIntensity morale move moveInAny moveInCargo ' +
-	        'moveInCommander moveInDriver moveInGunner moveInTurret ' +
-	        'moveObjectToEnd moveOut moveTime moveTo moveToCompleted ' +
-	        'moveToFailed musicVolume name name location nameSound nearEntities ' +
-	        'nearestBuilding nearestLocation nearestLocations ' +
-	        'nearestLocationWithDubbing nearestObject nearestObjects ' +
-	        'nearObjects nearObjectsReady nearRoads nearSupplies nearTargets ' +
-	        'needReload netId netObjNull newOverlay nextMenuItemIndex ' +
-	        'nextWeatherChange nMenuItems not numberToDate objectCurators ' +
-	        'objectFromNetId objectParent objNull objStatus onBriefingGroup ' +
-	        'onBriefingNotes onBriefingPlan onBriefingTeamSwitch ' +
-	        'onCommandModeChanged onDoubleClick onEachFrame onGroupIconClick ' +
-	        'onGroupIconOverEnter onGroupIconOverLeave ' +
-	        'onHCGroupSelectionChanged onMapSingleClick onPlayerConnected ' +
-	        'onPlayerDisconnected onPreloadFinished onPreloadStarted ' +
-	        'onShowNewObject onTeamSwitch openCuratorInterface openMap ' +
-	        'openYoutubeVideo opfor or orderGetIn overcast overcastForecast ' +
-	        'owner param params parseNumber parseText parsingNamespace ' +
-	        'particlesQuality pi pickWeaponPool pitch playableSlotsNumber ' +
-	        'playableUnits playAction playActionNow player playerRespawnTime ' +
-	        'playerSide playersNumber playGesture playMission playMove ' +
-	        'playMoveNow playMusic playScriptedMission playSound playSound3D ' +
-	        'position positionCameraToWorld posScreenToWorld posWorldToScreen ' +
-	        'ppEffectAdjust ppEffectCommit ppEffectCommitted ppEffectCreate ' +
-	        'ppEffectDestroy ppEffectEnable ppEffectForceInNVG precision ' +
-	        'preloadCamera preloadObject preloadSound preloadTitleObj ' +
-	        'preloadTitleRsc preprocessFile preprocessFileLineNumbers ' +
-	        'primaryWeapon primaryWeaponItems primaryWeaponMagazine priority ' +
-	        'private processDiaryLink productVersion profileName ' +
-	        'profileNamespace profileNameSteam progressLoadingScreen ' +
-	        'progressPosition progressSetPosition publicVariable ' +
-	        'publicVariableClient publicVariableServer pushBack putWeaponPool ' +
-	        'queryItemsPool queryMagazinePool queryWeaponPool rad ' +
-	        'radioChannelAdd radioChannelCreate radioChannelRemove ' +
-	        'radioChannelSetCallSign radioChannelSetLabel radioVolume rain ' +
-	        'rainbow random rank rankId rating rectangular registeredTasks ' +
-	        'registerTask reload reloadEnabled remoteControl remoteExec ' +
-	        'remoteExecCall removeAction removeAllActions ' +
-	        'removeAllAssignedItems removeAllContainers removeAllCuratorAddons ' +
-	        'removeAllCuratorCameraAreas removeAllCuratorEditingAreas ' +
-	        'removeAllEventHandlers removeAllHandgunItems removeAllItems ' +
-	        'removeAllItemsWithMagazines removeAllMissionEventHandlers ' +
-	        'removeAllMPEventHandlers removeAllMusicEventHandlers ' +
-	        'removeAllPrimaryWeaponItems removeAllWeapons removeBackpack ' +
-	        'removeBackpackGlobal removeCuratorAddons removeCuratorCameraArea ' +
-	        'removeCuratorEditableObjects removeCuratorEditingArea ' +
-	        'removeDrawIcon removeDrawLinks removeEventHandler ' +
-	        'removeFromRemainsCollector removeGoggles removeGroupIcon ' +
-	        'removeHandgunItem removeHeadgear removeItem removeItemFromBackpack ' +
-	        'removeItemFromUniform removeItemFromVest removeItems ' +
-	        'removeMagazine removeMagazineGlobal removeMagazines ' +
-	        'removeMagazinesTurret removeMagazineTurret removeMenuItem ' +
-	        'removeMissionEventHandler removeMPEventHandler ' +
-	        'removeMusicEventHandler removePrimaryWeaponItem ' +
-	        'removeSecondaryWeaponItem removeSimpleTask removeSwitchableUnit ' +
-	        'removeTeamMember removeUniform removeVest removeWeapon ' +
-	        'removeWeaponGlobal removeWeaponTurret requiredVersion ' +
-	        'resetCamShake resetSubgroupDirection resistance resize resources ' +
-	        'respawnVehicle restartEditorCamera reveal revealMine reverse ' +
-	        'reversedMouseY roadsConnectedTo roleDescription ' +
-	        'ropeAttachedObjects ropeAttachedTo ropeAttachEnabled ropeAttachTo ' +
-	        'ropeCreate ropeCut ropeEndPosition ropeLength ropes ropeUnwind ' +
-	        'ropeUnwound rotorsForcesRTD rotorsRpmRTD round runInitScript ' +
-	        'safeZoneH safeZoneW safeZoneWAbs safeZoneX safeZoneXAbs safeZoneY ' +
-	        'saveGame saveIdentity saveJoysticks saveOverlay ' +
-	        'saveProfileNamespace saveStatus saveVar savingEnabled say say2D ' +
-	        'say3D scopeName score scoreSide screenToWorld scriptDone ' +
-	        'scriptName scriptNull scudState secondaryWeapon ' +
-	        'secondaryWeaponItems secondaryWeaponMagazine select ' +
-	        'selectBestPlaces selectDiarySubject selectedEditorObjects ' +
-	        'selectEditorObject selectionPosition selectLeader selectNoPlayer ' +
-	        'selectPlayer selectWeapon selectWeaponTurret sendAUMessage ' +
-	        'sendSimpleCommand sendTask sendTaskResult sendUDPMessage ' +
-	        'serverCommand serverCommandAvailable serverCommandExecutable ' +
-	        'serverName serverTime set setAccTime setAirportSide setAmmo ' +
-	        'setAmmoCargo setAperture setApertureNew setArmoryPoints ' +
-	        'setAttributes setAutonomous setBehaviour setBleedingRemaining ' +
-	        'setCameraInterest setCamShakeDefParams setCamShakeParams ' +
-	        'setCamUseTi setCaptive setCenterOfMass setCollisionLight ' +
-	        'setCombatMode setCompassOscillation setCuratorCameraAreaCeiling ' +
-	        'setCuratorCoef setCuratorEditingAreaType setCuratorWaypointCost ' +
-	        'setCurrentChannel setCurrentTask setCurrentWaypoint setDamage ' +
-	        'setDammage setDate setDebriefingText setDefaultCamera ' +
-	        'setDestination setDetailMapBlendPars setDir setDirection ' +
-	        'setDrawIcon setDropInterval setEditorMode setEditorObjectScope ' +
-	        'setEffectCondition setFace setFaceAnimation setFatigue ' +
-	        'setFlagOwner setFlagSide setFlagTexture setFog setFog array ' +
-	        'setFormation setFormationTask setFormDir setFriend setFromEditor ' +
-	        'setFSMVariable setFuel setFuelCargo setGroupIcon ' +
-	        'setGroupIconParams setGroupIconsSelectable setGroupIconsVisible ' +
-	        'setGroupId setGroupIdGlobal setGroupOwner setGusts setHideBehind ' +
-	        'setHit setHitIndex setHitPointDamage setHorizonParallaxCoef ' +
-	        'setHUDMovementLevels setIdentity setImportance setLeader ' +
-	        'setLightAmbient setLightAttenuation setLightBrightness ' +
-	        'setLightColor setLightDayLight setLightFlareMaxDistance ' +
-	        'setLightFlareSize setLightIntensity setLightnings setLightUseFlare ' +
-	        'setLocalWindParams setMagazineTurretAmmo setMarkerAlpha ' +
-	        'setMarkerAlphaLocal setMarkerBrush setMarkerBrushLocal ' +
-	        'setMarkerColor setMarkerColorLocal setMarkerDir setMarkerDirLocal ' +
-	        'setMarkerPos setMarkerPosLocal setMarkerShape setMarkerShapeLocal ' +
-	        'setMarkerSize setMarkerSizeLocal setMarkerText setMarkerTextLocal ' +
-	        'setMarkerType setMarkerTypeLocal setMass setMimic setMousePosition ' +
-	        'setMusicEffect setMusicEventHandler setName setNameSound ' +
-	        'setObjectArguments setObjectMaterial setObjectProxy ' +
-	        'setObjectTexture setObjectTextureGlobal setObjectViewDistance ' +
-	        'setOvercast setOwner setOxygenRemaining setParticleCircle ' +
-	        'setParticleClass setParticleFire setParticleParams ' +
-	        'setParticleRandom setPilotLight setPiPEffect setPitch setPlayable ' +
-	        'setPlayerRespawnTime setPos setPosASL setPosASL2 setPosASLW ' +
-	        'setPosATL setPosition setPosWorld setRadioMsg setRain setRainbow ' +
-	        'setRandomLip setRank setRectangular setRepairCargo ' +
-	        'setShadowDistance setSide setSimpleTaskDescription ' +
-	        'setSimpleTaskDestination setSimpleTaskTarget setSimulWeatherLayers ' +
-	        'setSize setSkill setSkill array setSlingLoad setSoundEffect ' +
-	        'setSpeaker setSpeech setSpeedMode setStatValue setSuppression ' +
-	        'setSystemOfUnits setTargetAge setTaskResult setTaskState ' +
-	        'setTerrainGrid setText setTimeMultiplier setTitleEffect ' +
-	        'setTriggerActivation setTriggerArea setTriggerStatements ' +
-	        'setTriggerText setTriggerTimeout setTriggerType setType ' +
-	        'setUnconscious setUnitAbility setUnitPos setUnitPosWeak ' +
-	        'setUnitRank setUnitRecoilCoefficient setUnloadInCombat ' +
-	        'setUserActionText setVariable setVectorDir setVectorDirAndUp ' +
-	        'setVectorUp setVehicleAmmo setVehicleAmmoDef setVehicleArmor ' +
-	        'setVehicleId setVehicleLock setVehiclePosition setVehicleTiPars ' +
-	        'setVehicleVarName setVelocity setVelocityTransformation ' +
-	        'setViewDistance setVisibleIfTreeCollapsed setWaves ' +
-	        'setWaypointBehaviour setWaypointCombatMode ' +
-	        'setWaypointCompletionRadius setWaypointDescription ' +
-	        'setWaypointFormation setWaypointHousePosition ' +
-	        'setWaypointLoiterRadius setWaypointLoiterType setWaypointName ' +
-	        'setWaypointPosition setWaypointScript setWaypointSpeed ' +
-	        'setWaypointStatements setWaypointTimeout setWaypointType ' +
-	        'setWaypointVisible setWeaponReloadingTime setWind setWindDir ' +
-	        'setWindForce setWindStr setWPPos show3DIcons showChat ' +
-	        'showCinemaBorder showCommandingMenu showCompass showCuratorCompass ' +
-	        'showGPS showHUD showLegend showMap shownArtilleryComputer ' +
-	        'shownChat shownCompass shownCuratorCompass showNewEditorObject ' +
-	        'shownGPS shownHUD shownMap shownPad shownRadio shownUAVFeed ' +
-	        'shownWarrant shownWatch showPad showRadio showSubtitles ' +
-	        'showUAVFeed showWarrant showWatch showWaypoint side sideChat ' +
-	        'sideEnemy sideFriendly sideLogic sideRadio sideUnknown simpleTasks ' +
-	        'simulationEnabled simulCloudDensity simulCloudOcclusion ' +
-	        'simulInClouds simulWeatherSync sin size sizeOf skill skillFinal ' +
-	        'skipTime sleep sliderPosition sliderRange sliderSetPosition ' +
-	        'sliderSetRange sliderSetSpeed sliderSpeed slingLoadAssistantShown ' +
-	        'soldierMagazines someAmmo sort soundVolume spawn speaker speed ' +
-	        'speedMode splitString sqrt squadParams stance startLoadingScreen ' +
-	        'step stop stopped str sunOrMoon supportInfo suppressFor ' +
-	        'surfaceIsWater surfaceNormal surfaceType swimInDepth ' +
-	        'switchableUnits switchAction switchCamera switchGesture ' +
-	        'switchLight switchMove synchronizedObjects synchronizedTriggers ' +
-	        'synchronizedWaypoints synchronizeObjectsAdd ' +
-	        'synchronizeObjectsRemove synchronizeTrigger synchronizeWaypoint ' +
-	        'synchronizeWaypoint trigger systemChat systemOfUnits tan ' +
-	        'targetKnowledge targetsAggregate targetsQuery taskChildren ' +
-	        'taskCompleted taskDescription taskDestination taskHint taskNull ' +
-	        'taskParent taskResult taskState teamMember teamMemberNull teamName ' +
-	        'teams teamSwitch teamSwitchEnabled teamType terminate ' +
-	        'terrainIntersect terrainIntersectASL text text location textLog ' +
-	        'textLogFormat tg time timeMultiplier titleCut titleFadeOut ' +
-	        'titleObj titleRsc titleText toArray toLower toString toUpper ' +
-	        'triggerActivated triggerActivation triggerArea ' +
-	        'triggerAttachedVehicle triggerAttachObject triggerAttachVehicle ' +
-	        'triggerStatements triggerText triggerTimeout triggerTimeoutCurrent ' +
-	        'triggerType turretLocal turretOwner turretUnit tvAdd tvClear ' +
-	        'tvCollapse tvCount tvCurSel tvData tvDelete tvExpand tvPicture ' +
-	        'tvSetCurSel tvSetData tvSetPicture tvSetPictureColor tvSetTooltip ' +
-	        'tvSetValue tvSort tvSortByValue tvText tvValue type typeName ' +
-	        'typeOf UAVControl uiNamespace uiSleep unassignCurator unassignItem ' +
-	        'unassignTeam unassignVehicle underwater uniform uniformContainer ' +
-	        'uniformItems uniformMagazines unitAddons unitBackpack unitPos ' +
-	        'unitReady unitRecoilCoefficient units unitsBelowHeight unlinkItem ' +
-	        'unlockAchievement unregisterTask updateDrawIcon updateMenuItem ' +
-	        'updateObjectTree useAudioTimeForMoves vectorAdd vectorCos ' +
-	        'vectorCrossProduct vectorDiff vectorDir vectorDirVisual ' +
-	        'vectorDistance vectorDistanceSqr vectorDotProduct vectorFromTo ' +
-	        'vectorMagnitude vectorMagnitudeSqr vectorMultiply vectorNormalized ' +
-	        'vectorUp vectorUpVisual vehicle vehicleChat vehicleRadio vehicles ' +
-	        'vehicleVarName velocity velocityModelSpace verifySignature vest ' +
-	        'vestContainer vestItems vestMagazines viewDistance visibleCompass ' +
-	        'visibleGPS visibleMap visiblePosition visiblePositionASL ' +
-	        'visibleWatch waitUntil waves waypointAttachedObject ' +
-	        'waypointAttachedVehicle waypointAttachObject waypointAttachVehicle ' +
-	        'waypointBehaviour waypointCombatMode waypointCompletionRadius ' +
-	        'waypointDescription waypointFormation waypointHousePosition ' +
-	        'waypointLoiterRadius waypointLoiterType waypointName ' +
-	        'waypointPosition waypoints waypointScript waypointsEnabledUAV ' +
-	        'waypointShow waypointSpeed waypointStatements waypointTimeout ' +
-	        'waypointTimeoutCurrent waypointType waypointVisible ' +
-	        'weaponAccessories weaponCargo weaponDirection weaponLowered ' +
-	        'weapons weaponsItems weaponsItemsCargo weaponState weaponsTurret ' +
-	        'weightRTD west WFSideText wind windDir windStr wingsForcesRTD ' +
-	        'worldName worldSize worldToModel worldToModelVisual worldToScreen ' +
-	        '_forEachIndex _this _x',
+	        'abs accTime acos action actionIDs actionKeys actionKeysImages actionKeysNames ' +
+	        'actionKeysNamesArray actionName actionParams activateAddons activatedAddons activateKey ' +
+	        'add3DENConnection add3DENEventHandler add3DENLayer addAction addBackpack addBackpackCargo ' +
+	        'addBackpackCargoGlobal addBackpackGlobal addCamShake addCuratorAddons addCuratorCameraArea ' +
+	        'addCuratorEditableObjects addCuratorEditingArea addCuratorPoints addEditorObject addEventHandler ' +
+	        'addGoggles addGroupIcon addHandgunItem addHeadgear addItem addItemCargo addItemCargoGlobal ' +
+	        'addItemPool addItemToBackpack addItemToUniform addItemToVest addLiveStats addMagazine ' +
+	        'addMagazineAmmoCargo addMagazineCargo addMagazineCargoGlobal addMagazineGlobal addMagazinePool ' +
+	        'addMagazines addMagazineTurret addMenu addMenuItem addMissionEventHandler addMPEventHandler ' +
+	        'addMusicEventHandler addOwnedMine addPlayerScores addPrimaryWeaponItem ' +
+	        'addPublicVariableEventHandler addRating addResources addScore addScoreSide addSecondaryWeaponItem ' +
+	        'addSwitchableUnit addTeamMember addToRemainsCollector addUniform addVehicle addVest addWaypoint ' +
+	        'addWeapon addWeaponCargo addWeaponCargoGlobal addWeaponGlobal addWeaponItem addWeaponPool ' +
+	        'addWeaponTurret agent agents AGLToASL aimedAtTarget aimPos airDensityRTD airportSide ' +
+	        'AISFinishHeal alive all3DENEntities allControls allCurators allCutLayers allDead allDeadMen ' +
+	        'allDisplays allGroups allMapMarkers allMines allMissionObjects allow3DMode allowCrewInImmobile ' +
+	        'allowCuratorLogicIgnoreAreas allowDamage allowDammage allowFileOperations allowFleeing allowGetIn ' +
+	        'allowSprint allPlayers allSites allTurrets allUnits allUnitsUAV allVariables ammo and animate ' +
+	        'animateDoor animateSource animationNames animationPhase animationSourcePhase animationState ' +
+	        'append apply armoryPoints arrayIntersect asin ASLToAGL ASLToATL assert assignAsCargo ' +
+	        'assignAsCargoIndex assignAsCommander assignAsDriver assignAsGunner assignAsTurret assignCurator ' +
+	        'assignedCargo assignedCommander assignedDriver assignedGunner assignedItems assignedTarget ' +
+	        'assignedTeam assignedVehicle assignedVehicleRole assignItem assignTeam assignToAirport atan atan2 ' +
+	        'atg ATLToASL attachedObject attachedObjects attachedTo attachObject attachTo attackEnabled ' +
+	        'backpack backpackCargo backpackContainer backpackItems backpackMagazines backpackSpaceFor ' +
+	        'behaviour benchmark binocular blufor boundingBox boundingBoxReal boundingCenter breakOut breakTo ' +
+	        'briefingName buildingExit buildingPos buttonAction buttonSetAction cadetMode call callExtension ' +
+	        'camCommand camCommit camCommitPrepared camCommitted camConstuctionSetParams camCreate camDestroy ' +
+	        'cameraEffect cameraEffectEnableHUD cameraInterest cameraOn cameraView campaignConfigFile ' +
+	        'camPreload camPreloaded camPrepareBank camPrepareDir camPrepareDive camPrepareFocus camPrepareFov ' +
+	        'camPrepareFovRange camPreparePos camPrepareRelPos camPrepareTarget camSetBank camSetDir ' +
+	        'camSetDive camSetFocus camSetFov camSetFovRange camSetPos camSetRelPos camSetTarget camTarget ' +
+	        'camUseNVG canAdd canAddItemToBackpack canAddItemToUniform canAddItemToVest ' +
+	        'cancelSimpleTaskDestination canFire canMove canSlingLoad canStand canSuspend canUnloadInCombat ' +
+	        'canVehicleCargo captive captiveNum cbChecked cbSetChecked ceil channelEnabled cheatsEnabled ' +
+	        'checkAIFeature checkVisibility civilian className clearAllItemsFromBackpack clearBackpackCargo ' +
+	        'clearBackpackCargoGlobal clearGroupIcons clearItemCargo clearItemCargoGlobal clearItemPool ' +
+	        'clearMagazineCargo clearMagazineCargoGlobal clearMagazinePool clearOverlay clearRadio ' +
+	        'clearWeaponCargo clearWeaponCargoGlobal clearWeaponPool clientOwner closeDialog closeDisplay ' +
+	        'closeOverlay collapseObjectTree collect3DENHistory combatMode commandArtilleryFire commandChat ' +
+	        'commander commandFire commandFollow commandFSM commandGetOut commandingMenu commandMove ' +
+	        'commandRadio commandStop commandSuppressiveFire commandTarget commandWatch comment commitOverlay ' +
+	        'compile compileFinal completedFSM composeText configClasses configFile configHierarchy configName ' +
+	        'configNull configProperties configSourceAddonList configSourceMod configSourceModList ' +
+	        'connectTerminalToUAV controlNull controlsGroupCtrl copyFromClipboard copyToClipboard ' +
+	        'copyWaypoints cos count countEnemy countFriendly countSide countType countUnknown ' +
+	        'create3DENComposition create3DENEntity createAgent createCenter createDialog createDiaryLink ' +
+	        'createDiaryRecord createDiarySubject createDisplay createGearDialog createGroup ' +
+	        'createGuardedPoint createLocation createMarker createMarkerLocal createMenu createMine ' +
+	        'createMissionDisplay createMPCampaignDisplay createSimpleObject createSimpleTask createSite ' +
+	        'createSoundSource createTask createTeam createTrigger createUnit createVehicle createVehicleCrew ' +
+	        'createVehicleLocal crew ctrlActivate ctrlAddEventHandler ctrlAngle ctrlAutoScrollDelay ' +
+	        'ctrlAutoScrollRewind ctrlAutoScrollSpeed ctrlChecked ctrlClassName ctrlCommit ctrlCommitted ' +
+	        'ctrlCreate ctrlDelete ctrlEnable ctrlEnabled ctrlFade ctrlHTMLLoaded ctrlIDC ctrlIDD ' +
+	        'ctrlMapAnimAdd ctrlMapAnimClear ctrlMapAnimCommit ctrlMapAnimDone ctrlMapCursor ctrlMapMouseOver ' +
+	        'ctrlMapScale ctrlMapScreenToWorld ctrlMapWorldToScreen ctrlModel ctrlModelDirAndUp ctrlModelScale ' +
+	        'ctrlParent ctrlParentControlsGroup ctrlPosition ctrlRemoveAllEventHandlers ctrlRemoveEventHandler ' +
+	        'ctrlScale ctrlSetActiveColor ctrlSetAngle ctrlSetAutoScrollDelay ctrlSetAutoScrollRewind ' +
+	        'ctrlSetAutoScrollSpeed ctrlSetBackgroundColor ctrlSetChecked ctrlSetEventHandler ctrlSetFade ' +
+	        'ctrlSetFocus ctrlSetFont ctrlSetFontH1 ctrlSetFontH1B ctrlSetFontH2 ctrlSetFontH2B ctrlSetFontH3 ' +
+	        'ctrlSetFontH3B ctrlSetFontH4 ctrlSetFontH4B ctrlSetFontH5 ctrlSetFontH5B ctrlSetFontH6 ' +
+	        'ctrlSetFontH6B ctrlSetFontHeight ctrlSetFontHeightH1 ctrlSetFontHeightH2 ctrlSetFontHeightH3 ' +
+	        'ctrlSetFontHeightH4 ctrlSetFontHeightH5 ctrlSetFontHeightH6 ctrlSetFontHeightSecondary ' +
+	        'ctrlSetFontP ctrlSetFontPB ctrlSetFontSecondary ctrlSetForegroundColor ctrlSetModel ' +
+	        'ctrlSetModelDirAndUp ctrlSetModelScale ctrlSetPosition ctrlSetScale ctrlSetStructuredText ' +
+	        'ctrlSetText ctrlSetTextColor ctrlSetTooltip ctrlSetTooltipColorBox ctrlSetTooltipColorShade ' +
+	        'ctrlSetTooltipColorText ctrlShow ctrlShown ctrlText ctrlTextHeight ctrlType ctrlVisible ' +
+	        'curatorAddons curatorCamera curatorCameraArea curatorCameraAreaCeiling curatorCoef ' +
+	        'curatorEditableObjects curatorEditingArea curatorEditingAreaType curatorMouseOver curatorPoints ' +
+	        'curatorRegisteredObjects curatorSelected curatorWaypointCost current3DENOperation currentChannel ' +
+	        'currentCommand currentMagazine currentMagazineDetail currentMagazineDetailTurret ' +
+	        'currentMagazineTurret currentMuzzle currentNamespace currentTask currentTasks currentThrowable ' +
+	        'currentVisionMode currentWaypoint currentWeapon currentWeaponMode currentWeaponTurret ' +
+	        'currentZeroing cursorObject cursorTarget customChat customRadio cutFadeOut cutObj cutRsc cutText ' +
+	        'damage date dateToNumber daytime deActivateKey debriefingText debugFSM debugLog deg ' +
+	        'delete3DENEntities deleteAt deleteCenter deleteCollection deleteEditorObject deleteGroup ' +
+	        'deleteIdentity deleteLocation deleteMarker deleteMarkerLocal deleteRange deleteResources ' +
+	        'deleteSite deleteStatus deleteTeam deleteVehicle deleteVehicleCrew deleteWaypoint detach ' +
+	        'detectedMines diag_activeMissionFSMs diag_activeScripts diag_activeSQFScripts ' +
+	        'diag_activeSQSScripts diag_captureFrame diag_captureSlowFrame diag_codePerformance diag_drawMode ' +
+	        'diag_enable diag_enabled diag_fps diag_fpsMin diag_frameNo diag_list diag_log diag_logSlowFrame ' +
+	        'diag_mergeConfigFile diag_recordTurretLimits diag_tickTime diag_toggle dialog diarySubjectExists ' +
+	        'didJIP didJIPOwner difficulty difficultyEnabled difficultyEnabledRTD difficultyOption direction ' +
+	        'directSay disableAI disableCollisionWith disableConversation disableDebriefingStats ' +
+	        'disableNVGEquipment disableRemoteSensors disableSerialization disableTIEquipment ' +
+	        'disableUAVConnectability disableUserInput displayAddEventHandler displayCtrl displayNull ' +
+	        'displayParent displayRemoveAllEventHandlers displayRemoveEventHandler displaySetEventHandler ' +
+	        'dissolveTeam distance distance2D distanceSqr distributionRegion do3DENAction doArtilleryFire ' +
+	        'doFire doFollow doFSM doGetOut doMove doorPhase doStop doSuppressiveFire doTarget doWatch ' +
+	        'drawArrow drawEllipse drawIcon drawIcon3D drawLine drawLine3D drawLink drawLocation drawPolygon ' +
+	        'drawRectangle driver drop east echo edit3DENMissionAttributes editObject editorSetEventHandler ' +
+	        'effectiveCommander emptyPositions enableAI enableAIFeature enableAimPrecision enableAttack ' +
+	        'enableAudioFeature enableCamShake enableCaustics enableChannel enableCollisionWith enableCopilot ' +
+	        'enableDebriefingStats enableDiagLegend enableEndDialog enableEngineArtillery enableEnvironment ' +
+	        'enableFatigue enableGunLights enableIRLasers enableMimics enablePersonTurret enableRadio ' +
+	        'enableReload enableRopeAttach enableSatNormalOnDetail enableSaving enableSentences ' +
+	        'enableSimulation enableSimulationGlobal enableStamina enableTeamSwitch enableUAVConnectability ' +
+	        'enableUAVWaypoints enableVehicleCargo endLoadingScreen endMission engineOn enginesIsOnRTD ' +
+	        'enginesRpmRTD enginesTorqueRTD entities estimatedEndServerTime estimatedTimeLeft ' +
+	        'evalObjectArgument everyBackpack everyContainer exec execEditorScript execFSM execVM exp ' +
+	        'expectedDestination exportJIPMessages eyeDirection eyePos face faction fadeMusic fadeRadio ' +
+	        'fadeSound fadeSpeech failMission fillWeaponsFromPool find findCover findDisplay findEditorObject ' +
+	        'findEmptyPosition findEmptyPositionReady findNearestEnemy finishMissionInit finite fire ' +
+	        'fireAtTarget firstBackpack flag flagOwner flagSide flagTexture fleeing floor flyInHeight ' +
+	        'flyInHeightASL fog fogForecast fogParams forceAddUniform forcedMap forceEnd forceMap forceRespawn ' +
+	        'forceSpeed forceWalk forceWeaponFire forceWeatherChange forEachMember forEachMemberAgent ' +
+	        'forEachMemberTeam format formation formationDirection formationLeader formationMembers ' +
+	        'formationPosition formationTask formatText formLeader freeLook fromEditor fuel fullCrew ' +
+	        'gearIDCAmmoCount gearSlotAmmoCount gearSlotData get3DENActionState get3DENAttribute get3DENCamera ' +
+	        'get3DENConnections get3DENEntity get3DENEntityID get3DENGrid get3DENIconsVisible ' +
+	        'get3DENLayerEntities get3DENLinesVisible get3DENMissionAttribute get3DENMouseOver get3DENSelected ' +
+	        'getAimingCoef getAllHitPointsDamage getAllOwnedMines getAmmoCargo getAnimAimPrecision ' +
+	        'getAnimSpeedCoef getArray getArtilleryAmmo getArtilleryComputerSettings getArtilleryETA ' +
+	        'getAssignedCuratorLogic getAssignedCuratorUnit getBackpackCargo getBleedingRemaining ' +
+	        'getBurningValue getCameraViewDirection getCargoIndex getCenterOfMass getClientState ' +
+	        'getClientStateNumber getConnectedUAV getCustomAimingCoef getDammage getDescription getDir ' +
+	        'getDirVisual getDLCs getEditorCamera getEditorMode getEditorObjectScope getElevationOffset ' +
+	        'getFatigue getFriend getFSMVariable getFuelCargo getGroupIcon getGroupIconParams getGroupIcons ' +
+	        'getHideFrom getHit getHitIndex getHitPointDamage getItemCargo getMagazineCargo getMarkerColor ' +
+	        'getMarkerPos getMarkerSize getMarkerType getMass getMissionConfig getMissionConfigValue ' +
+	        'getMissionDLCs getMissionLayerEntities getModelInfo getMousePosition getNumber getObjectArgument ' +
+	        'getObjectChildren getObjectDLC getObjectMaterials getObjectProxy getObjectTextures getObjectType ' +
+	        'getObjectViewDistance getOxygenRemaining getPersonUsedDLCs getPilotCameraDirection ' +
+	        'getPilotCameraPosition getPilotCameraRotation getPilotCameraTarget getPlayerChannel ' +
+	        'getPlayerScores getPlayerUID getPos getPosASL getPosASLVisual getPosASLW getPosATL ' +
+	        'getPosATLVisual getPosVisual getPosWorld getRelDir getRelPos getRemoteSensorsDisabled ' +
+	        'getRepairCargo getResolution getShadowDistance getShotParents getSlingLoad getSpeed getStamina ' +
+	        'getStatValue getSuppression getTerrainHeightASL getText getUnitLoadout getUnitTrait getVariable ' +
+	        'getVehicleCargo getWeaponCargo getWeaponSway getWPPos glanceAt globalChat globalRadio goggles ' +
+	        'goto group groupChat groupFromNetId groupIconSelectable groupIconsVisible groupId groupOwner ' +
+	        'groupRadio groupSelectedUnits groupSelectUnit grpNull gunner gusts halt handgunItems ' +
+	        'handgunMagazine handgunWeapon handsHit hasInterface hasPilotCamera hasWeapon hcAllGroups ' +
+	        'hcGroupParams hcLeader hcRemoveAllGroups hcRemoveGroup hcSelected hcSelectGroup hcSetGroup ' +
+	        'hcShowBar hcShownBar headgear hideBody hideObject hideObjectGlobal hideSelection hint hintC ' +
+	        'hintCadet hintSilent hmd hostMission htmlLoad HUDMovementLevels humidity image importAllGroups ' +
+	        'importance in inArea inAreaArray incapacitatedState independent inflame inflamed ' +
+	        'inGameUISetEventHandler inheritsFrom initAmbientLife inPolygon inputAction inRangeOfArtillery ' +
+	        'insertEditorObject intersect is3DEN is3DENMultiplayer isAbleToBreathe isAgent isArray ' +
+	        'isAutoHoverOn isAutonomous isAutotest isBleeding isBurning isClass isCollisionLightOn ' +
+	        'isCopilotEnabled isDedicated isDLCAvailable isEngineOn isEqualTo isEqualType isEqualTypeAll ' +
+	        'isEqualTypeAny isEqualTypeArray isEqualTypeParams isFilePatchingEnabled isFlashlightOn ' +
+	        'isFlatEmpty isForcedWalk isFormationLeader isHidden isInRemainsCollector ' +
+	        'isInstructorFigureEnabled isIRLaserOn isKeyActive isKindOf isLightOn isLocalized isManualFire ' +
+	        'isMarkedForCollection isMultiplayer isMultiplayerSolo isNil isNull isNumber isObjectHidden ' +
+	        'isObjectRTD isOnRoad isPipEnabled isPlayer isRealTime isRemoteExecuted isRemoteExecutedJIP ' +
+	        'isServer isShowing3DIcons isSprintAllowed isStaminaEnabled isSteamMission ' +
+	        'isStreamFriendlyUIEnabled isText isTouchingGround isTurnedOut isTutHintsEnabled isUAVConnectable ' +
+	        'isUAVConnected isUniformAllowed isVehicleCargo isWalking isWeaponDeployed isWeaponRested ' +
+	        'itemCargo items itemsWithMagazines join joinAs joinAsSilent joinSilent joinString kbAddDatabase ' +
+	        'kbAddDatabaseTargets kbAddTopic kbHasTopic kbReact kbRemoveTopic kbTell kbWasSaid keyImage ' +
+	        'keyName knowsAbout land landAt landResult language laserTarget lbAdd lbClear lbColor lbCurSel ' +
+	        'lbData lbDelete lbIsSelected lbPicture lbSelection lbSetColor lbSetCurSel lbSetData lbSetPicture ' +
+	        'lbSetPictureColor lbSetPictureColorDisabled lbSetPictureColorSelected lbSetSelectColor ' +
+	        'lbSetSelectColorRight lbSetSelected lbSetTooltip lbSetValue lbSize lbSort lbSortByValue lbText ' +
+	        'lbValue leader leaderboardDeInit leaderboardGetRows leaderboardInit leaveVehicle libraryCredits ' +
+	        'libraryDisclaimers lifeState lightAttachObject lightDetachObject lightIsOn lightnings limitSpeed ' +
+	        'linearConversion lineBreak lineIntersects lineIntersectsObjs lineIntersectsSurfaces ' +
+	        'lineIntersectsWith linkItem list listObjects ln lnbAddArray lnbAddColumn lnbAddRow lnbClear ' +
+	        'lnbColor lnbCurSelRow lnbData lnbDeleteColumn lnbDeleteRow lnbGetColumnsPosition lnbPicture ' +
+	        'lnbSetColor lnbSetColumnsPos lnbSetCurSelRow lnbSetData lnbSetPicture lnbSetText lnbSetValue ' +
+	        'lnbSize lnbText lnbValue load loadAbs loadBackpack loadFile loadGame loadIdentity loadMagazine ' +
+	        'loadOverlay loadStatus loadUniform loadVest local localize locationNull locationPosition lock ' +
+	        'lockCameraTo lockCargo lockDriver locked lockedCargo lockedDriver lockedTurret lockIdentity ' +
+	        'lockTurret lockWP log logEntities logNetwork logNetworkTerminate lookAt lookAtPos magazineCargo ' +
+	        'magazines magazinesAllTurrets magazinesAmmo magazinesAmmoCargo magazinesAmmoFull magazinesDetail ' +
+	        'magazinesDetailBackpack magazinesDetailUniform magazinesDetailVest magazinesTurret ' +
+	        'magazineTurretAmmo mapAnimAdd mapAnimClear mapAnimCommit mapAnimDone mapCenterOnCamera ' +
+	        'mapGridPosition markAsFinishedOnSteam markerAlpha markerBrush markerColor markerDir markerPos ' +
+	        'markerShape markerSize markerText markerType max members menuAction menuAdd menuChecked menuClear ' +
+	        'menuCollapse menuData menuDelete menuEnable menuEnabled menuExpand menuHover menuPicture ' +
+	        'menuSetAction menuSetCheck menuSetData menuSetPicture menuSetValue menuShortcut menuShortcutText ' +
+	        'menuSize menuSort menuText menuURL menuValue min mineActive mineDetectedBy missionConfigFile ' +
+	        'missionDifficulty missionName missionNamespace missionStart missionVersion mod modelToWorld ' +
+	        'modelToWorldVisual modParams moonIntensity moonPhase morale move move3DENCamera moveInAny ' +
+	        'moveInCargo moveInCommander moveInDriver moveInGunner moveInTurret moveObjectToEnd moveOut ' +
+	        'moveTime moveTo moveToCompleted moveToFailed musicVolume name nameSound nearEntities ' +
+	        'nearestBuilding nearestLocation nearestLocations nearestLocationWithDubbing nearestObject ' +
+	        'nearestObjects nearestTerrainObjects nearObjects nearObjectsReady nearRoads nearSupplies ' +
+	        'nearTargets needReload netId netObjNull newOverlay nextMenuItemIndex nextWeatherChange nMenuItems ' +
+	        'not numberToDate objectCurators objectFromNetId objectParent objNull objStatus onBriefingGroup ' +
+	        'onBriefingNotes onBriefingPlan onBriefingTeamSwitch onCommandModeChanged onDoubleClick ' +
+	        'onEachFrame onGroupIconClick onGroupIconOverEnter onGroupIconOverLeave onHCGroupSelectionChanged ' +
+	        'onMapSingleClick onPlayerConnected onPlayerDisconnected onPreloadFinished onPreloadStarted ' +
+	        'onShowNewObject onTeamSwitch openCuratorInterface openDLCPage openMap openYoutubeVideo opfor or ' +
+	        'orderGetIn overcast overcastForecast owner param params parseNumber parseText parsingNamespace ' +
+	        'particlesQuality pi pickWeaponPool pitch pixelGrid pixelGridBase pixelGridNoUIScale pixelH pixelW ' +
+	        'playableSlotsNumber playableUnits playAction playActionNow player playerRespawnTime playerSide ' +
+	        'playersNumber playGesture playMission playMove playMoveNow playMusic playScriptedMission ' +
+	        'playSound playSound3D position positionCameraToWorld posScreenToWorld posWorldToScreen ' +
+	        'ppEffectAdjust ppEffectCommit ppEffectCommitted ppEffectCreate ppEffectDestroy ppEffectEnable ' +
+	        'ppEffectEnabled ppEffectForceInNVG precision preloadCamera preloadObject preloadSound ' +
+	        'preloadTitleObj preloadTitleRsc preprocessFile preprocessFileLineNumbers primaryWeapon ' +
+	        'primaryWeaponItems primaryWeaponMagazine priority private processDiaryLink productVersion ' +
+	        'profileName profileNamespace profileNameSteam progressLoadingScreen progressPosition ' +
+	        'progressSetPosition publicVariable publicVariableClient publicVariableServer pushBack ' +
+	        'pushBackUnique putWeaponPool queryItemsPool queryMagazinePool queryWeaponPool rad radioChannelAdd ' +
+	        'radioChannelCreate radioChannelRemove radioChannelSetCallSign radioChannelSetLabel radioVolume ' +
+	        'rain rainbow random rank rankId rating rectangular registeredTasks registerTask reload ' +
+	        'reloadEnabled remoteControl remoteExec remoteExecCall remove3DENConnection remove3DENEventHandler ' +
+	        'remove3DENLayer removeAction removeAll3DENEventHandlers removeAllActions removeAllAssignedItems ' +
+	        'removeAllContainers removeAllCuratorAddons removeAllCuratorCameraAreas ' +
+	        'removeAllCuratorEditingAreas removeAllEventHandlers removeAllHandgunItems removeAllItems ' +
+	        'removeAllItemsWithMagazines removeAllMissionEventHandlers removeAllMPEventHandlers ' +
+	        'removeAllMusicEventHandlers removeAllOwnedMines removeAllPrimaryWeaponItems removeAllWeapons ' +
+	        'removeBackpack removeBackpackGlobal removeCuratorAddons removeCuratorCameraArea ' +
+	        'removeCuratorEditableObjects removeCuratorEditingArea removeDrawIcon removeDrawLinks ' +
+	        'removeEventHandler removeFromRemainsCollector removeGoggles removeGroupIcon removeHandgunItem ' +
+	        'removeHeadgear removeItem removeItemFromBackpack removeItemFromUniform removeItemFromVest ' +
+	        'removeItems removeMagazine removeMagazineGlobal removeMagazines removeMagazinesTurret ' +
+	        'removeMagazineTurret removeMenuItem removeMissionEventHandler removeMPEventHandler ' +
+	        'removeMusicEventHandler removeOwnedMine removePrimaryWeaponItem removeSecondaryWeaponItem ' +
+	        'removeSimpleTask removeSwitchableUnit removeTeamMember removeUniform removeVest removeWeapon ' +
+	        'removeWeaponGlobal removeWeaponTurret requiredVersion resetCamShake resetSubgroupDirection ' +
+	        'resistance resize resources respawnVehicle restartEditorCamera reveal revealMine reverse ' +
+	        'reversedMouseY roadAt roadsConnectedTo roleDescription ropeAttachedObjects ropeAttachedTo ' +
+	        'ropeAttachEnabled ropeAttachTo ropeCreate ropeCut ropeDestroy ropeDetach ropeEndPosition ' +
+	        'ropeLength ropes ropeUnwind ropeUnwound rotorsForcesRTD rotorsRpmRTD round runInitScript ' +
+	        'safeZoneH safeZoneW safeZoneWAbs safeZoneX safeZoneXAbs safeZoneY save3DENInventory saveGame ' +
+	        'saveIdentity saveJoysticks saveOverlay saveProfileNamespace saveStatus saveVar savingEnabled say ' +
+	        'say2D say3D scopeName score scoreSide screenshot screenToWorld scriptDone scriptName scriptNull ' +
+	        'scudState secondaryWeapon secondaryWeaponItems secondaryWeaponMagazine select selectBestPlaces ' +
+	        'selectDiarySubject selectedEditorObjects selectEditorObject selectionNames selectionPosition ' +
+	        'selectLeader selectMax selectMin selectNoPlayer selectPlayer selectRandom selectWeapon ' +
+	        'selectWeaponTurret sendAUMessage sendSimpleCommand sendTask sendTaskResult sendUDPMessage ' +
+	        'serverCommand serverCommandAvailable serverCommandExecutable serverName serverTime set ' +
+	        'set3DENAttribute set3DENAttributes set3DENGrid set3DENIconsVisible set3DENLayer ' +
+	        'set3DENLinesVisible set3DENMissionAttributes set3DENModelsVisible set3DENObjectType ' +
+	        'set3DENSelected setAccTime setAirportSide setAmmo setAmmoCargo setAnimSpeedCoef setAperture ' +
+	        'setApertureNew setArmoryPoints setAttributes setAutonomous setBehaviour setBleedingRemaining ' +
+	        'setCameraInterest setCamShakeDefParams setCamShakeParams setCamUseTi setCaptive setCenterOfMass ' +
+	        'setCollisionLight setCombatMode setCompassOscillation setCuratorCameraAreaCeiling setCuratorCoef ' +
+	        'setCuratorEditingAreaType setCuratorWaypointCost setCurrentChannel setCurrentTask ' +
+	        'setCurrentWaypoint setCustomAimCoef setDamage setDammage setDate setDebriefingText ' +
+	        'setDefaultCamera setDestination setDetailMapBlendPars setDir setDirection setDrawIcon ' +
+	        'setDropInterval setEditorMode setEditorObjectScope setEffectCondition setFace setFaceAnimation ' +
+	        'setFatigue setFlagOwner setFlagSide setFlagTexture setFog setFormation setFormationTask ' +
+	        'setFormDir setFriend setFromEditor setFSMVariable setFuel setFuelCargo setGroupIcon ' +
+	        'setGroupIconParams setGroupIconsSelectable setGroupIconsVisible setGroupId setGroupIdGlobal ' +
+	        'setGroupOwner setGusts setHideBehind setHit setHitIndex setHitPointDamage setHorizonParallaxCoef ' +
+	        'setHUDMovementLevels setIdentity setImportance setLeader setLightAmbient setLightAttenuation ' +
+	        'setLightBrightness setLightColor setLightDayLight setLightFlareMaxDistance setLightFlareSize ' +
+	        'setLightIntensity setLightnings setLightUseFlare setLocalWindParams setMagazineTurretAmmo ' +
+	        'setMarkerAlpha setMarkerAlphaLocal setMarkerBrush setMarkerBrushLocal setMarkerColor ' +
+	        'setMarkerColorLocal setMarkerDir setMarkerDirLocal setMarkerPos setMarkerPosLocal setMarkerShape ' +
+	        'setMarkerShapeLocal setMarkerSize setMarkerSizeLocal setMarkerText setMarkerTextLocal ' +
+	        'setMarkerType setMarkerTypeLocal setMass setMimic setMousePosition setMusicEffect ' +
+	        'setMusicEventHandler setName setNameSound setObjectArguments setObjectMaterial ' +
+	        'setObjectMaterialGlobal setObjectProxy setObjectTexture setObjectTextureGlobal ' +
+	        'setObjectViewDistance setOvercast setOwner setOxygenRemaining setParticleCircle setParticleClass ' +
+	        'setParticleFire setParticleParams setParticleRandom setPilotCameraDirection ' +
+	        'setPilotCameraRotation setPilotCameraTarget setPilotLight setPiPEffect setPitch setPlayable ' +
+	        'setPlayerRespawnTime setPos setPosASL setPosASL2 setPosASLW setPosATL setPosition setPosWorld ' +
+	        'setRadioMsg setRain setRainbow setRandomLip setRank setRectangular setRepairCargo ' +
+	        'setShadowDistance setShotParents setSide setSimpleTaskAlwaysVisible setSimpleTaskCustomData ' +
+	        'setSimpleTaskDescription setSimpleTaskDestination setSimpleTaskTarget setSimpleTaskType ' +
+	        'setSimulWeatherLayers setSize setSkill setSlingLoad setSoundEffect setSpeaker setSpeech ' +
+	        'setSpeedMode setStamina setStaminaScheme setStatValue setSuppression setSystemOfUnits ' +
+	        'setTargetAge setTaskResult setTaskState setTerrainGrid setText setTimeMultiplier setTitleEffect ' +
+	        'setTriggerActivation setTriggerArea setTriggerStatements setTriggerText setTriggerTimeout ' +
+	        'setTriggerType setType setUnconscious setUnitAbility setUnitLoadout setUnitPos setUnitPosWeak ' +
+	        'setUnitRank setUnitRecoilCoefficient setUnitTrait setUnloadInCombat setUserActionText setVariable ' +
+	        'setVectorDir setVectorDirAndUp setVectorUp setVehicleAmmo setVehicleAmmoDef setVehicleArmor ' +
+	        'setVehicleCargo setVehicleId setVehicleLock setVehiclePosition setVehicleTiPars setVehicleVarName ' +
+	        'setVelocity setVelocityTransformation setViewDistance setVisibleIfTreeCollapsed setWaves ' +
+	        'setWaypointBehaviour setWaypointCombatMode setWaypointCompletionRadius setWaypointDescription ' +
+	        'setWaypointForceBehaviour setWaypointFormation setWaypointHousePosition setWaypointLoiterRadius ' +
+	        'setWaypointLoiterType setWaypointName setWaypointPosition setWaypointScript setWaypointSpeed ' +
+	        'setWaypointStatements setWaypointTimeout setWaypointType setWaypointVisible ' +
+	        'setWeaponReloadingTime setWind setWindDir setWindForce setWindStr setWPPos show3DIcons showChat ' +
+	        'showCinemaBorder showCommandingMenu showCompass showCuratorCompass showGPS showHUD showLegend ' +
+	        'showMap shownArtilleryComputer shownChat shownCompass shownCuratorCompass showNewEditorObject ' +
+	        'shownGPS shownHUD shownMap shownPad shownRadio shownScoretable shownUAVFeed shownWarrant ' +
+	        'shownWatch showPad showRadio showScoretable showSubtitles showUAVFeed showWarrant showWatch ' +
+	        'showWaypoint showWaypoints side sideAmbientLife sideChat sideEmpty sideEnemy sideFriendly ' +
+	        'sideLogic sideRadio sideUnknown simpleTasks simulationEnabled simulCloudDensity ' +
+	        'simulCloudOcclusion simulInClouds simulWeatherSync sin size sizeOf skill skillFinal skipTime ' +
+	        'sleep sliderPosition sliderRange sliderSetPosition sliderSetRange sliderSetSpeed sliderSpeed ' +
+	        'slingLoadAssistantShown soldierMagazines someAmmo sort soundVolume spawn speaker speed speedMode ' +
+	        'splitString sqrt squadParams stance startLoadingScreen step stop stopEngineRTD stopped str ' +
+	        'sunOrMoon supportInfo suppressFor surfaceIsWater surfaceNormal surfaceType swimInDepth ' +
+	        'switchableUnits switchAction switchCamera switchGesture switchLight switchMove ' +
+	        'synchronizedObjects synchronizedTriggers synchronizedWaypoints synchronizeObjectsAdd ' +
+	        'synchronizeObjectsRemove synchronizeTrigger synchronizeWaypoint systemChat systemOfUnits tan ' +
+	        'targetKnowledge targetsAggregate targetsQuery taskAlwaysVisible taskChildren taskCompleted ' +
+	        'taskCustomData taskDescription taskDestination taskHint taskMarkerOffset taskNull taskParent ' +
+	        'taskResult taskState taskType teamMember teamMemberNull teamName teams teamSwitch ' +
+	        'teamSwitchEnabled teamType terminate terrainIntersect terrainIntersectASL text textLog ' +
+	        'textLogFormat tg time timeMultiplier titleCut titleFadeOut titleObj titleRsc titleText toArray ' +
+	        'toFixed toLower toString toUpper triggerActivated triggerActivation triggerArea ' +
+	        'triggerAttachedVehicle triggerAttachObject triggerAttachVehicle triggerStatements triggerText ' +
+	        'triggerTimeout triggerTimeoutCurrent triggerType turretLocal turretOwner turretUnit tvAdd tvClear ' +
+	        'tvCollapse tvCount tvCurSel tvData tvDelete tvExpand tvPicture tvSetCurSel tvSetData tvSetPicture ' +
+	        'tvSetPictureColor tvSetPictureColorDisabled tvSetPictureColorSelected tvSetPictureRight ' +
+	        'tvSetPictureRightColor tvSetPictureRightColorDisabled tvSetPictureRightColorSelected tvSetText ' +
+	        'tvSetTooltip tvSetValue tvSort tvSortByValue tvText tvTooltip tvValue type typeName typeOf ' +
+	        'UAVControl uiNamespace uiSleep unassignCurator unassignItem unassignTeam unassignVehicle ' +
+	        'underwater uniform uniformContainer uniformItems uniformMagazines unitAddons unitAimPosition ' +
+	        'unitAimPositionVisual unitBackpack unitIsUAV unitPos unitReady unitRecoilCoefficient units ' +
+	        'unitsBelowHeight unlinkItem unlockAchievement unregisterTask updateDrawIcon updateMenuItem ' +
+	        'updateObjectTree useAISteeringComponent useAudioTimeForMoves vectorAdd vectorCos ' +
+	        'vectorCrossProduct vectorDiff vectorDir vectorDirVisual vectorDistance vectorDistanceSqr ' +
+	        'vectorDotProduct vectorFromTo vectorMagnitude vectorMagnitudeSqr vectorMultiply vectorNormalized ' +
+	        'vectorUp vectorUpVisual vehicle vehicleCargoEnabled vehicleChat vehicleRadio vehicles ' +
+	        'vehicleVarName velocity velocityModelSpace verifySignature vest vestContainer vestItems ' +
+	        'vestMagazines viewDistance visibleCompass visibleGPS visibleMap visiblePosition ' +
+	        'visiblePositionASL visibleScoretable visibleWatch waves waypointAttachedObject ' +
+	        'waypointAttachedVehicle waypointAttachObject waypointAttachVehicle waypointBehaviour ' +
+	        'waypointCombatMode waypointCompletionRadius waypointDescription waypointForceBehaviour ' +
+	        'waypointFormation waypointHousePosition waypointLoiterRadius waypointLoiterType waypointName ' +
+	        'waypointPosition waypoints waypointScript waypointsEnabledUAV waypointShow waypointSpeed ' +
+	        'waypointStatements waypointTimeout waypointTimeoutCurrent waypointType waypointVisible ' +
+	        'weaponAccessories weaponAccessoriesCargo weaponCargo weaponDirection weaponInertia weaponLowered ' +
+	        'weapons weaponsItems weaponsItemsCargo weaponState weaponsTurret weightRTD west WFSideText wind',
 	      literal:
 	        'true false nil'
 	    },
@@ -37136,6 +38172,8 @@
 	      hljs.C_LINE_COMMENT_MODE,
 	      hljs.C_BLOCK_COMMENT_MODE,
 	      hljs.NUMBER_MODE,
+	      VARIABLE,
+	      FUNCTION,
 	      STRINGS,
 	      CPP.preprocessor
 	    ],
@@ -37144,7 +38182,7 @@
 	};
 
 /***/ },
-/* 406 */
+/* 414 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -37308,7 +38346,7 @@
 	};
 
 /***/ },
-/* 407 */
+/* 415 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -37395,7 +38433,7 @@
 	};
 
 /***/ },
-/* 408 */
+/* 416 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -37437,7 +38475,7 @@
 	};
 
 /***/ },
-/* 409 */
+/* 417 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -37488,7 +38526,7 @@
 	};
 
 /***/ },
-/* 410 */
+/* 418 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -37946,7 +38984,7 @@
 	};
 
 /***/ },
-/* 411 */
+/* 419 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -37984,16 +39022,16 @@
 	};
 
 /***/ },
-/* 412 */
+/* 420 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
 	  var SWIFT_KEYWORDS = {
 	      keyword: '__COLUMN__ __FILE__ __FUNCTION__ __LINE__ as as! as? associativity ' +
 	        'break case catch class continue convenience default defer deinit didSet do ' +
-	        'dynamic dynamicType else enum extension fallthrough false final for func ' +
+	        'dynamic dynamicType else enum extension fallthrough false fileprivate final for func ' +
 	        'get guard if import in indirect infix init inout internal is lazy left let ' +
-	        'mutating nil none nonmutating operator optional override postfix precedence ' +
+	        'mutating nil none nonmutating open operator optional override postfix precedence ' +
 	        'prefix private protocol Protocol public repeat required rethrows return ' +
 	        'right self Self set static struct subscript super switch throw throws true ' +
 	        'try try! try? Type typealias unowned var weak where while willSet',
@@ -38105,7 +39143,7 @@
 	};
 
 /***/ },
-/* 413 */
+/* 421 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -38153,11 +39191,11 @@
 	};
 
 /***/ },
-/* 414 */
+/* 422 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
-	  var LITERALS = {literal: '{ } true false yes no Yes No True False null'};
+	  var LITERALS = 'true false yes no null';
 	
 	  var keyPrefix = '^[ \\-]*';
 	  var keyName =  '[a-zA-Z_][\\w\\-]*';
@@ -38182,7 +39220,8 @@
 	    relevance: 0,
 	    variants: [
 	      {begin: /'/, end: /'/},
-	      {begin: /"/, end: /"/}
+	      {begin: /"/, end: /"/},
+	      {begin: /\S+/}
 	    ],
 	    contains: [
 	      hljs.BACKSLASH_ESCAPE,
@@ -38232,16 +39271,19 @@
 	        begin: '^ *-',
 	        relevance: 0
 	      },
-	      STRING,
 	      hljs.HASH_COMMENT_MODE,
-	      hljs.C_NUMBER_MODE
-	    ],
-	    keywords: LITERALS
+	      {
+	        beginKeywords: LITERALS,
+	        keywords: {literal: LITERALS}
+	      },
+	      hljs.C_NUMBER_MODE,
+	      STRING
+	    ]
 	  };
 	};
 
 /***/ },
-/* 415 */
+/* 423 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -38281,7 +39323,7 @@
 	};
 
 /***/ },
-/* 416 */
+/* 424 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -38346,7 +39388,7 @@
 	};
 
 /***/ },
-/* 417 */
+/* 425 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -38412,7 +39454,7 @@
 	};
 
 /***/ },
-/* 418 */
+/* 426 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -38451,7 +39493,7 @@
 	};
 
 /***/ },
-/* 419 */
+/* 427 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -38539,7 +39581,7 @@
 	};
 
 /***/ },
-/* 420 */
+/* 428 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -38609,7 +39651,7 @@
 	};
 
 /***/ },
-/* 421 */
+/* 429 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -38618,7 +39660,8 @@
 	      'in if for while finally var new function do return void else break catch ' +
 	      'instanceof with throw case default try this switch continue typeof delete ' +
 	      'let yield const class public private protected get set super ' +
-	      'static implements enum export import declare type namespace abstract',
+	      'static implements enum export import declare type namespace abstract ' +
+	      'as from extends async await',
 	    literal:
 	      'true false null undefined NaN Infinity',
 	    built_in:
@@ -38628,7 +39671,7 @@
 	      'TypeError URIError Number Math Date String RegExp Array Float32Array ' +
 	      'Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array ' +
 	      'Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require ' +
-	      'module console window document any number boolean string void'
+	      'module console window document any number boolean string void Promise'
 	  };
 	
 	  return {
@@ -38669,7 +39712,35 @@
 	        contains: [
 	          hljs.C_LINE_COMMENT_MODE,
 	          hljs.C_BLOCK_COMMENT_MODE,
-	          hljs.REGEXP_MODE
+	          hljs.REGEXP_MODE,
+	          {
+	            className: 'function',
+	            begin: '(\\(.*?\\)|' + hljs.IDENT_RE + ')\\s*=>', returnBegin: true,
+	            end: '\\s*=>',
+	            contains: [
+	              {
+	                className: 'params',
+	                variants: [
+	                  {
+	                    begin: hljs.IDENT_RE
+	                  },
+	                  {
+	                    begin: /\(\s*\)/,
+	                  },
+	                  {
+	                    begin: /\(/, end: /\)/,
+	                    excludeBegin: true, excludeEnd: true,
+	                    keywords: KEYWORDS,
+	                    contains: [
+	                      'self',
+	                      hljs.C_LINE_COMMENT_MODE,
+	                      hljs.C_BLOCK_COMMENT_MODE
+	                    ]
+	                  }
+	                ]
+	              }
+	            ]
+	          }
 	        ],
 	        relevance: 0
 	      },
@@ -38697,7 +39768,22 @@
 	        relevance: 0 // () => {} is more typical in TypeScript
 	      },
 	      {
-	        beginKeywords: 'constructor', end: /\{/, excludeEnd: true
+	        beginKeywords: 'constructor', end: /\{/, excludeEnd: true,
+	        contains: [
+	          'self',
+	          {
+	            className: 'params',
+	            begin: /\(/, end: /\)/,
+	            excludeBegin: true,
+	            excludeEnd: true,
+	            keywords: KEYWORDS,
+	            contains: [
+	              hljs.C_LINE_COMMENT_MODE,
+	              hljs.C_BLOCK_COMMENT_MODE
+	            ],
+	            illegal: /["'\(]/
+	          }
+	        ]
 	      },
 	      { // prevent references like module.id from being higlighted as module definitions
 	        begin: /module\./,
@@ -38716,13 +39802,16 @@
 	      },
 	      {
 	        begin: '\\.' + hljs.IDENT_RE, relevance: 0 // hack: prevents detection of keywords after dots
+	      },
+	      {
+	        className: 'meta', begin: '@[A-Za-z]+'
 	      }
 	    ]
 	  };
 	};
 
 /***/ },
-/* 422 */
+/* 430 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -38776,7 +39865,7 @@
 	};
 
 /***/ },
-/* 423 */
+/* 431 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -38836,7 +39925,7 @@
 	};
 
 /***/ },
-/* 424 */
+/* 432 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -38879,7 +39968,7 @@
 	};
 
 /***/ },
-/* 425 */
+/* 433 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -38895,7 +39984,7 @@
 	};
 
 /***/ },
-/* 426 */
+/* 434 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -38998,7 +40087,7 @@
 	};
 
 /***/ },
-/* 427 */
+/* 435 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -39063,7 +40152,7 @@
 	};
 
 /***/ },
-/* 428 */
+/* 436 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -39173,7 +40262,7 @@
 	};
 
 /***/ },
-/* 429 */
+/* 437 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -39313,7 +40402,7 @@
 	};
 
 /***/ },
-/* 430 */
+/* 438 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -39390,7 +40479,7 @@
 	};
 
 /***/ },
-/* 431 */
+/* 439 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -39465,7 +40554,7 @@
 	};
 
 /***/ },
-/* 432 */
+/* 440 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -39576,7 +40665,7 @@
 	};
 
 /***/ },
-/* 433 */
+/* 441 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -39682,170 +40771,170 @@
 	};
 
 /***/ },
-/* 434 */
+/* 442 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./agate": 435,
-		"./agate.js": 435,
-		"./androidstudio": 436,
-		"./androidstudio.js": 436,
-		"./arduino-light": 437,
-		"./arduino-light.js": 437,
-		"./arta": 438,
-		"./arta.js": 438,
-		"./ascetic": 439,
-		"./ascetic.js": 439,
-		"./atelier-cave-dark": 440,
-		"./atelier-cave-dark.js": 440,
-		"./atelier-cave-light": 441,
-		"./atelier-cave-light.js": 441,
-		"./atelier-dune-dark": 442,
-		"./atelier-dune-dark.js": 442,
-		"./atelier-dune-light": 443,
-		"./atelier-dune-light.js": 443,
-		"./atelier-estuary-dark": 444,
-		"./atelier-estuary-dark.js": 444,
-		"./atelier-estuary-light": 445,
-		"./atelier-estuary-light.js": 445,
-		"./atelier-forest-dark": 446,
-		"./atelier-forest-dark.js": 446,
-		"./atelier-forest-light": 447,
-		"./atelier-forest-light.js": 447,
-		"./atelier-heath-dark": 448,
-		"./atelier-heath-dark.js": 448,
-		"./atelier-heath-light": 449,
-		"./atelier-heath-light.js": 449,
-		"./atelier-lakeside-dark": 450,
-		"./atelier-lakeside-dark.js": 450,
-		"./atelier-lakeside-light": 451,
-		"./atelier-lakeside-light.js": 451,
-		"./atelier-plateau-dark": 452,
-		"./atelier-plateau-dark.js": 452,
-		"./atelier-plateau-light": 453,
-		"./atelier-plateau-light.js": 453,
-		"./atelier-savanna-dark": 454,
-		"./atelier-savanna-dark.js": 454,
-		"./atelier-savanna-light": 455,
-		"./atelier-savanna-light.js": 455,
-		"./atelier-seaside-dark": 456,
-		"./atelier-seaside-dark.js": 456,
-		"./atelier-seaside-light": 457,
-		"./atelier-seaside-light.js": 457,
-		"./atelier-sulphurpool-dark": 458,
-		"./atelier-sulphurpool-dark.js": 458,
-		"./atelier-sulphurpool-light": 459,
-		"./atelier-sulphurpool-light.js": 459,
-		"./atom-one-dark": 460,
-		"./atom-one-dark.js": 460,
-		"./atom-one-light": 461,
-		"./atom-one-light.js": 461,
-		"./brown-paper": 462,
-		"./brown-paper.js": 462,
-		"./codepen-embed": 463,
-		"./codepen-embed.js": 463,
-		"./color-brewer": 464,
-		"./color-brewer.js": 464,
-		"./darcula": 465,
-		"./darcula.js": 465,
-		"./dark": 466,
-		"./dark.js": 466,
-		"./darkula": 467,
-		"./darkula.js": 467,
-		"./default": 468,
+		"./agate": 443,
+		"./agate.js": 443,
+		"./androidstudio": 444,
+		"./androidstudio.js": 444,
+		"./arduino-light": 445,
+		"./arduino-light.js": 445,
+		"./arta": 446,
+		"./arta.js": 446,
+		"./ascetic": 447,
+		"./ascetic.js": 447,
+		"./atelier-cave-dark": 448,
+		"./atelier-cave-dark.js": 448,
+		"./atelier-cave-light": 449,
+		"./atelier-cave-light.js": 449,
+		"./atelier-dune-dark": 450,
+		"./atelier-dune-dark.js": 450,
+		"./atelier-dune-light": 451,
+		"./atelier-dune-light.js": 451,
+		"./atelier-estuary-dark": 452,
+		"./atelier-estuary-dark.js": 452,
+		"./atelier-estuary-light": 453,
+		"./atelier-estuary-light.js": 453,
+		"./atelier-forest-dark": 454,
+		"./atelier-forest-dark.js": 454,
+		"./atelier-forest-light": 455,
+		"./atelier-forest-light.js": 455,
+		"./atelier-heath-dark": 456,
+		"./atelier-heath-dark.js": 456,
+		"./atelier-heath-light": 457,
+		"./atelier-heath-light.js": 457,
+		"./atelier-lakeside-dark": 458,
+		"./atelier-lakeside-dark.js": 458,
+		"./atelier-lakeside-light": 459,
+		"./atelier-lakeside-light.js": 459,
+		"./atelier-plateau-dark": 460,
+		"./atelier-plateau-dark.js": 460,
+		"./atelier-plateau-light": 461,
+		"./atelier-plateau-light.js": 461,
+		"./atelier-savanna-dark": 462,
+		"./atelier-savanna-dark.js": 462,
+		"./atelier-savanna-light": 463,
+		"./atelier-savanna-light.js": 463,
+		"./atelier-seaside-dark": 464,
+		"./atelier-seaside-dark.js": 464,
+		"./atelier-seaside-light": 465,
+		"./atelier-seaside-light.js": 465,
+		"./atelier-sulphurpool-dark": 466,
+		"./atelier-sulphurpool-dark.js": 466,
+		"./atelier-sulphurpool-light": 467,
+		"./atelier-sulphurpool-light.js": 467,
+		"./atom-one-dark": 468,
+		"./atom-one-dark.js": 468,
+		"./atom-one-light": 469,
+		"./atom-one-light.js": 469,
+		"./brown-paper": 470,
+		"./brown-paper.js": 470,
+		"./codepen-embed": 471,
+		"./codepen-embed.js": 471,
+		"./color-brewer": 472,
+		"./color-brewer.js": 472,
+		"./darcula": 473,
+		"./darcula.js": 473,
+		"./dark": 474,
+		"./dark.js": 474,
+		"./darkula": 475,
+		"./darkula.js": 475,
 		"./default-style": 261,
 		"./default-style.js": 261,
-		"./default.js": 468,
-		"./defaultStyle": 469,
-		"./defaultStyle.js": 469,
-		"./docco": 470,
-		"./docco.js": 470,
-		"./dracula": 471,
-		"./dracula.js": 471,
-		"./far": 472,
-		"./far.js": 472,
-		"./foundation": 473,
-		"./foundation.js": 473,
-		"./github": 474,
-		"./github-gist": 475,
-		"./github-gist.js": 475,
-		"./github.js": 474,
-		"./googlecode": 476,
-		"./googlecode.js": 476,
-		"./grayscale": 477,
-		"./grayscale.js": 477,
-		"./gruvbox-dark": 478,
-		"./gruvbox-dark.js": 478,
-		"./gruvbox-light": 479,
-		"./gruvbox-light.js": 479,
-		"./hopscotch": 480,
-		"./hopscotch.js": 480,
-		"./hybrid": 481,
-		"./hybrid.js": 481,
-		"./idea": 482,
-		"./idea.js": 482,
-		"./index": 483,
-		"./index.js": 483,
-		"./ir-black": 484,
-		"./ir-black.js": 484,
-		"./kimbie.dark": 485,
-		"./kimbie.dark.js": 485,
-		"./kimbie.light": 486,
-		"./kimbie.light.js": 486,
-		"./magula": 487,
-		"./magula.js": 487,
-		"./mono-blue": 488,
-		"./mono-blue.js": 488,
-		"./monokai": 490,
-		"./monokai-sublime": 489,
-		"./monokai-sublime.js": 489,
-		"./monokai.js": 490,
-		"./obsidian": 491,
-		"./obsidian.js": 491,
-		"./ocean": 492,
-		"./ocean.js": 492,
-		"./paraiso-dark": 493,
-		"./paraiso-dark.js": 493,
-		"./paraiso-light": 494,
-		"./paraiso-light.js": 494,
-		"./pojoaque": 495,
-		"./pojoaque.js": 495,
-		"./purebasic": 496,
-		"./purebasic.js": 496,
-		"./qtcreator_dark": 497,
-		"./qtcreator_dark.js": 497,
-		"./qtcreator_light": 498,
-		"./qtcreator_light.js": 498,
-		"./railscasts": 499,
-		"./railscasts.js": 499,
-		"./rainbow": 500,
-		"./rainbow.js": 500,
-		"./school-book": 501,
-		"./school-book.js": 501,
-		"./solarized-dark": 502,
-		"./solarized-dark.js": 502,
-		"./solarized-light": 503,
-		"./solarized-light.js": 503,
-		"./sunburst": 504,
-		"./sunburst.js": 504,
-		"./tomorrow": 508,
-		"./tomorrow-night": 507,
-		"./tomorrow-night-blue": 505,
-		"./tomorrow-night-blue.js": 505,
-		"./tomorrow-night-bright": 506,
-		"./tomorrow-night-bright.js": 506,
-		"./tomorrow-night-eighties": 433,
-		"./tomorrow-night-eighties.js": 433,
-		"./tomorrow-night.js": 507,
-		"./tomorrow.js": 508,
-		"./vs": 509,
-		"./vs.js": 509,
-		"./xcode": 510,
-		"./xcode.js": 510,
-		"./xt256": 511,
-		"./xt256.js": 511,
-		"./zenburn": 512,
-		"./zenburn.js": 512
+		"./docco": 476,
+		"./docco.js": 476,
+		"./dracula": 477,
+		"./dracula.js": 477,
+		"./far": 478,
+		"./far.js": 478,
+		"./foundation": 479,
+		"./foundation.js": 479,
+		"./github": 480,
+		"./github-gist": 481,
+		"./github-gist.js": 481,
+		"./github.js": 480,
+		"./googlecode": 482,
+		"./googlecode.js": 482,
+		"./grayscale": 483,
+		"./grayscale.js": 483,
+		"./gruvbox-dark": 484,
+		"./gruvbox-dark.js": 484,
+		"./gruvbox-light": 485,
+		"./gruvbox-light.js": 485,
+		"./hopscotch": 486,
+		"./hopscotch.js": 486,
+		"./hybrid": 487,
+		"./hybrid.js": 487,
+		"./idea": 488,
+		"./idea.js": 488,
+		"./index": 489,
+		"./index.js": 489,
+		"./ir-black": 490,
+		"./ir-black.js": 490,
+		"./kimbie.dark": 491,
+		"./kimbie.dark.js": 491,
+		"./kimbie.light": 492,
+		"./kimbie.light.js": 492,
+		"./magula": 493,
+		"./magula.js": 493,
+		"./mono-blue": 494,
+		"./mono-blue.js": 494,
+		"./monokai": 496,
+		"./monokai-sublime": 495,
+		"./monokai-sublime.js": 495,
+		"./monokai.js": 496,
+		"./obsidian": 497,
+		"./obsidian.js": 497,
+		"./ocean": 498,
+		"./ocean.js": 498,
+		"./paraiso-dark": 499,
+		"./paraiso-dark.js": 499,
+		"./paraiso-light": 500,
+		"./paraiso-light.js": 500,
+		"./pojoaque": 501,
+		"./pojoaque.js": 501,
+		"./purebasic": 502,
+		"./purebasic.js": 502,
+		"./qtcreator_dark": 503,
+		"./qtcreator_dark.js": 503,
+		"./qtcreator_light": 504,
+		"./qtcreator_light.js": 504,
+		"./railscasts": 505,
+		"./railscasts.js": 505,
+		"./rainbow": 506,
+		"./rainbow.js": 506,
+		"./routeros": 507,
+		"./routeros.js": 507,
+		"./school-book": 508,
+		"./school-book.js": 508,
+		"./solarized-dark": 509,
+		"./solarized-dark.js": 509,
+		"./solarized-light": 510,
+		"./solarized-light.js": 510,
+		"./sunburst": 511,
+		"./sunburst.js": 511,
+		"./tomorrow": 515,
+		"./tomorrow-night": 514,
+		"./tomorrow-night-blue": 512,
+		"./tomorrow-night-blue.js": 512,
+		"./tomorrow-night-bright": 513,
+		"./tomorrow-night-bright.js": 513,
+		"./tomorrow-night-eighties": 441,
+		"./tomorrow-night-eighties.js": 441,
+		"./tomorrow-night.js": 514,
+		"./tomorrow.js": 515,
+		"./vs": 516,
+		"./vs.js": 516,
+		"./vs2015": 517,
+		"./vs2015.js": 517,
+		"./xcode": 518,
+		"./xcode.js": 518,
+		"./xt256": 519,
+		"./xt256.js": 519,
+		"./zenburn": 520,
+		"./zenburn.js": 520
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -39858,11 +40947,11 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 434;
+	webpackContext.id = 442;
 
 
 /***/ },
-/* 435 */
+/* 443 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -39971,7 +41060,7 @@
 	};
 
 /***/ },
-/* 436 */
+/* 444 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -40062,7 +41151,7 @@
 	};
 
 /***/ },
-/* 437 */
+/* 445 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -40185,7 +41274,7 @@
 	};
 
 /***/ },
-/* 438 */
+/* 446 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -40295,7 +41384,7 @@
 	};
 
 /***/ },
-/* 439 */
+/* 447 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -40372,7 +41461,7 @@
 	};
 
 /***/ },
-/* 440 */
+/* 448 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -40484,7 +41573,7 @@
 	};
 
 /***/ },
-/* 441 */
+/* 449 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -40596,7 +41685,7 @@
 	};
 
 /***/ },
-/* 442 */
+/* 450 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -40696,7 +41785,7 @@
 	};
 
 /***/ },
-/* 443 */
+/* 451 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -40796,7 +41885,7 @@
 	};
 
 /***/ },
-/* 444 */
+/* 452 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -40908,7 +41997,7 @@
 	};
 
 /***/ },
-/* 445 */
+/* 453 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -41020,7 +42109,7 @@
 	};
 
 /***/ },
-/* 446 */
+/* 454 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -41120,7 +42209,7 @@
 	};
 
 /***/ },
-/* 447 */
+/* 455 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -41220,7 +42309,7 @@
 	};
 
 /***/ },
-/* 448 */
+/* 456 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -41320,7 +42409,7 @@
 	};
 
 /***/ },
-/* 449 */
+/* 457 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -41420,7 +42509,7 @@
 	};
 
 /***/ },
-/* 450 */
+/* 458 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -41520,7 +42609,7 @@
 	};
 
 /***/ },
-/* 451 */
+/* 459 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -41620,7 +42709,7 @@
 	};
 
 /***/ },
-/* 452 */
+/* 460 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -41732,7 +42821,7 @@
 	};
 
 /***/ },
-/* 453 */
+/* 461 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -41844,7 +42933,7 @@
 	};
 
 /***/ },
-/* 454 */
+/* 462 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -41956,7 +43045,7 @@
 	};
 
 /***/ },
-/* 455 */
+/* 463 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -42068,7 +43157,7 @@
 	};
 
 /***/ },
-/* 456 */
+/* 464 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -42168,7 +43257,7 @@
 	};
 
 /***/ },
-/* 457 */
+/* 465 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -42268,7 +43357,7 @@
 	};
 
 /***/ },
-/* 458 */
+/* 466 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -42368,7 +43457,7 @@
 	};
 
 /***/ },
-/* 459 */
+/* 467 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -42468,7 +43557,7 @@
 	};
 
 /***/ },
-/* 460 */
+/* 468 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -42592,7 +43681,7 @@
 	};
 
 /***/ },
-/* 461 */
+/* 469 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -42716,7 +43805,7 @@
 	};
 
 /***/ },
-/* 462 */
+/* 470 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -42817,7 +43906,7 @@
 	};
 
 /***/ },
-/* 463 */
+/* 471 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -42923,7 +44012,7 @@
 	};
 
 /***/ },
-/* 464 */
+/* 472 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -43032,7 +44121,7 @@
 	};
 
 /***/ },
-/* 465 */
+/* 473 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -43148,7 +44237,7 @@
 	};
 
 /***/ },
-/* 466 */
+/* 474 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -43249,7 +44338,7 @@
 	};
 
 /***/ },
-/* 467 */
+/* 475 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -43260,245 +44349,7 @@
 	exports.default = {};
 
 /***/ },
-/* 468 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = {
-	    "hljs-selector-attr": {
-	        "color": "#BC6060"
-	    },
-	    "hljs-title": {
-	        "color": "#880000",
-	        "fontWeight": "bold"
-	    },
-	    "hljs": {
-	        "color": "#444"
-	    },
-	    "hljs-string": {
-	        "color": "#880000"
-	    },
-	    "hljs-regexp": {
-	        "color": "#BC6060"
-	    },
-	    "hljs-template-tag": {
-	        "color": "#880000"
-	    },
-	    "hljs-meta": {
-	        "color": "#1f7199"
-	    },
-	    "hljs-emphasis": {
-	        "fontStyle": "italic"
-	    },
-	    "hljs-type": {
-	        "color": "#880000"
-	    },
-	    "hljs-section": {
-	        "color": "#880000",
-	        "fontWeight": "bold"
-	    },
-	    "hljs-deletion": {
-	        "color": "#880000"
-	    },
-	    "hljs-subst": {
-	        "color": "#444"
-	    },
-	    "hljs-meta-keyword": {
-	        "fontWeight": "bold"
-	    },
-	    "hljs-addition": {
-	        "color": "#397300"
-	    },
-	    "hljs-name": {
-	        "fontWeight": "bold"
-	    },
-	    "hljs-variable": {
-	        "color": "#BC6060"
-	    },
-	    "hljs-selector-tag": {
-	        "fontWeight": "bold"
-	    },
-	    "hljs-bullet": {
-	        "color": "#397300"
-	    },
-	    "hljs-code": {
-	        "color": "#397300"
-	    },
-	    "hljs-number": {
-	        "color": "#880000"
-	    },
-	    "hljs-selector-id": {
-	        "color": "#880000"
-	    },
-	    "hljs-symbol": {
-	        "color": "#BC6060"
-	    },
-	    "hljs-attribute": {
-	        "fontWeight": "bold"
-	    },
-	    "hljs-meta-string": {
-	        "color": "#4d99bf"
-	    },
-	    "hljs-selector-pseudo": {
-	        "color": "#BC6060"
-	    },
-	    "hljs-keyword": {
-	        "fontWeight": "bold"
-	    },
-	    "hljs-literal": {
-	        "color": "#78A960"
-	    },
-	    "hljs-comment": {
-	        "color": "#888888"
-	    },
-	    "hljs-quote": {
-	        "color": "#880000"
-	    },
-	    "hljs-selector-class": {
-	        "color": "#880000"
-	    },
-	    "hljs-doctag": {
-	        "fontWeight": "bold"
-	    },
-	    "hljs-template-variable": {
-	        "color": "#BC6060"
-	    },
-	    "hljs-built_in": {
-	        "color": "#397300"
-	    },
-	    "hljs-link": {
-	        "color": "#BC6060"
-	    },
-	    "hljs-strong": {
-	        "fontWeight": "bold"
-	    }
-	};
-
-/***/ },
-/* 469 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = {
-	    "hljs-selector-attr": {
-	        "color": "#BC6060"
-	    },
-	    "hljs-title": {
-	        "color": "#880000",
-	        "fontWeight": "bold"
-	    },
-	    "hljs": {
-	        "color": "#444"
-	    },
-	    "hljs-string": {
-	        "color": "#880000"
-	    },
-	    "hljs-regexp": {
-	        "color": "#BC6060"
-	    },
-	    "hljs-template-tag": {
-	        "color": "#880000"
-	    },
-	    "hljs-meta": {
-	        "color": "#1f7199"
-	    },
-	    "hljs-emphasis": {
-	        "fontStyle": "italic"
-	    },
-	    "hljs-type": {
-	        "color": "#880000"
-	    },
-	    "hljs-section": {
-	        "color": "#880000",
-	        "fontWeight": "bold"
-	    },
-	    "hljs-deletion": {
-	        "color": "#880000"
-	    },
-	    "hljs-subst": {
-	        "color": "#444"
-	    },
-	    "hljs-meta-keyword": {
-	        "fontWeight": "bold"
-	    },
-	    "hljs-addition": {
-	        "color": "#397300"
-	    },
-	    "hljs-name": {
-	        "fontWeight": "bold"
-	    },
-	    "hljs-variable": {
-	        "color": "#BC6060"
-	    },
-	    "hljs-selector-tag": {
-	        "fontWeight": "bold"
-	    },
-	    "hljs-bullet": {
-	        "color": "#397300"
-	    },
-	    "hljs-code": {
-	        "color": "#397300"
-	    },
-	    "hljs-number": {
-	        "color": "#880000"
-	    },
-	    "hljs-selector-id": {
-	        "color": "#880000"
-	    },
-	    "hljs-symbol": {
-	        "color": "#BC6060"
-	    },
-	    "hljs-attribute": {
-	        "fontWeight": "bold"
-	    },
-	    "hljs-meta-string": {
-	        "color": "#4d99bf"
-	    },
-	    "hljs-selector-pseudo": {
-	        "color": "#BC6060"
-	    },
-	    "hljs-keyword": {
-	        "fontWeight": "bold"
-	    },
-	    "hljs-literal": {
-	        "color": "#78A960"
-	    },
-	    "hljs-comment": {
-	        "color": "#888888"
-	    },
-	    "hljs-quote": {
-	        "color": "#880000"
-	    },
-	    "hljs-selector-class": {
-	        "color": "#880000"
-	    },
-	    "hljs-doctag": {
-	        "fontWeight": "bold"
-	    },
-	    "hljs-template-variable": {
-	        "color": "#BC6060"
-	    },
-	    "hljs-built_in": {
-	        "color": "#397300"
-	    },
-	    "hljs-link": {
-	        "color": "#BC6060"
-	    },
-	    "hljs-strong": {
-	        "fontWeight": "bold"
-	    }
-	};
-
-/***/ },
-/* 470 */
+/* 476 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -43617,7 +44468,7 @@
 	};
 
 /***/ },
-/* 471 */
+/* 477 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -43718,7 +44569,7 @@
 	};
 
 /***/ },
-/* 472 */
+/* 478 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -43831,7 +44682,7 @@
 	};
 
 /***/ },
-/* 473 */
+/* 479 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -43939,7 +44790,7 @@
 	};
 
 /***/ },
-/* 474 */
+/* 480 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -44065,7 +44916,7 @@
 	};
 
 /***/ },
-/* 475 */
+/* 481 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -44167,7 +45018,7 @@
 	};
 
 /***/ },
-/* 476 */
+/* 482 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -44290,7 +45141,7 @@
 	};
 
 /***/ },
-/* 477 */
+/* 483 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -44416,7 +45267,7 @@
 	};
 
 /***/ },
-/* 478 */
+/* 484 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -44569,7 +45420,7 @@
 	};
 
 /***/ },
-/* 479 */
+/* 485 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -44722,7 +45573,7 @@
 	};
 
 /***/ },
-/* 480 */
+/* 486 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -44833,7 +45684,7 @@
 	};
 
 /***/ },
-/* 481 */
+/* 487 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -44969,7 +45820,7 @@
 	};
 
 /***/ },
-/* 482 */
+/* 488 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -45098,7 +45949,7 @@
 	};
 
 /***/ },
-/* 483 */
+/* 489 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45107,7 +45958,7 @@
 	  value: true
 	});
 	
-	var _agate = __webpack_require__(435);
+	var _agate = __webpack_require__(443);
 	
 	Object.defineProperty(exports, 'agate', {
 	  enumerable: true,
@@ -45116,7 +45967,7 @@
 	  }
 	});
 	
-	var _androidstudio = __webpack_require__(436);
+	var _androidstudio = __webpack_require__(444);
 	
 	Object.defineProperty(exports, 'androidstudio', {
 	  enumerable: true,
@@ -45125,7 +45976,7 @@
 	  }
 	});
 	
-	var _arduinoLight = __webpack_require__(437);
+	var _arduinoLight = __webpack_require__(445);
 	
 	Object.defineProperty(exports, 'arduinoLight', {
 	  enumerable: true,
@@ -45134,7 +45985,7 @@
 	  }
 	});
 	
-	var _arta = __webpack_require__(438);
+	var _arta = __webpack_require__(446);
 	
 	Object.defineProperty(exports, 'arta', {
 	  enumerable: true,
@@ -45143,7 +45994,7 @@
 	  }
 	});
 	
-	var _ascetic = __webpack_require__(439);
+	var _ascetic = __webpack_require__(447);
 	
 	Object.defineProperty(exports, 'ascetic', {
 	  enumerable: true,
@@ -45152,7 +46003,7 @@
 	  }
 	});
 	
-	var _atelierCaveDark = __webpack_require__(440);
+	var _atelierCaveDark = __webpack_require__(448);
 	
 	Object.defineProperty(exports, 'atelierCaveDark', {
 	  enumerable: true,
@@ -45161,7 +46012,7 @@
 	  }
 	});
 	
-	var _atelierCaveLight = __webpack_require__(441);
+	var _atelierCaveLight = __webpack_require__(449);
 	
 	Object.defineProperty(exports, 'atelierCaveLight', {
 	  enumerable: true,
@@ -45170,7 +46021,7 @@
 	  }
 	});
 	
-	var _atelierDuneDark = __webpack_require__(442);
+	var _atelierDuneDark = __webpack_require__(450);
 	
 	Object.defineProperty(exports, 'atelierDuneDark', {
 	  enumerable: true,
@@ -45179,7 +46030,7 @@
 	  }
 	});
 	
-	var _atelierDuneLight = __webpack_require__(443);
+	var _atelierDuneLight = __webpack_require__(451);
 	
 	Object.defineProperty(exports, 'atelierDuneLight', {
 	  enumerable: true,
@@ -45188,7 +46039,7 @@
 	  }
 	});
 	
-	var _atelierEstuaryDark = __webpack_require__(444);
+	var _atelierEstuaryDark = __webpack_require__(452);
 	
 	Object.defineProperty(exports, 'atelierEstuaryDark', {
 	  enumerable: true,
@@ -45197,7 +46048,7 @@
 	  }
 	});
 	
-	var _atelierEstuaryLight = __webpack_require__(445);
+	var _atelierEstuaryLight = __webpack_require__(453);
 	
 	Object.defineProperty(exports, 'atelierEstuaryLight', {
 	  enumerable: true,
@@ -45206,7 +46057,7 @@
 	  }
 	});
 	
-	var _atelierForestDark = __webpack_require__(446);
+	var _atelierForestDark = __webpack_require__(454);
 	
 	Object.defineProperty(exports, 'atelierForestDark', {
 	  enumerable: true,
@@ -45215,7 +46066,7 @@
 	  }
 	});
 	
-	var _atelierForestLight = __webpack_require__(447);
+	var _atelierForestLight = __webpack_require__(455);
 	
 	Object.defineProperty(exports, 'atelierForestLight', {
 	  enumerable: true,
@@ -45224,7 +46075,7 @@
 	  }
 	});
 	
-	var _atelierHeathDark = __webpack_require__(448);
+	var _atelierHeathDark = __webpack_require__(456);
 	
 	Object.defineProperty(exports, 'atelierHeathDark', {
 	  enumerable: true,
@@ -45233,7 +46084,7 @@
 	  }
 	});
 	
-	var _atelierHeathLight = __webpack_require__(449);
+	var _atelierHeathLight = __webpack_require__(457);
 	
 	Object.defineProperty(exports, 'atelierHeathLight', {
 	  enumerable: true,
@@ -45242,7 +46093,7 @@
 	  }
 	});
 	
-	var _atelierLakesideDark = __webpack_require__(450);
+	var _atelierLakesideDark = __webpack_require__(458);
 	
 	Object.defineProperty(exports, 'atelierLakesideDark', {
 	  enumerable: true,
@@ -45251,7 +46102,7 @@
 	  }
 	});
 	
-	var _atelierLakesideLight = __webpack_require__(451);
+	var _atelierLakesideLight = __webpack_require__(459);
 	
 	Object.defineProperty(exports, 'atelierLakesideLight', {
 	  enumerable: true,
@@ -45260,7 +46111,7 @@
 	  }
 	});
 	
-	var _atelierPlateauDark = __webpack_require__(452);
+	var _atelierPlateauDark = __webpack_require__(460);
 	
 	Object.defineProperty(exports, 'atelierPlateauDark', {
 	  enumerable: true,
@@ -45269,7 +46120,7 @@
 	  }
 	});
 	
-	var _atelierPlateauLight = __webpack_require__(453);
+	var _atelierPlateauLight = __webpack_require__(461);
 	
 	Object.defineProperty(exports, 'atelierPlateauLight', {
 	  enumerable: true,
@@ -45278,7 +46129,7 @@
 	  }
 	});
 	
-	var _atelierSavannaDark = __webpack_require__(454);
+	var _atelierSavannaDark = __webpack_require__(462);
 	
 	Object.defineProperty(exports, 'atelierSavannaDark', {
 	  enumerable: true,
@@ -45287,7 +46138,7 @@
 	  }
 	});
 	
-	var _atelierSavannaLight = __webpack_require__(455);
+	var _atelierSavannaLight = __webpack_require__(463);
 	
 	Object.defineProperty(exports, 'atelierSavannaLight', {
 	  enumerable: true,
@@ -45296,7 +46147,7 @@
 	  }
 	});
 	
-	var _atelierSeasideDark = __webpack_require__(456);
+	var _atelierSeasideDark = __webpack_require__(464);
 	
 	Object.defineProperty(exports, 'atelierSeasideDark', {
 	  enumerable: true,
@@ -45305,7 +46156,7 @@
 	  }
 	});
 	
-	var _atelierSeasideLight = __webpack_require__(457);
+	var _atelierSeasideLight = __webpack_require__(465);
 	
 	Object.defineProperty(exports, 'atelierSeasideLight', {
 	  enumerable: true,
@@ -45314,7 +46165,7 @@
 	  }
 	});
 	
-	var _atelierSulphurpoolDark = __webpack_require__(458);
+	var _atelierSulphurpoolDark = __webpack_require__(466);
 	
 	Object.defineProperty(exports, 'atelierSulphurpoolDark', {
 	  enumerable: true,
@@ -45323,7 +46174,7 @@
 	  }
 	});
 	
-	var _atelierSulphurpoolLight = __webpack_require__(459);
+	var _atelierSulphurpoolLight = __webpack_require__(467);
 	
 	Object.defineProperty(exports, 'atelierSulphurpoolLight', {
 	  enumerable: true,
@@ -45332,7 +46183,7 @@
 	  }
 	});
 	
-	var _atomOneDark = __webpack_require__(460);
+	var _atomOneDark = __webpack_require__(468);
 	
 	Object.defineProperty(exports, 'atomOneDark', {
 	  enumerable: true,
@@ -45341,7 +46192,7 @@
 	  }
 	});
 	
-	var _atomOneLight = __webpack_require__(461);
+	var _atomOneLight = __webpack_require__(469);
 	
 	Object.defineProperty(exports, 'atomOneLight', {
 	  enumerable: true,
@@ -45350,7 +46201,7 @@
 	  }
 	});
 	
-	var _brownPaper = __webpack_require__(462);
+	var _brownPaper = __webpack_require__(470);
 	
 	Object.defineProperty(exports, 'brownPaper', {
 	  enumerable: true,
@@ -45359,7 +46210,7 @@
 	  }
 	});
 	
-	var _codepenEmbed = __webpack_require__(463);
+	var _codepenEmbed = __webpack_require__(471);
 	
 	Object.defineProperty(exports, 'codepenEmbed', {
 	  enumerable: true,
@@ -45368,7 +46219,7 @@
 	  }
 	});
 	
-	var _colorBrewer = __webpack_require__(464);
+	var _colorBrewer = __webpack_require__(472);
 	
 	Object.defineProperty(exports, 'colorBrewer', {
 	  enumerable: true,
@@ -45377,7 +46228,7 @@
 	  }
 	});
 	
-	var _darcula = __webpack_require__(465);
+	var _darcula = __webpack_require__(473);
 	
 	Object.defineProperty(exports, 'darcula', {
 	  enumerable: true,
@@ -45386,7 +46237,7 @@
 	  }
 	});
 	
-	var _dark = __webpack_require__(466);
+	var _dark = __webpack_require__(474);
 	
 	Object.defineProperty(exports, 'dark', {
 	  enumerable: true,
@@ -45395,7 +46246,7 @@
 	  }
 	});
 	
-	var _darkula = __webpack_require__(467);
+	var _darkula = __webpack_require__(475);
 	
 	Object.defineProperty(exports, 'darkula', {
 	  enumerable: true,
@@ -45413,7 +46264,7 @@
 	  }
 	});
 	
-	var _docco = __webpack_require__(470);
+	var _docco = __webpack_require__(476);
 	
 	Object.defineProperty(exports, 'docco', {
 	  enumerable: true,
@@ -45422,7 +46273,7 @@
 	  }
 	});
 	
-	var _dracula = __webpack_require__(471);
+	var _dracula = __webpack_require__(477);
 	
 	Object.defineProperty(exports, 'dracula', {
 	  enumerable: true,
@@ -45431,7 +46282,7 @@
 	  }
 	});
 	
-	var _far = __webpack_require__(472);
+	var _far = __webpack_require__(478);
 	
 	Object.defineProperty(exports, 'far', {
 	  enumerable: true,
@@ -45440,7 +46291,7 @@
 	  }
 	});
 	
-	var _foundation = __webpack_require__(473);
+	var _foundation = __webpack_require__(479);
 	
 	Object.defineProperty(exports, 'foundation', {
 	  enumerable: true,
@@ -45449,7 +46300,7 @@
 	  }
 	});
 	
-	var _githubGist = __webpack_require__(475);
+	var _githubGist = __webpack_require__(481);
 	
 	Object.defineProperty(exports, 'githubGist', {
 	  enumerable: true,
@@ -45458,7 +46309,7 @@
 	  }
 	});
 	
-	var _github = __webpack_require__(474);
+	var _github = __webpack_require__(480);
 	
 	Object.defineProperty(exports, 'github', {
 	  enumerable: true,
@@ -45467,7 +46318,7 @@
 	  }
 	});
 	
-	var _googlecode = __webpack_require__(476);
+	var _googlecode = __webpack_require__(482);
 	
 	Object.defineProperty(exports, 'googlecode', {
 	  enumerable: true,
@@ -45476,7 +46327,7 @@
 	  }
 	});
 	
-	var _grayscale = __webpack_require__(477);
+	var _grayscale = __webpack_require__(483);
 	
 	Object.defineProperty(exports, 'grayscale', {
 	  enumerable: true,
@@ -45485,7 +46336,7 @@
 	  }
 	});
 	
-	var _gruvboxDark = __webpack_require__(478);
+	var _gruvboxDark = __webpack_require__(484);
 	
 	Object.defineProperty(exports, 'gruvboxDark', {
 	  enumerable: true,
@@ -45494,7 +46345,7 @@
 	  }
 	});
 	
-	var _gruvboxLight = __webpack_require__(479);
+	var _gruvboxLight = __webpack_require__(485);
 	
 	Object.defineProperty(exports, 'gruvboxLight', {
 	  enumerable: true,
@@ -45503,7 +46354,7 @@
 	  }
 	});
 	
-	var _hopscotch = __webpack_require__(480);
+	var _hopscotch = __webpack_require__(486);
 	
 	Object.defineProperty(exports, 'hopscotch', {
 	  enumerable: true,
@@ -45512,7 +46363,7 @@
 	  }
 	});
 	
-	var _hybrid = __webpack_require__(481);
+	var _hybrid = __webpack_require__(487);
 	
 	Object.defineProperty(exports, 'hybrid', {
 	  enumerable: true,
@@ -45521,7 +46372,7 @@
 	  }
 	});
 	
-	var _idea = __webpack_require__(482);
+	var _idea = __webpack_require__(488);
 	
 	Object.defineProperty(exports, 'idea', {
 	  enumerable: true,
@@ -45530,7 +46381,7 @@
 	  }
 	});
 	
-	var _irBlack = __webpack_require__(484);
+	var _irBlack = __webpack_require__(490);
 	
 	Object.defineProperty(exports, 'irBlack', {
 	  enumerable: true,
@@ -45539,7 +46390,7 @@
 	  }
 	});
 	
-	var _kimbie = __webpack_require__(485);
+	var _kimbie = __webpack_require__(491);
 	
 	Object.defineProperty(exports, 'kimbieDark', {
 	  enumerable: true,
@@ -45548,7 +46399,7 @@
 	  }
 	});
 	
-	var _kimbie2 = __webpack_require__(486);
+	var _kimbie2 = __webpack_require__(492);
 	
 	Object.defineProperty(exports, 'kimbieLight', {
 	  enumerable: true,
@@ -45557,7 +46408,7 @@
 	  }
 	});
 	
-	var _magula = __webpack_require__(487);
+	var _magula = __webpack_require__(493);
 	
 	Object.defineProperty(exports, 'magula', {
 	  enumerable: true,
@@ -45566,7 +46417,7 @@
 	  }
 	});
 	
-	var _monoBlue = __webpack_require__(488);
+	var _monoBlue = __webpack_require__(494);
 	
 	Object.defineProperty(exports, 'monoBlue', {
 	  enumerable: true,
@@ -45575,7 +46426,7 @@
 	  }
 	});
 	
-	var _monokaiSublime = __webpack_require__(489);
+	var _monokaiSublime = __webpack_require__(495);
 	
 	Object.defineProperty(exports, 'monokaiSublime', {
 	  enumerable: true,
@@ -45584,7 +46435,7 @@
 	  }
 	});
 	
-	var _monokai = __webpack_require__(490);
+	var _monokai = __webpack_require__(496);
 	
 	Object.defineProperty(exports, 'monokai', {
 	  enumerable: true,
@@ -45593,7 +46444,7 @@
 	  }
 	});
 	
-	var _obsidian = __webpack_require__(491);
+	var _obsidian = __webpack_require__(497);
 	
 	Object.defineProperty(exports, 'obsidian', {
 	  enumerable: true,
@@ -45602,7 +46453,7 @@
 	  }
 	});
 	
-	var _ocean = __webpack_require__(492);
+	var _ocean = __webpack_require__(498);
 	
 	Object.defineProperty(exports, 'ocean', {
 	  enumerable: true,
@@ -45611,7 +46462,7 @@
 	  }
 	});
 	
-	var _paraisoDark = __webpack_require__(493);
+	var _paraisoDark = __webpack_require__(499);
 	
 	Object.defineProperty(exports, 'paraisoDark', {
 	  enumerable: true,
@@ -45620,7 +46471,7 @@
 	  }
 	});
 	
-	var _paraisoLight = __webpack_require__(494);
+	var _paraisoLight = __webpack_require__(500);
 	
 	Object.defineProperty(exports, 'paraisoLight', {
 	  enumerable: true,
@@ -45629,7 +46480,7 @@
 	  }
 	});
 	
-	var _pojoaque = __webpack_require__(495);
+	var _pojoaque = __webpack_require__(501);
 	
 	Object.defineProperty(exports, 'pojoaque', {
 	  enumerable: true,
@@ -45638,7 +46489,7 @@
 	  }
 	});
 	
-	var _purebasic = __webpack_require__(496);
+	var _purebasic = __webpack_require__(502);
 	
 	Object.defineProperty(exports, 'purebasic', {
 	  enumerable: true,
@@ -45647,7 +46498,7 @@
 	  }
 	});
 	
-	var _qtcreator_dark = __webpack_require__(497);
+	var _qtcreator_dark = __webpack_require__(503);
 	
 	Object.defineProperty(exports, 'qtcreatorDark', {
 	  enumerable: true,
@@ -45656,7 +46507,7 @@
 	  }
 	});
 	
-	var _qtcreator_light = __webpack_require__(498);
+	var _qtcreator_light = __webpack_require__(504);
 	
 	Object.defineProperty(exports, 'qtcreatorLight', {
 	  enumerable: true,
@@ -45665,7 +46516,7 @@
 	  }
 	});
 	
-	var _railscasts = __webpack_require__(499);
+	var _railscasts = __webpack_require__(505);
 	
 	Object.defineProperty(exports, 'railscasts', {
 	  enumerable: true,
@@ -45674,7 +46525,7 @@
 	  }
 	});
 	
-	var _rainbow = __webpack_require__(500);
+	var _rainbow = __webpack_require__(506);
 	
 	Object.defineProperty(exports, 'rainbow', {
 	  enumerable: true,
@@ -45683,7 +46534,16 @@
 	  }
 	});
 	
-	var _schoolBook = __webpack_require__(501);
+	var _routeros = __webpack_require__(507);
+	
+	Object.defineProperty(exports, 'routeros', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_routeros).default;
+	  }
+	});
+	
+	var _schoolBook = __webpack_require__(508);
 	
 	Object.defineProperty(exports, 'schoolBook', {
 	  enumerable: true,
@@ -45692,7 +46552,7 @@
 	  }
 	});
 	
-	var _solarizedDark = __webpack_require__(502);
+	var _solarizedDark = __webpack_require__(509);
 	
 	Object.defineProperty(exports, 'solarizedDark', {
 	  enumerable: true,
@@ -45701,7 +46561,7 @@
 	  }
 	});
 	
-	var _solarizedLight = __webpack_require__(503);
+	var _solarizedLight = __webpack_require__(510);
 	
 	Object.defineProperty(exports, 'solarizedLight', {
 	  enumerable: true,
@@ -45710,7 +46570,7 @@
 	  }
 	});
 	
-	var _sunburst = __webpack_require__(504);
+	var _sunburst = __webpack_require__(511);
 	
 	Object.defineProperty(exports, 'sunburst', {
 	  enumerable: true,
@@ -45719,7 +46579,7 @@
 	  }
 	});
 	
-	var _tomorrowNightBlue = __webpack_require__(505);
+	var _tomorrowNightBlue = __webpack_require__(512);
 	
 	Object.defineProperty(exports, 'tomorrowNightBlue', {
 	  enumerable: true,
@@ -45728,7 +46588,7 @@
 	  }
 	});
 	
-	var _tomorrowNightBright = __webpack_require__(506);
+	var _tomorrowNightBright = __webpack_require__(513);
 	
 	Object.defineProperty(exports, 'tomorrowNightBright', {
 	  enumerable: true,
@@ -45737,7 +46597,7 @@
 	  }
 	});
 	
-	var _tomorrowNightEighties = __webpack_require__(433);
+	var _tomorrowNightEighties = __webpack_require__(441);
 	
 	Object.defineProperty(exports, 'tomorrowNightEighties', {
 	  enumerable: true,
@@ -45746,7 +46606,7 @@
 	  }
 	});
 	
-	var _tomorrowNight = __webpack_require__(507);
+	var _tomorrowNight = __webpack_require__(514);
 	
 	Object.defineProperty(exports, 'tomorrowNight', {
 	  enumerable: true,
@@ -45755,7 +46615,7 @@
 	  }
 	});
 	
-	var _tomorrow = __webpack_require__(508);
+	var _tomorrow = __webpack_require__(515);
 	
 	Object.defineProperty(exports, 'tomorrow', {
 	  enumerable: true,
@@ -45764,7 +46624,7 @@
 	  }
 	});
 	
-	var _vs = __webpack_require__(509);
+	var _vs = __webpack_require__(516);
 	
 	Object.defineProperty(exports, 'vs', {
 	  enumerable: true,
@@ -45773,7 +46633,16 @@
 	  }
 	});
 	
-	var _xcode = __webpack_require__(510);
+	var _vs2 = __webpack_require__(517);
+	
+	Object.defineProperty(exports, 'vs2015', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_vs2).default;
+	  }
+	});
+	
+	var _xcode = __webpack_require__(518);
 	
 	Object.defineProperty(exports, 'xcode', {
 	  enumerable: true,
@@ -45782,7 +46651,7 @@
 	  }
 	});
 	
-	var _xt = __webpack_require__(511);
+	var _xt = __webpack_require__(519);
 	
 	Object.defineProperty(exports, 'xt256', {
 	  enumerable: true,
@@ -45791,7 +46660,7 @@
 	  }
 	});
 	
-	var _zenburn = __webpack_require__(512);
+	var _zenburn = __webpack_require__(520);
 	
 	Object.defineProperty(exports, 'zenburn', {
 	  enumerable: true,
@@ -45803,7 +46672,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 484 */
+/* 490 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -45909,7 +46778,7 @@
 	};
 
 /***/ },
-/* 485 */
+/* 491 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -46018,7 +46887,7 @@
 	};
 
 /***/ },
-/* 486 */
+/* 492 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -46127,7 +46996,7 @@
 	};
 
 /***/ },
-/* 487 */
+/* 493 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -46238,7 +47107,7 @@
 	};
 
 /***/ },
-/* 488 */
+/* 494 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -46344,7 +47213,7 @@
 	};
 
 /***/ },
-/* 489 */
+/* 495 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -46470,7 +47339,7 @@
 	};
 
 /***/ },
-/* 490 */
+/* 496 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -46594,7 +47463,7 @@
 	};
 
 /***/ },
-/* 491 */
+/* 497 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -46721,7 +47590,7 @@
 	};
 
 /***/ },
-/* 492 */
+/* 498 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -46827,7 +47696,7 @@
 	};
 
 /***/ },
-/* 493 */
+/* 499 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -46933,7 +47802,7 @@
 	};
 
 /***/ },
-/* 494 */
+/* 500 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -47039,7 +47908,7 @@
 	};
 
 /***/ },
-/* 495 */
+/* 501 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -47153,7 +48022,7 @@
 	};
 
 /***/ },
-/* 496 */
+/* 502 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -47281,7 +48150,7 @@
 	};
 
 /***/ },
-/* 497 */
+/* 503 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -47410,7 +48279,7 @@
 	};
 
 /***/ },
-/* 498 */
+/* 504 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -47539,7 +48408,7 @@
 	};
 
 /***/ },
-/* 499 */
+/* 505 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -47657,7 +48526,7 @@
 	};
 
 /***/ },
-/* 500 */
+/* 506 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -47776,7 +48645,136 @@
 	};
 
 /***/ },
-/* 501 */
+/* 507 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = {
+	    "hljs": {
+	        "display": "block",
+	        "overflowX": "auto",
+	        "padding": "0.5em",
+	        "background": "#F0F0F0",
+	        "color": "#444"
+	    },
+	    "hljs-subst": {
+	        "color": "#444"
+	    },
+	    "hljs-comment": {
+	        "color": "#888888"
+	    },
+	    "hljs-keyword": {
+	        "fontWeight": "bold"
+	    },
+	    "hljs-selector-tag": {
+	        "fontWeight": "bold"
+	    },
+	    "hljs-meta-keyword": {
+	        "fontWeight": "bold"
+	    },
+	    "hljs-doctag": {
+	        "fontWeight": "bold"
+	    },
+	    "hljs-name": {
+	        "fontWeight": "bold"
+	    },
+	    "hljs-attribute": {
+	        "color": "#0E9A00"
+	    },
+	    "hljs-function": {
+	        "color": "#99069A"
+	    },
+	    "hljs-builtin-name": {
+	        "color": "#99069A"
+	    },
+	    "hljs-type": {
+	        "color": "#880000"
+	    },
+	    "hljs-string": {
+	        "color": "#880000"
+	    },
+	    "hljs-number": {
+	        "color": "#880000"
+	    },
+	    "hljs-selector-id": {
+	        "color": "#880000"
+	    },
+	    "hljs-selector-class": {
+	        "color": "#880000"
+	    },
+	    "hljs-quote": {
+	        "color": "#880000"
+	    },
+	    "hljs-template-tag": {
+	        "color": "#880000"
+	    },
+	    "hljs-deletion": {
+	        "color": "#880000"
+	    },
+	    "hljs-title": {
+	        "color": "#880000",
+	        "fontWeight": "bold"
+	    },
+	    "hljs-section": {
+	        "color": "#880000",
+	        "fontWeight": "bold"
+	    },
+	    "hljs-regexp": {
+	        "color": "#BC6060"
+	    },
+	    "hljs-symbol": {
+	        "color": "#BC6060"
+	    },
+	    "hljs-variable": {
+	        "color": "#BC6060"
+	    },
+	    "hljs-template-variable": {
+	        "color": "#BC6060"
+	    },
+	    "hljs-link": {
+	        "color": "#BC6060"
+	    },
+	    "hljs-selector-attr": {
+	        "color": "#BC6060"
+	    },
+	    "hljs-selector-pseudo": {
+	        "color": "#BC6060"
+	    },
+	    "hljs-literal": {
+	        "color": "#78A960"
+	    },
+	    "hljs-built_in": {
+	        "color": "#0C9A9A"
+	    },
+	    "hljs-bullet": {
+	        "color": "#0C9A9A"
+	    },
+	    "hljs-code": {
+	        "color": "#0C9A9A"
+	    },
+	    "hljs-addition": {
+	        "color": "#0C9A9A"
+	    },
+	    "hljs-meta": {
+	        "color": "#1f7199"
+	    },
+	    "hljs-meta-string": {
+	        "color": "#4d99bf"
+	    },
+	    "hljs-emphasis": {
+	        "fontStyle": "italic"
+	    },
+	    "hljs-strong": {
+	        "fontWeight": "bold"
+	    }
+	};
+
+/***/ },
+/* 508 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -47888,7 +48886,7 @@
 	};
 
 /***/ },
-/* 502 */
+/* 509 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -48012,7 +49010,7 @@
 	};
 
 /***/ },
-/* 503 */
+/* 510 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -48136,7 +49134,7 @@
 	};
 
 /***/ },
-/* 504 */
+/* 511 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -48251,7 +49249,7 @@
 	};
 
 /***/ },
-/* 505 */
+/* 512 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -48357,7 +49355,7 @@
 	};
 
 /***/ },
-/* 506 */
+/* 513 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -48463,7 +49461,7 @@
 	};
 
 /***/ },
-/* 507 */
+/* 514 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -48569,7 +49567,7 @@
 	};
 
 /***/ },
-/* 508 */
+/* 515 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -48675,7 +49673,7 @@
 	};
 
 /***/ },
-/* 509 */
+/* 516 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -48778,7 +49776,153 @@
 	};
 
 /***/ },
-/* 510 */
+/* 517 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = {
+	    "hljs": {
+	        "display": "block",
+	        "overflowX": "auto",
+	        "padding": "0.5em",
+	        "background": "#1E1E1E",
+	        "color": "#DCDCDC"
+	    },
+	    "hljs-keyword": {
+	        "color": "#569CD6"
+	    },
+	    "hljs-literal": {
+	        "color": "#569CD6"
+	    },
+	    "hljs-symbol": {
+	        "color": "#569CD6"
+	    },
+	    "hljs-name": {
+	        "color": "#569CD6"
+	    },
+	    "hljs-link": {
+	        "color": "#569CD6",
+	        "textDecoration": "underline"
+	    },
+	    "hljs-built_in": {
+	        "color": "#4EC9B0"
+	    },
+	    "hljs-type": {
+	        "color": "#4EC9B0"
+	    },
+	    "hljs-number": {
+	        "color": "#B8D7A3"
+	    },
+	    "hljs-class": {
+	        "color": "#B8D7A3"
+	    },
+	    "hljs-string": {
+	        "color": "#D69D85"
+	    },
+	    "hljs-meta-string": {
+	        "color": "#D69D85"
+	    },
+	    "hljs-regexp": {
+	        "color": "#9A5334"
+	    },
+	    "hljs-template-tag": {
+	        "color": "#9A5334"
+	    },
+	    "hljs-subst": {
+	        "color": "#DCDCDC"
+	    },
+	    "hljs-function": {
+	        "color": "#DCDCDC"
+	    },
+	    "hljs-title": {
+	        "color": "#DCDCDC"
+	    },
+	    "hljs-params": {
+	        "color": "#DCDCDC"
+	    },
+	    "hljs-formula": {
+	        "color": "#DCDCDC"
+	    },
+	    "hljs-comment": {
+	        "color": "#57A64A",
+	        "fontStyle": "italic"
+	    },
+	    "hljs-quote": {
+	        "color": "#57A64A",
+	        "fontStyle": "italic"
+	    },
+	    "hljs-doctag": {
+	        "color": "#608B4E"
+	    },
+	    "hljs-meta": {
+	        "color": "#9B9B9B"
+	    },
+	    "hljs-meta-keyword": {
+	        "color": "#9B9B9B"
+	    },
+	    "hljs-tag": {
+	        "color": "#9B9B9B"
+	    },
+	    "hljs-variable": {
+	        "color": "#BD63C5"
+	    },
+	    "hljs-template-variable": {
+	        "color": "#BD63C5"
+	    },
+	    "hljs-attr": {
+	        "color": "#9CDCFE"
+	    },
+	    "hljs-attribute": {
+	        "color": "#9CDCFE"
+	    },
+	    "hljs-builtin-name": {
+	        "color": "#9CDCFE"
+	    },
+	    "hljs-section": {
+	        "color": "gold"
+	    },
+	    "hljs-emphasis": {
+	        "fontStyle": "italic"
+	    },
+	    "hljs-strong": {
+	        "fontWeight": "bold"
+	    },
+	    "hljs-bullet": {
+	        "color": "#D7BA7D"
+	    },
+	    "hljs-selector-tag": {
+	        "color": "#D7BA7D"
+	    },
+	    "hljs-selector-id": {
+	        "color": "#D7BA7D"
+	    },
+	    "hljs-selector-class": {
+	        "color": "#D7BA7D"
+	    },
+	    "hljs-selector-attr": {
+	        "color": "#D7BA7D"
+	    },
+	    "hljs-selector-pseudo": {
+	        "color": "#D7BA7D"
+	    },
+	    "hljs-addition": {
+	        "backgroundColor": "#144212",
+	        "display": "inline-block",
+	        "width": "100%"
+	    },
+	    "hljs-deletion": {
+	        "backgroundColor": "#600",
+	        "display": "inline-block",
+	        "width": "100%"
+	    }
+	};
+
+/***/ },
+/* 518 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -48900,7 +50044,7 @@
 	};
 
 /***/ },
-/* 511 */
+/* 519 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -49011,7 +50155,7 @@
 	};
 
 /***/ },
-/* 512 */
+/* 520 */
 /***/ function(module, exports) {
 
 	"use strict";
