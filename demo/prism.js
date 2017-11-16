@@ -56,15 +56,6 @@ export default uniquePropHOC(["time", "seconds"])(Expire);`;
         >
           {availableStyles.map(s => <option key={s} value={s}>{s}</option>)}
         </select>
-        <div style={{paddingTop: '10px', fontSize: 16, color: 'aliceblue'}}>
-          <label htmlFor="showLineNumbers">Show Line Numbers:</label>
-          <input 
-            type="checkbox" 
-            checked={this.state.showLineNumbers} 
-            onChange={() => this.setState({ showLineNumbers: !this.state.showLineNumbers })}
-            id="showLineNumbers"
-          />
-        </div>
         <div style={{paddingTop: 20, display: 'flex'}}>
           <textarea 
             style={{marginTop: 11}}

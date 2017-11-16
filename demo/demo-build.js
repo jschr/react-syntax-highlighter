@@ -22297,7 +22297,6 @@
 	    } else if (hasLanguage) {
 	      return astGenerator.highlight(language, code);
 	    } else {
-	      console.log("here");
 	      return astGenerator.highlightAuto(code);
 	    }
 	  }
