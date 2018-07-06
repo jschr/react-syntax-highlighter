@@ -42,7 +42,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -62,25 +62,25 @@
 	
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 	
-	var _inherits2 = __webpack_require__(79);
+	var _inherits2 = __webpack_require__(78);
 	
 	var _inherits3 = _interopRequireDefault(_inherits2);
 	
-	var _keys = __webpack_require__(521);
+	var _keys = __webpack_require__(529);
 	
 	var _keys2 = _interopRequireDefault(_keys);
 	
-	var _react = __webpack_require__(87);
+	var _react = __webpack_require__(86);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(114);
+	var _reactDom = __webpack_require__(120);
 	
-	var _prism = __webpack_require__(524);
+	var _prism = __webpack_require__(532);
 	
 	var _prism2 = _interopRequireDefault(_prism);
 	
-	var _prism3 = __webpack_require__(662);
+	var _prism3 = __webpack_require__(692);
 	
 	var styles = _interopRequireWildcard(_prism3);
 	
@@ -185,161 +185,175 @@
 	
 	(0, _reactDom.render)(_react2.default.createElement(Component, null), document.getElementById('app'));
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = { "default": __webpack_require__(2), __esModule: true };
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(3);
 	module.exports = __webpack_require__(14).Object.getPrototypeOf;
 
-/***/ },
+
+/***/ }),
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.9 Object.getPrototypeOf(O)
-	var toObject        = __webpack_require__(4)
-	  , $getPrototypeOf = __webpack_require__(6);
+	var toObject = __webpack_require__(4);
+	var $getPrototypeOf = __webpack_require__(6);
 	
-	__webpack_require__(12)('getPrototypeOf', function(){
-	  return function getPrototypeOf(it){
+	__webpack_require__(12)('getPrototypeOf', function () {
+	  return function getPrototypeOf(it) {
 	    return $getPrototypeOf(toObject(it));
 	  };
 	});
 
-/***/ },
+
+/***/ }),
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
 	var defined = __webpack_require__(5);
-	module.exports = function(it){
+	module.exports = function (it) {
 	  return Object(defined(it));
 	};
 
-/***/ },
+
+/***/ }),
 /* 5 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	// 7.2.1 RequireObjectCoercible(argument)
-	module.exports = function(it){
-	  if(it == undefined)throw TypeError("Can't call method on  " + it);
+	module.exports = function (it) {
+	  if (it == undefined) throw TypeError("Can't call method on  " + it);
 	  return it;
 	};
 
-/***/ },
+
+/***/ }),
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-	var has         = __webpack_require__(7)
-	  , toObject    = __webpack_require__(4)
-	  , IE_PROTO    = __webpack_require__(8)('IE_PROTO')
-	  , ObjectProto = Object.prototype;
+	var has = __webpack_require__(7);
+	var toObject = __webpack_require__(4);
+	var IE_PROTO = __webpack_require__(8)('IE_PROTO');
+	var ObjectProto = Object.prototype;
 	
-	module.exports = Object.getPrototypeOf || function(O){
+	module.exports = Object.getPrototypeOf || function (O) {
 	  O = toObject(O);
-	  if(has(O, IE_PROTO))return O[IE_PROTO];
-	  if(typeof O.constructor == 'function' && O instanceof O.constructor){
+	  if (has(O, IE_PROTO)) return O[IE_PROTO];
+	  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
 	    return O.constructor.prototype;
 	  } return O instanceof Object ? ObjectProto : null;
 	};
 
-/***/ },
+
+/***/ }),
 /* 7 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	var hasOwnProperty = {}.hasOwnProperty;
-	module.exports = function(it, key){
+	module.exports = function (it, key) {
 	  return hasOwnProperty.call(it, key);
 	};
 
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
 
-	var shared = __webpack_require__(9)('keys')
-	  , uid    = __webpack_require__(11);
-	module.exports = function(key){
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var shared = __webpack_require__(9)('keys');
+	var uid = __webpack_require__(11);
+	module.exports = function (key) {
 	  return shared[key] || (shared[key] = uid(key));
 	};
 
-/***/ },
-/* 9 */
-/***/ function(module, exports, __webpack_require__) {
 
-	var global = __webpack_require__(10)
-	  , SHARED = '__core-js_shared__'
-	  , store  = global[SHARED] || (global[SHARED] = {});
-	module.exports = function(key){
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var global = __webpack_require__(10);
+	var SHARED = '__core-js_shared__';
+	var store = global[SHARED] || (global[SHARED] = {});
+	module.exports = function (key) {
 	  return store[key] || (store[key] = {});
 	};
 
-/***/ },
+
+/***/ }),
 /* 10 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 	var global = module.exports = typeof window != 'undefined' && window.Math == Math
-	  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
-	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
+	  ? window : typeof self != 'undefined' && self.Math == Math ? self
+	  // eslint-disable-next-line no-new-func
+	  : Function('return this')();
+	if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
-/***/ },
+
+/***/ }),
 /* 11 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
-	var id = 0
-	  , px = Math.random();
-	module.exports = function(key){
+	var id = 0;
+	var px = Math.random();
+	module.exports = function (key) {
 	  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 	};
 
-/***/ },
+
+/***/ }),
 /* 12 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(13)
-	  , core    = __webpack_require__(14)
-	  , fails   = __webpack_require__(23);
-	module.exports = function(KEY, exec){
-	  var fn  = (core.Object || {})[KEY] || Object[KEY]
-	    , exp = {};
+	var $export = __webpack_require__(13);
+	var core = __webpack_require__(14);
+	var fails = __webpack_require__(23);
+	module.exports = function (KEY, exec) {
+	  var fn = (core.Object || {})[KEY] || Object[KEY];
+	  var exp = {};
 	  exp[KEY] = exec(fn);
-	  $export($export.S + $export.F * fails(function(){ fn(1); }), 'Object', exp);
+	  $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
 	};
 
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(10)
-	  , core      = __webpack_require__(14)
-	  , ctx       = __webpack_require__(15)
-	  , hide      = __webpack_require__(17)
-	  , PROTOTYPE = 'prototype';
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var global = __webpack_require__(10);
+	var core = __webpack_require__(14);
+	var ctx = __webpack_require__(15);
+	var hide = __webpack_require__(17);
+	var has = __webpack_require__(7);
+	var PROTOTYPE = 'prototype';
 	
-	var $export = function(type, name, source){
-	  var IS_FORCED = type & $export.F
-	    , IS_GLOBAL = type & $export.G
-	    , IS_STATIC = type & $export.S
-	    , IS_PROTO  = type & $export.P
-	    , IS_BIND   = type & $export.B
-	    , IS_WRAP   = type & $export.W
-	    , exports   = IS_GLOBAL ? core : core[name] || (core[name] = {})
-	    , expProto  = exports[PROTOTYPE]
-	    , target    = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE]
-	    , key, own, out;
-	  if(IS_GLOBAL)source = name;
-	  for(key in source){
+	var $export = function (type, name, source) {
+	  var IS_FORCED = type & $export.F;
+	  var IS_GLOBAL = type & $export.G;
+	  var IS_STATIC = type & $export.S;
+	  var IS_PROTO = type & $export.P;
+	  var IS_BIND = type & $export.B;
+	  var IS_WRAP = type & $export.W;
+	  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
+	  var expProto = exports[PROTOTYPE];
+	  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE];
+	  var key, own, out;
+	  if (IS_GLOBAL) source = name;
+	  for (key in source) {
 	    // contains in native
 	    own = !IS_FORCED && target && target[key] !== undefined;
-	    if(own && key in exports)continue;
+	    if (own && has(exports, key)) continue;
 	    // export native or passed
 	    out = own ? target[key] : source[key];
 	    // prevent global pollution for namespaces
@@ -347,11 +361,11 @@
 	    // bind timers to global for call from export context
 	    : IS_BIND && own ? ctx(out, global)
 	    // wrap global constructors for prevent change them in library
-	    : IS_WRAP && target[key] == out ? (function(C){
-	      var F = function(a, b, c){
-	        if(this instanceof C){
-	          switch(arguments.length){
-	            case 0: return new C;
+	    : IS_WRAP && target[key] == out ? (function (C) {
+	      var F = function (a, b, c) {
+	        if (this instanceof C) {
+	          switch (arguments.length) {
+	            case 0: return new C();
 	            case 1: return new C(a);
 	            case 2: return new C(a, b);
 	          } return new C(a, b, c);
@@ -362,10 +376,10 @@
 	    // make static versions for prototype methods
 	    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
 	    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
-	    if(IS_PROTO){
+	    if (IS_PROTO) {
 	      (exports.virtual || (exports.virtual = {}))[key] = out;
 	      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
-	      if(type & $export.R && expProto && !expProto[key])hide(expProto, key, out);
+	      if (type & $export.R && expProto && !expProto[key]) hide(expProto, key, out);
 	    }
 	  }
 	};
@@ -377,176 +391,190 @@
 	$export.B = 16;  // bind
 	$export.W = 32;  // wrap
 	$export.U = 64;  // safe
-	$export.R = 128; // real proto method for `library` 
+	$export.R = 128; // real proto method for `library`
 	module.exports = $export;
 
-/***/ },
+
+/***/ }),
 /* 14 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
-	var core = module.exports = {version: '2.4.0'};
-	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
+	var core = module.exports = { version: '2.5.5' };
+	if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
-/***/ },
+
+/***/ }),
 /* 15 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
 	var aFunction = __webpack_require__(16);
-	module.exports = function(fn, that, length){
+	module.exports = function (fn, that, length) {
 	  aFunction(fn);
-	  if(that === undefined)return fn;
-	  switch(length){
-	    case 1: return function(a){
+	  if (that === undefined) return fn;
+	  switch (length) {
+	    case 1: return function (a) {
 	      return fn.call(that, a);
 	    };
-	    case 2: return function(a, b){
+	    case 2: return function (a, b) {
 	      return fn.call(that, a, b);
 	    };
-	    case 3: return function(a, b, c){
+	    case 3: return function (a, b, c) {
 	      return fn.call(that, a, b, c);
 	    };
 	  }
-	  return function(/* ...args */){
+	  return function (/* ...args */) {
 	    return fn.apply(that, arguments);
 	  };
 	};
 
-/***/ },
-/* 16 */
-/***/ function(module, exports) {
 
-	module.exports = function(it){
-	  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+	module.exports = function (it) {
+	  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
 	  return it;
 	};
 
-/***/ },
-/* 17 */
-/***/ function(module, exports, __webpack_require__) {
 
-	var dP         = __webpack_require__(18)
-	  , createDesc = __webpack_require__(26);
-	module.exports = __webpack_require__(22) ? function(object, key, value){
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var dP = __webpack_require__(18);
+	var createDesc = __webpack_require__(26);
+	module.exports = __webpack_require__(22) ? function (object, key, value) {
 	  return dP.f(object, key, createDesc(1, value));
-	} : function(object, key, value){
+	} : function (object, key, value) {
 	  object[key] = value;
 	  return object;
 	};
 
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
 
-	var anObject       = __webpack_require__(19)
-	  , IE8_DOM_DEFINE = __webpack_require__(21)
-	  , toPrimitive    = __webpack_require__(25)
-	  , dP             = Object.defineProperty;
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var anObject = __webpack_require__(19);
+	var IE8_DOM_DEFINE = __webpack_require__(21);
+	var toPrimitive = __webpack_require__(25);
+	var dP = Object.defineProperty;
 	
-	exports.f = __webpack_require__(22) ? Object.defineProperty : function defineProperty(O, P, Attributes){
+	exports.f = __webpack_require__(22) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
 	  anObject(O);
 	  P = toPrimitive(P, true);
 	  anObject(Attributes);
-	  if(IE8_DOM_DEFINE)try {
+	  if (IE8_DOM_DEFINE) try {
 	    return dP(O, P, Attributes);
-	  } catch(e){ /* empty */ }
-	  if('get' in Attributes || 'set' in Attributes)throw TypeError('Accessors not supported!');
-	  if('value' in Attributes)O[P] = Attributes.value;
+	  } catch (e) { /* empty */ }
+	  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+	  if ('value' in Attributes) O[P] = Attributes.value;
 	  return O;
 	};
 
-/***/ },
+
+/***/ }),
 /* 19 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(20);
-	module.exports = function(it){
-	  if(!isObject(it))throw TypeError(it + ' is not an object!');
+	module.exports = function (it) {
+	  if (!isObject(it)) throw TypeError(it + ' is not an object!');
 	  return it;
 	};
 
-/***/ },
-/* 20 */
-/***/ function(module, exports) {
 
-	module.exports = function(it){
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+	module.exports = function (it) {
 	  return typeof it === 'object' ? it !== null : typeof it === 'function';
 	};
 
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = !__webpack_require__(22) && !__webpack_require__(23)(function(){
-	  return Object.defineProperty(__webpack_require__(24)('div'), 'a', {get: function(){ return 7; }}).a != 7;
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = !__webpack_require__(22) && !__webpack_require__(23)(function () {
+	  return Object.defineProperty(__webpack_require__(24)('div'), 'a', { get: function () { return 7; } }).a != 7;
 	});
 
-/***/ },
+
+/***/ }),
 /* 22 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// Thank's IE8 for his funny defineProperty
-	module.exports = !__webpack_require__(23)(function(){
-	  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
+	module.exports = !__webpack_require__(23)(function () {
+	  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 	});
 
-/***/ },
-/* 23 */
-/***/ function(module, exports) {
 
-	module.exports = function(exec){
+/***/ }),
+/* 23 */
+/***/ (function(module, exports) {
+
+	module.exports = function (exec) {
 	  try {
 	    return !!exec();
-	  } catch(e){
+	  } catch (e) {
 	    return true;
 	  }
 	};
 
-/***/ },
-/* 24 */
-/***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(20)
-	  , document = __webpack_require__(10).document
-	  // in old IE typeof document.createElement is 'object'
-	  , is = isObject(document) && isObject(document.createElement);
-	module.exports = function(it){
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var isObject = __webpack_require__(20);
+	var document = __webpack_require__(10).document;
+	// typeof document.createElement is 'object' in old IE
+	var is = isObject(document) && isObject(document.createElement);
+	module.exports = function (it) {
 	  return is ? document.createElement(it) : {};
 	};
 
-/***/ },
+
+/***/ }),
 /* 25 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 7.1.1 ToPrimitive(input [, PreferredType])
 	var isObject = __webpack_require__(20);
 	// instead of the ES6 spec version, we didn't implement @@toPrimitive case
 	// and the second argument - flag - preferred type is a string
-	module.exports = function(it, S){
-	  if(!isObject(it))return it;
+	module.exports = function (it, S) {
+	  if (!isObject(it)) return it;
 	  var fn, val;
-	  if(S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
-	  if(typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it)))return val;
-	  if(!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
+	  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+	  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+	  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
 	  throw TypeError("Can't convert object to primitive value");
 	};
 
-/***/ },
-/* 26 */
-/***/ function(module, exports) {
 
-	module.exports = function(bitmap, value){
+/***/ }),
+/* 26 */
+/***/ (function(module, exports) {
+
+	module.exports = function (bitmap, value) {
 	  return {
-	    enumerable  : !(bitmap & 1),
+	    enumerable: !(bitmap & 1),
 	    configurable: !(bitmap & 2),
-	    writable    : !(bitmap & 4),
-	    value       : value
+	    writable: !(bitmap & 4),
+	    value: value
 	  };
 	};
 
-/***/ },
+
+/***/ }),
 /* 27 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -558,9 +586,9 @@
 	  }
 	};
 
-/***/ },
+/***/ }),
 /* 28 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
@@ -590,33 +618,35 @@
 	  };
 	}();
 
-/***/ },
+/***/ }),
 /* 29 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = { "default": __webpack_require__(30), __esModule: true };
 
-/***/ },
+/***/ }),
 /* 30 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(31);
 	var $Object = __webpack_require__(14).Object;
-	module.exports = function defineProperty(it, key, desc){
+	module.exports = function defineProperty(it, key, desc) {
 	  return $Object.defineProperty(it, key, desc);
 	};
 
-/***/ },
+
+/***/ }),
 /* 31 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(13);
 	// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-	$export($export.S + $export.F * !__webpack_require__(22), 'Object', {defineProperty: __webpack_require__(18).f});
+	$export($export.S + $export.F * !__webpack_require__(22), 'Object', { defineProperty: __webpack_require__(18).f });
 
-/***/ },
+
+/***/ }),
 /* 32 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
@@ -636,9 +666,9 @@
 	  return call && ((typeof call === "undefined" ? "undefined" : (0, _typeof3.default)(call)) === "object" || typeof call === "function") ? call : self;
 	};
 
-/***/ },
+/***/ }),
 /* 33 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
@@ -662,57 +692,59 @@
 	  return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
 	};
 
-/***/ },
+/***/ }),
 /* 34 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = { "default": __webpack_require__(35), __esModule: true };
 
-/***/ },
+/***/ }),
 /* 35 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(36);
 	__webpack_require__(58);
 	module.exports = __webpack_require__(62).f('iterator');
 
-/***/ },
+
+/***/ }),
 /* 36 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var $at  = __webpack_require__(37)(true);
+	var $at = __webpack_require__(37)(true);
 	
 	// 21.1.3.27 String.prototype[@@iterator]()
-	__webpack_require__(39)(String, 'String', function(iterated){
+	__webpack_require__(39)(String, 'String', function (iterated) {
 	  this._t = String(iterated); // target
 	  this._i = 0;                // next index
 	// 21.1.5.2.1 %StringIteratorPrototype%.next()
-	}, function(){
-	  var O     = this._t
-	    , index = this._i
-	    , point;
-	  if(index >= O.length)return {value: undefined, done: true};
+	}, function () {
+	  var O = this._t;
+	  var index = this._i;
+	  var point;
+	  if (index >= O.length) return { value: undefined, done: true };
 	  point = $at(O, index);
 	  this._i += point.length;
-	  return {value: point, done: false};
+	  return { value: point, done: false };
 	});
 
-/***/ },
-/* 37 */
-/***/ function(module, exports, __webpack_require__) {
 
-	var toInteger = __webpack_require__(38)
-	  , defined   = __webpack_require__(5);
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var toInteger = __webpack_require__(38);
+	var defined = __webpack_require__(5);
 	// true  -> String#at
 	// false -> String#codePointAt
-	module.exports = function(TO_STRING){
-	  return function(that, pos){
-	    var s = String(defined(that))
-	      , i = toInteger(pos)
-	      , l = s.length
-	      , a, b;
-	    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
+	module.exports = function (TO_STRING) {
+	  return function (that, pos) {
+	    var s = String(defined(that));
+	    var i = toInteger(pos);
+	    var l = s.length;
+	    var a, b;
+	    if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
 	    a = s.charCodeAt(i);
 	    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
 	      ? TO_STRING ? s.charAt(i) : a
@@ -720,148 +752,154 @@
 	  };
 	};
 
-/***/ },
+
+/***/ }),
 /* 38 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	// 7.1.4 ToInteger
-	var ceil  = Math.ceil
-	  , floor = Math.floor;
-	module.exports = function(it){
+	var ceil = Math.ceil;
+	var floor = Math.floor;
+	module.exports = function (it) {
 	  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 	};
 
-/***/ },
+
+/***/ }),
 /* 39 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var LIBRARY        = __webpack_require__(40)
-	  , $export        = __webpack_require__(13)
-	  , redefine       = __webpack_require__(41)
-	  , hide           = __webpack_require__(17)
-	  , has            = __webpack_require__(7)
-	  , Iterators      = __webpack_require__(42)
-	  , $iterCreate    = __webpack_require__(43)
-	  , setToStringTag = __webpack_require__(56)
-	  , getPrototypeOf = __webpack_require__(6)
-	  , ITERATOR       = __webpack_require__(57)('iterator')
-	  , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
-	  , FF_ITERATOR    = '@@iterator'
-	  , KEYS           = 'keys'
-	  , VALUES         = 'values';
+	var LIBRARY = __webpack_require__(40);
+	var $export = __webpack_require__(13);
+	var redefine = __webpack_require__(41);
+	var hide = __webpack_require__(17);
+	var Iterators = __webpack_require__(42);
+	var $iterCreate = __webpack_require__(43);
+	var setToStringTag = __webpack_require__(56);
+	var getPrototypeOf = __webpack_require__(6);
+	var ITERATOR = __webpack_require__(57)('iterator');
+	var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
+	var FF_ITERATOR = '@@iterator';
+	var KEYS = 'keys';
+	var VALUES = 'values';
 	
-	var returnThis = function(){ return this; };
+	var returnThis = function () { return this; };
 	
-	module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED){
+	module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
 	  $iterCreate(Constructor, NAME, next);
-	  var getMethod = function(kind){
-	    if(!BUGGY && kind in proto)return proto[kind];
-	    switch(kind){
-	      case KEYS: return function keys(){ return new Constructor(this, kind); };
-	      case VALUES: return function values(){ return new Constructor(this, kind); };
-	    } return function entries(){ return new Constructor(this, kind); };
+	  var getMethod = function (kind) {
+	    if (!BUGGY && kind in proto) return proto[kind];
+	    switch (kind) {
+	      case KEYS: return function keys() { return new Constructor(this, kind); };
+	      case VALUES: return function values() { return new Constructor(this, kind); };
+	    } return function entries() { return new Constructor(this, kind); };
 	  };
-	  var TAG        = NAME + ' Iterator'
-	    , DEF_VALUES = DEFAULT == VALUES
-	    , VALUES_BUG = false
-	    , proto      = Base.prototype
-	    , $native    = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
-	    , $default   = $native || getMethod(DEFAULT)
-	    , $entries   = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined
-	    , $anyNative = NAME == 'Array' ? proto.entries || $native : $native
-	    , methods, key, IteratorPrototype;
+	  var TAG = NAME + ' Iterator';
+	  var DEF_VALUES = DEFAULT == VALUES;
+	  var VALUES_BUG = false;
+	  var proto = Base.prototype;
+	  var $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT];
+	  var $default = $native || getMethod(DEFAULT);
+	  var $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined;
+	  var $anyNative = NAME == 'Array' ? proto.entries || $native : $native;
+	  var methods, key, IteratorPrototype;
 	  // Fix native
-	  if($anyNative){
-	    IteratorPrototype = getPrototypeOf($anyNative.call(new Base));
-	    if(IteratorPrototype !== Object.prototype){
+	  if ($anyNative) {
+	    IteratorPrototype = getPrototypeOf($anyNative.call(new Base()));
+	    if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
 	      // Set @@toStringTag to native iterators
 	      setToStringTag(IteratorPrototype, TAG, true);
 	      // fix for some old engines
-	      if(!LIBRARY && !has(IteratorPrototype, ITERATOR))hide(IteratorPrototype, ITERATOR, returnThis);
+	      if (!LIBRARY && typeof IteratorPrototype[ITERATOR] != 'function') hide(IteratorPrototype, ITERATOR, returnThis);
 	    }
 	  }
 	  // fix Array#{values, @@iterator}.name in V8 / FF
-	  if(DEF_VALUES && $native && $native.name !== VALUES){
+	  if (DEF_VALUES && $native && $native.name !== VALUES) {
 	    VALUES_BUG = true;
-	    $default = function values(){ return $native.call(this); };
+	    $default = function values() { return $native.call(this); };
 	  }
 	  // Define iterator
-	  if((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])){
+	  if ((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
 	    hide(proto, ITERATOR, $default);
 	  }
 	  // Plug for library
 	  Iterators[NAME] = $default;
-	  Iterators[TAG]  = returnThis;
-	  if(DEFAULT){
+	  Iterators[TAG] = returnThis;
+	  if (DEFAULT) {
 	    methods = {
-	      values:  DEF_VALUES ? $default : getMethod(VALUES),
-	      keys:    IS_SET     ? $default : getMethod(KEYS),
+	      values: DEF_VALUES ? $default : getMethod(VALUES),
+	      keys: IS_SET ? $default : getMethod(KEYS),
 	      entries: $entries
 	    };
-	    if(FORCED)for(key in methods){
-	      if(!(key in proto))redefine(proto, key, methods[key]);
+	    if (FORCED) for (key in methods) {
+	      if (!(key in proto)) redefine(proto, key, methods[key]);
 	    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
 	  }
 	  return methods;
 	};
 
-/***/ },
+
+/***/ }),
 /* 40 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = true;
 
-/***/ },
+
+/***/ }),
 /* 41 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(17);
 
-/***/ },
+
+/***/ }),
 /* 42 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = {};
 
-/***/ },
+
+/***/ }),
 /* 43 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var create         = __webpack_require__(44)
-	  , descriptor     = __webpack_require__(26)
-	  , setToStringTag = __webpack_require__(56)
-	  , IteratorPrototype = {};
+	var create = __webpack_require__(44);
+	var descriptor = __webpack_require__(26);
+	var setToStringTag = __webpack_require__(56);
+	var IteratorPrototype = {};
 	
 	// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-	__webpack_require__(17)(IteratorPrototype, __webpack_require__(57)('iterator'), function(){ return this; });
+	__webpack_require__(17)(IteratorPrototype, __webpack_require__(57)('iterator'), function () { return this; });
 	
-	module.exports = function(Constructor, NAME, next){
-	  Constructor.prototype = create(IteratorPrototype, {next: descriptor(1, next)});
+	module.exports = function (Constructor, NAME, next) {
+	  Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
 	  setToStringTag(Constructor, NAME + ' Iterator');
 	};
 
-/***/ },
+
+/***/ }),
 /* 44 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-	var anObject    = __webpack_require__(19)
-	  , dPs         = __webpack_require__(45)
-	  , enumBugKeys = __webpack_require__(54)
-	  , IE_PROTO    = __webpack_require__(8)('IE_PROTO')
-	  , Empty       = function(){ /* empty */ }
-	  , PROTOTYPE   = 'prototype';
+	var anObject = __webpack_require__(19);
+	var dPs = __webpack_require__(45);
+	var enumBugKeys = __webpack_require__(54);
+	var IE_PROTO = __webpack_require__(8)('IE_PROTO');
+	var Empty = function () { /* empty */ };
+	var PROTOTYPE = 'prototype';
 	
 	// Create object with fake `null` prototype: use iframe Object with cleared prototype
-	var createDict = function(){
+	var createDict = function () {
 	  // Thrash, waste and sodomy: IE GC bug
-	  var iframe = __webpack_require__(24)('iframe')
-	    , i      = enumBugKeys.length
-	    , lt     = '<'
-	    , gt     = '>'
-	    , iframeDocument;
+	  var iframe = __webpack_require__(24)('iframe');
+	  var i = enumBugKeys.length;
+	  var lt = '<';
+	  var gt = '>';
+	  var iframeDocument;
 	  iframe.style.display = 'none';
 	  __webpack_require__(55).appendChild(iframe);
 	  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
@@ -872,15 +910,15 @@
 	  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
 	  iframeDocument.close();
 	  createDict = iframeDocument.F;
-	  while(i--)delete createDict[PROTOTYPE][enumBugKeys[i]];
+	  while (i--) delete createDict[PROTOTYPE][enumBugKeys[i]];
 	  return createDict();
 	};
 	
-	module.exports = Object.create || function create(O, Properties){
+	module.exports = Object.create || function create(O, Properties) {
 	  var result;
-	  if(O !== null){
+	  if (O !== null) {
 	    Empty[PROTOTYPE] = anObject(O);
-	    result = new Empty;
+	    result = new Empty();
 	    Empty[PROTOTYPE] = null;
 	    // add "__proto__" for Object.getPrototypeOf polyfill
 	    result[IE_PROTO] = O;
@@ -889,228 +927,252 @@
 	};
 
 
-/***/ },
+/***/ }),
 /* 45 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	var dP       = __webpack_require__(18)
-	  , anObject = __webpack_require__(19)
-	  , getKeys  = __webpack_require__(46);
+	var dP = __webpack_require__(18);
+	var anObject = __webpack_require__(19);
+	var getKeys = __webpack_require__(46);
 	
-	module.exports = __webpack_require__(22) ? Object.defineProperties : function defineProperties(O, Properties){
+	module.exports = __webpack_require__(22) ? Object.defineProperties : function defineProperties(O, Properties) {
 	  anObject(O);
-	  var keys   = getKeys(Properties)
-	    , length = keys.length
-	    , i = 0
-	    , P;
-	  while(length > i)dP.f(O, P = keys[i++], Properties[P]);
+	  var keys = getKeys(Properties);
+	  var length = keys.length;
+	  var i = 0;
+	  var P;
+	  while (length > i) dP.f(O, P = keys[i++], Properties[P]);
 	  return O;
 	};
 
-/***/ },
+
+/***/ }),
 /* 46 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 / 15.2.3.14 Object.keys(O)
-	var $keys       = __webpack_require__(47)
-	  , enumBugKeys = __webpack_require__(54);
+	var $keys = __webpack_require__(47);
+	var enumBugKeys = __webpack_require__(54);
 	
-	module.exports = Object.keys || function keys(O){
+	module.exports = Object.keys || function keys(O) {
 	  return $keys(O, enumBugKeys);
 	};
 
-/***/ },
-/* 47 */
-/***/ function(module, exports, __webpack_require__) {
 
-	var has          = __webpack_require__(7)
-	  , toIObject    = __webpack_require__(48)
-	  , arrayIndexOf = __webpack_require__(51)(false)
-	  , IE_PROTO     = __webpack_require__(8)('IE_PROTO');
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var has = __webpack_require__(7);
+	var toIObject = __webpack_require__(48);
+	var arrayIndexOf = __webpack_require__(51)(false);
+	var IE_PROTO = __webpack_require__(8)('IE_PROTO');
 	
-	module.exports = function(object, names){
-	  var O      = toIObject(object)
-	    , i      = 0
-	    , result = []
-	    , key;
-	  for(key in O)if(key != IE_PROTO)has(O, key) && result.push(key);
+	module.exports = function (object, names) {
+	  var O = toIObject(object);
+	  var i = 0;
+	  var result = [];
+	  var key;
+	  for (key in O) if (key != IE_PROTO) has(O, key) && result.push(key);
 	  // Don't enum bug & hidden keys
-	  while(names.length > i)if(has(O, key = names[i++])){
+	  while (names.length > i) if (has(O, key = names[i++])) {
 	    ~arrayIndexOf(result, key) || result.push(key);
 	  }
 	  return result;
 	};
 
-/***/ },
+
+/***/ }),
 /* 48 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// to indexed object, toObject with fallback for non-array-like ES3 strings
-	var IObject = __webpack_require__(49)
-	  , defined = __webpack_require__(5);
-	module.exports = function(it){
+	var IObject = __webpack_require__(49);
+	var defined = __webpack_require__(5);
+	module.exports = function (it) {
 	  return IObject(defined(it));
 	};
 
-/***/ },
+
+/***/ }),
 /* 49 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// fallback for non-array-like ES3 and non-enumerable old V8 strings
 	var cof = __webpack_require__(50);
-	module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
+	// eslint-disable-next-line no-prototype-builtins
+	module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 	  return cof(it) == 'String' ? it.split('') : Object(it);
 	};
 
-/***/ },
+
+/***/ }),
 /* 50 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	var toString = {}.toString;
 	
-	module.exports = function(it){
+	module.exports = function (it) {
 	  return toString.call(it).slice(8, -1);
 	};
 
-/***/ },
+
+/***/ }),
 /* 51 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// false -> Array#indexOf
 	// true  -> Array#includes
-	var toIObject = __webpack_require__(48)
-	  , toLength  = __webpack_require__(52)
-	  , toIndex   = __webpack_require__(53);
-	module.exports = function(IS_INCLUDES){
-	  return function($this, el, fromIndex){
-	    var O      = toIObject($this)
-	      , length = toLength(O.length)
-	      , index  = toIndex(fromIndex, length)
-	      , value;
+	var toIObject = __webpack_require__(48);
+	var toLength = __webpack_require__(52);
+	var toAbsoluteIndex = __webpack_require__(53);
+	module.exports = function (IS_INCLUDES) {
+	  return function ($this, el, fromIndex) {
+	    var O = toIObject($this);
+	    var length = toLength(O.length);
+	    var index = toAbsoluteIndex(fromIndex, length);
+	    var value;
 	    // Array#includes uses SameValueZero equality algorithm
-	    if(IS_INCLUDES && el != el)while(length > index){
+	    // eslint-disable-next-line no-self-compare
+	    if (IS_INCLUDES && el != el) while (length > index) {
 	      value = O[index++];
-	      if(value != value)return true;
-	    // Array#toIndex ignores holes, Array#includes - not
-	    } else for(;length > index; index++)if(IS_INCLUDES || index in O){
-	      if(O[index] === el)return IS_INCLUDES || index || 0;
+	      // eslint-disable-next-line no-self-compare
+	      if (value != value) return true;
+	    // Array#indexOf ignores holes, Array#includes - not
+	    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
+	      if (O[index] === el) return IS_INCLUDES || index || 0;
 	    } return !IS_INCLUDES && -1;
 	  };
 	};
 
-/***/ },
+
+/***/ }),
 /* 52 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 7.1.15 ToLength
-	var toInteger = __webpack_require__(38)
-	  , min       = Math.min;
-	module.exports = function(it){
+	var toInteger = __webpack_require__(38);
+	var min = Math.min;
+	module.exports = function (it) {
 	  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 	};
 
-/***/ },
-/* 53 */
-/***/ function(module, exports, __webpack_require__) {
 
-	var toInteger = __webpack_require__(38)
-	  , max       = Math.max
-	  , min       = Math.min;
-	module.exports = function(index, length){
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var toInteger = __webpack_require__(38);
+	var max = Math.max;
+	var min = Math.min;
+	module.exports = function (index, length) {
 	  index = toInteger(index);
 	  return index < 0 ? max(index + length, 0) : min(index, length);
 	};
 
-/***/ },
+
+/***/ }),
 /* 54 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	// IE 8- don't enum bug keys
 	module.exports = (
 	  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 	).split(',');
 
-/***/ },
+
+/***/ }),
 /* 55 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(10).document && document.documentElement;
+	var document = __webpack_require__(10).document;
+	module.exports = document && document.documentElement;
 
-/***/ },
+
+/***/ }),
 /* 56 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	var def = __webpack_require__(18).f
-	  , has = __webpack_require__(7)
-	  , TAG = __webpack_require__(57)('toStringTag');
+	var def = __webpack_require__(18).f;
+	var has = __webpack_require__(7);
+	var TAG = __webpack_require__(57)('toStringTag');
 	
-	module.exports = function(it, tag, stat){
-	  if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
+	module.exports = function (it, tag, stat) {
+	  if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
 	};
 
-/***/ },
-/* 57 */
-/***/ function(module, exports, __webpack_require__) {
 
-	var store      = __webpack_require__(9)('wks')
-	  , uid        = __webpack_require__(11)
-	  , Symbol     = __webpack_require__(10).Symbol
-	  , USE_SYMBOL = typeof Symbol == 'function';
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var store = __webpack_require__(9)('wks');
+	var uid = __webpack_require__(11);
+	var Symbol = __webpack_require__(10).Symbol;
+	var USE_SYMBOL = typeof Symbol == 'function';
 	
-	var $exports = module.exports = function(name){
+	var $exports = module.exports = function (name) {
 	  return store[name] || (store[name] =
 	    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
 	};
 	
 	$exports.store = store;
 
-/***/ },
+
+/***/ }),
 /* 58 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(59);
-	var global        = __webpack_require__(10)
-	  , hide          = __webpack_require__(17)
-	  , Iterators     = __webpack_require__(42)
-	  , TO_STRING_TAG = __webpack_require__(57)('toStringTag');
+	var global = __webpack_require__(10);
+	var hide = __webpack_require__(17);
+	var Iterators = __webpack_require__(42);
+	var TO_STRING_TAG = __webpack_require__(57)('toStringTag');
 	
-	for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList', 'CSSRuleList'], i = 0; i < 5; i++){
-	  var NAME       = collections[i]
-	    , Collection = global[NAME]
-	    , proto      = Collection && Collection.prototype;
-	  if(proto && !proto[TO_STRING_TAG])hide(proto, TO_STRING_TAG, NAME);
+	var DOMIterables = ('CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,' +
+	  'DOMTokenList,DataTransferItemList,FileList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,' +
+	  'MediaList,MimeTypeArray,NamedNodeMap,NodeList,PaintRequestList,Plugin,PluginArray,SVGLengthList,SVGNumberList,' +
+	  'SVGPathSegList,SVGPointList,SVGStringList,SVGTransformList,SourceBufferList,StyleSheetList,TextTrackCueList,' +
+	  'TextTrackList,TouchList').split(',');
+	
+	for (var i = 0; i < DOMIterables.length; i++) {
+	  var NAME = DOMIterables[i];
+	  var Collection = global[NAME];
+	  var proto = Collection && Collection.prototype;
+	  if (proto && !proto[TO_STRING_TAG]) hide(proto, TO_STRING_TAG, NAME);
 	  Iterators[NAME] = Iterators.Array;
 	}
 
-/***/ },
+
+/***/ }),
 /* 59 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var addToUnscopables = __webpack_require__(60)
-	  , step             = __webpack_require__(61)
-	  , Iterators        = __webpack_require__(42)
-	  , toIObject        = __webpack_require__(48);
+	var addToUnscopables = __webpack_require__(60);
+	var step = __webpack_require__(61);
+	var Iterators = __webpack_require__(42);
+	var toIObject = __webpack_require__(48);
 	
 	// 22.1.3.4 Array.prototype.entries()
 	// 22.1.3.13 Array.prototype.keys()
 	// 22.1.3.29 Array.prototype.values()
 	// 22.1.3.30 Array.prototype[@@iterator]()
-	module.exports = __webpack_require__(39)(Array, 'Array', function(iterated, kind){
+	module.exports = __webpack_require__(39)(Array, 'Array', function (iterated, kind) {
 	  this._t = toIObject(iterated); // target
 	  this._i = 0;                   // next index
 	  this._k = kind;                // kind
 	// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
-	}, function(){
-	  var O     = this._t
-	    , kind  = this._k
-	    , index = this._i++;
-	  if(!O || index >= O.length){
+	}, function () {
+	  var O = this._t;
+	  var kind = this._k;
+	  var index = this._i++;
+	  if (!O || index >= O.length) {
 	    this._t = undefined;
 	    return step(1);
 	  }
-	  if(kind == 'keys'  )return step(0, index);
-	  if(kind == 'values')return step(0, O[index]);
+	  if (kind == 'keys') return step(0, index);
+	  if (kind == 'values') return step(0, O[index]);
 	  return step(0, [index, O[index]]);
 	}, 'values');
 	
@@ -1121,231 +1183,236 @@
 	addToUnscopables('values');
 	addToUnscopables('entries');
 
-/***/ },
+
+/***/ }),
 /* 60 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
-	module.exports = function(){ /* empty */ };
+	module.exports = function () { /* empty */ };
 
-/***/ },
+
+/***/ }),
 /* 61 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
-	module.exports = function(done, value){
-	  return {value: value, done: !!done};
+	module.exports = function (done, value) {
+	  return { value: value, done: !!done };
 	};
 
-/***/ },
+
+/***/ }),
 /* 62 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	exports.f = __webpack_require__(57);
 
-/***/ },
+
+/***/ }),
 /* 63 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = { "default": __webpack_require__(64), __esModule: true };
 
-/***/ },
+/***/ }),
 /* 64 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(65);
+	__webpack_require__(75);
 	__webpack_require__(76);
 	__webpack_require__(77);
-	__webpack_require__(78);
 	module.exports = __webpack_require__(14).Symbol;
 
-/***/ },
+
+/***/ }),
 /* 65 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// ECMAScript 6 symbols shim
-	var global         = __webpack_require__(10)
-	  , has            = __webpack_require__(7)
-	  , DESCRIPTORS    = __webpack_require__(22)
-	  , $export        = __webpack_require__(13)
-	  , redefine       = __webpack_require__(41)
-	  , META           = __webpack_require__(66).KEY
-	  , $fails         = __webpack_require__(23)
-	  , shared         = __webpack_require__(9)
-	  , setToStringTag = __webpack_require__(56)
-	  , uid            = __webpack_require__(11)
-	  , wks            = __webpack_require__(57)
-	  , wksExt         = __webpack_require__(62)
-	  , wksDefine      = __webpack_require__(67)
-	  , keyOf          = __webpack_require__(68)
-	  , enumKeys       = __webpack_require__(69)
-	  , isArray        = __webpack_require__(72)
-	  , anObject       = __webpack_require__(19)
-	  , toIObject      = __webpack_require__(48)
-	  , toPrimitive    = __webpack_require__(25)
-	  , createDesc     = __webpack_require__(26)
-	  , _create        = __webpack_require__(44)
-	  , gOPNExt        = __webpack_require__(73)
-	  , $GOPD          = __webpack_require__(75)
-	  , $DP            = __webpack_require__(18)
-	  , $keys          = __webpack_require__(46)
-	  , gOPD           = $GOPD.f
-	  , dP             = $DP.f
-	  , gOPN           = gOPNExt.f
-	  , $Symbol        = global.Symbol
-	  , $JSON          = global.JSON
-	  , _stringify     = $JSON && $JSON.stringify
-	  , PROTOTYPE      = 'prototype'
-	  , HIDDEN         = wks('_hidden')
-	  , TO_PRIMITIVE   = wks('toPrimitive')
-	  , isEnum         = {}.propertyIsEnumerable
-	  , SymbolRegistry = shared('symbol-registry')
-	  , AllSymbols     = shared('symbols')
-	  , OPSymbols      = shared('op-symbols')
-	  , ObjectProto    = Object[PROTOTYPE]
-	  , USE_NATIVE     = typeof $Symbol == 'function'
-	  , QObject        = global.QObject;
+	var global = __webpack_require__(10);
+	var has = __webpack_require__(7);
+	var DESCRIPTORS = __webpack_require__(22);
+	var $export = __webpack_require__(13);
+	var redefine = __webpack_require__(41);
+	var META = __webpack_require__(66).KEY;
+	var $fails = __webpack_require__(23);
+	var shared = __webpack_require__(9);
+	var setToStringTag = __webpack_require__(56);
+	var uid = __webpack_require__(11);
+	var wks = __webpack_require__(57);
+	var wksExt = __webpack_require__(62);
+	var wksDefine = __webpack_require__(67);
+	var enumKeys = __webpack_require__(68);
+	var isArray = __webpack_require__(71);
+	var anObject = __webpack_require__(19);
+	var isObject = __webpack_require__(20);
+	var toIObject = __webpack_require__(48);
+	var toPrimitive = __webpack_require__(25);
+	var createDesc = __webpack_require__(26);
+	var _create = __webpack_require__(44);
+	var gOPNExt = __webpack_require__(72);
+	var $GOPD = __webpack_require__(74);
+	var $DP = __webpack_require__(18);
+	var $keys = __webpack_require__(46);
+	var gOPD = $GOPD.f;
+	var dP = $DP.f;
+	var gOPN = gOPNExt.f;
+	var $Symbol = global.Symbol;
+	var $JSON = global.JSON;
+	var _stringify = $JSON && $JSON.stringify;
+	var PROTOTYPE = 'prototype';
+	var HIDDEN = wks('_hidden');
+	var TO_PRIMITIVE = wks('toPrimitive');
+	var isEnum = {}.propertyIsEnumerable;
+	var SymbolRegistry = shared('symbol-registry');
+	var AllSymbols = shared('symbols');
+	var OPSymbols = shared('op-symbols');
+	var ObjectProto = Object[PROTOTYPE];
+	var USE_NATIVE = typeof $Symbol == 'function';
+	var QObject = global.QObject;
 	// Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
 	var setter = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
 	
 	// fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
-	var setSymbolDesc = DESCRIPTORS && $fails(function(){
+	var setSymbolDesc = DESCRIPTORS && $fails(function () {
 	  return _create(dP({}, 'a', {
-	    get: function(){ return dP(this, 'a', {value: 7}).a; }
+	    get: function () { return dP(this, 'a', { value: 7 }).a; }
 	  })).a != 7;
-	}) ? function(it, key, D){
+	}) ? function (it, key, D) {
 	  var protoDesc = gOPD(ObjectProto, key);
-	  if(protoDesc)delete ObjectProto[key];
+	  if (protoDesc) delete ObjectProto[key];
 	  dP(it, key, D);
-	  if(protoDesc && it !== ObjectProto)dP(ObjectProto, key, protoDesc);
+	  if (protoDesc && it !== ObjectProto) dP(ObjectProto, key, protoDesc);
 	} : dP;
 	
-	var wrap = function(tag){
+	var wrap = function (tag) {
 	  var sym = AllSymbols[tag] = _create($Symbol[PROTOTYPE]);
 	  sym._k = tag;
 	  return sym;
 	};
 	
-	var isSymbol = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function(it){
+	var isSymbol = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function (it) {
 	  return typeof it == 'symbol';
-	} : function(it){
+	} : function (it) {
 	  return it instanceof $Symbol;
 	};
 	
-	var $defineProperty = function defineProperty(it, key, D){
-	  if(it === ObjectProto)$defineProperty(OPSymbols, key, D);
+	var $defineProperty = function defineProperty(it, key, D) {
+	  if (it === ObjectProto) $defineProperty(OPSymbols, key, D);
 	  anObject(it);
 	  key = toPrimitive(key, true);
 	  anObject(D);
-	  if(has(AllSymbols, key)){
-	    if(!D.enumerable){
-	      if(!has(it, HIDDEN))dP(it, HIDDEN, createDesc(1, {}));
+	  if (has(AllSymbols, key)) {
+	    if (!D.enumerable) {
+	      if (!has(it, HIDDEN)) dP(it, HIDDEN, createDesc(1, {}));
 	      it[HIDDEN][key] = true;
 	    } else {
-	      if(has(it, HIDDEN) && it[HIDDEN][key])it[HIDDEN][key] = false;
-	      D = _create(D, {enumerable: createDesc(0, false)});
+	      if (has(it, HIDDEN) && it[HIDDEN][key]) it[HIDDEN][key] = false;
+	      D = _create(D, { enumerable: createDesc(0, false) });
 	    } return setSymbolDesc(it, key, D);
 	  } return dP(it, key, D);
 	};
-	var $defineProperties = function defineProperties(it, P){
+	var $defineProperties = function defineProperties(it, P) {
 	  anObject(it);
-	  var keys = enumKeys(P = toIObject(P))
-	    , i    = 0
-	    , l = keys.length
-	    , key;
-	  while(l > i)$defineProperty(it, key = keys[i++], P[key]);
+	  var keys = enumKeys(P = toIObject(P));
+	  var i = 0;
+	  var l = keys.length;
+	  var key;
+	  while (l > i) $defineProperty(it, key = keys[i++], P[key]);
 	  return it;
 	};
-	var $create = function create(it, P){
+	var $create = function create(it, P) {
 	  return P === undefined ? _create(it) : $defineProperties(_create(it), P);
 	};
-	var $propertyIsEnumerable = function propertyIsEnumerable(key){
+	var $propertyIsEnumerable = function propertyIsEnumerable(key) {
 	  var E = isEnum.call(this, key = toPrimitive(key, true));
-	  if(this === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key))return false;
+	  if (this === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key)) return false;
 	  return E || !has(this, key) || !has(AllSymbols, key) || has(this, HIDDEN) && this[HIDDEN][key] ? E : true;
 	};
-	var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key){
-	  it  = toIObject(it);
+	var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key) {
+	  it = toIObject(it);
 	  key = toPrimitive(key, true);
-	  if(it === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key))return;
+	  if (it === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key)) return;
 	  var D = gOPD(it, key);
-	  if(D && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key]))D.enumerable = true;
+	  if (D && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key])) D.enumerable = true;
 	  return D;
 	};
-	var $getOwnPropertyNames = function getOwnPropertyNames(it){
-	  var names  = gOPN(toIObject(it))
-	    , result = []
-	    , i      = 0
-	    , key;
-	  while(names.length > i){
-	    if(!has(AllSymbols, key = names[i++]) && key != HIDDEN && key != META)result.push(key);
+	var $getOwnPropertyNames = function getOwnPropertyNames(it) {
+	  var names = gOPN(toIObject(it));
+	  var result = [];
+	  var i = 0;
+	  var key;
+	  while (names.length > i) {
+	    if (!has(AllSymbols, key = names[i++]) && key != HIDDEN && key != META) result.push(key);
 	  } return result;
 	};
-	var $getOwnPropertySymbols = function getOwnPropertySymbols(it){
-	  var IS_OP  = it === ObjectProto
-	    , names  = gOPN(IS_OP ? OPSymbols : toIObject(it))
-	    , result = []
-	    , i      = 0
-	    , key;
-	  while(names.length > i){
-	    if(has(AllSymbols, key = names[i++]) && (IS_OP ? has(ObjectProto, key) : true))result.push(AllSymbols[key]);
+	var $getOwnPropertySymbols = function getOwnPropertySymbols(it) {
+	  var IS_OP = it === ObjectProto;
+	  var names = gOPN(IS_OP ? OPSymbols : toIObject(it));
+	  var result = [];
+	  var i = 0;
+	  var key;
+	  while (names.length > i) {
+	    if (has(AllSymbols, key = names[i++]) && (IS_OP ? has(ObjectProto, key) : true)) result.push(AllSymbols[key]);
 	  } return result;
 	};
 	
 	// 19.4.1.1 Symbol([description])
-	if(!USE_NATIVE){
-	  $Symbol = function Symbol(){
-	    if(this instanceof $Symbol)throw TypeError('Symbol is not a constructor!');
+	if (!USE_NATIVE) {
+	  $Symbol = function Symbol() {
+	    if (this instanceof $Symbol) throw TypeError('Symbol is not a constructor!');
 	    var tag = uid(arguments.length > 0 ? arguments[0] : undefined);
-	    var $set = function(value){
-	      if(this === ObjectProto)$set.call(OPSymbols, value);
-	      if(has(this, HIDDEN) && has(this[HIDDEN], tag))this[HIDDEN][tag] = false;
+	    var $set = function (value) {
+	      if (this === ObjectProto) $set.call(OPSymbols, value);
+	      if (has(this, HIDDEN) && has(this[HIDDEN], tag)) this[HIDDEN][tag] = false;
 	      setSymbolDesc(this, tag, createDesc(1, value));
 	    };
-	    if(DESCRIPTORS && setter)setSymbolDesc(ObjectProto, tag, {configurable: true, set: $set});
+	    if (DESCRIPTORS && setter) setSymbolDesc(ObjectProto, tag, { configurable: true, set: $set });
 	    return wrap(tag);
 	  };
-	  redefine($Symbol[PROTOTYPE], 'toString', function toString(){
+	  redefine($Symbol[PROTOTYPE], 'toString', function toString() {
 	    return this._k;
 	  });
 	
 	  $GOPD.f = $getOwnPropertyDescriptor;
-	  $DP.f   = $defineProperty;
-	  __webpack_require__(74).f = gOPNExt.f = $getOwnPropertyNames;
-	  __webpack_require__(71).f  = $propertyIsEnumerable;
-	  __webpack_require__(70).f = $getOwnPropertySymbols;
+	  $DP.f = $defineProperty;
+	  __webpack_require__(73).f = gOPNExt.f = $getOwnPropertyNames;
+	  __webpack_require__(70).f = $propertyIsEnumerable;
+	  __webpack_require__(69).f = $getOwnPropertySymbols;
 	
-	  if(DESCRIPTORS && !__webpack_require__(40)){
+	  if (DESCRIPTORS && !__webpack_require__(40)) {
 	    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
 	  }
 	
-	  wksExt.f = function(name){
+	  wksExt.f = function (name) {
 	    return wrap(wks(name));
-	  }
+	  };
 	}
 	
-	$export($export.G + $export.W + $export.F * !USE_NATIVE, {Symbol: $Symbol});
+	$export($export.G + $export.W + $export.F * !USE_NATIVE, { Symbol: $Symbol });
 	
-	for(var symbols = (
+	for (var es6Symbols = (
 	  // 19.4.2.2, 19.4.2.3, 19.4.2.4, 19.4.2.6, 19.4.2.8, 19.4.2.9, 19.4.2.10, 19.4.2.11, 19.4.2.12, 19.4.2.13, 19.4.2.14
 	  'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'
-	).split(','), i = 0; symbols.length > i; )wks(symbols[i++]);
+	).split(','), j = 0; es6Symbols.length > j;)wks(es6Symbols[j++]);
 	
-	for(var symbols = $keys(wks.store), i = 0; symbols.length > i; )wksDefine(symbols[i++]);
+	for (var wellKnownSymbols = $keys(wks.store), k = 0; wellKnownSymbols.length > k;) wksDefine(wellKnownSymbols[k++]);
 	
 	$export($export.S + $export.F * !USE_NATIVE, 'Symbol', {
 	  // 19.4.2.1 Symbol.for(key)
-	  'for': function(key){
+	  'for': function (key) {
 	    return has(SymbolRegistry, key += '')
 	      ? SymbolRegistry[key]
 	      : SymbolRegistry[key] = $Symbol(key);
 	  },
 	  // 19.4.2.5 Symbol.keyFor(sym)
-	  keyFor: function keyFor(key){
-	    if(isSymbol(key))return keyOf(SymbolRegistry, key);
-	    throw TypeError(key + ' is not a symbol!');
+	  keyFor: function keyFor(sym) {
+	    if (!isSymbol(sym)) throw TypeError(sym + ' is not a symbol!');
+	    for (var key in SymbolRegistry) if (SymbolRegistry[key] === sym) return key;
 	  },
-	  useSetter: function(){ setter = true; },
-	  useSimple: function(){ setter = false; }
+	  useSetter: function () { setter = true; },
+	  useSimple: function () { setter = false; }
 	});
 	
 	$export($export.S + $export.F * !USE_NATIVE, 'Object', {
@@ -1364,24 +1431,23 @@
 	});
 	
 	// 24.3.2 JSON.stringify(value [, replacer [, space]])
-	$JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function(){
+	$JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function () {
 	  var S = $Symbol();
 	  // MS Edge converts symbol values to JSON as {}
 	  // WebKit converts symbol values to JSON as null
 	  // V8 throws on boxed symbols
-	  return _stringify([S]) != '[null]' || _stringify({a: S}) != '{}' || _stringify(Object(S)) != '{}';
+	  return _stringify([S]) != '[null]' || _stringify({ a: S }) != '{}' || _stringify(Object(S)) != '{}';
 	})), 'JSON', {
-	  stringify: function stringify(it){
-	    if(it === undefined || isSymbol(it))return; // IE8 returns string on undefined
-	    var args = [it]
-	      , i    = 1
-	      , replacer, $replacer;
-	    while(arguments.length > i)args.push(arguments[i++]);
-	    replacer = args[1];
-	    if(typeof replacer == 'function')$replacer = replacer;
-	    if($replacer || !isArray(replacer))replacer = function(key, value){
-	      if($replacer)value = $replacer.call(this, key, value);
-	      if(!isSymbol(value))return value;
+	  stringify: function stringify(it) {
+	    var args = [it];
+	    var i = 1;
+	    var replacer, $replacer;
+	    while (arguments.length > i) args.push(arguments[i++]);
+	    $replacer = replacer = args[1];
+	    if (!isObject(replacer) && it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
+	    if (!isArray(replacer)) replacer = function (key, value) {
+	      if (typeof $replacer == 'function') value = $replacer.call(this, key, value);
+	      if (!isSymbol(value)) return value;
 	    };
 	    args[1] = replacer;
 	    return _stringify.apply($JSON, args);
@@ -1397,224 +1463,220 @@
 	// 24.3.3 JSON[@@toStringTag]
 	setToStringTag(global.JSON, 'JSON', true);
 
-/***/ },
-/* 66 */
-/***/ function(module, exports, __webpack_require__) {
 
-	var META     = __webpack_require__(11)('meta')
-	  , isObject = __webpack_require__(20)
-	  , has      = __webpack_require__(7)
-	  , setDesc  = __webpack_require__(18).f
-	  , id       = 0;
-	var isExtensible = Object.isExtensible || function(){
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var META = __webpack_require__(11)('meta');
+	var isObject = __webpack_require__(20);
+	var has = __webpack_require__(7);
+	var setDesc = __webpack_require__(18).f;
+	var id = 0;
+	var isExtensible = Object.isExtensible || function () {
 	  return true;
 	};
-	var FREEZE = !__webpack_require__(23)(function(){
+	var FREEZE = !__webpack_require__(23)(function () {
 	  return isExtensible(Object.preventExtensions({}));
 	});
-	var setMeta = function(it){
-	  setDesc(it, META, {value: {
+	var setMeta = function (it) {
+	  setDesc(it, META, { value: {
 	    i: 'O' + ++id, // object ID
 	    w: {}          // weak collections IDs
-	  }});
+	  } });
 	};
-	var fastKey = function(it, create){
+	var fastKey = function (it, create) {
 	  // return primitive with prefix
-	  if(!isObject(it))return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
-	  if(!has(it, META)){
+	  if (!isObject(it)) return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
+	  if (!has(it, META)) {
 	    // can't set metadata to uncaught frozen object
-	    if(!isExtensible(it))return 'F';
+	    if (!isExtensible(it)) return 'F';
 	    // not necessary to add metadata
-	    if(!create)return 'E';
+	    if (!create) return 'E';
 	    // add missing metadata
 	    setMeta(it);
 	  // return object ID
 	  } return it[META].i;
 	};
-	var getWeak = function(it, create){
-	  if(!has(it, META)){
+	var getWeak = function (it, create) {
+	  if (!has(it, META)) {
 	    // can't set metadata to uncaught frozen object
-	    if(!isExtensible(it))return true;
+	    if (!isExtensible(it)) return true;
 	    // not necessary to add metadata
-	    if(!create)return false;
+	    if (!create) return false;
 	    // add missing metadata
 	    setMeta(it);
 	  // return hash weak collections IDs
 	  } return it[META].w;
 	};
 	// add metadata on freeze-family methods calling
-	var onFreeze = function(it){
-	  if(FREEZE && meta.NEED && isExtensible(it) && !has(it, META))setMeta(it);
+	var onFreeze = function (it) {
+	  if (FREEZE && meta.NEED && isExtensible(it) && !has(it, META)) setMeta(it);
 	  return it;
 	};
 	var meta = module.exports = {
-	  KEY:      META,
-	  NEED:     false,
-	  fastKey:  fastKey,
-	  getWeak:  getWeak,
+	  KEY: META,
+	  NEED: false,
+	  fastKey: fastKey,
+	  getWeak: getWeak,
 	  onFreeze: onFreeze
 	};
 
-/***/ },
+
+/***/ }),
 /* 67 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	var global         = __webpack_require__(10)
-	  , core           = __webpack_require__(14)
-	  , LIBRARY        = __webpack_require__(40)
-	  , wksExt         = __webpack_require__(62)
-	  , defineProperty = __webpack_require__(18).f;
-	module.exports = function(name){
+	var global = __webpack_require__(10);
+	var core = __webpack_require__(14);
+	var LIBRARY = __webpack_require__(40);
+	var wksExt = __webpack_require__(62);
+	var defineProperty = __webpack_require__(18).f;
+	module.exports = function (name) {
 	  var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
-	  if(name.charAt(0) != '_' && !(name in $Symbol))defineProperty($Symbol, name, {value: wksExt.f(name)});
+	  if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: wksExt.f(name) });
 	};
 
-/***/ },
+
+/***/ }),
 /* 68 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var getKeys   = __webpack_require__(46)
-	  , toIObject = __webpack_require__(48);
-	module.exports = function(object, el){
-	  var O      = toIObject(object)
-	    , keys   = getKeys(O)
-	    , length = keys.length
-	    , index  = 0
-	    , key;
-	  while(length > index)if(O[key = keys[index++]] === el)return key;
-	};
-
-/***/ },
-/* 69 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// all enumerable object keys, includes symbols
-	var getKeys = __webpack_require__(46)
-	  , gOPS    = __webpack_require__(70)
-	  , pIE     = __webpack_require__(71);
-	module.exports = function(it){
-	  var result     = getKeys(it)
-	    , getSymbols = gOPS.f;
-	  if(getSymbols){
-	    var symbols = getSymbols(it)
-	      , isEnum  = pIE.f
-	      , i       = 0
-	      , key;
-	    while(symbols.length > i)if(isEnum.call(it, key = symbols[i++]))result.push(key);
+	var getKeys = __webpack_require__(46);
+	var gOPS = __webpack_require__(69);
+	var pIE = __webpack_require__(70);
+	module.exports = function (it) {
+	  var result = getKeys(it);
+	  var getSymbols = gOPS.f;
+	  if (getSymbols) {
+	    var symbols = getSymbols(it);
+	    var isEnum = pIE.f;
+	    var i = 0;
+	    var key;
+	    while (symbols.length > i) if (isEnum.call(it, key = symbols[i++])) result.push(key);
 	  } return result;
 	};
 
-/***/ },
-/* 70 */
-/***/ function(module, exports) {
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports) {
 
 	exports.f = Object.getOwnPropertySymbols;
 
-/***/ },
-/* 71 */
-/***/ function(module, exports) {
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports) {
 
 	exports.f = {}.propertyIsEnumerable;
 
-/***/ },
-/* 72 */
-/***/ function(module, exports, __webpack_require__) {
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 7.2.2 IsArray(argument)
 	var cof = __webpack_require__(50);
-	module.exports = Array.isArray || function isArray(arg){
+	module.exports = Array.isArray || function isArray(arg) {
 	  return cof(arg) == 'Array';
 	};
 
-/***/ },
-/* 73 */
-/***/ function(module, exports, __webpack_require__) {
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-	var toIObject = __webpack_require__(48)
-	  , gOPN      = __webpack_require__(74).f
-	  , toString  = {}.toString;
+	var toIObject = __webpack_require__(48);
+	var gOPN = __webpack_require__(73).f;
+	var toString = {}.toString;
 	
 	var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
 	  ? Object.getOwnPropertyNames(window) : [];
 	
-	var getWindowNames = function(it){
+	var getWindowNames = function (it) {
 	  try {
 	    return gOPN(it);
-	  } catch(e){
+	  } catch (e) {
 	    return windowNames.slice();
 	  }
 	};
 	
-	module.exports.f = function getOwnPropertyNames(it){
+	module.exports.f = function getOwnPropertyNames(it) {
 	  return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
 	};
 
 
-/***/ },
-/* 74 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-	var $keys      = __webpack_require__(47)
-	  , hiddenKeys = __webpack_require__(54).concat('length', 'prototype');
+	var $keys = __webpack_require__(47);
+	var hiddenKeys = __webpack_require__(54).concat('length', 'prototype');
 	
-	exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
+	exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 	  return $keys(O, hiddenKeys);
 	};
 
-/***/ },
-/* 75 */
-/***/ function(module, exports, __webpack_require__) {
 
-	var pIE            = __webpack_require__(71)
-	  , createDesc     = __webpack_require__(26)
-	  , toIObject      = __webpack_require__(48)
-	  , toPrimitive    = __webpack_require__(25)
-	  , has            = __webpack_require__(7)
-	  , IE8_DOM_DEFINE = __webpack_require__(21)
-	  , gOPD           = Object.getOwnPropertyDescriptor;
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var pIE = __webpack_require__(70);
+	var createDesc = __webpack_require__(26);
+	var toIObject = __webpack_require__(48);
+	var toPrimitive = __webpack_require__(25);
+	var has = __webpack_require__(7);
+	var IE8_DOM_DEFINE = __webpack_require__(21);
+	var gOPD = Object.getOwnPropertyDescriptor;
 	
-	exports.f = __webpack_require__(22) ? gOPD : function getOwnPropertyDescriptor(O, P){
+	exports.f = __webpack_require__(22) ? gOPD : function getOwnPropertyDescriptor(O, P) {
 	  O = toIObject(O);
 	  P = toPrimitive(P, true);
-	  if(IE8_DOM_DEFINE)try {
+	  if (IE8_DOM_DEFINE) try {
 	    return gOPD(O, P);
-	  } catch(e){ /* empty */ }
-	  if(has(O, P))return createDesc(!pIE.f.call(O, P), O[P]);
+	  } catch (e) { /* empty */ }
+	  if (has(O, P)) return createDesc(!pIE.f.call(O, P), O[P]);
 	};
 
-/***/ },
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
 /* 76 */
-/***/ function(module, exports) {
-
-
-
-/***/ },
-/* 77 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(67)('asyncIterator');
 
-/***/ },
-/* 78 */
-/***/ function(module, exports, __webpack_require__) {
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(67)('observable');
 
-/***/ },
-/* 79 */
-/***/ function(module, exports, __webpack_require__) {
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	exports.__esModule = true;
 	
-	var _setPrototypeOf = __webpack_require__(80);
+	var _setPrototypeOf = __webpack_require__(79);
 	
 	var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
 	
-	var _create = __webpack_require__(84);
+	var _create = __webpack_require__(83);
 	
 	var _create2 = _interopRequireDefault(_create);
 	
@@ -1640,50 +1702,52 @@
 	  if (superClass) _setPrototypeOf2.default ? (0, _setPrototypeOf2.default)(subClass, superClass) : subClass.__proto__ = superClass;
 	};
 
-/***/ },
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(80), __esModule: true };
+
+/***/ }),
 /* 80 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(81), __esModule: true };
-
-/***/ },
-/* 81 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(82);
+	__webpack_require__(81);
 	module.exports = __webpack_require__(14).Object.setPrototypeOf;
 
-/***/ },
-/* 82 */
-/***/ function(module, exports, __webpack_require__) {
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.3.19 Object.setPrototypeOf(O, proto)
 	var $export = __webpack_require__(13);
-	$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(83).set});
+	$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(82).set });
 
-/***/ },
-/* 83 */
-/***/ function(module, exports, __webpack_require__) {
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	// Works with __proto__ only. Old v8 can't work with null proto objects.
 	/* eslint-disable no-proto */
-	var isObject = __webpack_require__(20)
-	  , anObject = __webpack_require__(19);
-	var check = function(O, proto){
+	var isObject = __webpack_require__(20);
+	var anObject = __webpack_require__(19);
+	var check = function (O, proto) {
 	  anObject(O);
-	  if(!isObject(proto) && proto !== null)throw TypeError(proto + ": can't set as prototype!");
+	  if (!isObject(proto) && proto !== null) throw TypeError(proto + ": can't set as prototype!");
 	};
 	module.exports = {
 	  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
-	    function(test, buggy, set){
+	    function (test, buggy, set) {
 	      try {
-	        set = __webpack_require__(15)(Function.call, __webpack_require__(75).f(Object.prototype, '__proto__').set, 2);
+	        set = __webpack_require__(15)(Function.call, __webpack_require__(74).f(Object.prototype, '__proto__').set, 2);
 	        set(test, []);
 	        buggy = !(test instanceof Array);
-	      } catch(e){ buggy = true; }
-	      return function setPrototypeOf(O, proto){
+	      } catch (e) { buggy = true; }
+	      return function setPrototypeOf(O, proto) {
 	        check(O, proto);
-	        if(buggy)O.__proto__ = proto;
+	        if (buggy) O.__proto__ = proto;
 	        else set(O, proto);
 	        return O;
 	      };
@@ -1691,93 +1755,104 @@
 	  check: check
 	};
 
-/***/ },
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(84), __esModule: true };
+
+/***/ }),
 /* 84 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(85), __esModule: true };
-
-/***/ },
-/* 85 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(86);
+	__webpack_require__(85);
 	var $Object = __webpack_require__(14).Object;
-	module.exports = function create(P, D){
+	module.exports = function create(P, D) {
 	  return $Object.create(P, D);
 	};
 
-/***/ },
-/* 86 */
-/***/ function(module, exports, __webpack_require__) {
 
-	var $export = __webpack_require__(13)
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var $export = __webpack_require__(13);
 	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-	$export($export.S, 'Object', {create: __webpack_require__(44)});
+	$export($export.S, 'Object', { create: __webpack_require__(44) });
 
-/***/ },
-/* 87 */
-/***/ function(module, exports, __webpack_require__) {
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports = __webpack_require__(88);
+	module.exports = __webpack_require__(87);
 
 
-/***/ },
-/* 88 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _assign = __webpack_require__(89);
+	var _assign = __webpack_require__(88);
 	
-	var ReactChildren = __webpack_require__(90);
-	var ReactComponent = __webpack_require__(103);
-	var ReactPureComponent = __webpack_require__(106);
-	var ReactClass = __webpack_require__(107);
-	var ReactDOMFactories = __webpack_require__(109);
-	var ReactElement = __webpack_require__(94);
-	var ReactPropTypes = __webpack_require__(110);
-	var ReactVersion = __webpack_require__(112);
+	var ReactBaseClasses = __webpack_require__(89);
+	var ReactChildren = __webpack_require__(98);
+	var ReactDOMFactories = __webpack_require__(106);
+	var ReactElement = __webpack_require__(100);
+	var ReactPropTypes = __webpack_require__(107);
+	var ReactVersion = __webpack_require__(115);
 	
-	var onlyChild = __webpack_require__(113);
-	var warning = __webpack_require__(96);
+	var createReactClass = __webpack_require__(116);
+	var onlyChild = __webpack_require__(119);
 	
 	var createElement = ReactElement.createElement;
 	var createFactory = ReactElement.createFactory;
 	var cloneElement = ReactElement.cloneElement;
 	
 	if (false) {
+	  var lowPriorityWarning = require('./lowPriorityWarning');
+	  var canDefineProperty = require('./canDefineProperty');
 	  var ReactElementValidator = require('./ReactElementValidator');
+	  var didWarnPropTypesDeprecated = false;
 	  createElement = ReactElementValidator.createElement;
 	  createFactory = ReactElementValidator.createFactory;
 	  cloneElement = ReactElementValidator.cloneElement;
 	}
 	
 	var __spread = _assign;
+	var createMixin = function (mixin) {
+	  return mixin;
+	};
 	
 	if (false) {
-	  var warned = false;
+	  var warnedForSpread = false;
+	  var warnedForCreateMixin = false;
 	  __spread = function () {
-	    process.env.NODE_ENV !== 'production' ? warning(warned, 'React.__spread is deprecated and should not be used. Use ' + 'Object.assign directly or another helper function with similar ' + 'semantics. You may be seeing this warning due to your compiler. ' + 'See https://fb.me/react-spread-deprecation for more details.') : void 0;
-	    warned = true;
+	    lowPriorityWarning(warnedForSpread, 'React.__spread is deprecated and should not be used. Use ' + 'Object.assign directly or another helper function with similar ' + 'semantics. You may be seeing this warning due to your compiler. ' + 'See https://fb.me/react-spread-deprecation for more details.');
+	    warnedForSpread = true;
 	    return _assign.apply(null, arguments);
+	  };
+	
+	  createMixin = function (mixin) {
+	    lowPriorityWarning(warnedForCreateMixin, 'React.createMixin is deprecated and should not be used. ' + 'In React v16.0, it will be removed. ' + 'You can use this mixin directly instead. ' + 'See https://fb.me/createmixin-was-never-implemented for more info.');
+	    warnedForCreateMixin = true;
+	    return mixin;
 	  };
 	}
 	
 	var React = {
-	
 	  // Modern
 	
 	  Children: {
@@ -1788,8 +1863,8 @@
 	    only: onlyChild
 	  },
 	
-	  Component: ReactComponent,
-	  PureComponent: ReactPureComponent,
+	  Component: ReactBaseClasses.Component,
+	  PureComponent: ReactBaseClasses.PureComponent,
 	
 	  createElement: createElement,
 	  cloneElement: cloneElement,
@@ -1798,12 +1873,9 @@
 	  // Classic
 	
 	  PropTypes: ReactPropTypes,
-	  createClass: ReactClass.createClass,
+	  createClass: createReactClass,
 	  createFactory: createFactory,
-	  createMixin: function (mixin) {
-	    // Currently a noop. Will be used to validate and trace mixins.
-	    return mixin;
-	  },
+	  createMixin: createMixin,
 	
 	  // This looks DOM specific but these are actually isomorphic helpers
 	  // since they are just generating DOM strings.
@@ -1815,11 +1887,47 @@
 	  __spread: __spread
 	};
 	
+	if (false) {
+	  var warnedForCreateClass = false;
+	  if (canDefineProperty) {
+	    Object.defineProperty(React, 'PropTypes', {
+	      get: function () {
+	        lowPriorityWarning(didWarnPropTypesDeprecated, 'Accessing PropTypes via the main React package is deprecated,' + ' and will be removed in  React v16.0.' + ' Use the latest available v15.* prop-types package from npm instead.' + ' For info on usage, compatibility, migration and more, see ' + 'https://fb.me/prop-types-docs');
+	        didWarnPropTypesDeprecated = true;
+	        return ReactPropTypes;
+	      }
+	    });
+	
+	    Object.defineProperty(React, 'createClass', {
+	      get: function () {
+	        lowPriorityWarning(warnedForCreateClass, 'Accessing createClass via the main React package is deprecated,' + ' and will be removed in React v16.0.' + " Use a plain JavaScript class instead. If you're not yet " + 'ready to migrate, create-react-class v15.* is available ' + 'on npm as a temporary, drop-in replacement. ' + 'For more info see https://fb.me/react-create-class');
+	        warnedForCreateClass = true;
+	        return createReactClass;
+	      }
+	    });
+	  }
+	
+	  // React.DOM factories are deprecated. Wrap these methods so that
+	  // invocations of the React.DOM namespace and alert users to switch
+	  // to the `react-dom-factories` package.
+	  React.DOM = {};
+	  var warnedForFactories = false;
+	  Object.keys(ReactDOMFactories).forEach(function (factory) {
+	    React.DOM[factory] = function () {
+	      if (!warnedForFactories) {
+	        lowPriorityWarning(false, 'Accessing factories like React.DOM.%s has been deprecated ' + 'and will be removed in v16.0+. Use the ' + 'react-dom-factories package instead. ' + ' Version 1.0 provides a drop-in replacement.' + ' For more info, see https://fb.me/react-dom-factories', factory);
+	        warnedForFactories = true;
+	      }
+	      return ReactDOMFactories[factory].apply(ReactDOMFactories, arguments);
+	    };
+	  });
+	}
+	
 	module.exports = React;
 
-/***/ },
-/* 89 */
-/***/ function(module, exports) {
+/***/ }),
+/* 88 */
+/***/ (function(module, exports) {
 
 	'use strict';
 	/* eslint-disable no-unused-vars */
@@ -1906,27 +2014,591 @@
 	};
 
 
-/***/ },
-/* 90 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var PooledClass = __webpack_require__(91);
-	var ReactElement = __webpack_require__(94);
+	var _prodInvariant = __webpack_require__(90),
+	    _assign = __webpack_require__(88);
 	
-	var emptyFunction = __webpack_require__(97);
-	var traverseAllChildren = __webpack_require__(100);
+	var ReactNoopUpdateQueue = __webpack_require__(91);
+	
+	var canDefineProperty = __webpack_require__(94);
+	var emptyObject = __webpack_require__(95);
+	var invariant = __webpack_require__(96);
+	var lowPriorityWarning = __webpack_require__(97);
+	
+	/**
+	 * Base class helpers for the updating state of a component.
+	 */
+	function ReactComponent(props, context, updater) {
+	  this.props = props;
+	  this.context = context;
+	  this.refs = emptyObject;
+	  // We initialize the default updater but the real one gets injected by the
+	  // renderer.
+	  this.updater = updater || ReactNoopUpdateQueue;
+	}
+	
+	ReactComponent.prototype.isReactComponent = {};
+	
+	/**
+	 * Sets a subset of the state. Always use this to mutate
+	 * state. You should treat `this.state` as immutable.
+	 *
+	 * There is no guarantee that `this.state` will be immediately updated, so
+	 * accessing `this.state` after calling this method may return the old value.
+	 *
+	 * There is no guarantee that calls to `setState` will run synchronously,
+	 * as they may eventually be batched together.  You can provide an optional
+	 * callback that will be executed when the call to setState is actually
+	 * completed.
+	 *
+	 * When a function is provided to setState, it will be called at some point in
+	 * the future (not synchronously). It will be called with the up to date
+	 * component arguments (state, props, context). These values can be different
+	 * from this.* because your function may be called after receiveProps but before
+	 * shouldComponentUpdate, and this new state, props, and context will not yet be
+	 * assigned to this.
+	 *
+	 * @param {object|function} partialState Next partial state or function to
+	 *        produce next partial state to be merged with current state.
+	 * @param {?function} callback Called after state is updated.
+	 * @final
+	 * @protected
+	 */
+	ReactComponent.prototype.setState = function (partialState, callback) {
+	  !(typeof partialState === 'object' || typeof partialState === 'function' || partialState == null) ?  false ? invariant(false, 'setState(...): takes an object of state variables to update or a function which returns an object of state variables.') : _prodInvariant('85') : void 0;
+	  this.updater.enqueueSetState(this, partialState);
+	  if (callback) {
+	    this.updater.enqueueCallback(this, callback, 'setState');
+	  }
+	};
+	
+	/**
+	 * Forces an update. This should only be invoked when it is known with
+	 * certainty that we are **not** in a DOM transaction.
+	 *
+	 * You may want to call this when you know that some deeper aspect of the
+	 * component's state has changed but `setState` was not called.
+	 *
+	 * This will not invoke `shouldComponentUpdate`, but it will invoke
+	 * `componentWillUpdate` and `componentDidUpdate`.
+	 *
+	 * @param {?function} callback Called after update is complete.
+	 * @final
+	 * @protected
+	 */
+	ReactComponent.prototype.forceUpdate = function (callback) {
+	  this.updater.enqueueForceUpdate(this);
+	  if (callback) {
+	    this.updater.enqueueCallback(this, callback, 'forceUpdate');
+	  }
+	};
+	
+	/**
+	 * Deprecated APIs. These APIs used to exist on classic React classes but since
+	 * we would like to deprecate them, we're not going to move them over to this
+	 * modern base class. Instead, we define a getter that warns if it's accessed.
+	 */
+	if (false) {
+	  var deprecatedAPIs = {
+	    isMounted: ['isMounted', 'Instead, make sure to clean up subscriptions and pending requests in ' + 'componentWillUnmount to prevent memory leaks.'],
+	    replaceState: ['replaceState', 'Refactor your code to use setState instead (see ' + 'https://github.com/facebook/react/issues/3236).']
+	  };
+	  var defineDeprecationWarning = function (methodName, info) {
+	    if (canDefineProperty) {
+	      Object.defineProperty(ReactComponent.prototype, methodName, {
+	        get: function () {
+	          lowPriorityWarning(false, '%s(...) is deprecated in plain JavaScript React classes. %s', info[0], info[1]);
+	          return undefined;
+	        }
+	      });
+	    }
+	  };
+	  for (var fnName in deprecatedAPIs) {
+	    if (deprecatedAPIs.hasOwnProperty(fnName)) {
+	      defineDeprecationWarning(fnName, deprecatedAPIs[fnName]);
+	    }
+	  }
+	}
+	
+	/**
+	 * Base class helpers for the updating state of a component.
+	 */
+	function ReactPureComponent(props, context, updater) {
+	  // Duplicated from ReactComponent.
+	  this.props = props;
+	  this.context = context;
+	  this.refs = emptyObject;
+	  // We initialize the default updater but the real one gets injected by the
+	  // renderer.
+	  this.updater = updater || ReactNoopUpdateQueue;
+	}
+	
+	function ComponentDummy() {}
+	ComponentDummy.prototype = ReactComponent.prototype;
+	ReactPureComponent.prototype = new ComponentDummy();
+	ReactPureComponent.prototype.constructor = ReactPureComponent;
+	// Avoid an extra prototype jump for these methods.
+	_assign(ReactPureComponent.prototype, ReactComponent.prototype);
+	ReactPureComponent.prototype.isPureReactComponent = true;
+	
+	module.exports = {
+	  Component: ReactComponent,
+	  PureComponent: ReactPureComponent
+	};
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports) {
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 *
+	 * 
+	 */
+	'use strict';
+	
+	/**
+	 * WARNING: DO NOT manually require this module.
+	 * This is a replacement for `invariant(...)` used by the error code system
+	 * and will _only_ be required by the corresponding babel pass.
+	 * It always throws.
+	 */
+	
+	function reactProdInvariant(code) {
+	  var argCount = arguments.length - 1;
+	
+	  var message = 'Minified React error #' + code + '; visit ' + 'http://facebook.github.io/react/docs/error-decoder.html?invariant=' + code;
+	
+	  for (var argIdx = 0; argIdx < argCount; argIdx++) {
+	    message += '&args[]=' + encodeURIComponent(arguments[argIdx + 1]);
+	  }
+	
+	  message += ' for the full message or use the non-minified dev environment' + ' for full errors and additional helpful warnings.';
+	
+	  var error = new Error(message);
+	  error.name = 'Invariant Violation';
+	  error.framesToPop = 1; // we don't care about reactProdInvariant's own frame
+	
+	  throw error;
+	}
+	
+	module.exports = reactProdInvariant;
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2015-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 *
+	 */
+	
+	'use strict';
+	
+	var warning = __webpack_require__(92);
+	
+	function warnNoop(publicInstance, callerName) {
+	  if (false) {
+	    var constructor = publicInstance.constructor;
+	    process.env.NODE_ENV !== 'production' ? warning(false, '%s(...): Can only update a mounted or mounting component. ' + 'This usually means you called %s() on an unmounted component. ' + 'This is a no-op. Please check the code for the %s component.', callerName, callerName, constructor && (constructor.displayName || constructor.name) || 'ReactClass') : void 0;
+	  }
+	}
+	
+	/**
+	 * This is the abstract API for an update queue.
+	 */
+	var ReactNoopUpdateQueue = {
+	  /**
+	   * Checks whether or not this composite component is mounted.
+	   * @param {ReactClass} publicInstance The instance we want to test.
+	   * @return {boolean} True if mounted, false otherwise.
+	   * @protected
+	   * @final
+	   */
+	  isMounted: function (publicInstance) {
+	    return false;
+	  },
+	
+	  /**
+	   * Enqueue a callback that will be executed after all the pending updates
+	   * have processed.
+	   *
+	   * @param {ReactClass} publicInstance The instance to use as `this` context.
+	   * @param {?function} callback Called after state is updated.
+	   * @internal
+	   */
+	  enqueueCallback: function (publicInstance, callback) {},
+	
+	  /**
+	   * Forces an update. This should only be invoked when it is known with
+	   * certainty that we are **not** in a DOM transaction.
+	   *
+	   * You may want to call this when you know that some deeper aspect of the
+	   * component's state has changed but `setState` was not called.
+	   *
+	   * This will not invoke `shouldComponentUpdate`, but it will invoke
+	   * `componentWillUpdate` and `componentDidUpdate`.
+	   *
+	   * @param {ReactClass} publicInstance The instance that should rerender.
+	   * @internal
+	   */
+	  enqueueForceUpdate: function (publicInstance) {
+	    warnNoop(publicInstance, 'forceUpdate');
+	  },
+	
+	  /**
+	   * Replaces all of the state. Always use this or `setState` to mutate state.
+	   * You should treat `this.state` as immutable.
+	   *
+	   * There is no guarantee that `this.state` will be immediately updated, so
+	   * accessing `this.state` after calling this method may return the old value.
+	   *
+	   * @param {ReactClass} publicInstance The instance that should rerender.
+	   * @param {object} completeState Next state.
+	   * @internal
+	   */
+	  enqueueReplaceState: function (publicInstance, completeState) {
+	    warnNoop(publicInstance, 'replaceState');
+	  },
+	
+	  /**
+	   * Sets a subset of the state. This only exists because _pendingState is
+	   * internal. This provides a merging strategy that is not available to deep
+	   * properties which is confusing. TODO: Expose pendingState or don't use it
+	   * during the merge.
+	   *
+	   * @param {ReactClass} publicInstance The instance that should rerender.
+	   * @param {object} partialState Next partial state to be merged with state.
+	   * @internal
+	   */
+	  enqueueSetState: function (publicInstance, partialState) {
+	    warnNoop(publicInstance, 'setState');
+	  }
+	};
+	
+	module.exports = ReactNoopUpdateQueue;
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2014-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 *
+	 */
+	
+	'use strict';
+	
+	var emptyFunction = __webpack_require__(93);
+	
+	/**
+	 * Similar to invariant but only logs a warning if the condition is not met.
+	 * This can be used to log issues in development environments in critical
+	 * paths. Removing the logging code for production environments will keep the
+	 * same logic and follow the same code paths.
+	 */
+	
+	var warning = emptyFunction;
+	
+	if (false) {
+	  var printWarning = function printWarning(format) {
+	    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	      args[_key - 1] = arguments[_key];
+	    }
+	
+	    var argIndex = 0;
+	    var message = 'Warning: ' + format.replace(/%s/g, function () {
+	      return args[argIndex++];
+	    });
+	    if (typeof console !== 'undefined') {
+	      console.error(message);
+	    }
+	    try {
+	      // --- Welcome to debugging React ---
+	      // This error was thrown as a convenience so that you can use this stack
+	      // to find the callsite that caused this warning to fire.
+	      throw new Error(message);
+	    } catch (x) {}
+	  };
+	
+	  warning = function warning(condition, format) {
+	    if (format === undefined) {
+	      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+	    }
+	
+	    if (format.indexOf('Failed Composite propType: ') === 0) {
+	      return; // Ignore CompositeComponent proptype check.
+	    }
+	
+	    if (!condition) {
+	      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+	        args[_key2 - 2] = arguments[_key2];
+	      }
+	
+	      printWarning.apply(undefined, [format].concat(args));
+	    }
+	  };
+	}
+	
+	module.exports = warning;
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 *
+	 * 
+	 */
+	
+	function makeEmptyFunction(arg) {
+	  return function () {
+	    return arg;
+	  };
+	}
+	
+	/**
+	 * This function accepts and discards inputs; it has no side effects. This is
+	 * primarily useful idiomatically for overridable function endpoints which
+	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+	 */
+	var emptyFunction = function emptyFunction() {};
+	
+	emptyFunction.thatReturns = makeEmptyFunction;
+	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+	emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+	emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+	emptyFunction.thatReturnsThis = function () {
+	  return this;
+	};
+	emptyFunction.thatReturnsArgument = function (arg) {
+	  return arg;
+	};
+	
+	module.exports = emptyFunction;
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 *
+	 * 
+	 */
+	
+	'use strict';
+	
+	var canDefineProperty = false;
+	if (false) {
+	  try {
+	    // $FlowFixMe https://github.com/facebook/flow/issues/285
+	    Object.defineProperty({}, 'x', { get: function () {} });
+	    canDefineProperty = true;
+	  } catch (x) {
+	    // IE will fail on defineProperty
+	  }
+	}
+	
+	module.exports = canDefineProperty;
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 *
+	 */
+	
+	'use strict';
+	
+	var emptyObject = {};
+	
+	if (false) {
+	  Object.freeze(emptyObject);
+	}
+	
+	module.exports = emptyObject;
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 *
+	 */
+	
+	'use strict';
+	
+	/**
+	 * Use invariant() to assert state which your program assumes to be true.
+	 *
+	 * Provide sprintf-style format (only %s is supported) and arguments
+	 * to provide information about what broke and what you were
+	 * expecting.
+	 *
+	 * The invariant message will be stripped in production, but the invariant
+	 * will remain to ensure logic does not differ in production.
+	 */
+	
+	var validateFormat = function validateFormat(format) {};
+	
+	if (false) {
+	  validateFormat = function validateFormat(format) {
+	    if (format === undefined) {
+	      throw new Error('invariant requires an error message argument');
+	    }
+	  };
+	}
+	
+	function invariant(condition, format, a, b, c, d, e, f) {
+	  validateFormat(format);
+	
+	  if (!condition) {
+	    var error;
+	    if (format === undefined) {
+	      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+	    } else {
+	      var args = [a, b, c, d, e, f];
+	      var argIndex = 0;
+	      error = new Error(format.replace(/%s/g, function () {
+	        return args[argIndex++];
+	      }));
+	      error.name = 'Invariant Violation';
+	    }
+	
+	    error.framesToPop = 1; // we don't care about invariant's own frame
+	    throw error;
+	  }
+	}
+	
+	module.exports = invariant;
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2014-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 *
+	 */
+	
+	'use strict';
+	
+	/**
+	 * Forked from fbjs/warning:
+	 * https://github.com/facebook/fbjs/blob/e66ba20ad5be433eb54423f2b097d829324d9de6/packages/fbjs/src/__forks__/warning.js
+	 *
+	 * Only change is we use console.warn instead of console.error,
+	 * and do nothing when 'console' is not supported.
+	 * This really simplifies the code.
+	 * ---
+	 * Similar to invariant but only logs a warning if the condition is not met.
+	 * This can be used to log issues in development environments in critical
+	 * paths. Removing the logging code for production environments will keep the
+	 * same logic and follow the same code paths.
+	 */
+	
+	var lowPriorityWarning = function () {};
+	
+	if (false) {
+	  var printWarning = function (format) {
+	    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	      args[_key - 1] = arguments[_key];
+	    }
+	
+	    var argIndex = 0;
+	    var message = 'Warning: ' + format.replace(/%s/g, function () {
+	      return args[argIndex++];
+	    });
+	    if (typeof console !== 'undefined') {
+	      console.warn(message);
+	    }
+	    try {
+	      // --- Welcome to debugging React ---
+	      // This error was thrown as a convenience so that you can use this stack
+	      // to find the callsite that caused this warning to fire.
+	      throw new Error(message);
+	    } catch (x) {}
+	  };
+	
+	  lowPriorityWarning = function (condition, format) {
+	    if (format === undefined) {
+	      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+	    }
+	    if (!condition) {
+	      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+	        args[_key2 - 2] = arguments[_key2];
+	      }
+	
+	      printWarning.apply(undefined, [format].concat(args));
+	    }
+	  };
+	}
+	
+	module.exports = lowPriorityWarning;
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 *
+	 */
+	
+	'use strict';
+	
+	var PooledClass = __webpack_require__(99);
+	var ReactElement = __webpack_require__(100);
+	
+	var emptyFunction = __webpack_require__(93);
+	var traverseAllChildren = __webpack_require__(103);
 	
 	var twoArgumentPooler = PooledClass.twoArgumentPooler;
 	var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -2101,26 +2773,24 @@
 	
 	module.exports = ReactChildren;
 
-/***/ },
-/* 91 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(92);
+	var _prodInvariant = __webpack_require__(90);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	/**
 	 * Static poolers. Several custom versions for each potential number of
@@ -2173,17 +2843,6 @@
 	  }
 	};
 	
-	var fiveArgumentPooler = function (a1, a2, a3, a4, a5) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, a1, a2, a3, a4, a5);
-	    return instance;
-	  } else {
-	    return new Klass(a1, a2, a3, a4, a5);
-	  }
-	};
-	
 	var standardReleaser = function (instance) {
 	  var Klass = this;
 	  !(instance instanceof Klass) ?  false ? invariant(false, 'Trying to release an instance into a pool of a different type.') : _prodInvariant('25') : void 0;
@@ -2223,134 +2882,34 @@
 	  oneArgumentPooler: oneArgumentPooler,
 	  twoArgumentPooler: twoArgumentPooler,
 	  threeArgumentPooler: threeArgumentPooler,
-	  fourArgumentPooler: fourArgumentPooler,
-	  fiveArgumentPooler: fiveArgumentPooler
+	  fourArgumentPooler: fourArgumentPooler
 	};
 	
 	module.exports = PooledClass;
 
-/***/ },
-/* 92 */
-/***/ function(module, exports) {
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * 
-	 */
-	'use strict';
-	
-	/**
-	 * WARNING: DO NOT manually require this module.
-	 * This is a replacement for `invariant(...)` used by the error code system
-	 * and will _only_ be required by the corresponding babel pass.
-	 * It always throws.
-	 */
-	
-	function reactProdInvariant(code) {
-	  var argCount = arguments.length - 1;
-	
-	  var message = 'Minified React error #' + code + '; visit ' + 'http://facebook.github.io/react/docs/error-decoder.html?invariant=' + code;
-	
-	  for (var argIdx = 0; argIdx < argCount; argIdx++) {
-	    message += '&args[]=' + encodeURIComponent(arguments[argIdx + 1]);
-	  }
-	
-	  message += ' for the full message or use the non-minified dev environment' + ' for full errors and additional helpful warnings.';
-	
-	  var error = new Error(message);
-	  error.name = 'Invariant Violation';
-	  error.framesToPop = 1; // we don't care about reactProdInvariant's own frame
-	
-	  throw error;
-	}
-	
-	module.exports = reactProdInvariant;
-
-/***/ },
-/* 93 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	/**
-	 * Use invariant() to assert state which your program assumes to be true.
-	 *
-	 * Provide sprintf-style format (only %s is supported) and arguments
-	 * to provide information about what broke and what you were
-	 * expecting.
-	 *
-	 * The invariant message will be stripped in production, but the invariant
-	 * will remain to ensure logic does not differ in production.
-	 */
+	var _assign = __webpack_require__(88);
 	
-	function invariant(condition, format, a, b, c, d, e, f) {
-	  if (false) {
-	    if (format === undefined) {
-	      throw new Error('invariant requires an error message argument');
-	    }
-	  }
+	var ReactCurrentOwner = __webpack_require__(101);
 	
-	  if (!condition) {
-	    var error;
-	    if (format === undefined) {
-	      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
-	    } else {
-	      var args = [a, b, c, d, e, f];
-	      var argIndex = 0;
-	      error = new Error(format.replace(/%s/g, function () {
-	        return args[argIndex++];
-	      }));
-	      error.name = 'Invariant Violation';
-	    }
-	
-	    error.framesToPop = 1; // we don't care about invariant's own frame
-	    throw error;
-	  }
-	}
-	
-	module.exports = invariant;
-
-/***/ },
-/* 94 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 */
-	
-	'use strict';
-	
-	var _assign = __webpack_require__(89);
-	
-	var ReactCurrentOwner = __webpack_require__(95);
-	
-	var warning = __webpack_require__(96);
-	var canDefineProperty = __webpack_require__(98);
+	var warning = __webpack_require__(92);
+	var canDefineProperty = __webpack_require__(94);
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 	
-	var REACT_ELEMENT_TYPE = __webpack_require__(99);
+	var REACT_ELEMENT_TYPE = __webpack_require__(102);
 	
 	var RESERVED_PROPS = {
 	  key: true,
@@ -2671,17 +3230,15 @@
 	
 	module.exports = ReactElement;
 
-/***/ },
-/* 95 */
-/***/ function(module, exports) {
+/***/ }),
+/* 101 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -2695,172 +3252,24 @@
 	 * currently being constructed.
 	 */
 	var ReactCurrentOwner = {
-	
 	  /**
 	   * @internal
 	   * @type {ReactComponent}
 	   */
 	  current: null
-	
 	};
 	
 	module.exports = ReactCurrentOwner;
 
-/***/ },
-/* 96 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 102 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2014-2015, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 */
-	
-	'use strict';
-	
-	var emptyFunction = __webpack_require__(97);
-	
-	/**
-	 * Similar to invariant but only logs a warning if the condition is not met.
-	 * This can be used to log issues in development environments in critical
-	 * paths. Removing the logging code for production environments will keep the
-	 * same logic and follow the same code paths.
-	 */
-	
-	var warning = emptyFunction;
-	
-	if (false) {
-	  (function () {
-	    var printWarning = function printWarning(format) {
-	      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	        args[_key - 1] = arguments[_key];
-	      }
-	
-	      var argIndex = 0;
-	      var message = 'Warning: ' + format.replace(/%s/g, function () {
-	        return args[argIndex++];
-	      });
-	      if (typeof console !== 'undefined') {
-	        console.error(message);
-	      }
-	      try {
-	        // --- Welcome to debugging React ---
-	        // This error was thrown as a convenience so that you can use this stack
-	        // to find the callsite that caused this warning to fire.
-	        throw new Error(message);
-	      } catch (x) {}
-	    };
-	
-	    warning = function warning(condition, format) {
-	      if (format === undefined) {
-	        throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-	      }
-	
-	      if (format.indexOf('Failed Composite propType: ') === 0) {
-	        return; // Ignore CompositeComponent proptype check.
-	      }
-	
-	      if (!condition) {
-	        for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-	          args[_key2 - 2] = arguments[_key2];
-	        }
-	
-	        printWarning.apply(undefined, [format].concat(args));
-	      }
-	    };
-	  })();
-	}
-	
-	module.exports = warning;
-
-/***/ },
-/* 97 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	/**
-	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * 
-	 */
-	
-	function makeEmptyFunction(arg) {
-	  return function () {
-	    return arg;
-	  };
-	}
-	
-	/**
-	 * This function accepts and discards inputs; it has no side effects. This is
-	 * primarily useful idiomatically for overridable function endpoints which
-	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
-	 */
-	var emptyFunction = function emptyFunction() {};
-	
-	emptyFunction.thatReturns = makeEmptyFunction;
-	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-	emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-	emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-	emptyFunction.thatReturnsThis = function () {
-	  return this;
-	};
-	emptyFunction.thatReturnsArgument = function (arg) {
-	  return arg;
-	};
-	
-	module.exports = emptyFunction;
-
-/***/ },
-/* 98 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * 
-	 */
-	
-	'use strict';
-	
-	var canDefineProperty = false;
-	if (false) {
-	  try {
-	    // $FlowFixMe https://github.com/facebook/flow/issues/285
-	    Object.defineProperty({}, 'x', { get: function () {} });
-	    canDefineProperty = true;
-	  } catch (x) {
-	    // IE will fail on defineProperty
-	  }
-	}
-	
-	module.exports = canDefineProperty;
-
-/***/ },
-/* 99 */
-/***/ function(module, exports) {
-
-	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -2874,31 +3283,29 @@
 	
 	module.exports = REACT_ELEMENT_TYPE;
 
-/***/ },
-/* 100 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(92);
+	var _prodInvariant = __webpack_require__(90);
 	
-	var ReactCurrentOwner = __webpack_require__(95);
-	var REACT_ELEMENT_TYPE = __webpack_require__(99);
+	var ReactCurrentOwner = __webpack_require__(101);
+	var REACT_ELEMENT_TYPE = __webpack_require__(102);
 	
-	var getIteratorFn = __webpack_require__(101);
-	var invariant = __webpack_require__(93);
-	var KeyEscapeUtils = __webpack_require__(102);
-	var warning = __webpack_require__(96);
+	var getIteratorFn = __webpack_require__(104);
+	var invariant = __webpack_require__(96);
+	var KeyEscapeUtils = __webpack_require__(105);
+	var warning = __webpack_require__(92);
 	
 	var SEPARATOR = '.';
 	var SUBSEPARATOR = ':';
@@ -3011,7 +3418,7 @@
 	      if (false) {
 	        addendum = ' If you meant to render a collection of children, use an array ' + 'instead or wrap the object using createFragment(object) from the ' + 'React add-ons.';
 	        if (children._isReactElement) {
-	          addendum = ' It looks like you\'re using an element created by a different ' + 'version of React. Make sure to use only one copy of React.';
+	          addendum = " It looks like you're using an element created by a different " + 'version of React. Make sure to use only one copy of React.';
 	        }
 	        if (ReactCurrentOwner.current) {
 	          var name = ReactCurrentOwner.current.getName();
@@ -3054,17 +3461,15 @@
 	
 	module.exports = traverseAllChildren;
 
-/***/ },
-/* 101 */
-/***/ function(module, exports) {
+/***/ }),
+/* 104 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -3099,17 +3504,15 @@
 	
 	module.exports = getIteratorFn;
 
-/***/ },
-/* 102 */
-/***/ function(module, exports) {
+/***/ }),
+/* 105 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -3162,1065 +3565,21 @@
 	
 	module.exports = KeyEscapeUtils;
 
-/***/ },
-/* 103 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 */
-	
-	'use strict';
-	
-	var _prodInvariant = __webpack_require__(92);
-	
-	var ReactNoopUpdateQueue = __webpack_require__(104);
-	
-	var canDefineProperty = __webpack_require__(98);
-	var emptyObject = __webpack_require__(105);
-	var invariant = __webpack_require__(93);
-	var warning = __webpack_require__(96);
-	
-	/**
-	 * Base class helpers for the updating state of a component.
-	 */
-	function ReactComponent(props, context, updater) {
-	  this.props = props;
-	  this.context = context;
-	  this.refs = emptyObject;
-	  // We initialize the default updater but the real one gets injected by the
-	  // renderer.
-	  this.updater = updater || ReactNoopUpdateQueue;
-	}
-	
-	ReactComponent.prototype.isReactComponent = {};
-	
-	/**
-	 * Sets a subset of the state. Always use this to mutate
-	 * state. You should treat `this.state` as immutable.
-	 *
-	 * There is no guarantee that `this.state` will be immediately updated, so
-	 * accessing `this.state` after calling this method may return the old value.
-	 *
-	 * There is no guarantee that calls to `setState` will run synchronously,
-	 * as they may eventually be batched together.  You can provide an optional
-	 * callback that will be executed when the call to setState is actually
-	 * completed.
-	 *
-	 * When a function is provided to setState, it will be called at some point in
-	 * the future (not synchronously). It will be called with the up to date
-	 * component arguments (state, props, context). These values can be different
-	 * from this.* because your function may be called after receiveProps but before
-	 * shouldComponentUpdate, and this new state, props, and context will not yet be
-	 * assigned to this.
-	 *
-	 * @param {object|function} partialState Next partial state or function to
-	 *        produce next partial state to be merged with current state.
-	 * @param {?function} callback Called after state is updated.
-	 * @final
-	 * @protected
-	 */
-	ReactComponent.prototype.setState = function (partialState, callback) {
-	  !(typeof partialState === 'object' || typeof partialState === 'function' || partialState == null) ?  false ? invariant(false, 'setState(...): takes an object of state variables to update or a function which returns an object of state variables.') : _prodInvariant('85') : void 0;
-	  this.updater.enqueueSetState(this, partialState);
-	  if (callback) {
-	    this.updater.enqueueCallback(this, callback, 'setState');
-	  }
-	};
-	
-	/**
-	 * Forces an update. This should only be invoked when it is known with
-	 * certainty that we are **not** in a DOM transaction.
-	 *
-	 * You may want to call this when you know that some deeper aspect of the
-	 * component's state has changed but `setState` was not called.
-	 *
-	 * This will not invoke `shouldComponentUpdate`, but it will invoke
-	 * `componentWillUpdate` and `componentDidUpdate`.
-	 *
-	 * @param {?function} callback Called after update is complete.
-	 * @final
-	 * @protected
-	 */
-	ReactComponent.prototype.forceUpdate = function (callback) {
-	  this.updater.enqueueForceUpdate(this);
-	  if (callback) {
-	    this.updater.enqueueCallback(this, callback, 'forceUpdate');
-	  }
-	};
-	
-	/**
-	 * Deprecated APIs. These APIs used to exist on classic React classes but since
-	 * we would like to deprecate them, we're not going to move them over to this
-	 * modern base class. Instead, we define a getter that warns if it's accessed.
-	 */
-	if (false) {
-	  var deprecatedAPIs = {
-	    isMounted: ['isMounted', 'Instead, make sure to clean up subscriptions and pending requests in ' + 'componentWillUnmount to prevent memory leaks.'],
-	    replaceState: ['replaceState', 'Refactor your code to use setState instead (see ' + 'https://github.com/facebook/react/issues/3236).']
-	  };
-	  var defineDeprecationWarning = function (methodName, info) {
-	    if (canDefineProperty) {
-	      Object.defineProperty(ReactComponent.prototype, methodName, {
-	        get: function () {
-	          process.env.NODE_ENV !== 'production' ? warning(false, '%s(...) is deprecated in plain JavaScript React classes. %s', info[0], info[1]) : void 0;
-	          return undefined;
-	        }
-	      });
-	    }
-	  };
-	  for (var fnName in deprecatedAPIs) {
-	    if (deprecatedAPIs.hasOwnProperty(fnName)) {
-	      defineDeprecationWarning(fnName, deprecatedAPIs[fnName]);
-	    }
-	  }
-	}
-	
-	module.exports = ReactComponent;
-
-/***/ },
-/* 104 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2015-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 */
-	
-	'use strict';
-	
-	var warning = __webpack_require__(96);
-	
-	function warnNoop(publicInstance, callerName) {
-	  if (false) {
-	    var constructor = publicInstance.constructor;
-	    process.env.NODE_ENV !== 'production' ? warning(false, '%s(...): Can only update a mounted or mounting component. ' + 'This usually means you called %s() on an unmounted component. ' + 'This is a no-op. Please check the code for the %s component.', callerName, callerName, constructor && (constructor.displayName || constructor.name) || 'ReactClass') : void 0;
-	  }
-	}
-	
-	/**
-	 * This is the abstract API for an update queue.
-	 */
-	var ReactNoopUpdateQueue = {
-	
-	  /**
-	   * Checks whether or not this composite component is mounted.
-	   * @param {ReactClass} publicInstance The instance we want to test.
-	   * @return {boolean} True if mounted, false otherwise.
-	   * @protected
-	   * @final
-	   */
-	  isMounted: function (publicInstance) {
-	    return false;
-	  },
-	
-	  /**
-	   * Enqueue a callback that will be executed after all the pending updates
-	   * have processed.
-	   *
-	   * @param {ReactClass} publicInstance The instance to use as `this` context.
-	   * @param {?function} callback Called after state is updated.
-	   * @internal
-	   */
-	  enqueueCallback: function (publicInstance, callback) {},
-	
-	  /**
-	   * Forces an update. This should only be invoked when it is known with
-	   * certainty that we are **not** in a DOM transaction.
-	   *
-	   * You may want to call this when you know that some deeper aspect of the
-	   * component's state has changed but `setState` was not called.
-	   *
-	   * This will not invoke `shouldComponentUpdate`, but it will invoke
-	   * `componentWillUpdate` and `componentDidUpdate`.
-	   *
-	   * @param {ReactClass} publicInstance The instance that should rerender.
-	   * @internal
-	   */
-	  enqueueForceUpdate: function (publicInstance) {
-	    warnNoop(publicInstance, 'forceUpdate');
-	  },
-	
-	  /**
-	   * Replaces all of the state. Always use this or `setState` to mutate state.
-	   * You should treat `this.state` as immutable.
-	   *
-	   * There is no guarantee that `this.state` will be immediately updated, so
-	   * accessing `this.state` after calling this method may return the old value.
-	   *
-	   * @param {ReactClass} publicInstance The instance that should rerender.
-	   * @param {object} completeState Next state.
-	   * @internal
-	   */
-	  enqueueReplaceState: function (publicInstance, completeState) {
-	    warnNoop(publicInstance, 'replaceState');
-	  },
-	
-	  /**
-	   * Sets a subset of the state. This only exists because _pendingState is
-	   * internal. This provides a merging strategy that is not available to deep
-	   * properties which is confusing. TODO: Expose pendingState or don't use it
-	   * during the merge.
-	   *
-	   * @param {ReactClass} publicInstance The instance that should rerender.
-	   * @param {object} partialState Next partial state to be merged with state.
-	   * @internal
-	   */
-	  enqueueSetState: function (publicInstance, partialState) {
-	    warnNoop(publicInstance, 'setState');
-	  }
-	};
-	
-	module.exports = ReactNoopUpdateQueue;
-
-/***/ },
-/* 105 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var emptyObject = {};
-	
-	if (false) {
-	  Object.freeze(emptyObject);
-	}
-	
-	module.exports = emptyObject;
-
-/***/ },
-/* 106 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 */
-	
-	'use strict';
-	
-	var _assign = __webpack_require__(89);
-	
-	var ReactComponent = __webpack_require__(103);
-	var ReactNoopUpdateQueue = __webpack_require__(104);
-	
-	var emptyObject = __webpack_require__(105);
-	
-	/**
-	 * Base class helpers for the updating state of a component.
-	 */
-	function ReactPureComponent(props, context, updater) {
-	  // Duplicated from ReactComponent.
-	  this.props = props;
-	  this.context = context;
-	  this.refs = emptyObject;
-	  // We initialize the default updater but the real one gets injected by the
-	  // renderer.
-	  this.updater = updater || ReactNoopUpdateQueue;
-	}
-	
-	function ComponentDummy() {}
-	ComponentDummy.prototype = ReactComponent.prototype;
-	ReactPureComponent.prototype = new ComponentDummy();
-	ReactPureComponent.prototype.constructor = ReactPureComponent;
-	// Avoid an extra prototype jump for these methods.
-	_assign(ReactPureComponent.prototype, ReactComponent.prototype);
-	ReactPureComponent.prototype.isPureReactComponent = true;
-	
-	module.exports = ReactPureComponent;
-
-/***/ },
-/* 107 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 */
-	
-	'use strict';
-	
-	var _prodInvariant = __webpack_require__(92),
-	    _assign = __webpack_require__(89);
-	
-	var ReactComponent = __webpack_require__(103);
-	var ReactElement = __webpack_require__(94);
-	var ReactPropTypeLocationNames = __webpack_require__(108);
-	var ReactNoopUpdateQueue = __webpack_require__(104);
-	
-	var emptyObject = __webpack_require__(105);
-	var invariant = __webpack_require__(93);
-	var warning = __webpack_require__(96);
-	
-	var MIXINS_KEY = 'mixins';
-	
-	// Helper function to allow the creation of anonymous functions which do not
-	// have .name set to the name of the variable being assigned to.
-	function identity(fn) {
-	  return fn;
-	}
-	
-	/**
-	 * Policies that describe methods in `ReactClassInterface`.
-	 */
-	
-	
-	var injectedMixins = [];
-	
-	/**
-	 * Composite components are higher-level components that compose other composite
-	 * or host components.
-	 *
-	 * To create a new type of `ReactClass`, pass a specification of
-	 * your new class to `React.createClass`. The only requirement of your class
-	 * specification is that you implement a `render` method.
-	 *
-	 *   var MyComponent = React.createClass({
-	 *     render: function() {
-	 *       return <div>Hello World</div>;
-	 *     }
-	 *   });
-	 *
-	 * The class specification supports a specific protocol of methods that have
-	 * special meaning (e.g. `render`). See `ReactClassInterface` for
-	 * more the comprehensive protocol. Any other properties and methods in the
-	 * class specification will be available on the prototype.
-	 *
-	 * @interface ReactClassInterface
-	 * @internal
-	 */
-	var ReactClassInterface = {
-	
-	  /**
-	   * An array of Mixin objects to include when defining your component.
-	   *
-	   * @type {array}
-	   * @optional
-	   */
-	  mixins: 'DEFINE_MANY',
-	
-	  /**
-	   * An object containing properties and methods that should be defined on
-	   * the component's constructor instead of its prototype (static methods).
-	   *
-	   * @type {object}
-	   * @optional
-	   */
-	  statics: 'DEFINE_MANY',
-	
-	  /**
-	   * Definition of prop types for this component.
-	   *
-	   * @type {object}
-	   * @optional
-	   */
-	  propTypes: 'DEFINE_MANY',
-	
-	  /**
-	   * Definition of context types for this component.
-	   *
-	   * @type {object}
-	   * @optional
-	   */
-	  contextTypes: 'DEFINE_MANY',
-	
-	  /**
-	   * Definition of context types this component sets for its children.
-	   *
-	   * @type {object}
-	   * @optional
-	   */
-	  childContextTypes: 'DEFINE_MANY',
-	
-	  // ==== Definition methods ====
-	
-	  /**
-	   * Invoked when the component is mounted. Values in the mapping will be set on
-	   * `this.props` if that prop is not specified (i.e. using an `in` check).
-	   *
-	   * This method is invoked before `getInitialState` and therefore cannot rely
-	   * on `this.state` or use `this.setState`.
-	   *
-	   * @return {object}
-	   * @optional
-	   */
-	  getDefaultProps: 'DEFINE_MANY_MERGED',
-	
-	  /**
-	   * Invoked once before the component is mounted. The return value will be used
-	   * as the initial value of `this.state`.
-	   *
-	   *   getInitialState: function() {
-	   *     return {
-	   *       isOn: false,
-	   *       fooBaz: new BazFoo()
-	   *     }
-	   *   }
-	   *
-	   * @return {object}
-	   * @optional
-	   */
-	  getInitialState: 'DEFINE_MANY_MERGED',
-	
-	  /**
-	   * @return {object}
-	   * @optional
-	   */
-	  getChildContext: 'DEFINE_MANY_MERGED',
-	
-	  /**
-	   * Uses props from `this.props` and state from `this.state` to render the
-	   * structure of the component.
-	   *
-	   * No guarantees are made about when or how often this method is invoked, so
-	   * it must not have side effects.
-	   *
-	   *   render: function() {
-	   *     var name = this.props.name;
-	   *     return <div>Hello, {name}!</div>;
-	   *   }
-	   *
-	   * @return {ReactComponent}
-	   * @nosideeffects
-	   * @required
-	   */
-	  render: 'DEFINE_ONCE',
-	
-	  // ==== Delegate methods ====
-	
-	  /**
-	   * Invoked when the component is initially created and about to be mounted.
-	   * This may have side effects, but any external subscriptions or data created
-	   * by this method must be cleaned up in `componentWillUnmount`.
-	   *
-	   * @optional
-	   */
-	  componentWillMount: 'DEFINE_MANY',
-	
-	  /**
-	   * Invoked when the component has been mounted and has a DOM representation.
-	   * However, there is no guarantee that the DOM node is in the document.
-	   *
-	   * Use this as an opportunity to operate on the DOM when the component has
-	   * been mounted (initialized and rendered) for the first time.
-	   *
-	   * @param {DOMElement} rootNode DOM element representing the component.
-	   * @optional
-	   */
-	  componentDidMount: 'DEFINE_MANY',
-	
-	  /**
-	   * Invoked before the component receives new props.
-	   *
-	   * Use this as an opportunity to react to a prop transition by updating the
-	   * state using `this.setState`. Current props are accessed via `this.props`.
-	   *
-	   *   componentWillReceiveProps: function(nextProps, nextContext) {
-	   *     this.setState({
-	   *       likesIncreasing: nextProps.likeCount > this.props.likeCount
-	   *     });
-	   *   }
-	   *
-	   * NOTE: There is no equivalent `componentWillReceiveState`. An incoming prop
-	   * transition may cause a state change, but the opposite is not true. If you
-	   * need it, you are probably looking for `componentWillUpdate`.
-	   *
-	   * @param {object} nextProps
-	   * @optional
-	   */
-	  componentWillReceiveProps: 'DEFINE_MANY',
-	
-	  /**
-	   * Invoked while deciding if the component should be updated as a result of
-	   * receiving new props, state and/or context.
-	   *
-	   * Use this as an opportunity to `return false` when you're certain that the
-	   * transition to the new props/state/context will not require a component
-	   * update.
-	   *
-	   *   shouldComponentUpdate: function(nextProps, nextState, nextContext) {
-	   *     return !equal(nextProps, this.props) ||
-	   *       !equal(nextState, this.state) ||
-	   *       !equal(nextContext, this.context);
-	   *   }
-	   *
-	   * @param {object} nextProps
-	   * @param {?object} nextState
-	   * @param {?object} nextContext
-	   * @return {boolean} True if the component should update.
-	   * @optional
-	   */
-	  shouldComponentUpdate: 'DEFINE_ONCE',
-	
-	  /**
-	   * Invoked when the component is about to update due to a transition from
-	   * `this.props`, `this.state` and `this.context` to `nextProps`, `nextState`
-	   * and `nextContext`.
-	   *
-	   * Use this as an opportunity to perform preparation before an update occurs.
-	   *
-	   * NOTE: You **cannot** use `this.setState()` in this method.
-	   *
-	   * @param {object} nextProps
-	   * @param {?object} nextState
-	   * @param {?object} nextContext
-	   * @param {ReactReconcileTransaction} transaction
-	   * @optional
-	   */
-	  componentWillUpdate: 'DEFINE_MANY',
-	
-	  /**
-	   * Invoked when the component's DOM representation has been updated.
-	   *
-	   * Use this as an opportunity to operate on the DOM when the component has
-	   * been updated.
-	   *
-	   * @param {object} prevProps
-	   * @param {?object} prevState
-	   * @param {?object} prevContext
-	   * @param {DOMElement} rootNode DOM element representing the component.
-	   * @optional
-	   */
-	  componentDidUpdate: 'DEFINE_MANY',
-	
-	  /**
-	   * Invoked when the component is about to be removed from its parent and have
-	   * its DOM representation destroyed.
-	   *
-	   * Use this as an opportunity to deallocate any external resources.
-	   *
-	   * NOTE: There is no `componentDidUnmount` since your component will have been
-	   * destroyed by that point.
-	   *
-	   * @optional
-	   */
-	  componentWillUnmount: 'DEFINE_MANY',
-	
-	  // ==== Advanced methods ====
-	
-	  /**
-	   * Updates the component's currently mounted DOM representation.
-	   *
-	   * By default, this implements React's rendering and reconciliation algorithm.
-	   * Sophisticated clients may wish to override this.
-	   *
-	   * @param {ReactReconcileTransaction} transaction
-	   * @internal
-	   * @overridable
-	   */
-	  updateComponent: 'OVERRIDE_BASE'
-	
-	};
-	
-	/**
-	 * Mapping from class specification keys to special processing functions.
-	 *
-	 * Although these are declared like instance properties in the specification
-	 * when defining classes using `React.createClass`, they are actually static
-	 * and are accessible on the constructor instead of the prototype. Despite
-	 * being static, they must be defined outside of the "statics" key under
-	 * which all other static methods are defined.
-	 */
-	var RESERVED_SPEC_KEYS = {
-	  displayName: function (Constructor, displayName) {
-	    Constructor.displayName = displayName;
-	  },
-	  mixins: function (Constructor, mixins) {
-	    if (mixins) {
-	      for (var i = 0; i < mixins.length; i++) {
-	        mixSpecIntoComponent(Constructor, mixins[i]);
-	      }
-	    }
-	  },
-	  childContextTypes: function (Constructor, childContextTypes) {
-	    if (false) {
-	      validateTypeDef(Constructor, childContextTypes, 'childContext');
-	    }
-	    Constructor.childContextTypes = _assign({}, Constructor.childContextTypes, childContextTypes);
-	  },
-	  contextTypes: function (Constructor, contextTypes) {
-	    if (false) {
-	      validateTypeDef(Constructor, contextTypes, 'context');
-	    }
-	    Constructor.contextTypes = _assign({}, Constructor.contextTypes, contextTypes);
-	  },
-	  /**
-	   * Special case getDefaultProps which should move into statics but requires
-	   * automatic merging.
-	   */
-	  getDefaultProps: function (Constructor, getDefaultProps) {
-	    if (Constructor.getDefaultProps) {
-	      Constructor.getDefaultProps = createMergedResultFunction(Constructor.getDefaultProps, getDefaultProps);
-	    } else {
-	      Constructor.getDefaultProps = getDefaultProps;
-	    }
-	  },
-	  propTypes: function (Constructor, propTypes) {
-	    if (false) {
-	      validateTypeDef(Constructor, propTypes, 'prop');
-	    }
-	    Constructor.propTypes = _assign({}, Constructor.propTypes, propTypes);
-	  },
-	  statics: function (Constructor, statics) {
-	    mixStaticSpecIntoComponent(Constructor, statics);
-	  },
-	  autobind: function () {} };
-	
-	function validateTypeDef(Constructor, typeDef, location) {
-	  for (var propName in typeDef) {
-	    if (typeDef.hasOwnProperty(propName)) {
-	      // use a warning instead of an invariant so components
-	      // don't show up in prod but only in __DEV__
-	       false ? warning(typeof typeDef[propName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'React.PropTypes.', Constructor.displayName || 'ReactClass', ReactPropTypeLocationNames[location], propName) : void 0;
-	    }
-	  }
-	}
-	
-	function validateMethodOverride(isAlreadyDefined, name) {
-	  var specPolicy = ReactClassInterface.hasOwnProperty(name) ? ReactClassInterface[name] : null;
-	
-	  // Disallow overriding of base class methods unless explicitly allowed.
-	  if (ReactClassMixin.hasOwnProperty(name)) {
-	    !(specPolicy === 'OVERRIDE_BASE') ?  false ? invariant(false, 'ReactClassInterface: You are attempting to override `%s` from your class specification. Ensure that your method names do not overlap with React methods.', name) : _prodInvariant('73', name) : void 0;
-	  }
-	
-	  // Disallow defining methods more than once unless explicitly allowed.
-	  if (isAlreadyDefined) {
-	    !(specPolicy === 'DEFINE_MANY' || specPolicy === 'DEFINE_MANY_MERGED') ?  false ? invariant(false, 'ReactClassInterface: You are attempting to define `%s` on your component more than once. This conflict may be due to a mixin.', name) : _prodInvariant('74', name) : void 0;
-	  }
-	}
-	
-	/**
-	 * Mixin helper which handles policy validation and reserved
-	 * specification keys when building React classes.
-	 */
-	function mixSpecIntoComponent(Constructor, spec) {
-	  if (!spec) {
-	    if (false) {
-	      var typeofSpec = typeof spec;
-	      var isMixinValid = typeofSpec === 'object' && spec !== null;
-	
-	      process.env.NODE_ENV !== 'production' ? warning(isMixinValid, '%s: You\'re attempting to include a mixin that is either null ' + 'or not an object. Check the mixins included by the component, ' + 'as well as any mixins they include themselves. ' + 'Expected object but got %s.', Constructor.displayName || 'ReactClass', spec === null ? null : typeofSpec) : void 0;
-	    }
-	
-	    return;
-	  }
-	
-	  !(typeof spec !== 'function') ?  false ? invariant(false, 'ReactClass: You\'re attempting to use a component class or function as a mixin. Instead, just use a regular object.') : _prodInvariant('75') : void 0;
-	  !!ReactElement.isValidElement(spec) ?  false ? invariant(false, 'ReactClass: You\'re attempting to use a component as a mixin. Instead, just use a regular object.') : _prodInvariant('76') : void 0;
-	
-	  var proto = Constructor.prototype;
-	  var autoBindPairs = proto.__reactAutoBindPairs;
-	
-	  // By handling mixins before any other properties, we ensure the same
-	  // chaining order is applied to methods with DEFINE_MANY policy, whether
-	  // mixins are listed before or after these methods in the spec.
-	  if (spec.hasOwnProperty(MIXINS_KEY)) {
-	    RESERVED_SPEC_KEYS.mixins(Constructor, spec.mixins);
-	  }
-	
-	  for (var name in spec) {
-	    if (!spec.hasOwnProperty(name)) {
-	      continue;
-	    }
-	
-	    if (name === MIXINS_KEY) {
-	      // We have already handled mixins in a special case above.
-	      continue;
-	    }
-	
-	    var property = spec[name];
-	    var isAlreadyDefined = proto.hasOwnProperty(name);
-	    validateMethodOverride(isAlreadyDefined, name);
-	
-	    if (RESERVED_SPEC_KEYS.hasOwnProperty(name)) {
-	      RESERVED_SPEC_KEYS[name](Constructor, property);
-	    } else {
-	      // Setup methods on prototype:
-	      // The following member methods should not be automatically bound:
-	      // 1. Expected ReactClass methods (in the "interface").
-	      // 2. Overridden methods (that were mixed in).
-	      var isReactClassMethod = ReactClassInterface.hasOwnProperty(name);
-	      var isFunction = typeof property === 'function';
-	      var shouldAutoBind = isFunction && !isReactClassMethod && !isAlreadyDefined && spec.autobind !== false;
-	
-	      if (shouldAutoBind) {
-	        autoBindPairs.push(name, property);
-	        proto[name] = property;
-	      } else {
-	        if (isAlreadyDefined) {
-	          var specPolicy = ReactClassInterface[name];
-	
-	          // These cases should already be caught by validateMethodOverride.
-	          !(isReactClassMethod && (specPolicy === 'DEFINE_MANY_MERGED' || specPolicy === 'DEFINE_MANY')) ?  false ? invariant(false, 'ReactClass: Unexpected spec policy %s for key %s when mixing in component specs.', specPolicy, name) : _prodInvariant('77', specPolicy, name) : void 0;
-	
-	          // For methods which are defined more than once, call the existing
-	          // methods before calling the new property, merging if appropriate.
-	          if (specPolicy === 'DEFINE_MANY_MERGED') {
-	            proto[name] = createMergedResultFunction(proto[name], property);
-	          } else if (specPolicy === 'DEFINE_MANY') {
-	            proto[name] = createChainedFunction(proto[name], property);
-	          }
-	        } else {
-	          proto[name] = property;
-	          if (false) {
-	            // Add verbose displayName to the function, which helps when looking
-	            // at profiling tools.
-	            if (typeof property === 'function' && spec.displayName) {
-	              proto[name].displayName = spec.displayName + '_' + name;
-	            }
-	          }
-	        }
-	      }
-	    }
-	  }
-	}
-	
-	function mixStaticSpecIntoComponent(Constructor, statics) {
-	  if (!statics) {
-	    return;
-	  }
-	  for (var name in statics) {
-	    var property = statics[name];
-	    if (!statics.hasOwnProperty(name)) {
-	      continue;
-	    }
-	
-	    var isReserved = name in RESERVED_SPEC_KEYS;
-	    !!isReserved ?  false ? invariant(false, 'ReactClass: You are attempting to define a reserved property, `%s`, that shouldn\'t be on the "statics" key. Define it as an instance property instead; it will still be accessible on the constructor.', name) : _prodInvariant('78', name) : void 0;
-	
-	    var isInherited = name in Constructor;
-	    !!isInherited ?  false ? invariant(false, 'ReactClass: You are attempting to define `%s` on your component more than once. This conflict may be due to a mixin.', name) : _prodInvariant('79', name) : void 0;
-	    Constructor[name] = property;
-	  }
-	}
-	
-	/**
-	 * Merge two objects, but throw if both contain the same key.
-	 *
-	 * @param {object} one The first object, which is mutated.
-	 * @param {object} two The second object
-	 * @return {object} one after it has been mutated to contain everything in two.
-	 */
-	function mergeIntoWithNoDuplicateKeys(one, two) {
-	  !(one && two && typeof one === 'object' && typeof two === 'object') ?  false ? invariant(false, 'mergeIntoWithNoDuplicateKeys(): Cannot merge non-objects.') : _prodInvariant('80') : void 0;
-	
-	  for (var key in two) {
-	    if (two.hasOwnProperty(key)) {
-	      !(one[key] === undefined) ?  false ? invariant(false, 'mergeIntoWithNoDuplicateKeys(): Tried to merge two objects with the same key: `%s`. This conflict may be due to a mixin; in particular, this may be caused by two getInitialState() or getDefaultProps() methods returning objects with clashing keys.', key) : _prodInvariant('81', key) : void 0;
-	      one[key] = two[key];
-	    }
-	  }
-	  return one;
-	}
-	
-	/**
-	 * Creates a function that invokes two functions and merges their return values.
-	 *
-	 * @param {function} one Function to invoke first.
-	 * @param {function} two Function to invoke second.
-	 * @return {function} Function that invokes the two argument functions.
-	 * @private
-	 */
-	function createMergedResultFunction(one, two) {
-	  return function mergedResult() {
-	    var a = one.apply(this, arguments);
-	    var b = two.apply(this, arguments);
-	    if (a == null) {
-	      return b;
-	    } else if (b == null) {
-	      return a;
-	    }
-	    var c = {};
-	    mergeIntoWithNoDuplicateKeys(c, a);
-	    mergeIntoWithNoDuplicateKeys(c, b);
-	    return c;
-	  };
-	}
-	
-	/**
-	 * Creates a function that invokes two functions and ignores their return vales.
-	 *
-	 * @param {function} one Function to invoke first.
-	 * @param {function} two Function to invoke second.
-	 * @return {function} Function that invokes the two argument functions.
-	 * @private
-	 */
-	function createChainedFunction(one, two) {
-	  return function chainedFunction() {
-	    one.apply(this, arguments);
-	    two.apply(this, arguments);
-	  };
-	}
-	
-	/**
-	 * Binds a method to the component.
-	 *
-	 * @param {object} component Component whose method is going to be bound.
-	 * @param {function} method Method to be bound.
-	 * @return {function} The bound method.
-	 */
-	function bindAutoBindMethod(component, method) {
-	  var boundMethod = method.bind(component);
-	  if (false) {
-	    boundMethod.__reactBoundContext = component;
-	    boundMethod.__reactBoundMethod = method;
-	    boundMethod.__reactBoundArguments = null;
-	    var componentName = component.constructor.displayName;
-	    var _bind = boundMethod.bind;
-	    boundMethod.bind = function (newThis) {
-	      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	        args[_key - 1] = arguments[_key];
-	      }
-	
-	      // User is trying to bind() an autobound method; we effectively will
-	      // ignore the value of "this" that the user is trying to use, so
-	      // let's warn.
-	      if (newThis !== component && newThis !== null) {
-	        process.env.NODE_ENV !== 'production' ? warning(false, 'bind(): React component methods may only be bound to the ' + 'component instance. See %s', componentName) : void 0;
-	      } else if (!args.length) {
-	        process.env.NODE_ENV !== 'production' ? warning(false, 'bind(): You are binding a component method to the component. ' + 'React does this for you automatically in a high-performance ' + 'way, so you can safely remove this call. See %s', componentName) : void 0;
-	        return boundMethod;
-	      }
-	      var reboundMethod = _bind.apply(boundMethod, arguments);
-	      reboundMethod.__reactBoundContext = component;
-	      reboundMethod.__reactBoundMethod = method;
-	      reboundMethod.__reactBoundArguments = args;
-	      return reboundMethod;
-	    };
-	  }
-	  return boundMethod;
-	}
-	
-	/**
-	 * Binds all auto-bound methods in a component.
-	 *
-	 * @param {object} component Component whose method is going to be bound.
-	 */
-	function bindAutoBindMethods(component) {
-	  var pairs = component.__reactAutoBindPairs;
-	  for (var i = 0; i < pairs.length; i += 2) {
-	    var autoBindKey = pairs[i];
-	    var method = pairs[i + 1];
-	    component[autoBindKey] = bindAutoBindMethod(component, method);
-	  }
-	}
-	
-	/**
-	 * Add more to the ReactClass base class. These are all legacy features and
-	 * therefore not already part of the modern ReactComponent.
-	 */
-	var ReactClassMixin = {
-	
-	  /**
-	   * TODO: This will be deprecated because state should always keep a consistent
-	   * type signature and the only use case for this, is to avoid that.
-	   */
-	  replaceState: function (newState, callback) {
-	    this.updater.enqueueReplaceState(this, newState);
-	    if (callback) {
-	      this.updater.enqueueCallback(this, callback, 'replaceState');
-	    }
-	  },
-	
-	  /**
-	   * Checks whether or not this composite component is mounted.
-	   * @return {boolean} True if mounted, false otherwise.
-	   * @protected
-	   * @final
-	   */
-	  isMounted: function () {
-	    return this.updater.isMounted(this);
-	  }
-	};
-	
-	var ReactClassComponent = function () {};
-	_assign(ReactClassComponent.prototype, ReactComponent.prototype, ReactClassMixin);
-	
-	/**
-	 * Module for creating composite components.
-	 *
-	 * @class ReactClass
-	 */
-	var ReactClass = {
-	
-	  /**
-	   * Creates a composite component class given a class specification.
-	   * See https://facebook.github.io/react/docs/top-level-api.html#react.createclass
-	   *
-	   * @param {object} spec Class specification (which must define `render`).
-	   * @return {function} Component constructor function.
-	   * @public
-	   */
-	  createClass: function (spec) {
-	    // To keep our warnings more understandable, we'll use a little hack here to
-	    // ensure that Constructor.name !== 'Constructor'. This makes sure we don't
-	    // unnecessarily identify a class without displayName as 'Constructor'.
-	    var Constructor = identity(function (props, context, updater) {
-	      // This constructor gets overridden by mocks. The argument is used
-	      // by mocks to assert on what gets mounted.
-	
-	      if (false) {
-	        process.env.NODE_ENV !== 'production' ? warning(this instanceof Constructor, 'Something is calling a React component directly. Use a factory or ' + 'JSX instead. See: https://fb.me/react-legacyfactory') : void 0;
-	      }
-	
-	      // Wire up auto-binding
-	      if (this.__reactAutoBindPairs.length) {
-	        bindAutoBindMethods(this);
-	      }
-	
-	      this.props = props;
-	      this.context = context;
-	      this.refs = emptyObject;
-	      this.updater = updater || ReactNoopUpdateQueue;
-	
-	      this.state = null;
-	
-	      // ReactClasses doesn't have constructors. Instead, they use the
-	      // getInitialState and componentWillMount methods for initialization.
-	
-	      var initialState = this.getInitialState ? this.getInitialState() : null;
-	      if (false) {
-	        // We allow auto-mocks to proceed as if they're returning null.
-	        if (initialState === undefined && this.getInitialState._isMockFunction) {
-	          // This is probably bad practice. Consider warning here and
-	          // deprecating this convenience.
-	          initialState = null;
-	        }
-	      }
-	      !(typeof initialState === 'object' && !Array.isArray(initialState)) ?  false ? invariant(false, '%s.getInitialState(): must return an object or null', Constructor.displayName || 'ReactCompositeComponent') : _prodInvariant('82', Constructor.displayName || 'ReactCompositeComponent') : void 0;
-	
-	      this.state = initialState;
-	    });
-	    Constructor.prototype = new ReactClassComponent();
-	    Constructor.prototype.constructor = Constructor;
-	    Constructor.prototype.__reactAutoBindPairs = [];
-	
-	    injectedMixins.forEach(mixSpecIntoComponent.bind(null, Constructor));
-	
-	    mixSpecIntoComponent(Constructor, spec);
-	
-	    // Initialize the defaultProps property after all mixins have been merged.
-	    if (Constructor.getDefaultProps) {
-	      Constructor.defaultProps = Constructor.getDefaultProps();
-	    }
-	
-	    if (false) {
-	      // This is a tag to indicate that the use of these method names is ok,
-	      // since it's used with createClass. If it's not, then it's likely a
-	      // mistake so we'll warn you to use the static property, property
-	      // initializer or constructor respectively.
-	      if (Constructor.getDefaultProps) {
-	        Constructor.getDefaultProps.isReactClassApproved = {};
-	      }
-	      if (Constructor.prototype.getInitialState) {
-	        Constructor.prototype.getInitialState.isReactClassApproved = {};
-	      }
-	    }
-	
-	    !Constructor.prototype.render ?  false ? invariant(false, 'createClass(...): Class specification must implement a `render` method.') : _prodInvariant('83') : void 0;
-	
-	    if (false) {
-	      process.env.NODE_ENV !== 'production' ? warning(!Constructor.prototype.componentShouldUpdate, '%s has a method called ' + 'componentShouldUpdate(). Did you mean shouldComponentUpdate()? ' + 'The name is phrased as a question because the function is ' + 'expected to return a value.', spec.displayName || 'A component') : void 0;
-	      process.env.NODE_ENV !== 'production' ? warning(!Constructor.prototype.componentWillRecieveProps, '%s has a method called ' + 'componentWillRecieveProps(). Did you mean componentWillReceiveProps()?', spec.displayName || 'A component') : void 0;
-	    }
-	
-	    // Reduce time spent doing lookups by setting these on the prototype.
-	    for (var methodName in ReactClassInterface) {
-	      if (!Constructor.prototype[methodName]) {
-	        Constructor.prototype[methodName] = null;
-	      }
-	    }
-	
-	    return Constructor;
-	  },
-	
-	  injection: {
-	    injectMixin: function (mixin) {
-	      injectedMixins.push(mixin);
-	    }
-	  }
-	
-	};
-	
-	module.exports = ReactClass;
-
-/***/ },
-/* 108 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * 
-	 */
-	
-	'use strict';
-	
-	var ReactPropTypeLocationNames = {};
-	
-	if (false) {
-	  ReactPropTypeLocationNames = {
-	    prop: 'prop',
-	    context: 'context',
-	    childContext: 'child context'
-	  };
-	}
-	
-	module.exports = ReactPropTypeLocationNames;
-
-/***/ },
-/* 109 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 */
-	
-	'use strict';
-	
-	var ReactElement = __webpack_require__(94);
+	var ReactElement = __webpack_require__(100);
 	
 	/**
 	 * Create a factory that creates HTML tag elements.
@@ -4235,7 +3594,6 @@
 	
 	/**
 	 * Creates a mapping from supported HTML tags to `ReactDOMComponent` classes.
-	 * This is also accessible via `React.DOM`.
 	 *
 	 * @public
 	 */
@@ -4378,9 +3736,30 @@
 	
 	module.exports = ReactDOMFactories;
 
-/***/ },
-/* 110 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 *
+	 */
+	
+	'use strict';
+	
+	var _require = __webpack_require__(100),
+	    isValidElement = _require.isValidElement;
+	
+	var factory = __webpack_require__(108);
+	
+	module.exports = factory(isValidElement);
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * Copyright 2013-present, Facebook, Inc.
@@ -4389,439 +3768,548 @@
 	 * This source code is licensed under the BSD-style license found in the
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
 	 */
 	
 	'use strict';
 	
-	var ReactElement = __webpack_require__(94);
-	var ReactPropTypeLocationNames = __webpack_require__(108);
-	var ReactPropTypesSecret = __webpack_require__(111);
-	
-	var emptyFunction = __webpack_require__(97);
-	var getIteratorFn = __webpack_require__(101);
-	var warning = __webpack_require__(96);
-	
-	/**
-	 * Collection of methods that allow declaration and validation of props that are
-	 * supplied to React components. Example usage:
-	 *
-	 *   var Props = require('ReactPropTypes');
-	 *   var MyArticle = React.createClass({
-	 *     propTypes: {
-	 *       // An optional string prop named "description".
-	 *       description: Props.string,
-	 *
-	 *       // A required enum prop named "category".
-	 *       category: Props.oneOf(['News','Photos']).isRequired,
-	 *
-	 *       // A prop named "dialog" that requires an instance of Dialog.
-	 *       dialog: Props.instanceOf(Dialog).isRequired
-	 *     },
-	 *     render: function() { ... }
-	 *   });
-	 *
-	 * A more formal specification of how these methods are used:
-	 *
-	 *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
-	 *   decl := ReactPropTypes.{type}(.isRequired)?
-	 *
-	 * Each and every declaration produces a function with the same signature. This
-	 * allows the creation of custom validation functions. For example:
-	 *
-	 *  var MyLink = React.createClass({
-	 *    propTypes: {
-	 *      // An optional string or URI prop named "href".
-	 *      href: function(props, propName, componentName) {
-	 *        var propValue = props[propName];
-	 *        if (propValue != null && typeof propValue !== 'string' &&
-	 *            !(propValue instanceof URI)) {
-	 *          return new Error(
-	 *            'Expected a string or an URI for ' + propName + ' in ' +
-	 *            componentName
-	 *          );
-	 *        }
-	 *      }
-	 *    },
-	 *    render: function() {...}
-	 *  });
-	 *
-	 * @internal
-	 */
-	
-	var ANONYMOUS = '<<anonymous>>';
-	
-	var ReactPropTypes = {
-	  array: createPrimitiveTypeChecker('array'),
-	  bool: createPrimitiveTypeChecker('boolean'),
-	  func: createPrimitiveTypeChecker('function'),
-	  number: createPrimitiveTypeChecker('number'),
-	  object: createPrimitiveTypeChecker('object'),
-	  string: createPrimitiveTypeChecker('string'),
-	  symbol: createPrimitiveTypeChecker('symbol'),
-	
-	  any: createAnyTypeChecker(),
-	  arrayOf: createArrayOfTypeChecker,
-	  element: createElementTypeChecker(),
-	  instanceOf: createInstanceTypeChecker,
-	  node: createNodeChecker(),
-	  objectOf: createObjectOfTypeChecker,
-	  oneOf: createEnumTypeChecker,
-	  oneOfType: createUnionTypeChecker,
-	  shape: createShapeTypeChecker
+	// React 15.5 references this module, and assumes PropTypes are still callable in production.
+	// Therefore we re-export development-only version with all the PropTypes checks here.
+	// However if one is migrating to the `prop-types` npm library, they will go through the
+	// `index.js` entry point, and it will branch depending on the environment.
+	var factory = __webpack_require__(109);
+	module.exports = function(isValidElement) {
+	  // It is still allowed in 15.5.
+	  var throwOnDirectAccess = false;
+	  return factory(isValidElement, throwOnDirectAccess);
 	};
-	
+
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	/**
-	 * inlined Object.is polyfill to avoid requiring consumers ship their own
-	 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
-	/*eslint-disable no-self-compare*/
-	function is(x, y) {
-	  // SameValue algorithm
-	  if (x === y) {
-	    // Steps 1-5, 7-10
-	    // Steps 6.b-6.e: +0 != -0
-	    return x !== 0 || 1 / x === 1 / y;
-	  } else {
-	    // Step 6.a: NaN == NaN
-	    return x !== x && y !== y;
-	  }
-	}
-	/*eslint-enable no-self-compare*/
 	
-	/**
-	 * We use an Error-like object for backward compatibility as people may call
-	 * PropTypes directly and inspect their output. However we don't use real
-	 * Errors anymore. We don't inspect their stack anyway, and creating them
-	 * is prohibitively expensive if they are created too often, such as what
-	 * happens in oneOfType() for any type before the one that matched.
-	 */
-	function PropTypeError(message) {
-	  this.message = message;
-	  this.stack = '';
-	}
-	// Make `instanceof Error` still work for returned errors.
-	PropTypeError.prototype = Error.prototype;
+	'use strict';
 	
-	function createChainableTypeChecker(validate) {
-	  if (false) {
-	    var manualPropTypeCallCache = {};
+	var emptyFunction = __webpack_require__(110);
+	var invariant = __webpack_require__(111);
+	var warning = __webpack_require__(112);
+	
+	var ReactPropTypesSecret = __webpack_require__(113);
+	var checkPropTypes = __webpack_require__(114);
+	
+	module.exports = function(isValidElement, throwOnDirectAccess) {
+	  /* global Symbol */
+	  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+	  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+	
+	  /**
+	   * Returns the iterator method function contained on the iterable object.
+	   *
+	   * Be sure to invoke the function with the iterable as context:
+	   *
+	   *     var iteratorFn = getIteratorFn(myIterable);
+	   *     if (iteratorFn) {
+	   *       var iterator = iteratorFn.call(myIterable);
+	   *       ...
+	   *     }
+	   *
+	   * @param {?object} maybeIterable
+	   * @return {?function}
+	   */
+	  function getIteratorFn(maybeIterable) {
+	    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+	    if (typeof iteratorFn === 'function') {
+	      return iteratorFn;
+	    }
 	  }
-	  function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
-	    componentName = componentName || ANONYMOUS;
-	    propFullName = propFullName || propName;
+	
+	  /**
+	   * Collection of methods that allow declaration and validation of props that are
+	   * supplied to React components. Example usage:
+	   *
+	   *   var Props = require('ReactPropTypes');
+	   *   var MyArticle = React.createClass({
+	   *     propTypes: {
+	   *       // An optional string prop named "description".
+	   *       description: Props.string,
+	   *
+	   *       // A required enum prop named "category".
+	   *       category: Props.oneOf(['News','Photos']).isRequired,
+	   *
+	   *       // A prop named "dialog" that requires an instance of Dialog.
+	   *       dialog: Props.instanceOf(Dialog).isRequired
+	   *     },
+	   *     render: function() { ... }
+	   *   });
+	   *
+	   * A more formal specification of how these methods are used:
+	   *
+	   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
+	   *   decl := ReactPropTypes.{type}(.isRequired)?
+	   *
+	   * Each and every declaration produces a function with the same signature. This
+	   * allows the creation of custom validation functions. For example:
+	   *
+	   *  var MyLink = React.createClass({
+	   *    propTypes: {
+	   *      // An optional string or URI prop named "href".
+	   *      href: function(props, propName, componentName) {
+	   *        var propValue = props[propName];
+	   *        if (propValue != null && typeof propValue !== 'string' &&
+	   *            !(propValue instanceof URI)) {
+	   *          return new Error(
+	   *            'Expected a string or an URI for ' + propName + ' in ' +
+	   *            componentName
+	   *          );
+	   *        }
+	   *      }
+	   *    },
+	   *    render: function() {...}
+	   *  });
+	   *
+	   * @internal
+	   */
+	
+	  var ANONYMOUS = '<<anonymous>>';
+	
+	  // Important!
+	  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+	  var ReactPropTypes = {
+	    array: createPrimitiveTypeChecker('array'),
+	    bool: createPrimitiveTypeChecker('boolean'),
+	    func: createPrimitiveTypeChecker('function'),
+	    number: createPrimitiveTypeChecker('number'),
+	    object: createPrimitiveTypeChecker('object'),
+	    string: createPrimitiveTypeChecker('string'),
+	    symbol: createPrimitiveTypeChecker('symbol'),
+	
+	    any: createAnyTypeChecker(),
+	    arrayOf: createArrayOfTypeChecker,
+	    element: createElementTypeChecker(),
+	    instanceOf: createInstanceTypeChecker,
+	    node: createNodeChecker(),
+	    objectOf: createObjectOfTypeChecker,
+	    oneOf: createEnumTypeChecker,
+	    oneOfType: createUnionTypeChecker,
+	    shape: createShapeTypeChecker
+	  };
+	
+	  /**
+	   * inlined Object.is polyfill to avoid requiring consumers ship their own
+	   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+	   */
+	  /*eslint-disable no-self-compare*/
+	  function is(x, y) {
+	    // SameValue algorithm
+	    if (x === y) {
+	      // Steps 1-5, 7-10
+	      // Steps 6.b-6.e: +0 != -0
+	      return x !== 0 || 1 / x === 1 / y;
+	    } else {
+	      // Step 6.a: NaN == NaN
+	      return x !== x && y !== y;
+	    }
+	  }
+	  /*eslint-enable no-self-compare*/
+	
+	  /**
+	   * We use an Error-like object for backward compatibility as people may call
+	   * PropTypes directly and inspect their output. However, we don't use real
+	   * Errors anymore. We don't inspect their stack anyway, and creating them
+	   * is prohibitively expensive if they are created too often, such as what
+	   * happens in oneOfType() for any type before the one that matched.
+	   */
+	  function PropTypeError(message) {
+	    this.message = message;
+	    this.stack = '';
+	  }
+	  // Make `instanceof Error` still work for returned errors.
+	  PropTypeError.prototype = Error.prototype;
+	
+	  function createChainableTypeChecker(validate) {
 	    if (false) {
-	      if (secret !== ReactPropTypesSecret && typeof console !== 'undefined') {
-	        var cacheKey = componentName + ':' + propName;
-	        if (!manualPropTypeCallCache[cacheKey]) {
-	          process.env.NODE_ENV !== 'production' ? warning(false, 'You are manually calling a React.PropTypes validation ' + 'function for the `%s` prop on `%s`. This is deprecated ' + 'and will not work in production with the next major version. ' + 'You may be seeing this warning due to a third-party PropTypes ' + 'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.', propFullName, componentName) : void 0;
-	          manualPropTypeCallCache[cacheKey] = true;
+	      var manualPropTypeCallCache = {};
+	      var manualPropTypeWarningCount = 0;
+	    }
+	    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+	      componentName = componentName || ANONYMOUS;
+	      propFullName = propFullName || propName;
+	
+	      if (secret !== ReactPropTypesSecret) {
+	        if (throwOnDirectAccess) {
+	          // New behavior only for users of `prop-types` package
+	          invariant(
+	            false,
+	            'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+	            'Use `PropTypes.checkPropTypes()` to call them. ' +
+	            'Read more at http://fb.me/use-check-prop-types'
+	          );
+	        } else if (false) {
+	          // Old behavior for people using React.PropTypes
+	          var cacheKey = componentName + ':' + propName;
+	          if (
+	            !manualPropTypeCallCache[cacheKey] &&
+	            // Avoid spamming the console because they are often not actionable except for lib authors
+	            manualPropTypeWarningCount < 3
+	          ) {
+	            warning(
+	              false,
+	              'You are manually calling a React.PropTypes validation ' +
+	              'function for the `%s` prop on `%s`. This is deprecated ' +
+	              'and will throw in the standalone `prop-types` package. ' +
+	              'You may be seeing this warning due to a third-party PropTypes ' +
+	              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.',
+	              propFullName,
+	              componentName
+	            );
+	            manualPropTypeCallCache[cacheKey] = true;
+	            manualPropTypeWarningCount++;
+	          }
 	        }
 	      }
-	    }
-	    if (props[propName] == null) {
-	      var locationName = ReactPropTypeLocationNames[location];
-	      if (isRequired) {
-	        if (props[propName] === null) {
-	          return new PropTypeError('The ' + locationName + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+	      if (props[propName] == null) {
+	        if (isRequired) {
+	          if (props[propName] === null) {
+	            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+	          }
+	          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
 	        }
-	        return new PropTypeError('The ' + locationName + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+	        return null;
+	      } else {
+	        return validate(props, propName, componentName, location, propFullName);
+	      }
+	    }
+	
+	    var chainedCheckType = checkType.bind(null, false);
+	    chainedCheckType.isRequired = checkType.bind(null, true);
+	
+	    return chainedCheckType;
+	  }
+	
+	  function createPrimitiveTypeChecker(expectedType) {
+	    function validate(props, propName, componentName, location, propFullName, secret) {
+	      var propValue = props[propName];
+	      var propType = getPropType(propValue);
+	      if (propType !== expectedType) {
+	        // `propValue` being instance of, say, date/regexp, pass the 'object'
+	        // check, but we can offer a more precise error message here rather than
+	        // 'of type `object`'.
+	        var preciseType = getPreciseType(propValue);
+	
+	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
 	      }
 	      return null;
-	    } else {
-	      return validate(props, propName, componentName, location, propFullName);
 	    }
+	    return createChainableTypeChecker(validate);
 	  }
 	
-	  var chainedCheckType = checkType.bind(null, false);
-	  chainedCheckType.isRequired = checkType.bind(null, true);
-	
-	  return chainedCheckType;
-	}
-	
-	function createPrimitiveTypeChecker(expectedType) {
-	  function validate(props, propName, componentName, location, propFullName, secret) {
-	    var propValue = props[propName];
-	    var propType = getPropType(propValue);
-	    if (propType !== expectedType) {
-	      var locationName = ReactPropTypeLocationNames[location];
-	      // `propValue` being instance of, say, date/regexp, pass the 'object'
-	      // check, but we can offer a more precise error message here rather than
-	      // 'of type `object`'.
-	      var preciseType = getPreciseType(propValue);
-	
-	      return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
-	    }
-	    return null;
+	  function createAnyTypeChecker() {
+	    return createChainableTypeChecker(emptyFunction.thatReturnsNull);
 	  }
-	  return createChainableTypeChecker(validate);
-	}
 	
-	function createAnyTypeChecker() {
-	  return createChainableTypeChecker(emptyFunction.thatReturns(null));
-	}
-	
-	function createArrayOfTypeChecker(typeChecker) {
-	  function validate(props, propName, componentName, location, propFullName) {
-	    if (typeof typeChecker !== 'function') {
-	      return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
-	    }
-	    var propValue = props[propName];
-	    if (!Array.isArray(propValue)) {
-	      var locationName = ReactPropTypeLocationNames[location];
-	      var propType = getPropType(propValue);
-	      return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
-	    }
-	    for (var i = 0; i < propValue.length; i++) {
-	      var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret);
-	      if (error instanceof Error) {
-	        return error;
+	  function createArrayOfTypeChecker(typeChecker) {
+	    function validate(props, propName, componentName, location, propFullName) {
+	      if (typeof typeChecker !== 'function') {
+	        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
 	      }
-	    }
-	    return null;
-	  }
-	  return createChainableTypeChecker(validate);
-	}
-	
-	function createElementTypeChecker() {
-	  function validate(props, propName, componentName, location, propFullName) {
-	    var propValue = props[propName];
-	    if (!ReactElement.isValidElement(propValue)) {
-	      var locationName = ReactPropTypeLocationNames[location];
-	      var propType = getPropType(propValue);
-	      return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
-	    }
-	    return null;
-	  }
-	  return createChainableTypeChecker(validate);
-	}
-	
-	function createInstanceTypeChecker(expectedClass) {
-	  function validate(props, propName, componentName, location, propFullName) {
-	    if (!(props[propName] instanceof expectedClass)) {
-	      var locationName = ReactPropTypeLocationNames[location];
-	      var expectedClassName = expectedClass.name || ANONYMOUS;
-	      var actualClassName = getClassName(props[propName]);
-	      return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
-	    }
-	    return null;
-	  }
-	  return createChainableTypeChecker(validate);
-	}
-	
-	function createEnumTypeChecker(expectedValues) {
-	  if (!Array.isArray(expectedValues)) {
-	     false ? warning(false, 'Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
-	    return emptyFunction.thatReturnsNull;
-	  }
-	
-	  function validate(props, propName, componentName, location, propFullName) {
-	    var propValue = props[propName];
-	    for (var i = 0; i < expectedValues.length; i++) {
-	      if (is(propValue, expectedValues[i])) {
-	        return null;
+	      var propValue = props[propName];
+	      if (!Array.isArray(propValue)) {
+	        var propType = getPropType(propValue);
+	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
 	      }
-	    }
-	
-	    var locationName = ReactPropTypeLocationNames[location];
-	    var valuesString = JSON.stringify(expectedValues);
-	    return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` of value `' + propValue + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
-	  }
-	  return createChainableTypeChecker(validate);
-	}
-	
-	function createObjectOfTypeChecker(typeChecker) {
-	  function validate(props, propName, componentName, location, propFullName) {
-	    if (typeof typeChecker !== 'function') {
-	      return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
-	    }
-	    var propValue = props[propName];
-	    var propType = getPropType(propValue);
-	    if (propType !== 'object') {
-	      var locationName = ReactPropTypeLocationNames[location];
-	      return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
-	    }
-	    for (var key in propValue) {
-	      if (propValue.hasOwnProperty(key)) {
-	        var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+	      for (var i = 0; i < propValue.length; i++) {
+	        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret);
 	        if (error instanceof Error) {
 	          return error;
 	        }
 	      }
+	      return null;
 	    }
-	    return null;
-	  }
-	  return createChainableTypeChecker(validate);
-	}
-	
-	function createUnionTypeChecker(arrayOfTypeCheckers) {
-	  if (!Array.isArray(arrayOfTypeCheckers)) {
-	     false ? warning(false, 'Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
-	    return emptyFunction.thatReturnsNull;
+	    return createChainableTypeChecker(validate);
 	  }
 	
-	  function validate(props, propName, componentName, location, propFullName) {
+	  function createElementTypeChecker() {
+	    function validate(props, propName, componentName, location, propFullName) {
+	      var propValue = props[propName];
+	      if (!isValidElement(propValue)) {
+	        var propType = getPropType(propValue);
+	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+	      }
+	      return null;
+	    }
+	    return createChainableTypeChecker(validate);
+	  }
+	
+	  function createInstanceTypeChecker(expectedClass) {
+	    function validate(props, propName, componentName, location, propFullName) {
+	      if (!(props[propName] instanceof expectedClass)) {
+	        var expectedClassName = expectedClass.name || ANONYMOUS;
+	        var actualClassName = getClassName(props[propName]);
+	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+	      }
+	      return null;
+	    }
+	    return createChainableTypeChecker(validate);
+	  }
+	
+	  function createEnumTypeChecker(expectedValues) {
+	    if (!Array.isArray(expectedValues)) {
+	       false ? warning(false, 'Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
+	      return emptyFunction.thatReturnsNull;
+	    }
+	
+	    function validate(props, propName, componentName, location, propFullName) {
+	      var propValue = props[propName];
+	      for (var i = 0; i < expectedValues.length; i++) {
+	        if (is(propValue, expectedValues[i])) {
+	          return null;
+	        }
+	      }
+	
+	      var valuesString = JSON.stringify(expectedValues);
+	      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + propValue + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+	    }
+	    return createChainableTypeChecker(validate);
+	  }
+	
+	  function createObjectOfTypeChecker(typeChecker) {
+	    function validate(props, propName, componentName, location, propFullName) {
+	      if (typeof typeChecker !== 'function') {
+	        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+	      }
+	      var propValue = props[propName];
+	      var propType = getPropType(propValue);
+	      if (propType !== 'object') {
+	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+	      }
+	      for (var key in propValue) {
+	        if (propValue.hasOwnProperty(key)) {
+	          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+	          if (error instanceof Error) {
+	            return error;
+	          }
+	        }
+	      }
+	      return null;
+	    }
+	    return createChainableTypeChecker(validate);
+	  }
+	
+	  function createUnionTypeChecker(arrayOfTypeCheckers) {
+	    if (!Array.isArray(arrayOfTypeCheckers)) {
+	       false ? warning(false, 'Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
+	      return emptyFunction.thatReturnsNull;
+	    }
+	
 	    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
 	      var checker = arrayOfTypeCheckers[i];
-	      if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret) == null) {
-	        return null;
+	      if (typeof checker !== 'function') {
+	        warning(
+	          false,
+	          'Invalid argument supplid to oneOfType. Expected an array of check functions, but ' +
+	          'received %s at index %s.',
+	          getPostfixForTypeWarning(checker),
+	          i
+	        );
+	        return emptyFunction.thatReturnsNull;
 	      }
 	    }
 	
-	    var locationName = ReactPropTypeLocationNames[location];
-	    return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
+	    function validate(props, propName, componentName, location, propFullName) {
+	      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+	        var checker = arrayOfTypeCheckers[i];
+	        if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret) == null) {
+	          return null;
+	        }
+	      }
+	
+	      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
+	    }
+	    return createChainableTypeChecker(validate);
 	  }
-	  return createChainableTypeChecker(validate);
-	}
 	
-	function createNodeChecker() {
-	  function validate(props, propName, componentName, location, propFullName) {
-	    if (!isNode(props[propName])) {
-	      var locationName = ReactPropTypeLocationNames[location];
-	      return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+	  function createNodeChecker() {
+	    function validate(props, propName, componentName, location, propFullName) {
+	      if (!isNode(props[propName])) {
+	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+	      }
+	      return null;
 	    }
-	    return null;
+	    return createChainableTypeChecker(validate);
 	  }
-	  return createChainableTypeChecker(validate);
-	}
 	
-	function createShapeTypeChecker(shapeTypes) {
-	  function validate(props, propName, componentName, location, propFullName) {
-	    var propValue = props[propName];
-	    var propType = getPropType(propValue);
-	    if (propType !== 'object') {
-	      var locationName = ReactPropTypeLocationNames[location];
-	      return new PropTypeError('Invalid ' + locationName + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
-	    }
-	    for (var key in shapeTypes) {
-	      var checker = shapeTypes[key];
-	      if (!checker) {
-	        continue;
+	  function createShapeTypeChecker(shapeTypes) {
+	    function validate(props, propName, componentName, location, propFullName) {
+	      var propValue = props[propName];
+	      var propType = getPropType(propValue);
+	      if (propType !== 'object') {
+	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
 	      }
-	      var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
-	      if (error) {
-	        return error;
+	      for (var key in shapeTypes) {
+	        var checker = shapeTypes[key];
+	        if (!checker) {
+	          continue;
+	        }
+	        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+	        if (error) {
+	          return error;
+	        }
 	      }
+	      return null;
 	    }
-	    return null;
+	    return createChainableTypeChecker(validate);
 	  }
-	  return createChainableTypeChecker(validate);
-	}
 	
-	function isNode(propValue) {
-	  switch (typeof propValue) {
-	    case 'number':
-	    case 'string':
-	    case 'undefined':
-	      return true;
-	    case 'boolean':
-	      return !propValue;
-	    case 'object':
-	      if (Array.isArray(propValue)) {
-	        return propValue.every(isNode);
-	      }
-	      if (propValue === null || ReactElement.isValidElement(propValue)) {
+	  function isNode(propValue) {
+	    switch (typeof propValue) {
+	      case 'number':
+	      case 'string':
+	      case 'undefined':
 	        return true;
-	      }
+	      case 'boolean':
+	        return !propValue;
+	      case 'object':
+	        if (Array.isArray(propValue)) {
+	          return propValue.every(isNode);
+	        }
+	        if (propValue === null || isValidElement(propValue)) {
+	          return true;
+	        }
 	
-	      var iteratorFn = getIteratorFn(propValue);
-	      if (iteratorFn) {
-	        var iterator = iteratorFn.call(propValue);
-	        var step;
-	        if (iteratorFn !== propValue.entries) {
-	          while (!(step = iterator.next()).done) {
-	            if (!isNode(step.value)) {
-	              return false;
-	            }
-	          }
-	        } else {
-	          // Iterator will provide entry [k,v] tuples rather than values.
-	          while (!(step = iterator.next()).done) {
-	            var entry = step.value;
-	            if (entry) {
-	              if (!isNode(entry[1])) {
+	        var iteratorFn = getIteratorFn(propValue);
+	        if (iteratorFn) {
+	          var iterator = iteratorFn.call(propValue);
+	          var step;
+	          if (iteratorFn !== propValue.entries) {
+	            while (!(step = iterator.next()).done) {
+	              if (!isNode(step.value)) {
 	                return false;
 	              }
 	            }
+	          } else {
+	            // Iterator will provide entry [k,v] tuples rather than values.
+	            while (!(step = iterator.next()).done) {
+	              var entry = step.value;
+	              if (entry) {
+	                if (!isNode(entry[1])) {
+	                  return false;
+	                }
+	              }
+	            }
 	          }
+	        } else {
+	          return false;
 	        }
-	      } else {
+	
+	        return true;
+	      default:
 	        return false;
-	      }
-	
-	      return true;
-	    default:
-	      return false;
-	  }
-	}
-	
-	function isSymbol(propType, propValue) {
-	  // Native Symbol.
-	  if (propType === 'symbol') {
-	    return true;
-	  }
-	
-	  // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
-	  if (propValue['@@toStringTag'] === 'Symbol') {
-	    return true;
-	  }
-	
-	  // Fallback for non-spec compliant Symbols which are polyfilled.
-	  if (typeof Symbol === 'function' && propValue instanceof Symbol) {
-	    return true;
-	  }
-	
-	  return false;
-	}
-	
-	// Equivalent of `typeof` but with special handling for array and regexp.
-	function getPropType(propValue) {
-	  var propType = typeof propValue;
-	  if (Array.isArray(propValue)) {
-	    return 'array';
-	  }
-	  if (propValue instanceof RegExp) {
-	    // Old webkits (at least until Android 4.0) return 'function' rather than
-	    // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
-	    // passes PropTypes.object.
-	    return 'object';
-	  }
-	  if (isSymbol(propType, propValue)) {
-	    return 'symbol';
-	  }
-	  return propType;
-	}
-	
-	// This handles more types than `getPropType`. Only used for error messages.
-	// See `createPrimitiveTypeChecker`.
-	function getPreciseType(propValue) {
-	  var propType = getPropType(propValue);
-	  if (propType === 'object') {
-	    if (propValue instanceof Date) {
-	      return 'date';
-	    } else if (propValue instanceof RegExp) {
-	      return 'regexp';
 	    }
 	  }
-	  return propType;
-	}
 	
-	// Returns class name of the object, if any.
-	function getClassName(propValue) {
-	  if (!propValue.constructor || !propValue.constructor.name) {
-	    return ANONYMOUS;
+	  function isSymbol(propType, propValue) {
+	    // Native Symbol.
+	    if (propType === 'symbol') {
+	      return true;
+	    }
+	
+	    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+	    if (propValue['@@toStringTag'] === 'Symbol') {
+	      return true;
+	    }
+	
+	    // Fallback for non-spec compliant Symbols which are polyfilled.
+	    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
+	      return true;
+	    }
+	
+	    return false;
 	  }
-	  return propValue.constructor.name;
-	}
 	
-	module.exports = ReactPropTypes;
+	  // Equivalent of `typeof` but with special handling for array and regexp.
+	  function getPropType(propValue) {
+	    var propType = typeof propValue;
+	    if (Array.isArray(propValue)) {
+	      return 'array';
+	    }
+	    if (propValue instanceof RegExp) {
+	      // Old webkits (at least until Android 4.0) return 'function' rather than
+	      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+	      // passes PropTypes.object.
+	      return 'object';
+	    }
+	    if (isSymbol(propType, propValue)) {
+	      return 'symbol';
+	    }
+	    return propType;
+	  }
+	
+	  // This handles more types than `getPropType`. Only used for error messages.
+	  // See `createPrimitiveTypeChecker`.
+	  function getPreciseType(propValue) {
+	    if (typeof propValue === 'undefined' || propValue === null) {
+	      return '' + propValue;
+	    }
+	    var propType = getPropType(propValue);
+	    if (propType === 'object') {
+	      if (propValue instanceof Date) {
+	        return 'date';
+	      } else if (propValue instanceof RegExp) {
+	        return 'regexp';
+	      }
+	    }
+	    return propType;
+	  }
+	
+	  // Returns a string that is postfixed to a warning about an invalid type.
+	  // For example, "undefined" or "of type array"
+	  function getPostfixForTypeWarning(value) {
+	    var type = getPreciseType(value);
+	    switch (type) {
+	      case 'array':
+	      case 'object':
+	        return 'an ' + type;
+	      case 'boolean':
+	      case 'date':
+	      case 'regexp':
+	        return 'a ' + type;
+	      default:
+	        return type;
+	    }
+	  }
+	
+	  // Returns class name of the object, if any.
+	  function getClassName(propValue) {
+	    if (!propValue.constructor || !propValue.constructor.name) {
+	      return ANONYMOUS;
+	    }
+	    return propValue.constructor.name;
+	  }
+	
+	  ReactPropTypes.checkPropTypes = checkPropTypes;
+	  ReactPropTypes.PropTypes = ReactPropTypes;
+	
+	  return ReactPropTypes;
+	};
 
-/***/ },
-/* 111 */
-/***/ function(module, exports) {
 
+/***/ }),
+/* 110 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 * All rights reserved.
 	 *
 	 * This source code is licensed under the BSD-style license found in the
@@ -4831,15 +4319,184 @@
 	 * 
 	 */
 	
+	function makeEmptyFunction(arg) {
+	  return function () {
+	    return arg;
+	  };
+	}
+	
+	/**
+	 * This function accepts and discards inputs; it has no side effects. This is
+	 * primarily useful idiomatically for overridable function endpoints which
+	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+	 */
+	var emptyFunction = function emptyFunction() {};
+	
+	emptyFunction.thatReturns = makeEmptyFunction;
+	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+	emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+	emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+	emptyFunction.thatReturnsThis = function () {
+	  return this;
+	};
+	emptyFunction.thatReturnsArgument = function (arg) {
+	  return arg;
+	};
+	
+	module.exports = emptyFunction;
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 */
+	
+	'use strict';
+	
+	/**
+	 * Use invariant() to assert state which your program assumes to be true.
+	 *
+	 * Provide sprintf-style format (only %s is supported) and arguments
+	 * to provide information about what broke and what you were
+	 * expecting.
+	 *
+	 * The invariant message will be stripped in production, but the invariant
+	 * will remain to ensure logic does not differ in production.
+	 */
+	
+	var validateFormat = function validateFormat(format) {};
+	
+	if (false) {
+	  validateFormat = function validateFormat(format) {
+	    if (format === undefined) {
+	      throw new Error('invariant requires an error message argument');
+	    }
+	  };
+	}
+	
+	function invariant(condition, format, a, b, c, d, e, f) {
+	  validateFormat(format);
+	
+	  if (!condition) {
+	    var error;
+	    if (format === undefined) {
+	      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+	    } else {
+	      var args = [a, b, c, d, e, f];
+	      var argIndex = 0;
+	      error = new Error(format.replace(/%s/g, function () {
+	        return args[argIndex++];
+	      }));
+	      error.name = 'Invariant Violation';
+	    }
+	
+	    error.framesToPop = 1; // we don't care about invariant's own frame
+	    throw error;
+	  }
+	}
+	
+	module.exports = invariant;
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2014-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 */
+	
+	'use strict';
+	
+	var emptyFunction = __webpack_require__(110);
+	
+	/**
+	 * Similar to invariant but only logs a warning if the condition is not met.
+	 * This can be used to log issues in development environments in critical
+	 * paths. Removing the logging code for production environments will keep the
+	 * same logic and follow the same code paths.
+	 */
+	
+	var warning = emptyFunction;
+	
+	if (false) {
+	  var printWarning = function printWarning(format) {
+	    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	      args[_key - 1] = arguments[_key];
+	    }
+	
+	    var argIndex = 0;
+	    var message = 'Warning: ' + format.replace(/%s/g, function () {
+	      return args[argIndex++];
+	    });
+	    if (typeof console !== 'undefined') {
+	      console.error(message);
+	    }
+	    try {
+	      // --- Welcome to debugging React ---
+	      // This error was thrown as a convenience so that you can use this stack
+	      // to find the callsite that caused this warning to fire.
+	      throw new Error(message);
+	    } catch (x) {}
+	  };
+	
+	  warning = function warning(condition, format) {
+	    if (format === undefined) {
+	      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+	    }
+	
+	    if (format.indexOf('Failed Composite propType: ') === 0) {
+	      return; // Ignore CompositeComponent proptype check.
+	    }
+	
+	    if (!condition) {
+	      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+	        args[_key2 - 2] = arguments[_key2];
+	      }
+	
+	      printWarning.apply(undefined, [format].concat(args));
+	    }
+	  };
+	}
+	
+	module.exports = warning;
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports) {
+
+	/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+	
 	'use strict';
 	
 	var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 	
 	module.exports = ReactPropTypesSecret;
 
-/***/ },
-/* 112 */
-/***/ function(module, exports) {
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * Copyright 2013-present, Facebook, Inc.
@@ -4848,33 +4505,1093 @@
 	 * This source code is licensed under the BSD-style license found in the
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
 	 */
 	
 	'use strict';
 	
-	module.exports = '15.4.1';
+	if (false) {
+	  var invariant = require('fbjs/lib/invariant');
+	  var warning = require('fbjs/lib/warning');
+	  var ReactPropTypesSecret = require('./lib/ReactPropTypesSecret');
+	  var loggedTypeFailures = {};
+	}
+	
+	/**
+	 * Assert that the values match with the type specs.
+	 * Error messages are memorized and will only be shown once.
+	 *
+	 * @param {object} typeSpecs Map of name to a ReactPropType
+	 * @param {object} values Runtime values that need to be type-checked
+	 * @param {string} location e.g. "prop", "context", "child context"
+	 * @param {string} componentName Name of the component for error messages.
+	 * @param {?Function} getStack Returns the component stack.
+	 * @private
+	 */
+	function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+	  if (false) {
+	    for (var typeSpecName in typeSpecs) {
+	      if (typeSpecs.hasOwnProperty(typeSpecName)) {
+	        var error;
+	        // Prop type validation may throw. In case they do, we don't want to
+	        // fail the render phase where it didn't fail before. So we log it.
+	        // After these have been cleaned up, we'll let them throw.
+	        try {
+	          // This is intentionally an invariant that gets caught. It's the same
+	          // behavior as without this statement except with a better message.
+	          invariant(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'React.PropTypes.', componentName || 'React class', location, typeSpecName);
+	          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
+	        } catch (ex) {
+	          error = ex;
+	        }
+	        warning(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
+	        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+	          // Only monitor this failure once because there tends to be a lot of the
+	          // same error.
+	          loggedTypeFailures[error.message] = true;
+	
+	          var stack = getStack ? getStack() : '';
+	
+	          warning(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
+	        }
+	      }
+	    }
+	  }
+	}
+	
+	module.exports = checkPropTypes;
 
-/***/ },
-/* 113 */
-/***/ function(module, exports, __webpack_require__) {
+
+/***/ }),
+/* 115 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 *
+	 */
+	
+	'use strict';
+	
+	module.exports = '15.6.2';
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 *
+	 */
+	
+	'use strict';
+	
+	var _require = __webpack_require__(89),
+	    Component = _require.Component;
+	
+	var _require2 = __webpack_require__(100),
+	    isValidElement = _require2.isValidElement;
+	
+	var ReactNoopUpdateQueue = __webpack_require__(91);
+	var factory = __webpack_require__(117);
+	
+	module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 *
+	 */
+	
+	'use strict';
+	
+	var _assign = __webpack_require__(118);
+	
+	var emptyObject = __webpack_require__(95);
+	var _invariant = __webpack_require__(96);
+	
+	if (false) {
+	  var warning = require('fbjs/lib/warning');
+	}
+	
+	var MIXINS_KEY = 'mixins';
+	
+	// Helper function to allow the creation of anonymous functions which do not
+	// have .name set to the name of the variable being assigned to.
+	function identity(fn) {
+	  return fn;
+	}
+	
+	var ReactPropTypeLocationNames;
+	if (false) {
+	  ReactPropTypeLocationNames = {
+	    prop: 'prop',
+	    context: 'context',
+	    childContext: 'child context'
+	  };
+	} else {
+	  ReactPropTypeLocationNames = {};
+	}
+	
+	function factory(ReactComponent, isValidElement, ReactNoopUpdateQueue) {
+	  /**
+	   * Policies that describe methods in `ReactClassInterface`.
+	   */
+	
+	  var injectedMixins = [];
+	
+	  /**
+	   * Composite components are higher-level components that compose other composite
+	   * or host components.
+	   *
+	   * To create a new type of `ReactClass`, pass a specification of
+	   * your new class to `React.createClass`. The only requirement of your class
+	   * specification is that you implement a `render` method.
+	   *
+	   *   var MyComponent = React.createClass({
+	   *     render: function() {
+	   *       return <div>Hello World</div>;
+	   *     }
+	   *   });
+	   *
+	   * The class specification supports a specific protocol of methods that have
+	   * special meaning (e.g. `render`). See `ReactClassInterface` for
+	   * more the comprehensive protocol. Any other properties and methods in the
+	   * class specification will be available on the prototype.
+	   *
+	   * @interface ReactClassInterface
+	   * @internal
+	   */
+	  var ReactClassInterface = {
+	    /**
+	     * An array of Mixin objects to include when defining your component.
+	     *
+	     * @type {array}
+	     * @optional
+	     */
+	    mixins: 'DEFINE_MANY',
+	
+	    /**
+	     * An object containing properties and methods that should be defined on
+	     * the component's constructor instead of its prototype (static methods).
+	     *
+	     * @type {object}
+	     * @optional
+	     */
+	    statics: 'DEFINE_MANY',
+	
+	    /**
+	     * Definition of prop types for this component.
+	     *
+	     * @type {object}
+	     * @optional
+	     */
+	    propTypes: 'DEFINE_MANY',
+	
+	    /**
+	     * Definition of context types for this component.
+	     *
+	     * @type {object}
+	     * @optional
+	     */
+	    contextTypes: 'DEFINE_MANY',
+	
+	    /**
+	     * Definition of context types this component sets for its children.
+	     *
+	     * @type {object}
+	     * @optional
+	     */
+	    childContextTypes: 'DEFINE_MANY',
+	
+	    // ==== Definition methods ====
+	
+	    /**
+	     * Invoked when the component is mounted. Values in the mapping will be set on
+	     * `this.props` if that prop is not specified (i.e. using an `in` check).
+	     *
+	     * This method is invoked before `getInitialState` and therefore cannot rely
+	     * on `this.state` or use `this.setState`.
+	     *
+	     * @return {object}
+	     * @optional
+	     */
+	    getDefaultProps: 'DEFINE_MANY_MERGED',
+	
+	    /**
+	     * Invoked once before the component is mounted. The return value will be used
+	     * as the initial value of `this.state`.
+	     *
+	     *   getInitialState: function() {
+	     *     return {
+	     *       isOn: false,
+	     *       fooBaz: new BazFoo()
+	     *     }
+	     *   }
+	     *
+	     * @return {object}
+	     * @optional
+	     */
+	    getInitialState: 'DEFINE_MANY_MERGED',
+	
+	    /**
+	     * @return {object}
+	     * @optional
+	     */
+	    getChildContext: 'DEFINE_MANY_MERGED',
+	
+	    /**
+	     * Uses props from `this.props` and state from `this.state` to render the
+	     * structure of the component.
+	     *
+	     * No guarantees are made about when or how often this method is invoked, so
+	     * it must not have side effects.
+	     *
+	     *   render: function() {
+	     *     var name = this.props.name;
+	     *     return <div>Hello, {name}!</div>;
+	     *   }
+	     *
+	     * @return {ReactComponent}
+	     * @required
+	     */
+	    render: 'DEFINE_ONCE',
+	
+	    // ==== Delegate methods ====
+	
+	    /**
+	     * Invoked when the component is initially created and about to be mounted.
+	     * This may have side effects, but any external subscriptions or data created
+	     * by this method must be cleaned up in `componentWillUnmount`.
+	     *
+	     * @optional
+	     */
+	    componentWillMount: 'DEFINE_MANY',
+	
+	    /**
+	     * Invoked when the component has been mounted and has a DOM representation.
+	     * However, there is no guarantee that the DOM node is in the document.
+	     *
+	     * Use this as an opportunity to operate on the DOM when the component has
+	     * been mounted (initialized and rendered) for the first time.
+	     *
+	     * @param {DOMElement} rootNode DOM element representing the component.
+	     * @optional
+	     */
+	    componentDidMount: 'DEFINE_MANY',
+	
+	    /**
+	     * Invoked before the component receives new props.
+	     *
+	     * Use this as an opportunity to react to a prop transition by updating the
+	     * state using `this.setState`. Current props are accessed via `this.props`.
+	     *
+	     *   componentWillReceiveProps: function(nextProps, nextContext) {
+	     *     this.setState({
+	     *       likesIncreasing: nextProps.likeCount > this.props.likeCount
+	     *     });
+	     *   }
+	     *
+	     * NOTE: There is no equivalent `componentWillReceiveState`. An incoming prop
+	     * transition may cause a state change, but the opposite is not true. If you
+	     * need it, you are probably looking for `componentWillUpdate`.
+	     *
+	     * @param {object} nextProps
+	     * @optional
+	     */
+	    componentWillReceiveProps: 'DEFINE_MANY',
+	
+	    /**
+	     * Invoked while deciding if the component should be updated as a result of
+	     * receiving new props, state and/or context.
+	     *
+	     * Use this as an opportunity to `return false` when you're certain that the
+	     * transition to the new props/state/context will not require a component
+	     * update.
+	     *
+	     *   shouldComponentUpdate: function(nextProps, nextState, nextContext) {
+	     *     return !equal(nextProps, this.props) ||
+	     *       !equal(nextState, this.state) ||
+	     *       !equal(nextContext, this.context);
+	     *   }
+	     *
+	     * @param {object} nextProps
+	     * @param {?object} nextState
+	     * @param {?object} nextContext
+	     * @return {boolean} True if the component should update.
+	     * @optional
+	     */
+	    shouldComponentUpdate: 'DEFINE_ONCE',
+	
+	    /**
+	     * Invoked when the component is about to update due to a transition from
+	     * `this.props`, `this.state` and `this.context` to `nextProps`, `nextState`
+	     * and `nextContext`.
+	     *
+	     * Use this as an opportunity to perform preparation before an update occurs.
+	     *
+	     * NOTE: You **cannot** use `this.setState()` in this method.
+	     *
+	     * @param {object} nextProps
+	     * @param {?object} nextState
+	     * @param {?object} nextContext
+	     * @param {ReactReconcileTransaction} transaction
+	     * @optional
+	     */
+	    componentWillUpdate: 'DEFINE_MANY',
+	
+	    /**
+	     * Invoked when the component's DOM representation has been updated.
+	     *
+	     * Use this as an opportunity to operate on the DOM when the component has
+	     * been updated.
+	     *
+	     * @param {object} prevProps
+	     * @param {?object} prevState
+	     * @param {?object} prevContext
+	     * @param {DOMElement} rootNode DOM element representing the component.
+	     * @optional
+	     */
+	    componentDidUpdate: 'DEFINE_MANY',
+	
+	    /**
+	     * Invoked when the component is about to be removed from its parent and have
+	     * its DOM representation destroyed.
+	     *
+	     * Use this as an opportunity to deallocate any external resources.
+	     *
+	     * NOTE: There is no `componentDidUnmount` since your component will have been
+	     * destroyed by that point.
+	     *
+	     * @optional
+	     */
+	    componentWillUnmount: 'DEFINE_MANY',
+	
+	    // ==== Advanced methods ====
+	
+	    /**
+	     * Updates the component's currently mounted DOM representation.
+	     *
+	     * By default, this implements React's rendering and reconciliation algorithm.
+	     * Sophisticated clients may wish to override this.
+	     *
+	     * @param {ReactReconcileTransaction} transaction
+	     * @internal
+	     * @overridable
+	     */
+	    updateComponent: 'OVERRIDE_BASE'
+	  };
+	
+	  /**
+	   * Mapping from class specification keys to special processing functions.
+	   *
+	   * Although these are declared like instance properties in the specification
+	   * when defining classes using `React.createClass`, they are actually static
+	   * and are accessible on the constructor instead of the prototype. Despite
+	   * being static, they must be defined outside of the "statics" key under
+	   * which all other static methods are defined.
+	   */
+	  var RESERVED_SPEC_KEYS = {
+	    displayName: function(Constructor, displayName) {
+	      Constructor.displayName = displayName;
+	    },
+	    mixins: function(Constructor, mixins) {
+	      if (mixins) {
+	        for (var i = 0; i < mixins.length; i++) {
+	          mixSpecIntoComponent(Constructor, mixins[i]);
+	        }
+	      }
+	    },
+	    childContextTypes: function(Constructor, childContextTypes) {
+	      if (false) {
+	        validateTypeDef(Constructor, childContextTypes, 'childContext');
+	      }
+	      Constructor.childContextTypes = _assign(
+	        {},
+	        Constructor.childContextTypes,
+	        childContextTypes
+	      );
+	    },
+	    contextTypes: function(Constructor, contextTypes) {
+	      if (false) {
+	        validateTypeDef(Constructor, contextTypes, 'context');
+	      }
+	      Constructor.contextTypes = _assign(
+	        {},
+	        Constructor.contextTypes,
+	        contextTypes
+	      );
+	    },
+	    /**
+	     * Special case getDefaultProps which should move into statics but requires
+	     * automatic merging.
+	     */
+	    getDefaultProps: function(Constructor, getDefaultProps) {
+	      if (Constructor.getDefaultProps) {
+	        Constructor.getDefaultProps = createMergedResultFunction(
+	          Constructor.getDefaultProps,
+	          getDefaultProps
+	        );
+	      } else {
+	        Constructor.getDefaultProps = getDefaultProps;
+	      }
+	    },
+	    propTypes: function(Constructor, propTypes) {
+	      if (false) {
+	        validateTypeDef(Constructor, propTypes, 'prop');
+	      }
+	      Constructor.propTypes = _assign({}, Constructor.propTypes, propTypes);
+	    },
+	    statics: function(Constructor, statics) {
+	      mixStaticSpecIntoComponent(Constructor, statics);
+	    },
+	    autobind: function() {}
+	  };
+	
+	  function validateTypeDef(Constructor, typeDef, location) {
+	    for (var propName in typeDef) {
+	      if (typeDef.hasOwnProperty(propName)) {
+	        // use a warning instead of an _invariant so components
+	        // don't show up in prod but only in __DEV__
+	        if (false) {
+	          warning(
+	            typeof typeDef[propName] === 'function',
+	            '%s: %s type `%s` is invalid; it must be a function, usually from ' +
+	              'React.PropTypes.',
+	            Constructor.displayName || 'ReactClass',
+	            ReactPropTypeLocationNames[location],
+	            propName
+	          );
+	        }
+	      }
+	    }
+	  }
+	
+	  function validateMethodOverride(isAlreadyDefined, name) {
+	    var specPolicy = ReactClassInterface.hasOwnProperty(name)
+	      ? ReactClassInterface[name]
+	      : null;
+	
+	    // Disallow overriding of base class methods unless explicitly allowed.
+	    if (ReactClassMixin.hasOwnProperty(name)) {
+	      _invariant(
+	        specPolicy === 'OVERRIDE_BASE',
+	        'ReactClassInterface: You are attempting to override ' +
+	          '`%s` from your class specification. Ensure that your method names ' +
+	          'do not overlap with React methods.',
+	        name
+	      );
+	    }
+	
+	    // Disallow defining methods more than once unless explicitly allowed.
+	    if (isAlreadyDefined) {
+	      _invariant(
+	        specPolicy === 'DEFINE_MANY' || specPolicy === 'DEFINE_MANY_MERGED',
+	        'ReactClassInterface: You are attempting to define ' +
+	          '`%s` on your component more than once. This conflict may be due ' +
+	          'to a mixin.',
+	        name
+	      );
+	    }
+	  }
+	
+	  /**
+	   * Mixin helper which handles policy validation and reserved
+	   * specification keys when building React classes.
+	   */
+	  function mixSpecIntoComponent(Constructor, spec) {
+	    if (!spec) {
+	      if (false) {
+	        var typeofSpec = typeof spec;
+	        var isMixinValid = typeofSpec === 'object' && spec !== null;
+	
+	        if (process.env.NODE_ENV !== 'production') {
+	          warning(
+	            isMixinValid,
+	            "%s: You're attempting to include a mixin that is either null " +
+	              'or not an object. Check the mixins included by the component, ' +
+	              'as well as any mixins they include themselves. ' +
+	              'Expected object but got %s.',
+	            Constructor.displayName || 'ReactClass',
+	            spec === null ? null : typeofSpec
+	          );
+	        }
+	      }
+	
+	      return;
+	    }
+	
+	    _invariant(
+	      typeof spec !== 'function',
+	      "ReactClass: You're attempting to " +
+	        'use a component class or function as a mixin. Instead, just use a ' +
+	        'regular object.'
+	    );
+	    _invariant(
+	      !isValidElement(spec),
+	      "ReactClass: You're attempting to " +
+	        'use a component as a mixin. Instead, just use a regular object.'
+	    );
+	
+	    var proto = Constructor.prototype;
+	    var autoBindPairs = proto.__reactAutoBindPairs;
+	
+	    // By handling mixins before any other properties, we ensure the same
+	    // chaining order is applied to methods with DEFINE_MANY policy, whether
+	    // mixins are listed before or after these methods in the spec.
+	    if (spec.hasOwnProperty(MIXINS_KEY)) {
+	      RESERVED_SPEC_KEYS.mixins(Constructor, spec.mixins);
+	    }
+	
+	    for (var name in spec) {
+	      if (!spec.hasOwnProperty(name)) {
+	        continue;
+	      }
+	
+	      if (name === MIXINS_KEY) {
+	        // We have already handled mixins in a special case above.
+	        continue;
+	      }
+	
+	      var property = spec[name];
+	      var isAlreadyDefined = proto.hasOwnProperty(name);
+	      validateMethodOverride(isAlreadyDefined, name);
+	
+	      if (RESERVED_SPEC_KEYS.hasOwnProperty(name)) {
+	        RESERVED_SPEC_KEYS[name](Constructor, property);
+	      } else {
+	        // Setup methods on prototype:
+	        // The following member methods should not be automatically bound:
+	        // 1. Expected ReactClass methods (in the "interface").
+	        // 2. Overridden methods (that were mixed in).
+	        var isReactClassMethod = ReactClassInterface.hasOwnProperty(name);
+	        var isFunction = typeof property === 'function';
+	        var shouldAutoBind =
+	          isFunction &&
+	          !isReactClassMethod &&
+	          !isAlreadyDefined &&
+	          spec.autobind !== false;
+	
+	        if (shouldAutoBind) {
+	          autoBindPairs.push(name, property);
+	          proto[name] = property;
+	        } else {
+	          if (isAlreadyDefined) {
+	            var specPolicy = ReactClassInterface[name];
+	
+	            // These cases should already be caught by validateMethodOverride.
+	            _invariant(
+	              isReactClassMethod &&
+	                (specPolicy === 'DEFINE_MANY_MERGED' ||
+	                  specPolicy === 'DEFINE_MANY'),
+	              'ReactClass: Unexpected spec policy %s for key %s ' +
+	                'when mixing in component specs.',
+	              specPolicy,
+	              name
+	            );
+	
+	            // For methods which are defined more than once, call the existing
+	            // methods before calling the new property, merging if appropriate.
+	            if (specPolicy === 'DEFINE_MANY_MERGED') {
+	              proto[name] = createMergedResultFunction(proto[name], property);
+	            } else if (specPolicy === 'DEFINE_MANY') {
+	              proto[name] = createChainedFunction(proto[name], property);
+	            }
+	          } else {
+	            proto[name] = property;
+	            if (false) {
+	              // Add verbose displayName to the function, which helps when looking
+	              // at profiling tools.
+	              if (typeof property === 'function' && spec.displayName) {
+	                proto[name].displayName = spec.displayName + '_' + name;
+	              }
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }
+	
+	  function mixStaticSpecIntoComponent(Constructor, statics) {
+	    if (!statics) {
+	      return;
+	    }
+	    for (var name in statics) {
+	      var property = statics[name];
+	      if (!statics.hasOwnProperty(name)) {
+	        continue;
+	      }
+	
+	      var isReserved = name in RESERVED_SPEC_KEYS;
+	      _invariant(
+	        !isReserved,
+	        'ReactClass: You are attempting to define a reserved ' +
+	          'property, `%s`, that shouldn\'t be on the "statics" key. Define it ' +
+	          'as an instance property instead; it will still be accessible on the ' +
+	          'constructor.',
+	        name
+	      );
+	
+	      var isInherited = name in Constructor;
+	      _invariant(
+	        !isInherited,
+	        'ReactClass: You are attempting to define ' +
+	          '`%s` on your component more than once. This conflict may be ' +
+	          'due to a mixin.',
+	        name
+	      );
+	      Constructor[name] = property;
+	    }
+	  }
+	
+	  /**
+	   * Merge two objects, but throw if both contain the same key.
+	   *
+	   * @param {object} one The first object, which is mutated.
+	   * @param {object} two The second object
+	   * @return {object} one after it has been mutated to contain everything in two.
+	   */
+	  function mergeIntoWithNoDuplicateKeys(one, two) {
+	    _invariant(
+	      one && two && typeof one === 'object' && typeof two === 'object',
+	      'mergeIntoWithNoDuplicateKeys(): Cannot merge non-objects.'
+	    );
+	
+	    for (var key in two) {
+	      if (two.hasOwnProperty(key)) {
+	        _invariant(
+	          one[key] === undefined,
+	          'mergeIntoWithNoDuplicateKeys(): ' +
+	            'Tried to merge two objects with the same key: `%s`. This conflict ' +
+	            'may be due to a mixin; in particular, this may be caused by two ' +
+	            'getInitialState() or getDefaultProps() methods returning objects ' +
+	            'with clashing keys.',
+	          key
+	        );
+	        one[key] = two[key];
+	      }
+	    }
+	    return one;
+	  }
+	
+	  /**
+	   * Creates a function that invokes two functions and merges their return values.
+	   *
+	   * @param {function} one Function to invoke first.
+	   * @param {function} two Function to invoke second.
+	   * @return {function} Function that invokes the two argument functions.
+	   * @private
+	   */
+	  function createMergedResultFunction(one, two) {
+	    return function mergedResult() {
+	      var a = one.apply(this, arguments);
+	      var b = two.apply(this, arguments);
+	      if (a == null) {
+	        return b;
+	      } else if (b == null) {
+	        return a;
+	      }
+	      var c = {};
+	      mergeIntoWithNoDuplicateKeys(c, a);
+	      mergeIntoWithNoDuplicateKeys(c, b);
+	      return c;
+	    };
+	  }
+	
+	  /**
+	   * Creates a function that invokes two functions and ignores their return vales.
+	   *
+	   * @param {function} one Function to invoke first.
+	   * @param {function} two Function to invoke second.
+	   * @return {function} Function that invokes the two argument functions.
+	   * @private
+	   */
+	  function createChainedFunction(one, two) {
+	    return function chainedFunction() {
+	      one.apply(this, arguments);
+	      two.apply(this, arguments);
+	    };
+	  }
+	
+	  /**
+	   * Binds a method to the component.
+	   *
+	   * @param {object} component Component whose method is going to be bound.
+	   * @param {function} method Method to be bound.
+	   * @return {function} The bound method.
+	   */
+	  function bindAutoBindMethod(component, method) {
+	    var boundMethod = method.bind(component);
+	    if (false) {
+	      boundMethod.__reactBoundContext = component;
+	      boundMethod.__reactBoundMethod = method;
+	      boundMethod.__reactBoundArguments = null;
+	      var componentName = component.constructor.displayName;
+	      var _bind = boundMethod.bind;
+	      boundMethod.bind = function(newThis) {
+	        for (
+	          var _len = arguments.length,
+	            args = Array(_len > 1 ? _len - 1 : 0),
+	            _key = 1;
+	          _key < _len;
+	          _key++
+	        ) {
+	          args[_key - 1] = arguments[_key];
+	        }
+	
+	        // User is trying to bind() an autobound method; we effectively will
+	        // ignore the value of "this" that the user is trying to use, so
+	        // let's warn.
+	        if (newThis !== component && newThis !== null) {
+	          if (process.env.NODE_ENV !== 'production') {
+	            warning(
+	              false,
+	              'bind(): React component methods may only be bound to the ' +
+	                'component instance. See %s',
+	              componentName
+	            );
+	          }
+	        } else if (!args.length) {
+	          if (process.env.NODE_ENV !== 'production') {
+	            warning(
+	              false,
+	              'bind(): You are binding a component method to the component. ' +
+	                'React does this for you automatically in a high-performance ' +
+	                'way, so you can safely remove this call. See %s',
+	              componentName
+	            );
+	          }
+	          return boundMethod;
+	        }
+	        var reboundMethod = _bind.apply(boundMethod, arguments);
+	        reboundMethod.__reactBoundContext = component;
+	        reboundMethod.__reactBoundMethod = method;
+	        reboundMethod.__reactBoundArguments = args;
+	        return reboundMethod;
+	      };
+	    }
+	    return boundMethod;
+	  }
+	
+	  /**
+	   * Binds all auto-bound methods in a component.
+	   *
+	   * @param {object} component Component whose method is going to be bound.
+	   */
+	  function bindAutoBindMethods(component) {
+	    var pairs = component.__reactAutoBindPairs;
+	    for (var i = 0; i < pairs.length; i += 2) {
+	      var autoBindKey = pairs[i];
+	      var method = pairs[i + 1];
+	      component[autoBindKey] = bindAutoBindMethod(component, method);
+	    }
+	  }
+	
+	  var IsMountedPreMixin = {
+	    componentDidMount: function() {
+	      this.__isMounted = true;
+	    }
+	  };
+	
+	  var IsMountedPostMixin = {
+	    componentWillUnmount: function() {
+	      this.__isMounted = false;
+	    }
+	  };
+	
+	  /**
+	   * Add more to the ReactClass base class. These are all legacy features and
+	   * therefore not already part of the modern ReactComponent.
+	   */
+	  var ReactClassMixin = {
+	    /**
+	     * TODO: This will be deprecated because state should always keep a consistent
+	     * type signature and the only use case for this, is to avoid that.
+	     */
+	    replaceState: function(newState, callback) {
+	      this.updater.enqueueReplaceState(this, newState, callback);
+	    },
+	
+	    /**
+	     * Checks whether or not this composite component is mounted.
+	     * @return {boolean} True if mounted, false otherwise.
+	     * @protected
+	     * @final
+	     */
+	    isMounted: function() {
+	      if (false) {
+	        warning(
+	          this.__didWarnIsMounted,
+	          '%s: isMounted is deprecated. Instead, make sure to clean up ' +
+	            'subscriptions and pending requests in componentWillUnmount to ' +
+	            'prevent memory leaks.',
+	          (this.constructor && this.constructor.displayName) ||
+	            this.name ||
+	            'Component'
+	        );
+	        this.__didWarnIsMounted = true;
+	      }
+	      return !!this.__isMounted;
+	    }
+	  };
+	
+	  var ReactClassComponent = function() {};
+	  _assign(
+	    ReactClassComponent.prototype,
+	    ReactComponent.prototype,
+	    ReactClassMixin
+	  );
+	
+	  /**
+	   * Creates a composite component class given a class specification.
+	   * See https://facebook.github.io/react/docs/top-level-api.html#react.createclass
+	   *
+	   * @param {object} spec Class specification (which must define `render`).
+	   * @return {function} Component constructor function.
+	   * @public
+	   */
+	  function createClass(spec) {
+	    // To keep our warnings more understandable, we'll use a little hack here to
+	    // ensure that Constructor.name !== 'Constructor'. This makes sure we don't
+	    // unnecessarily identify a class without displayName as 'Constructor'.
+	    var Constructor = identity(function(props, context, updater) {
+	      // This constructor gets overridden by mocks. The argument is used
+	      // by mocks to assert on what gets mounted.
+	
+	      if (false) {
+	        warning(
+	          this instanceof Constructor,
+	          'Something is calling a React component directly. Use a factory or ' +
+	            'JSX instead. See: https://fb.me/react-legacyfactory'
+	        );
+	      }
+	
+	      // Wire up auto-binding
+	      if (this.__reactAutoBindPairs.length) {
+	        bindAutoBindMethods(this);
+	      }
+	
+	      this.props = props;
+	      this.context = context;
+	      this.refs = emptyObject;
+	      this.updater = updater || ReactNoopUpdateQueue;
+	
+	      this.state = null;
+	
+	      // ReactClasses doesn't have constructors. Instead, they use the
+	      // getInitialState and componentWillMount methods for initialization.
+	
+	      var initialState = this.getInitialState ? this.getInitialState() : null;
+	      if (false) {
+	        // We allow auto-mocks to proceed as if they're returning null.
+	        if (
+	          initialState === undefined &&
+	          this.getInitialState._isMockFunction
+	        ) {
+	          // This is probably bad practice. Consider warning here and
+	          // deprecating this convenience.
+	          initialState = null;
+	        }
+	      }
+	      _invariant(
+	        typeof initialState === 'object' && !Array.isArray(initialState),
+	        '%s.getInitialState(): must return an object or null',
+	        Constructor.displayName || 'ReactCompositeComponent'
+	      );
+	
+	      this.state = initialState;
+	    });
+	    Constructor.prototype = new ReactClassComponent();
+	    Constructor.prototype.constructor = Constructor;
+	    Constructor.prototype.__reactAutoBindPairs = [];
+	
+	    injectedMixins.forEach(mixSpecIntoComponent.bind(null, Constructor));
+	
+	    mixSpecIntoComponent(Constructor, IsMountedPreMixin);
+	    mixSpecIntoComponent(Constructor, spec);
+	    mixSpecIntoComponent(Constructor, IsMountedPostMixin);
+	
+	    // Initialize the defaultProps property after all mixins have been merged.
+	    if (Constructor.getDefaultProps) {
+	      Constructor.defaultProps = Constructor.getDefaultProps();
+	    }
+	
+	    if (false) {
+	      // This is a tag to indicate that the use of these method names is ok,
+	      // since it's used with createClass. If it's not, then it's likely a
+	      // mistake so we'll warn you to use the static property, property
+	      // initializer or constructor respectively.
+	      if (Constructor.getDefaultProps) {
+	        Constructor.getDefaultProps.isReactClassApproved = {};
+	      }
+	      if (Constructor.prototype.getInitialState) {
+	        Constructor.prototype.getInitialState.isReactClassApproved = {};
+	      }
+	    }
+	
+	    _invariant(
+	      Constructor.prototype.render,
+	      'createClass(...): Class specification must implement a `render` method.'
+	    );
+	
+	    if (false) {
+	      warning(
+	        !Constructor.prototype.componentShouldUpdate,
+	        '%s has a method called ' +
+	          'componentShouldUpdate(). Did you mean shouldComponentUpdate()? ' +
+	          'The name is phrased as a question because the function is ' +
+	          'expected to return a value.',
+	        spec.displayName || 'A component'
+	      );
+	      warning(
+	        !Constructor.prototype.componentWillRecieveProps,
+	        '%s has a method called ' +
+	          'componentWillRecieveProps(). Did you mean componentWillReceiveProps()?',
+	        spec.displayName || 'A component'
+	      );
+	    }
+	
+	    // Reduce time spent doing lookups by setting these on the prototype.
+	    for (var methodName in ReactClassInterface) {
+	      if (!Constructor.prototype[methodName]) {
+	        Constructor.prototype[methodName] = null;
+	      }
+	    }
+	
+	    return Constructor;
+	  }
+	
+	  return createClass;
+	}
+	
+	module.exports = factory;
+
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports) {
+
+	/*
+	object-assign
+	(c) Sindre Sorhus
+	@license MIT
+	*/
+	
+	'use strict';
+	/* eslint-disable no-unused-vars */
+	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
+	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+	
+	function toObject(val) {
+		if (val === null || val === undefined) {
+			throw new TypeError('Object.assign cannot be called with null or undefined');
+		}
+	
+		return Object(val);
+	}
+	
+	function shouldUseNative() {
+		try {
+			if (!Object.assign) {
+				return false;
+			}
+	
+			// Detect buggy property enumeration order in older V8 versions.
+	
+			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+			var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+			test1[5] = 'de';
+			if (Object.getOwnPropertyNames(test1)[0] === '5') {
+				return false;
+			}
+	
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test2 = {};
+			for (var i = 0; i < 10; i++) {
+				test2['_' + String.fromCharCode(i)] = i;
+			}
+			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+				return test2[n];
+			});
+			if (order2.join('') !== '0123456789') {
+				return false;
+			}
+	
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test3 = {};
+			'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+				test3[letter] = letter;
+			});
+			if (Object.keys(Object.assign({}, test3)).join('') !==
+					'abcdefghijklmnopqrst') {
+				return false;
+			}
+	
+			return true;
+		} catch (err) {
+			// We don't expect any of the above to throw, but better to be safe.
+			return false;
+		}
+	}
+	
+	module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+		var from;
+		var to = toObject(target);
+		var symbols;
+	
+		for (var s = 1; s < arguments.length; s++) {
+			from = Object(arguments[s]);
+	
+			for (var key in from) {
+				if (hasOwnProperty.call(from, key)) {
+					to[key] = from[key];
+				}
+			}
+	
+			if (getOwnPropertySymbols) {
+				symbols = getOwnPropertySymbols(from);
+				for (var i = 0; i < symbols.length; i++) {
+					if (propIsEnumerable.call(from, symbols[i])) {
+						to[symbols[i]] = from[symbols[i]];
+					}
+				}
+			}
+		}
+	
+		return to;
+	};
+
+
+/***/ }),
+/* 119 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(92);
+	var _prodInvariant = __webpack_require__(90);
 	
-	var ReactElement = __webpack_require__(94);
+	var ReactElement = __webpack_require__(100);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	/**
 	 * Returns the first child in a collection of children and verifies that there
@@ -4897,26 +5614,24 @@
 	
 	module.exports = onlyChild;
 
-/***/ },
-/* 114 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports = __webpack_require__(115);
+	module.exports = __webpack_require__(121);
 
 
-/***/ },
-/* 115 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -4924,17 +5639,17 @@
 	
 	'use strict';
 	
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var ReactDefaultInjection = __webpack_require__(120);
-	var ReactMount = __webpack_require__(243);
-	var ReactReconciler = __webpack_require__(141);
-	var ReactUpdates = __webpack_require__(138);
-	var ReactVersion = __webpack_require__(248);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var ReactDefaultInjection = __webpack_require__(126);
+	var ReactMount = __webpack_require__(250);
+	var ReactReconciler = __webpack_require__(147);
+	var ReactUpdates = __webpack_require__(144);
+	var ReactVersion = __webpack_require__(255);
 	
-	var findDOMNode = __webpack_require__(249);
-	var getHostComponentFromComposite = __webpack_require__(250);
-	var renderSubtreeIntoContainer = __webpack_require__(251);
-	var warning = __webpack_require__(96);
+	var findDOMNode = __webpack_require__(256);
+	var getHostComponentFromComposite = __webpack_require__(257);
+	var renderSubtreeIntoContainer = __webpack_require__(258);
+	var warning = __webpack_require__(92);
 	
 	ReactDefaultInjection.inject();
 	
@@ -4947,6 +5662,7 @@
 	  /* eslint-disable camelcase */
 	  unstable_batchedUpdates: ReactUpdates.batchedUpdates,
 	  unstable_renderSubtreeIntoContainer: renderSubtreeIntoContainer
+	  /* eslint-enable camelcase */
 	};
 	
 	// Inject the runtime into a devtools global hook regardless of browser.
@@ -4975,7 +5691,6 @@
 	if (false) {
 	  var ExecutionEnvironment = require('fbjs/lib/ExecutionEnvironment');
 	  if (ExecutionEnvironment.canUseDOM && window.top === window.self) {
-	
 	    // First check if devtools is not installed
 	    if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined') {
 	      // If we're in Chrome or Firefox, provide a download link if not installed.
@@ -4987,7 +5702,7 @@
 	    }
 	
 	    var testFunc = function testFn() {};
-	    process.env.NODE_ENV !== 'production' ? warning((testFunc.name || testFunc.toString()).indexOf('testFn') !== -1, 'It looks like you\'re using a minified copy of the development build ' + 'of React. When deploying React apps to production, make sure to use ' + 'the production build which skips development warnings and is faster. ' + 'See https://fb.me/react-minification for more details.') : void 0;
+	    process.env.NODE_ENV !== 'production' ? warning((testFunc.name || testFunc.toString()).indexOf('testFn') !== -1, "It looks like you're using a minified copy of the development build " + 'of React. When deploying React apps to production, make sure to use ' + 'the production build which skips development warnings and is faster. ' + 'See https://fb.me/react-minification for more details.') : void 0;
 	
 	    // If we're in IE8, check to see if we are in compatibility mode and provide
 	    // information on preventing compatibility mode
@@ -5021,33 +5736,38 @@
 	
 	module.exports = ReactDOM;
 
-/***/ },
-/* 116 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 122 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var DOMProperty = __webpack_require__(118);
-	var ReactDOMComponentFlags = __webpack_require__(119);
+	var DOMProperty = __webpack_require__(124);
+	var ReactDOMComponentFlags = __webpack_require__(125);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
 	var Flags = ReactDOMComponentFlags;
 	
 	var internalInstanceKey = '__reactInternalInstance$' + Math.random().toString(36).slice(2);
+	
+	/**
+	 * Check if a given node should be cached.
+	 */
+	function shouldPrecacheNode(node, nodeID) {
+	  return node.nodeType === 1 && node.getAttribute(ATTR_NAME) === String(nodeID) || node.nodeType === 8 && node.nodeValue === ' react-text: ' + nodeID + ' ' || node.nodeType === 8 && node.nodeValue === ' react-empty: ' + nodeID + ' ';
+	}
 	
 	/**
 	 * Drill down (through composites and empty components) until we get a host or
@@ -5114,7 +5834,7 @@
 	    }
 	    // We assume the child nodes are in the same order as the child instances.
 	    for (; childNode !== null; childNode = childNode.nextSibling) {
-	      if (childNode.nodeType === 1 && childNode.getAttribute(ATTR_NAME) === String(childID) || childNode.nodeType === 8 && childNode.nodeValue === ' react-text: ' + childID + ' ' || childNode.nodeType === 8 && childNode.nodeValue === ' react-empty: ' + childID + ' ') {
+	      if (shouldPrecacheNode(childNode, childID)) {
 	        precacheNode(childInst, childNode);
 	        continue outer;
 	      }
@@ -5213,17 +5933,15 @@
 	
 	module.exports = ReactDOMComponentTree;
 
-/***/ },
-/* 117 */
-/***/ function(module, exports) {
+/***/ }),
+/* 123 */
+/***/ (function(module, exports) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -5256,25 +5974,23 @@
 	
 	module.exports = reactProdInvariant;
 
-/***/ },
-/* 118 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 124 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	function checkMask(value, bitmask) {
 	  return (value & bitmask) === bitmask;
@@ -5398,7 +6114,6 @@
 	 * @see http://jsperf.com/key-missing
 	 */
 	var DOMProperty = {
-	
 	  ID_ATTRIBUTE_NAME: 'data-reactid',
 	  ROOT_ATTRIBUTE_NAME: 'data-reactroot',
 	
@@ -5470,17 +6185,15 @@
 	
 	module.exports = DOMProperty;
 
-/***/ },
-/* 119 */
-/***/ function(module, exports) {
+/***/ }),
+/* 125 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2015-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2015-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -5492,41 +6205,39 @@
 	
 	module.exports = ReactDOMComponentFlags;
 
-/***/ },
-/* 120 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 126 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var ARIADOMPropertyConfig = __webpack_require__(121);
-	var BeforeInputEventPlugin = __webpack_require__(122);
-	var ChangeEventPlugin = __webpack_require__(137);
-	var DefaultEventPluginOrder = __webpack_require__(149);
-	var EnterLeaveEventPlugin = __webpack_require__(150);
-	var HTMLDOMPropertyConfig = __webpack_require__(155);
-	var ReactComponentBrowserEnvironment = __webpack_require__(156);
-	var ReactDOMComponent = __webpack_require__(169);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var ReactDOMEmptyComponent = __webpack_require__(214);
-	var ReactDOMTreeTraversal = __webpack_require__(215);
-	var ReactDOMTextComponent = __webpack_require__(216);
-	var ReactDefaultBatchingStrategy = __webpack_require__(217);
-	var ReactEventListener = __webpack_require__(218);
-	var ReactInjection = __webpack_require__(221);
-	var ReactReconcileTransaction = __webpack_require__(222);
-	var SVGDOMPropertyConfig = __webpack_require__(230);
-	var SelectEventPlugin = __webpack_require__(231);
-	var SimpleEventPlugin = __webpack_require__(232);
+	var ARIADOMPropertyConfig = __webpack_require__(127);
+	var BeforeInputEventPlugin = __webpack_require__(128);
+	var ChangeEventPlugin = __webpack_require__(143);
+	var DefaultEventPluginOrder = __webpack_require__(156);
+	var EnterLeaveEventPlugin = __webpack_require__(157);
+	var HTMLDOMPropertyConfig = __webpack_require__(162);
+	var ReactComponentBrowserEnvironment = __webpack_require__(163);
+	var ReactDOMComponent = __webpack_require__(176);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var ReactDOMEmptyComponent = __webpack_require__(221);
+	var ReactDOMTreeTraversal = __webpack_require__(222);
+	var ReactDOMTextComponent = __webpack_require__(223);
+	var ReactDefaultBatchingStrategy = __webpack_require__(224);
+	var ReactEventListener = __webpack_require__(225);
+	var ReactInjection = __webpack_require__(228);
+	var ReactReconcileTransaction = __webpack_require__(229);
+	var SVGDOMPropertyConfig = __webpack_require__(237);
+	var SelectEventPlugin = __webpack_require__(238);
+	var SimpleEventPlugin = __webpack_require__(239);
 	
 	var alreadyInjected = false;
 	
@@ -5582,17 +6293,15 @@
 	  inject: inject
 	};
 
-/***/ },
-/* 121 */
-/***/ function(module, exports) {
+/***/ }),
+/* 127 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -5660,27 +6369,25 @@
 	
 	module.exports = ARIADOMPropertyConfig;
 
-/***/ },
-/* 122 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 128 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var EventPropagators = __webpack_require__(123);
-	var ExecutionEnvironment = __webpack_require__(130);
-	var FallbackCompositionState = __webpack_require__(131);
-	var SyntheticCompositionEvent = __webpack_require__(134);
-	var SyntheticInputEvent = __webpack_require__(136);
+	var EventPropagators = __webpack_require__(129);
+	var ExecutionEnvironment = __webpack_require__(136);
+	var FallbackCompositionState = __webpack_require__(137);
+	var SyntheticCompositionEvent = __webpack_require__(140);
+	var SyntheticInputEvent = __webpack_require__(142);
 	
 	var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 	var START_KEYCODE = 229;
@@ -6039,7 +6746,6 @@
 	 * `composition` event types.
 	 */
 	var BeforeInputEventPlugin = {
-	
 	  eventTypes: eventTypes,
 	
 	  extractEvents: function (topLevelType, targetInst, nativeEvent, nativeEventTarget) {
@@ -6049,28 +6755,26 @@
 	
 	module.exports = BeforeInputEventPlugin;
 
-/***/ },
-/* 123 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var EventPluginHub = __webpack_require__(124);
-	var EventPluginUtils = __webpack_require__(126);
+	var EventPluginHub = __webpack_require__(130);
+	var EventPluginUtils = __webpack_require__(132);
 	
-	var accumulateInto = __webpack_require__(128);
-	var forEachAccumulated = __webpack_require__(129);
-	var warning = __webpack_require__(96);
+	var accumulateInto = __webpack_require__(134);
+	var forEachAccumulated = __webpack_require__(135);
+	var warning = __webpack_require__(92);
 	
 	var getListener = EventPluginHub.getListener;
 	
@@ -6187,31 +6891,29 @@
 	
 	module.exports = EventPropagators;
 
-/***/ },
-/* 124 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 130 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var EventPluginRegistry = __webpack_require__(125);
-	var EventPluginUtils = __webpack_require__(126);
-	var ReactErrorUtils = __webpack_require__(127);
+	var EventPluginRegistry = __webpack_require__(131);
+	var EventPluginUtils = __webpack_require__(132);
+	var ReactErrorUtils = __webpack_require__(133);
 	
-	var accumulateInto = __webpack_require__(128);
-	var forEachAccumulated = __webpack_require__(129);
-	var invariant = __webpack_require__(93);
+	var accumulateInto = __webpack_require__(134);
+	var forEachAccumulated = __webpack_require__(135);
+	var invariant = __webpack_require__(96);
 	
 	/**
 	 * Internal store for event listeners
@@ -6298,12 +7000,10 @@
 	 * @public
 	 */
 	var EventPluginHub = {
-	
 	  /**
 	   * Methods for injecting dependencies.
 	   */
 	  injection: {
-	
 	    /**
 	     * @param {array} InjectedEventPluginOrder
 	     * @public
@@ -6314,7 +7014,6 @@
 	     * @param {object} injectedNamesToPlugins Map from names to plugin modules.
 	     */
 	    injectEventPluginsByName: EventPluginRegistry.injectEventPluginsByName
-	
 	  },
 	
 	  /**
@@ -6464,31 +7163,28 @@
 	  __getListenerBank: function () {
 	    return listenerBank;
 	  }
-	
 	};
 	
 	module.exports = EventPluginHub;
 
-/***/ },
-/* 125 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 131 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	/**
 	 * Injectable ordering of event plugins.
@@ -6583,7 +7279,6 @@
 	 * @see {EventPluginHub}
 	 */
 	var EventPluginRegistry = {
-	
 	  /**
 	   * Ordered list of injected plugins.
 	   */
@@ -6723,33 +7418,30 @@
 	      }
 	    }
 	  }
-	
 	};
 	
 	module.exports = EventPluginRegistry;
 
-/***/ },
-/* 126 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var ReactErrorUtils = __webpack_require__(127);
+	var ReactErrorUtils = __webpack_require__(133);
 	
-	var invariant = __webpack_require__(93);
-	var warning = __webpack_require__(96);
+	var invariant = __webpack_require__(96);
+	var warning = __webpack_require__(92);
 	
 	/**
 	 * Injected dependencies:
@@ -6958,17 +7650,15 @@
 	
 	module.exports = EventPluginUtils;
 
-/***/ },
-/* 127 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -7025,11 +7715,12 @@
 	  if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof document !== 'undefined' && typeof document.createEvent === 'function') {
 	    var fakeNode = document.createElement('react');
 	    ReactErrorUtils.invokeGuardedCallback = function (name, func, a) {
-	      var boundFunc = func.bind(null, a);
+	      var boundFunc = function () {
+	        func(a);
+	      };
 	      var evtType = 'react-' + name;
 	      fakeNode.addEventListener(evtType, boundFunc, false);
 	      var evt = document.createEvent('Event');
-	      // $FlowFixMe https://github.com/facebook/flow/issues/2336
 	      evt.initEvent(evtType, false, false);
 	      fakeNode.dispatchEvent(evt);
 	      fakeNode.removeEventListener(evtType, boundFunc, false);
@@ -7039,26 +7730,24 @@
 	
 	module.exports = ReactErrorUtils;
 
-/***/ },
-/* 128 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 134 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	/**
 	 * Accumulates items that must not be null or undefined into the first one. This
@@ -7101,17 +7790,15 @@
 	
 	module.exports = accumulateInto;
 
-/***/ },
-/* 129 */
-/***/ function(module, exports) {
+/***/ }),
+/* 135 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -7136,17 +7823,15 @@
 	
 	module.exports = forEachAccumulated;
 
-/***/ },
-/* 130 */
-/***/ function(module, exports) {
+/***/ }),
+/* 136 */
+/***/ (function(module, exports) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -7176,27 +7861,25 @@
 	
 	module.exports = ExecutionEnvironment;
 
-/***/ },
-/* 131 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 137 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _assign = __webpack_require__(89);
+	var _assign = __webpack_require__(88);
 	
-	var PooledClass = __webpack_require__(132);
+	var PooledClass = __webpack_require__(138);
 	
-	var getTextContentAccessor = __webpack_require__(133);
+	var getTextContentAccessor = __webpack_require__(139);
 	
 	/**
 	 * This helper class stores information about text content of a target node,
@@ -7275,26 +7958,24 @@
 	
 	module.exports = FallbackCompositionState;
 
-/***/ },
-/* 132 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 138 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	/**
 	 * Static poolers. Several custom versions for each potential number of
@@ -7347,17 +8028,6 @@
 	  }
 	};
 	
-	var fiveArgumentPooler = function (a1, a2, a3, a4, a5) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, a1, a2, a3, a4, a5);
-	    return instance;
-	  } else {
-	    return new Klass(a1, a2, a3, a4, a5);
-	  }
-	};
-	
 	var standardReleaser = function (instance) {
 	  var Klass = this;
 	  !(instance instanceof Klass) ?  false ? invariant(false, 'Trying to release an instance into a pool of a different type.') : _prodInvariant('25') : void 0;
@@ -7397,29 +8067,26 @@
 	  oneArgumentPooler: oneArgumentPooler,
 	  twoArgumentPooler: twoArgumentPooler,
 	  threeArgumentPooler: threeArgumentPooler,
-	  fourArgumentPooler: fourArgumentPooler,
-	  fiveArgumentPooler: fiveArgumentPooler
+	  fourArgumentPooler: fourArgumentPooler
 	};
 	
 	module.exports = PooledClass;
 
-/***/ },
-/* 133 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var ExecutionEnvironment = __webpack_require__(130);
+	var ExecutionEnvironment = __webpack_require__(136);
 	
 	var contentKey = null;
 	
@@ -7440,23 +8107,21 @@
 	
 	module.exports = getTextContentAccessor;
 
-/***/ },
-/* 134 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 140 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var SyntheticEvent = __webpack_require__(135);
+	var SyntheticEvent = __webpack_require__(141);
 	
 	/**
 	 * @interface Event
@@ -7480,28 +8145,26 @@
 	
 	module.exports = SyntheticCompositionEvent;
 
-/***/ },
-/* 135 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 141 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _assign = __webpack_require__(89);
+	var _assign = __webpack_require__(88);
 	
-	var PooledClass = __webpack_require__(132);
+	var PooledClass = __webpack_require__(138);
 	
-	var emptyFunction = __webpack_require__(97);
-	var warning = __webpack_require__(96);
+	var emptyFunction = __webpack_require__(93);
+	var warning = __webpack_require__(92);
 	
 	var didWarnForAddedNewProperty = false;
 	var isProxySupported = typeof Proxy === 'function';
@@ -7588,7 +8251,6 @@
 	}
 	
 	_assign(SyntheticEvent.prototype, {
-	
 	  preventDefault: function () {
 	    this.defaultPrevented = true;
 	    var event = this.nativeEvent;
@@ -7598,8 +8260,8 @@
 	
 	    if (event.preventDefault) {
 	      event.preventDefault();
+	      // eslint-disable-next-line valid-typeof
 	    } else if (typeof event.returnValue !== 'unknown') {
-	      // eslint-disable-line valid-typeof
 	      event.returnValue = false;
 	    }
 	    this.isDefaultPrevented = emptyFunction.thatReturnsTrue;
@@ -7613,8 +8275,8 @@
 	
 	    if (event.stopPropagation) {
 	      event.stopPropagation();
+	      // eslint-disable-next-line valid-typeof
 	    } else if (typeof event.cancelBubble !== 'unknown') {
-	      // eslint-disable-line valid-typeof
 	      // The ChangeEventPlugin registers a "propertychange" event for
 	      // IE. This event does not support bubbling or cancelling, and
 	      // any references to cancelBubble throw "Member not found".  A
@@ -7663,34 +8325,10 @@
 	      Object.defineProperty(this, 'stopPropagation', getPooledWarningPropertyDefinition('stopPropagation', emptyFunction));
 	    }
 	  }
-	
 	});
 	
 	SyntheticEvent.Interface = EventInterface;
 	
-	if (false) {
-	  if (isProxySupported) {
-	    /*eslint-disable no-func-assign */
-	    SyntheticEvent = new Proxy(SyntheticEvent, {
-	      construct: function (target, args) {
-	        return this.apply(target, Object.create(target.prototype), args);
-	      },
-	      apply: function (constructor, that, args) {
-	        return new Proxy(constructor.apply(that, args), {
-	          set: function (target, prop, value) {
-	            if (prop !== 'isPersistent' && !target.constructor.Interface.hasOwnProperty(prop) && shouldBeReleasedProperties.indexOf(prop) === -1) {
-	              process.env.NODE_ENV !== 'production' ? warning(didWarnForAddedNewProperty || target.isPersistent(), 'This synthetic event is reused for performance reasons. If you\'re ' + 'seeing this, you\'re adding a new property in the synthetic event object. ' + 'The property is never released. See ' + 'https://fb.me/react-event-pooling for more information.') : void 0;
-	              didWarnForAddedNewProperty = true;
-	            }
-	            target[prop] = value;
-	            return true;
-	          }
-	        });
-	      }
-	    });
-	    /*eslint-enable no-func-assign */
-	  }
-	}
 	/**
 	 * Helper to reduce boilerplate when creating subclasses.
 	 *
@@ -7713,6 +8351,34 @@
 	
 	  PooledClass.addPoolingTo(Class, PooledClass.fourArgumentPooler);
 	};
+	
+	/** Proxying after everything set on SyntheticEvent
+	  * to resolve Proxy issue on some WebKit browsers
+	  * in which some Event properties are set to undefined (GH#10010)
+	  */
+	if (false) {
+	  if (isProxySupported) {
+	    /*eslint-disable no-func-assign */
+	    SyntheticEvent = new Proxy(SyntheticEvent, {
+	      construct: function (target, args) {
+	        return this.apply(target, Object.create(target.prototype), args);
+	      },
+	      apply: function (constructor, that, args) {
+	        return new Proxy(constructor.apply(that, args), {
+	          set: function (target, prop, value) {
+	            if (prop !== 'isPersistent' && !target.constructor.Interface.hasOwnProperty(prop) && shouldBeReleasedProperties.indexOf(prop) === -1) {
+	              process.env.NODE_ENV !== 'production' ? warning(didWarnForAddedNewProperty || target.isPersistent(), "This synthetic event is reused for performance reasons. If you're " + "seeing this, you're adding a new property in the synthetic event object. " + 'The property is never released. See ' + 'https://fb.me/react-event-pooling for more information.') : void 0;
+	              didWarnForAddedNewProperty = true;
+	            }
+	            target[prop] = value;
+	            return true;
+	          }
+	        });
+	      }
+	    });
+	    /*eslint-enable no-func-assign */
+	  }
+	}
 	
 	PooledClass.addPoolingTo(SyntheticEvent, PooledClass.fourArgumentPooler);
 	
@@ -7748,27 +8414,25 @@
 	
 	  function warn(action, result) {
 	    var warningCondition = false;
-	     false ? warning(warningCondition, 'This synthetic event is reused for performance reasons. If you\'re seeing this, ' + 'you\'re %s `%s` on a released/nullified synthetic event. %s. ' + 'If you must keep the original synthetic event around, use event.persist(). ' + 'See https://fb.me/react-event-pooling for more information.', action, propName, result) : void 0;
+	     false ? warning(warningCondition, "This synthetic event is reused for performance reasons. If you're seeing this, " + "you're %s `%s` on a released/nullified synthetic event. %s. " + 'If you must keep the original synthetic event around, use event.persist(). ' + 'See https://fb.me/react-event-pooling for more information.', action, propName, result) : void 0;
 	  }
 	}
 
-/***/ },
-/* 136 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 142 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var SyntheticEvent = __webpack_require__(135);
+	var SyntheticEvent = __webpack_require__(141);
 	
 	/**
 	 * @interface Event
@@ -7793,32 +8457,31 @@
 	
 	module.exports = SyntheticInputEvent;
 
-/***/ },
-/* 137 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 143 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var EventPluginHub = __webpack_require__(124);
-	var EventPropagators = __webpack_require__(123);
-	var ExecutionEnvironment = __webpack_require__(130);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var ReactUpdates = __webpack_require__(138);
-	var SyntheticEvent = __webpack_require__(135);
+	var EventPluginHub = __webpack_require__(130);
+	var EventPropagators = __webpack_require__(129);
+	var ExecutionEnvironment = __webpack_require__(136);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var ReactUpdates = __webpack_require__(144);
+	var SyntheticEvent = __webpack_require__(141);
 	
-	var getEventTarget = __webpack_require__(146);
-	var isEventSupported = __webpack_require__(147);
-	var isTextInputElement = __webpack_require__(148);
+	var inputValueTracking = __webpack_require__(152);
+	var getEventTarget = __webpack_require__(153);
+	var isEventSupported = __webpack_require__(154);
+	var isTextInputElement = __webpack_require__(155);
 	
 	var eventTypes = {
 	  change: {
@@ -7830,13 +8493,17 @@
 	  }
 	};
 	
+	function createAndAccumulateChangeEvent(inst, nativeEvent, target) {
+	  var event = SyntheticEvent.getPooled(eventTypes.change, inst, nativeEvent, target);
+	  event.type = 'change';
+	  EventPropagators.accumulateTwoPhaseDispatches(event);
+	  return event;
+	}
 	/**
 	 * For IE shims
 	 */
 	var activeElement = null;
 	var activeElementInst = null;
-	var activeElementValue = null;
-	var activeElementValueProp = null;
 	
 	/**
 	 * SECTION: handle `change` event
@@ -7853,8 +8520,7 @@
 	}
 	
 	function manualDispatchChangeEvent(nativeEvent) {
-	  var event = SyntheticEvent.getPooled(eventTypes.change, activeElementInst, nativeEvent, getEventTarget(nativeEvent));
-	  EventPropagators.accumulateTwoPhaseDispatches(event);
+	  var event = createAndAccumulateChangeEvent(activeElementInst, nativeEvent, getEventTarget(nativeEvent));
 	
 	  // If change and propertychange bubbled, we'd just bind to it like all the
 	  // other events and have it go through ReactBrowserEventEmitter. Since it
@@ -7890,11 +8556,21 @@
 	  activeElementInst = null;
 	}
 	
+	function getInstIfValueChanged(targetInst, nativeEvent) {
+	  var updated = inputValueTracking.updateValueIfChanged(targetInst);
+	  var simulated = nativeEvent.simulated === true && ChangeEventPlugin._allowSimulatedPassThrough;
+	
+	  if (updated || simulated) {
+	    return targetInst;
+	  }
+	}
+	
 	function getTargetInstForChangeEvent(topLevelType, targetInst) {
 	  if (topLevelType === 'topChange') {
 	    return targetInst;
 	  }
 	}
+	
 	function handleEventsForChangeEventIE8(topLevelType, target, targetInst) {
 	  if (topLevelType === 'topFocus') {
 	    // stopWatching() should be a noop here but we call it just in case we
@@ -7913,105 +8589,54 @@
 	if (ExecutionEnvironment.canUseDOM) {
 	  // IE9 claims to support the input event but fails to trigger it when
 	  // deleting text, so we ignore its input events.
-	  // IE10+ fire input events to often, such when a placeholder
-	  // changes or when an input with a placeholder is focused.
-	  isInputEventSupported = isEventSupported('input') && (!document.documentMode || document.documentMode > 11);
+	
+	  isInputEventSupported = isEventSupported('input') && (!document.documentMode || document.documentMode > 9);
 	}
 	
 	/**
-	 * (For IE <=11) Replacement getter/setter for the `value` property that gets
-	 * set on the active element.
-	 */
-	var newValueProp = {
-	  get: function () {
-	    return activeElementValueProp.get.call(this);
-	  },
-	  set: function (val) {
-	    // Cast to a string so we can do equality checks.
-	    activeElementValue = '' + val;
-	    activeElementValueProp.set.call(this, val);
-	  }
-	};
-	
-	/**
-	 * (For IE <=11) Starts tracking propertychange events on the passed-in element
+	 * (For IE <=9) Starts tracking propertychange events on the passed-in element
 	 * and override the value property so that we can distinguish user events from
 	 * value changes in JS.
 	 */
 	function startWatchingForValueChange(target, targetInst) {
 	  activeElement = target;
 	  activeElementInst = targetInst;
-	  activeElementValue = target.value;
-	  activeElementValueProp = Object.getOwnPropertyDescriptor(target.constructor.prototype, 'value');
-	
-	  // Not guarded in a canDefineProperty check: IE8 supports defineProperty only
-	  // on DOM elements
-	  Object.defineProperty(activeElement, 'value', newValueProp);
-	  if (activeElement.attachEvent) {
-	    activeElement.attachEvent('onpropertychange', handlePropertyChange);
-	  } else {
-	    activeElement.addEventListener('propertychange', handlePropertyChange, false);
-	  }
+	  activeElement.attachEvent('onpropertychange', handlePropertyChange);
 	}
 	
 	/**
-	 * (For IE <=11) Removes the event listeners from the currently-tracked element,
+	 * (For IE <=9) Removes the event listeners from the currently-tracked element,
 	 * if any exists.
 	 */
 	function stopWatchingForValueChange() {
 	  if (!activeElement) {
 	    return;
 	  }
-	
-	  // delete restores the original property definition
-	  delete activeElement.value;
-	
-	  if (activeElement.detachEvent) {
-	    activeElement.detachEvent('onpropertychange', handlePropertyChange);
-	  } else {
-	    activeElement.removeEventListener('propertychange', handlePropertyChange, false);
-	  }
+	  activeElement.detachEvent('onpropertychange', handlePropertyChange);
 	
 	  activeElement = null;
 	  activeElementInst = null;
-	  activeElementValue = null;
-	  activeElementValueProp = null;
 	}
 	
 	/**
-	 * (For IE <=11) Handles a propertychange event, sending a `change` event if
+	 * (For IE <=9) Handles a propertychange event, sending a `change` event if
 	 * the value of the active element has changed.
 	 */
 	function handlePropertyChange(nativeEvent) {
 	  if (nativeEvent.propertyName !== 'value') {
 	    return;
 	  }
-	  var value = nativeEvent.srcElement.value;
-	  if (value === activeElementValue) {
-	    return;
-	  }
-	  activeElementValue = value;
-	
-	  manualDispatchChangeEvent(nativeEvent);
-	}
-	
-	/**
-	 * If a `change` event should be fired, returns the target's ID.
-	 */
-	function getTargetInstForInputEvent(topLevelType, targetInst) {
-	  if (topLevelType === 'topInput') {
-	    // In modern browsers (i.e., not IE8 or IE9), the input event is exactly
-	    // what we want so fall through here and trigger an abstract event
-	    return targetInst;
+	  if (getInstIfValueChanged(activeElementInst, nativeEvent)) {
+	    manualDispatchChangeEvent(nativeEvent);
 	  }
 	}
 	
-	function handleEventsForInputEventIE(topLevelType, target, targetInst) {
+	function handleEventsForInputEventPolyfill(topLevelType, target, targetInst) {
 	  if (topLevelType === 'topFocus') {
 	    // In IE8, we can capture almost all .value changes by adding a
 	    // propertychange handler and looking for events with propertyName
 	    // equal to 'value'
-	    // In IE9-11, propertychange fires for most input events but is buggy and
+	    // In IE9, propertychange fires for most input events but is buggy and
 	    // doesn't fire when text is deleted, but conveniently, selectionchange
 	    // appears to fire in all of the remaining cases so we catch those and
 	    // forward the event if the value has changed
@@ -8029,7 +8654,7 @@
 	}
 	
 	// For IE8 and IE9.
-	function getTargetInstForInputEventIE(topLevelType, targetInst) {
+	function getTargetInstForInputEventPolyfill(topLevelType, targetInst, nativeEvent) {
 	  if (topLevelType === 'topSelectionChange' || topLevelType === 'topKeyUp' || topLevelType === 'topKeyDown') {
 	    // On the selectionchange event, the target is just document which isn't
 	    // helpful for us so just check activeElement instead.
@@ -8041,10 +8666,7 @@
 	    // keystroke if user does a key repeat (it'll be a little delayed: right
 	    // before the second keystroke). Other input methods (e.g., paste) seem to
 	    // fire selectionchange normally.
-	    if (activeElement && activeElement.value !== activeElementValue) {
-	      activeElementValue = activeElement.value;
-	      return activeElementInst;
-	    }
+	    return getInstIfValueChanged(activeElementInst, nativeEvent);
 	  }
 	}
 	
@@ -8055,12 +8677,39 @@
 	  // Use the `click` event to detect changes to checkbox and radio inputs.
 	  // This approach works across all browsers, whereas `change` does not fire
 	  // until `blur` in IE8.
-	  return elem.nodeName && elem.nodeName.toLowerCase() === 'input' && (elem.type === 'checkbox' || elem.type === 'radio');
+	  var nodeName = elem.nodeName;
+	  return nodeName && nodeName.toLowerCase() === 'input' && (elem.type === 'checkbox' || elem.type === 'radio');
 	}
 	
-	function getTargetInstForClickEvent(topLevelType, targetInst) {
+	function getTargetInstForClickEvent(topLevelType, targetInst, nativeEvent) {
 	  if (topLevelType === 'topClick') {
-	    return targetInst;
+	    return getInstIfValueChanged(targetInst, nativeEvent);
+	  }
+	}
+	
+	function getTargetInstForInputOrChangeEvent(topLevelType, targetInst, nativeEvent) {
+	  if (topLevelType === 'topInput' || topLevelType === 'topChange') {
+	    return getInstIfValueChanged(targetInst, nativeEvent);
+	  }
+	}
+	
+	function handleControlledInputBlur(inst, node) {
+	  // TODO: In IE, inst is occasionally null. Why?
+	  if (inst == null) {
+	    return;
+	  }
+	
+	  // Fiber and ReactDOM keep wrapper state in separate places
+	  var state = inst._wrapperState || node._wrapperState;
+	
+	  if (!state || !state.controlled || node.type !== 'number') {
+	    return;
+	  }
+	
+	  // If controlled, assign the value attribute to the current value on blur
+	  var value = '' + node.value;
+	  if (node.getAttribute('value') !== value) {
+	    node.setAttribute('value', value);
 	  }
 	}
 	
@@ -8075,8 +8724,10 @@
 	 * - select
 	 */
 	var ChangeEventPlugin = {
-	
 	  eventTypes: eventTypes,
+	
+	  _allowSimulatedPassThrough: true,
+	  _isInputEventSupported: isInputEventSupported,
 	
 	  extractEvents: function (topLevelType, targetInst, nativeEvent, nativeEventTarget) {
 	    var targetNode = targetInst ? ReactDOMComponentTree.getNodeFromInstance(targetInst) : window;
@@ -8090,21 +8741,19 @@
 	      }
 	    } else if (isTextInputElement(targetNode)) {
 	      if (isInputEventSupported) {
-	        getTargetInstFunc = getTargetInstForInputEvent;
+	        getTargetInstFunc = getTargetInstForInputOrChangeEvent;
 	      } else {
-	        getTargetInstFunc = getTargetInstForInputEventIE;
-	        handleEventFunc = handleEventsForInputEventIE;
+	        getTargetInstFunc = getTargetInstForInputEventPolyfill;
+	        handleEventFunc = handleEventsForInputEventPolyfill;
 	      }
 	    } else if (shouldUseClickEvent(targetNode)) {
 	      getTargetInstFunc = getTargetInstForClickEvent;
 	    }
 	
 	    if (getTargetInstFunc) {
-	      var inst = getTargetInstFunc(topLevelType, targetInst);
+	      var inst = getTargetInstFunc(topLevelType, targetInst, nativeEvent);
 	      if (inst) {
-	        var event = SyntheticEvent.getPooled(eventTypes.change, inst, nativeEvent, nativeEventTarget);
-	        event.type = 'change';
-	        EventPropagators.accumulateTwoPhaseDispatches(event);
+	        var event = createAndAccumulateChangeEvent(inst, nativeEvent, nativeEventTarget);
 	        return event;
 	      }
 	    }
@@ -8112,38 +8761,40 @@
 	    if (handleEventFunc) {
 	      handleEventFunc(topLevelType, targetNode, targetInst);
 	    }
-	  }
 	
+	    // When blurring, set the value attribute for number inputs
+	    if (topLevelType === 'topBlur') {
+	      handleControlledInputBlur(targetInst, targetNode);
+	    }
+	  }
 	};
 	
 	module.exports = ChangeEventPlugin;
 
-/***/ },
-/* 138 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117),
-	    _assign = __webpack_require__(89);
+	var _prodInvariant = __webpack_require__(123),
+	    _assign = __webpack_require__(88);
 	
-	var CallbackQueue = __webpack_require__(139);
-	var PooledClass = __webpack_require__(132);
-	var ReactFeatureFlags = __webpack_require__(140);
-	var ReactReconciler = __webpack_require__(141);
-	var Transaction = __webpack_require__(145);
+	var CallbackQueue = __webpack_require__(145);
+	var PooledClass = __webpack_require__(138);
+	var ReactFeatureFlags = __webpack_require__(146);
+	var ReactReconciler = __webpack_require__(147);
+	var Transaction = __webpack_require__(151);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	var dirtyComponents = [];
 	var updateBatchNumber = 0;
@@ -8336,7 +8987,7 @@
 	 * if no updates are currently being performed.
 	 */
 	function asap(callback, context) {
-	  !batchingStrategy.isBatchingUpdates ?  false ? invariant(false, 'ReactUpdates.asap: Can\'t enqueue an asap callback in a context whereupdates are not being batched.') : _prodInvariant('125') : void 0;
+	  invariant(batchingStrategy.isBatchingUpdates, "ReactUpdates.asap: Can't enqueue an asap callback in a context where" + 'updates are not being batched.');
 	  asapCallbackQueue.enqueue(callback, context);
 	  asapEnqueued = true;
 	}
@@ -8373,30 +9024,28 @@
 	
 	module.exports = ReactUpdates;
 
-/***/ },
-/* 139 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 145 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var PooledClass = __webpack_require__(132);
+	var PooledClass = __webpack_require__(138);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	/**
 	 * A specialized pseudo-event module to help keep track of components waiting to
@@ -8496,17 +9145,15 @@
 	
 	module.exports = PooledClass.addPoolingTo(CallbackQueue);
 
-/***/ },
-/* 140 */
-/***/ function(module, exports) {
+/***/ }),
+/* 146 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -8522,26 +9169,24 @@
 	
 	module.exports = ReactFeatureFlags;
 
-/***/ },
-/* 141 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 147 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var ReactRef = __webpack_require__(142);
-	var ReactInstrumentation = __webpack_require__(144);
+	var ReactRef = __webpack_require__(148);
+	var ReactInstrumentation = __webpack_require__(150);
 	
-	var warning = __webpack_require__(96);
+	var warning = __webpack_require__(92);
 	
 	/**
 	 * Helper to call ReactRef.attachRefs with this composite component, split out
@@ -8552,7 +9197,6 @@
 	}
 	
 	var ReactReconciler = {
-	
 	  /**
 	   * Initializes the component, renders markup, and registers event listeners.
 	   *
@@ -8564,8 +9208,8 @@
 	   * @final
 	   * @internal
 	   */
-	  mountComponent: function (internalInstance, transaction, hostParent, hostContainerInfo, context, parentDebugID // 0 in production and for roots
-	  ) {
+	  mountComponent: function (internalInstance, transaction, hostParent, hostContainerInfo, context, parentDebugID) // 0 in production and for roots
+	  {
 	    if (false) {
 	      if (internalInstance._debugID !== 0) {
 	        ReactInstrumentation.debugTool.onBeforeMountComponent(internalInstance._debugID, internalInstance._currentElement, parentDebugID);
@@ -8689,29 +9333,26 @@
 	      }
 	    }
 	  }
-	
 	};
 	
 	module.exports = ReactReconciler;
 
-/***/ },
-/* 142 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 148 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
 	
 	'use strict';
 	
-	var ReactOwner = __webpack_require__(143);
+	var ReactOwner = __webpack_require__(149);
 	
 	var ReactRef = {};
 	
@@ -8787,26 +9428,24 @@
 	
 	module.exports = ReactRef;
 
-/***/ },
-/* 143 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 149 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	/**
 	 * @param {?object} object
@@ -8880,22 +9519,19 @@
 	      owner.detachRef(ref);
 	    }
 	  }
-	
 	};
 	
 	module.exports = ReactOwner;
 
-/***/ },
-/* 144 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 150 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2016-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2016-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -8913,26 +9549,24 @@
 	
 	module.exports = { debugTool: debugTool };
 
-/***/ },
-/* 145 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 151 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	var OBSERVED_ERROR = {};
 	
@@ -9027,6 +9661,8 @@
 	    return !!this._isInTransaction;
 	  },
 	
+	  /* eslint-disable space-before-function-paren */
+	
 	  /**
 	   * Executes the function within a safety window. Use this for the top level
 	   * methods that result in large amounts of computation/mutations that would
@@ -9045,6 +9681,7 @@
 	   * @return {*} Return value from `method`.
 	   */
 	  perform: function (method, scope, a, b, c, d, e, f) {
+	    /* eslint-enable space-before-function-paren */
 	    !!this.isInTransaction() ?  false ? invariant(false, 'Transaction.perform(...): Cannot initialize a transaction when there is already an outstanding transaction.') : _prodInvariant('27') : void 0;
 	    var errorThrown;
 	    var ret;
@@ -9142,17 +9779,140 @@
 	
 	module.exports = TransactionImpl;
 
-/***/ },
-/* 146 */
-/***/ function(module, exports) {
+/***/ }),
+/* 152 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 *
+	 */
+	
+	'use strict';
+	
+	var ReactDOMComponentTree = __webpack_require__(122);
+	
+	function isCheckable(elem) {
+	  var type = elem.type;
+	  var nodeName = elem.nodeName;
+	  return nodeName && nodeName.toLowerCase() === 'input' && (type === 'checkbox' || type === 'radio');
+	}
+	
+	function getTracker(inst) {
+	  return inst._wrapperState.valueTracker;
+	}
+	
+	function attachTracker(inst, tracker) {
+	  inst._wrapperState.valueTracker = tracker;
+	}
+	
+	function detachTracker(inst) {
+	  inst._wrapperState.valueTracker = null;
+	}
+	
+	function getValueFromNode(node) {
+	  var value;
+	  if (node) {
+	    value = isCheckable(node) ? '' + node.checked : node.value;
+	  }
+	  return value;
+	}
+	
+	var inputValueTracking = {
+	  // exposed for testing
+	  _getTrackerFromNode: function (node) {
+	    return getTracker(ReactDOMComponentTree.getInstanceFromNode(node));
+	  },
+	
+	
+	  track: function (inst) {
+	    if (getTracker(inst)) {
+	      return;
+	    }
+	
+	    var node = ReactDOMComponentTree.getNodeFromInstance(inst);
+	    var valueField = isCheckable(node) ? 'checked' : 'value';
+	    var descriptor = Object.getOwnPropertyDescriptor(node.constructor.prototype, valueField);
+	
+	    var currentValue = '' + node[valueField];
+	
+	    // if someone has already defined a value or Safari, then bail
+	    // and don't track value will cause over reporting of changes,
+	    // but it's better then a hard failure
+	    // (needed for certain tests that spyOn input values and Safari)
+	    if (node.hasOwnProperty(valueField) || typeof descriptor.get !== 'function' || typeof descriptor.set !== 'function') {
+	      return;
+	    }
+	
+	    Object.defineProperty(node, valueField, {
+	      enumerable: descriptor.enumerable,
+	      configurable: true,
+	      get: function () {
+	        return descriptor.get.call(this);
+	      },
+	      set: function (value) {
+	        currentValue = '' + value;
+	        descriptor.set.call(this, value);
+	      }
+	    });
+	
+	    attachTracker(inst, {
+	      getValue: function () {
+	        return currentValue;
+	      },
+	      setValue: function (value) {
+	        currentValue = '' + value;
+	      },
+	      stopTracking: function () {
+	        detachTracker(inst);
+	        delete node[valueField];
+	      }
+	    });
+	  },
+	
+	  updateValueIfChanged: function (inst) {
+	    if (!inst) {
+	      return false;
+	    }
+	    var tracker = getTracker(inst);
+	
+	    if (!tracker) {
+	      inputValueTracking.track(inst);
+	      return true;
+	    }
+	
+	    var lastValue = tracker.getValue();
+	    var nextValue = getValueFromNode(ReactDOMComponentTree.getNodeFromInstance(inst));
+	
+	    if (nextValue !== lastValue) {
+	      tracker.setValue(nextValue);
+	      return true;
+	    }
+	
+	    return false;
+	  },
+	  stopTracking: function (inst) {
+	    var tracker = getTracker(inst);
+	    if (tracker) {
+	      tracker.stopTracking();
+	    }
+	  }
+	};
+	
+	module.exports = inputValueTracking;
+
+/***/ }),
+/* 153 */
+/***/ (function(module, exports) {
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -9181,23 +9941,21 @@
 	
 	module.exports = getEventTarget;
 
-/***/ },
-/* 147 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 154 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var ExecutionEnvironment = __webpack_require__(130);
+	var ExecutionEnvironment = __webpack_require__(136);
 	
 	var useHasFeature;
 	if (ExecutionEnvironment.canUseDOM) {
@@ -9245,17 +10003,15 @@
 	
 	module.exports = isEventSupported;
 
-/***/ },
-/* 148 */
-/***/ function(module, exports) {
+/***/ }),
+/* 155 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -9267,21 +10023,21 @@
 	 */
 	
 	var supportedInputTypes = {
-	  'color': true,
-	  'date': true,
-	  'datetime': true,
+	  color: true,
+	  date: true,
+	  datetime: true,
 	  'datetime-local': true,
-	  'email': true,
-	  'month': true,
-	  'number': true,
-	  'password': true,
-	  'range': true,
-	  'search': true,
-	  'tel': true,
-	  'text': true,
-	  'time': true,
-	  'url': true,
-	  'week': true
+	  email: true,
+	  month: true,
+	  number: true,
+	  password: true,
+	  range: true,
+	  search: true,
+	  tel: true,
+	  text: true,
+	  time: true,
+	  url: true,
+	  week: true
 	};
 	
 	function isTextInputElement(elem) {
@@ -9300,17 +10056,15 @@
 	
 	module.exports = isTextInputElement;
 
-/***/ },
-/* 149 */
-/***/ function(module, exports) {
+/***/ }),
+/* 156 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -9330,25 +10084,23 @@
 	
 	module.exports = DefaultEventPluginOrder;
 
-/***/ },
-/* 150 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 157 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var EventPropagators = __webpack_require__(123);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var SyntheticMouseEvent = __webpack_require__(151);
+	var EventPropagators = __webpack_require__(129);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var SyntheticMouseEvent = __webpack_require__(158);
 	
 	var eventTypes = {
 	  mouseEnter: {
@@ -9362,7 +10114,6 @@
 	};
 	
 	var EnterLeaveEventPlugin = {
-	
 	  eventTypes: eventTypes,
 	
 	  /**
@@ -9429,31 +10180,28 @@
 	
 	    return [leave, enter];
 	  }
-	
 	};
 	
 	module.exports = EnterLeaveEventPlugin;
 
-/***/ },
-/* 151 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 158 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(152);
-	var ViewportMetrics = __webpack_require__(153);
+	var SyntheticUIEvent = __webpack_require__(159);
+	var ViewportMetrics = __webpack_require__(160);
 	
-	var getEventModifierState = __webpack_require__(154);
+	var getEventModifierState = __webpack_require__(161);
 	
 	/**
 	 * @interface MouseEvent
@@ -9510,25 +10258,23 @@
 	
 	module.exports = SyntheticMouseEvent;
 
-/***/ },
-/* 152 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 159 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var SyntheticEvent = __webpack_require__(135);
+	var SyntheticEvent = __webpack_require__(141);
 	
-	var getEventTarget = __webpack_require__(146);
+	var getEventTarget = __webpack_require__(153);
 	
 	/**
 	 * @interface UIEvent
@@ -9573,24 +10319,21 @@
 	
 	module.exports = SyntheticUIEvent;
 
-/***/ },
-/* 153 */
-/***/ function(module, exports) {
+/***/ }),
+/* 160 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
 	var ViewportMetrics = {
-	
 	  currentScrollLeft: 0,
 	
 	  currentScrollTop: 0,
@@ -9599,22 +10342,19 @@
 	    ViewportMetrics.currentScrollLeft = scrollPosition.x;
 	    ViewportMetrics.currentScrollTop = scrollPosition.y;
 	  }
-	
 	};
 	
 	module.exports = ViewportMetrics;
 
-/***/ },
-/* 154 */
-/***/ function(module, exports) {
+/***/ }),
+/* 161 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -9626,10 +10366,10 @@
 	 */
 	
 	var modifierKeyToProp = {
-	  'Alt': 'altKey',
-	  'Control': 'ctrlKey',
-	  'Meta': 'metaKey',
-	  'Shift': 'shiftKey'
+	  Alt: 'altKey',
+	  Control: 'ctrlKey',
+	  Meta: 'metaKey',
+	  Shift: 'shiftKey'
 	};
 	
 	// IE8 does not implement getModifierState so we simply map it to the only
@@ -9651,23 +10391,21 @@
 	
 	module.exports = getEventModifierState;
 
-/***/ },
-/* 155 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 162 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(118);
+	var DOMProperty = __webpack_require__(124);
 	
 	var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 	var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -9710,6 +10448,7 @@
 	    contentEditable: 0,
 	    contextMenu: 0,
 	    controls: HAS_BOOLEAN_VALUE,
+	    controlsList: 0,
 	    coords: 0,
 	    crossOrigin: 0,
 	    data: 0, // For `<object />` acts as `src`.
@@ -9862,29 +10601,51 @@
 	    htmlFor: 'for',
 	    httpEquiv: 'http-equiv'
 	  },
-	  DOMPropertyNames: {}
+	  DOMPropertyNames: {},
+	  DOMMutationMethods: {
+	    value: function (node, value) {
+	      if (value == null) {
+	        return node.removeAttribute('value');
+	      }
+	
+	      // Number inputs get special treatment due to some edge cases in
+	      // Chrome. Let everything else assign the value attribute as normal.
+	      // https://github.com/facebook/react/issues/7253#issuecomment-236074326
+	      if (node.type !== 'number' || node.hasAttribute('value') === false) {
+	        node.setAttribute('value', '' + value);
+	      } else if (node.validity && !node.validity.badInput && node.ownerDocument.activeElement !== node) {
+	        // Don't assign an attribute if validation reports bad
+	        // input. Chrome will clear the value. Additionally, don't
+	        // operate on inputs that have focus, otherwise Chrome might
+	        // strip off trailing decimal places and cause the user's
+	        // cursor position to jump to the beginning of the input.
+	        //
+	        // In ReactDOMInput, we have an onBlur event that will trigger
+	        // this function again when focus is lost.
+	        node.setAttribute('value', '' + value);
+	      }
+	    }
+	  }
 	};
 	
 	module.exports = HTMLDOMPropertyConfig;
 
-/***/ },
-/* 156 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 163 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var DOMChildrenOperations = __webpack_require__(157);
-	var ReactDOMIDOperations = __webpack_require__(168);
+	var DOMChildrenOperations = __webpack_require__(164);
+	var ReactDOMIDOperations = __webpack_require__(175);
 	
 	/**
 	 * Abstracts away all functionality of the reconciler that requires knowledge of
@@ -9892,39 +10653,35 @@
 	 * need for this injection.
 	 */
 	var ReactComponentBrowserEnvironment = {
-	
 	  processChildrenUpdates: ReactDOMIDOperations.dangerouslyProcessChildrenUpdates,
 	
 	  replaceNodeWithMarkup: DOMChildrenOperations.dangerouslyReplaceNodeWithMarkup
-	
 	};
 	
 	module.exports = ReactComponentBrowserEnvironment;
 
-/***/ },
-/* 157 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 164 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var DOMLazyTree = __webpack_require__(158);
-	var Danger = __webpack_require__(164);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var ReactInstrumentation = __webpack_require__(144);
+	var DOMLazyTree = __webpack_require__(165);
+	var Danger = __webpack_require__(171);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var ReactInstrumentation = __webpack_require__(150);
 	
-	var createMicrosoftUnsafeLocalFunction = __webpack_require__(161);
-	var setInnerHTML = __webpack_require__(160);
-	var setTextContent = __webpack_require__(162);
+	var createMicrosoftUnsafeLocalFunction = __webpack_require__(168);
+	var setInnerHTML = __webpack_require__(167);
+	var setTextContent = __webpack_require__(169);
 	
 	function getNodeAfter(parentNode, node) {
 	  // Special case for text components, which return [open, close] comments
@@ -10052,7 +10809,6 @@
 	 * Operations for updating with DOM children.
 	 */
 	var DOMChildrenOperations = {
-	
 	  dangerouslyReplaceNodeWithMarkup: dangerouslyReplaceNodeWithMarkup,
 	
 	  replaceDelimitedText: replaceDelimitedText,
@@ -10078,7 +10834,10 @@
 	            ReactInstrumentation.debugTool.onHostOperation({
 	              instanceID: parentNodeDebugID,
 	              type: 'insert child',
-	              payload: { toIndex: update.toIndex, content: update.content.toString() }
+	              payload: {
+	                toIndex: update.toIndex,
+	                content: update.content.toString()
+	              }
 	            });
 	          }
 	          break;
@@ -10125,32 +10884,29 @@
 	      }
 	    }
 	  }
-	
 	};
 	
 	module.exports = DOMChildrenOperations;
 
-/***/ },
-/* 158 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 165 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2015-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2015-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var DOMNamespaces = __webpack_require__(159);
-	var setInnerHTML = __webpack_require__(160);
+	var DOMNamespaces = __webpack_require__(166);
+	var setInnerHTML = __webpack_require__(167);
 	
-	var createMicrosoftUnsafeLocalFunction = __webpack_require__(161);
-	var setTextContent = __webpack_require__(162);
+	var createMicrosoftUnsafeLocalFunction = __webpack_require__(168);
+	var setTextContent = __webpack_require__(169);
 	
 	var ELEMENT_NODE_TYPE = 1;
 	var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
@@ -10252,17 +11008,15 @@
 	
 	module.exports = DOMLazyTree;
 
-/***/ },
-/* 159 */
-/***/ function(module, exports) {
+/***/ }),
+/* 166 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -10276,29 +11030,27 @@
 	
 	module.exports = DOMNamespaces;
 
-/***/ },
-/* 160 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 167 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var ExecutionEnvironment = __webpack_require__(130);
-	var DOMNamespaces = __webpack_require__(159);
+	var ExecutionEnvironment = __webpack_require__(136);
+	var DOMNamespaces = __webpack_require__(166);
 	
 	var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 	var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 	
-	var createMicrosoftUnsafeLocalFunction = __webpack_require__(161);
+	var createMicrosoftUnsafeLocalFunction = __webpack_require__(168);
 	
 	// SVG temp container for IE lacking innerHTML
 	var reusableSVGContainer;
@@ -10358,7 +11110,7 @@
 	        // in hopes that this is preserved even if "\uFEFF" is transformed to
 	        // the actual Unicode character (by Babel, for example).
 	        // https://github.com/mishoo/UglifyJS2/blob/v2.4.20/lib/parse.js#L216
-	        node.innerHTML = String.fromCharCode(0xFEFF) + html;
+	        node.innerHTML = String.fromCharCode(0xfeff) + html;
 	
 	        // deleteData leaves an empty `TextNode` which offsets the index of all
 	        // children. Definitely want to avoid this.
@@ -10378,17 +11130,15 @@
 	
 	module.exports = setInnerHTML;
 
-/***/ },
-/* 161 */
-/***/ function(module, exports) {
+/***/ }),
+/* 168 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -10414,25 +11164,23 @@
 	
 	module.exports = createMicrosoftUnsafeLocalFunction;
 
-/***/ },
-/* 162 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 169 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var ExecutionEnvironment = __webpack_require__(130);
-	var escapeTextContentForBrowser = __webpack_require__(163);
-	var setInnerHTML = __webpack_require__(160);
+	var ExecutionEnvironment = __webpack_require__(136);
+	var escapeTextContentForBrowser = __webpack_require__(170);
+	var setInnerHTML = __webpack_require__(167);
 	
 	/**
 	 * Set the textContent property of a node, ensuring that whitespace is preserved
@@ -10470,17 +11218,15 @@
 	
 	module.exports = setTextContent;
 
-/***/ },
-/* 163 */
-/***/ function(module, exports) {
+/***/ }),
+/* 170 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2016-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2016-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * Based on the escape-html library, which is used under the MIT License below:
 	 *
@@ -10578,7 +11324,6 @@
 	}
 	// end code copied and modified from escape-html
 	
-	
 	/**
 	 * Escapes text to prevent scripting attacks.
 	 *
@@ -10597,33 +11342,30 @@
 	
 	module.exports = escapeTextContentForBrowser;
 
-/***/ },
-/* 164 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 171 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var DOMLazyTree = __webpack_require__(158);
-	var ExecutionEnvironment = __webpack_require__(130);
+	var DOMLazyTree = __webpack_require__(165);
+	var ExecutionEnvironment = __webpack_require__(136);
 	
-	var createNodesFromMarkup = __webpack_require__(165);
-	var emptyFunction = __webpack_require__(97);
-	var invariant = __webpack_require__(93);
+	var createNodesFromMarkup = __webpack_require__(172);
+	var emptyFunction = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	var Danger = {
-	
 	  /**
 	   * Replaces a node with a string of markup at its current position within its
 	   * parent. The markup must render into a single root node.
@@ -10644,35 +11386,32 @@
 	      DOMLazyTree.replaceChildWithTree(oldChild, markup);
 	    }
 	  }
-	
 	};
 	
 	module.exports = Danger;
 
-/***/ },
-/* 165 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 172 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
 	
 	/*eslint-disable fb-www/unsafe-html*/
 	
-	var ExecutionEnvironment = __webpack_require__(130);
+	var ExecutionEnvironment = __webpack_require__(136);
 	
-	var createArrayFromMixed = __webpack_require__(166);
-	var getMarkupWrap = __webpack_require__(167);
-	var invariant = __webpack_require__(93);
+	var createArrayFromMixed = __webpack_require__(173);
+	var getMarkupWrap = __webpack_require__(174);
+	var invariant = __webpack_require__(96);
 	
 	/**
 	 * Dummy container used to render all markup.
@@ -10737,24 +11476,22 @@
 	
 	module.exports = createNodesFromMarkup;
 
-/***/ },
-/* 166 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 173 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	/**
 	 * Convert array-like objects to arrays.
@@ -10868,27 +11605,25 @@
 	
 	module.exports = createArrayFromMixed;
 
-/***/ },
-/* 167 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 174 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	/*eslint-disable fb-www/unsafe-html */
 	
-	var ExecutionEnvironment = __webpack_require__(130);
+	var ExecutionEnvironment = __webpack_require__(136);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	/**
 	 * Dummy container used to detect which wraps are necessary.
@@ -10967,30 +11702,27 @@
 	
 	module.exports = getMarkupWrap;
 
-/***/ },
-/* 168 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 175 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var DOMChildrenOperations = __webpack_require__(157);
-	var ReactDOMComponentTree = __webpack_require__(116);
+	var DOMChildrenOperations = __webpack_require__(164);
+	var ReactDOMComponentTree = __webpack_require__(122);
 	
 	/**
 	 * Operations used to process updates to DOM nodes.
 	 */
 	var ReactDOMIDOperations = {
-	
 	  /**
 	   * Updates a component's children by processing a series of updates.
 	   *
@@ -11005,17 +11737,15 @@
 	
 	module.exports = ReactDOMIDOperations;
 
-/***/ },
-/* 169 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 176 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -11023,35 +11753,36 @@
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117),
-	    _assign = __webpack_require__(89);
+	var _prodInvariant = __webpack_require__(123),
+	    _assign = __webpack_require__(88);
 	
-	var AutoFocusUtils = __webpack_require__(170);
-	var CSSPropertyOperations = __webpack_require__(172);
-	var DOMLazyTree = __webpack_require__(158);
-	var DOMNamespaces = __webpack_require__(159);
-	var DOMProperty = __webpack_require__(118);
-	var DOMPropertyOperations = __webpack_require__(180);
-	var EventPluginHub = __webpack_require__(124);
-	var EventPluginRegistry = __webpack_require__(125);
-	var ReactBrowserEventEmitter = __webpack_require__(182);
-	var ReactDOMComponentFlags = __webpack_require__(119);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var ReactDOMInput = __webpack_require__(185);
-	var ReactDOMOption = __webpack_require__(188);
-	var ReactDOMSelect = __webpack_require__(189);
-	var ReactDOMTextarea = __webpack_require__(190);
-	var ReactInstrumentation = __webpack_require__(144);
-	var ReactMultiChild = __webpack_require__(191);
-	var ReactServerRenderingTransaction = __webpack_require__(210);
+	var AutoFocusUtils = __webpack_require__(177);
+	var CSSPropertyOperations = __webpack_require__(179);
+	var DOMLazyTree = __webpack_require__(165);
+	var DOMNamespaces = __webpack_require__(166);
+	var DOMProperty = __webpack_require__(124);
+	var DOMPropertyOperations = __webpack_require__(187);
+	var EventPluginHub = __webpack_require__(130);
+	var EventPluginRegistry = __webpack_require__(131);
+	var ReactBrowserEventEmitter = __webpack_require__(189);
+	var ReactDOMComponentFlags = __webpack_require__(125);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var ReactDOMInput = __webpack_require__(192);
+	var ReactDOMOption = __webpack_require__(195);
+	var ReactDOMSelect = __webpack_require__(196);
+	var ReactDOMTextarea = __webpack_require__(197);
+	var ReactInstrumentation = __webpack_require__(150);
+	var ReactMultiChild = __webpack_require__(198);
+	var ReactServerRenderingTransaction = __webpack_require__(217);
 	
-	var emptyFunction = __webpack_require__(97);
-	var escapeTextContentForBrowser = __webpack_require__(163);
-	var invariant = __webpack_require__(93);
-	var isEventSupported = __webpack_require__(147);
-	var shallowEqual = __webpack_require__(199);
-	var validateDOMNesting = __webpack_require__(213);
-	var warning = __webpack_require__(96);
+	var emptyFunction = __webpack_require__(93);
+	var escapeTextContentForBrowser = __webpack_require__(170);
+	var invariant = __webpack_require__(96);
+	var isEventSupported = __webpack_require__(154);
+	var shallowEqual = __webpack_require__(206);
+	var inputValueTracking = __webpack_require__(152);
+	var validateDOMNesting = __webpack_require__(220);
+	var warning = __webpack_require__(92);
 	
 	var Flags = ReactDOMComponentFlags;
 	var deleteListener = EventPluginHub.deleteListener;
@@ -11060,7 +11791,7 @@
 	var registrationNameModules = EventPluginRegistry.registrationNameModules;
 	
 	// For quickly matching children type, to test if can be treated as content.
-	var CONTENT_TYPES = { 'string': true, 'number': true };
+	var CONTENT_TYPES = { string: true, number: true };
 	
 	var STYLE = 'style';
 	var HTML = '__html';
@@ -11169,7 +11900,7 @@
 	  if (false) {
 	    // IE8 has no API for event capturing and the `onScroll` event doesn't
 	    // bubble.
-	    process.env.NODE_ENV !== 'production' ? warning(registrationName !== 'onScroll' || isEventSupported('scroll', true), 'This browser doesn\'t support the `onScroll` event') : void 0;
+	    process.env.NODE_ENV !== 'production' ? warning(registrationName !== 'onScroll' || isEventSupported('scroll', true), "This browser doesn't support the `onScroll` event") : void 0;
 	  }
 	  var containerInfo = inst._hostContainerInfo;
 	  var isDocumentFragment = containerInfo._node && containerInfo._node.nodeType === DOC_FRAGMENT_TYPE;
@@ -11259,6 +11990,10 @@
 	  topWaiting: 'waiting'
 	};
 	
+	function trackInputValue() {
+	  inputValueTracking.track(this);
+	}
+	
 	function trapBubbledEventsLocal() {
 	  var inst = this;
 	  // If a component renders to null or if another component fatals and causes
@@ -11274,7 +12009,6 @@
 	      break;
 	    case 'video':
 	    case 'audio':
-	
 	      inst._wrapperState.listeners = [];
 	      // Create listener for each media event
 	      for (var event in mediaEvents) {
@@ -11308,34 +12042,35 @@
 	// those special-case tags.
 	
 	var omittedCloseTags = {
-	  'area': true,
-	  'base': true,
-	  'br': true,
-	  'col': true,
-	  'embed': true,
-	  'hr': true,
-	  'img': true,
-	  'input': true,
-	  'keygen': true,
-	  'link': true,
-	  'meta': true,
-	  'param': true,
-	  'source': true,
-	  'track': true,
-	  'wbr': true
+	  area: true,
+	  base: true,
+	  br: true,
+	  col: true,
+	  embed: true,
+	  hr: true,
+	  img: true,
+	  input: true,
+	  keygen: true,
+	  link: true,
+	  meta: true,
+	  param: true,
+	  source: true,
+	  track: true,
+	  wbr: true
+	  // NOTE: menuitem's close tag should be omitted, but that causes problems.
 	};
 	
 	var newlineEatingTags = {
-	  'listing': true,
-	  'pre': true,
-	  'textarea': true
+	  listing: true,
+	  pre: true,
+	  textarea: true
 	};
 	
 	// For HTML, certain tags cannot have children. This has the same purpose as
 	// `omittedCloseTags` except that `menuitem` should still have its closing tag.
 	
 	var voidElementTags = _assign({
-	  'menuitem': true
+	  menuitem: true
 	}, omittedCloseTags);
 	
 	// We accept any tag to be rendered but since this gets injected into arbitrary
@@ -11399,7 +12134,6 @@
 	ReactDOMComponent.displayName = 'ReactDOMComponent';
 	
 	ReactDOMComponent.Mixin = {
-	
 	  /**
 	   * Generates root tag markup then recurses. This method has side effects and
 	   * is not idempotent.
@@ -11436,6 +12170,7 @@
 	      case 'input':
 	        ReactDOMInput.mountWrapper(this, props, hostParent);
 	        props = ReactDOMInput.getHostProps(this, props);
+	        transaction.getReactMountReady().enqueue(trackInputValue, this);
 	        transaction.getReactMountReady().enqueue(trapBubbledEventsLocal, this);
 	        break;
 	      case 'option':
@@ -11450,6 +12185,7 @@
 	      case 'textarea':
 	        ReactDOMTextarea.mountWrapper(this, props, hostParent);
 	        props = ReactDOMTextarea.getHostProps(this, props);
+	        transaction.getReactMountReady().enqueue(trackInputValue, this);
 	        transaction.getReactMountReady().enqueue(trapBubbledEventsLocal, this);
 	        break;
 	    }
@@ -11692,12 +12428,18 @@
 	    } else {
 	      var contentToUse = CONTENT_TYPES[typeof props.children] ? props.children : null;
 	      var childrenToUse = contentToUse != null ? null : props.children;
+	      // TODO: Validate that text is allowed as a child of this node
 	      if (contentToUse != null) {
-	        // TODO: Validate that text is allowed as a child of this node
-	        if (false) {
-	          setAndValidateContentChildDev.call(this, contentToUse);
+	        // Avoid setting textContent when the text is empty. In IE11 setting
+	        // textContent on a text area will cause the placeholder to not
+	        // show within the textarea until it has been focused and blurred again.
+	        // https://github.com/facebook/react/issues/6731#issuecomment-254874553
+	        if (contentToUse !== '') {
+	          if (false) {
+	            setAndValidateContentChildDev.call(this, contentToUse);
+	          }
+	          DOMLazyTree.queueText(lazyTree, contentToUse);
 	        }
-	        DOMLazyTree.queueText(lazyTree, contentToUse);
 	      } else if (childrenToUse != null) {
 	        var mountImages = this.mountChildren(childrenToUse, transaction, context);
 	        for (var i = 0; i < mountImages.length; i++) {
@@ -11764,6 +12506,10 @@
 	        // happen after `_updateDOMProperties`. Otherwise HTML5 input validations
 	        // raise warnings and prevent the new value from being assigned.
 	        ReactDOMInput.updateWrapper(this);
+	
+	        // We also check that we haven't missed a value update, such as a
+	        // Radio group shifting the checked value to another named radio input.
+	        inputValueTracking.updateValueIfChanged(this);
 	        break;
 	      case 'textarea':
 	        ReactDOMTextarea.updateWrapper(this);
@@ -11969,6 +12715,10 @@
 	          }
 	        }
 	        break;
+	      case 'input':
+	      case 'textarea':
+	        inputValueTracking.stopTracking(this);
+	        break;
 	      case 'html':
 	      case 'head':
 	      case 'body':
@@ -11997,32 +12747,29 @@
 	  getPublicInstance: function () {
 	    return getNode(this);
 	  }
-	
 	};
 	
 	_assign(ReactDOMComponent.prototype, ReactDOMComponent.Mixin, ReactMultiChild.Mixin);
 	
 	module.exports = ReactDOMComponent;
 
-/***/ },
-/* 170 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 177 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var ReactDOMComponentTree = __webpack_require__(116);
+	var ReactDOMComponentTree = __webpack_require__(122);
 	
-	var focusNode = __webpack_require__(171);
+	var focusNode = __webpack_require__(178);
 	
 	var AutoFocusUtils = {
 	  focusDOMComponent: function () {
@@ -12032,17 +12779,15 @@
 	
 	module.exports = AutoFocusUtils;
 
-/***/ },
-/* 171 */
-/***/ function(module, exports) {
+/***/ }),
+/* 178 */
+/***/ (function(module, exports) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -12063,31 +12808,29 @@
 	
 	module.exports = focusNode;
 
-/***/ },
-/* 172 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 179 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var CSSProperty = __webpack_require__(173);
-	var ExecutionEnvironment = __webpack_require__(130);
-	var ReactInstrumentation = __webpack_require__(144);
+	var CSSProperty = __webpack_require__(180);
+	var ExecutionEnvironment = __webpack_require__(136);
+	var ReactInstrumentation = __webpack_require__(150);
 	
-	var camelizeStyleName = __webpack_require__(174);
-	var dangerousStyleValue = __webpack_require__(176);
-	var hyphenateStyleName = __webpack_require__(177);
-	var memoizeStringOnly = __webpack_require__(179);
-	var warning = __webpack_require__(96);
+	var camelizeStyleName = __webpack_require__(181);
+	var dangerousStyleValue = __webpack_require__(183);
+	var hyphenateStyleName = __webpack_require__(184);
+	var memoizeStringOnly = __webpack_require__(186);
+	var warning = __webpack_require__(92);
 	
 	var processStyleName = memoizeStringOnly(function (styleName) {
 	  return hyphenateStyleName(styleName);
@@ -12144,7 +12887,7 @@
 	    }
 	
 	    warnedStyleValues[value] = true;
-	    process.env.NODE_ENV !== 'production' ? warning(false, 'Style property values shouldn\'t contain a semicolon.%s ' + 'Try "%s: %s" instead.', checkRenderMessage(owner), name, value.replace(badStyleValueWithSemicolonPattern, '')) : void 0;
+	    process.env.NODE_ENV !== 'production' ? warning(false, "Style property values shouldn't contain a semicolon.%s " + 'Try "%s: %s" instead.', checkRenderMessage(owner), name, value.replace(badStyleValueWithSemicolonPattern, '')) : void 0;
 	  };
 	
 	  var warnStyleValueIsNaN = function (name, value, owner) {
@@ -12194,7 +12937,6 @@
 	 * Operations for dealing with CSS properties.
 	 */
 	var CSSPropertyOperations = {
-	
 	  /**
 	   * Serializes a mapping of style properties for use as inline styles:
 	   *
@@ -12214,13 +12956,16 @@
 	      if (!styles.hasOwnProperty(styleName)) {
 	        continue;
 	      }
+	      var isCustomProperty = styleName.indexOf('--') === 0;
 	      var styleValue = styles[styleName];
 	      if (false) {
-	        warnValidStyle(styleName, styleValue, component);
+	        if (!isCustomProperty) {
+	          warnValidStyle(styleName, styleValue, component);
+	        }
 	      }
 	      if (styleValue != null) {
 	        serialized += processStyleName(styleName) + ':';
-	        serialized += dangerousStyleValue(styleName, styleValue, component) + ';';
+	        serialized += dangerousStyleValue(styleName, styleValue, component, isCustomProperty) + ';';
 	      }
 	    }
 	    return serialized || null;
@@ -12248,14 +12993,19 @@
 	      if (!styles.hasOwnProperty(styleName)) {
 	        continue;
 	      }
+	      var isCustomProperty = styleName.indexOf('--') === 0;
 	      if (false) {
-	        warnValidStyle(styleName, styles[styleName], component);
+	        if (!isCustomProperty) {
+	          warnValidStyle(styleName, styles[styleName], component);
+	        }
 	      }
-	      var styleValue = dangerousStyleValue(styleName, styles[styleName], component);
+	      var styleValue = dangerousStyleValue(styleName, styles[styleName], component, isCustomProperty);
 	      if (styleName === 'float' || styleName === 'cssFloat') {
 	        styleName = styleFloatAccessor;
 	      }
-	      if (styleValue) {
+	      if (isCustomProperty) {
+	        style.setProperty(styleName, styleValue);
+	      } else if (styleValue) {
 	        style[styleName] = styleValue;
 	      } else {
 	        var expansion = hasShorthandPropertyBug && CSSProperty.shorthandPropertyExpansions[styleName];
@@ -12271,22 +13021,19 @@
 	      }
 	    }
 	  }
-	
 	};
 	
 	module.exports = CSSPropertyOperations;
 
-/***/ },
-/* 173 */
-/***/ function(module, exports) {
+/***/ }),
+/* 180 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -12305,6 +13052,7 @@
 	  boxFlexGroup: true,
 	  boxOrdinalGroup: true,
 	  columnCount: true,
+	  columns: true,
 	  flex: true,
 	  flexGrow: true,
 	  flexPositive: true,
@@ -12312,7 +13060,13 @@
 	  flexNegative: true,
 	  flexOrder: true,
 	  gridRow: true,
+	  gridRowEnd: true,
+	  gridRowSpan: true,
+	  gridRowStart: true,
 	  gridColumn: true,
+	  gridColumnEnd: true,
+	  gridColumnSpan: true,
+	  gridColumnStart: true,
 	  fontWeight: true,
 	  lineClamp: true,
 	  lineHeight: true,
@@ -12428,24 +13182,22 @@
 	
 	module.exports = CSSProperty;
 
-/***/ },
-/* 174 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 181 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
 	
 	'use strict';
 	
-	var camelize = __webpack_require__(175);
+	var camelize = __webpack_require__(182);
 	
 	var msPattern = /^-ms-/;
 	
@@ -12472,19 +13224,17 @@
 	
 	module.exports = camelizeStyleName;
 
-/***/ },
-/* 175 */
-/***/ function(module, exports) {
+/***/ }),
+/* 182 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -12508,24 +13258,22 @@
 	
 	module.exports = camelize;
 
-/***/ },
-/* 176 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 183 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var CSSProperty = __webpack_require__(173);
-	var warning = __webpack_require__(96);
+	var CSSProperty = __webpack_require__(180);
+	var warning = __webpack_require__(92);
 	
 	var isUnitlessNumber = CSSProperty.isUnitlessNumber;
 	var styleWarnings = {};
@@ -12540,7 +13288,7 @@
 	 * @param {ReactDOMComponent} component
 	 * @return {string} Normalized style value with dimensions applied.
 	 */
-	function dangerousStyleValue(name, value, component) {
+	function dangerousStyleValue(name, value, component, isCustomProperty) {
 	  // Note that we've removed escapeTextForBrowser() calls here since the
 	  // whole string will be escaped when the attribute is injected into
 	  // the markup. If you provide unsafe user data here they can inject
@@ -12557,7 +13305,7 @@
 	  }
 	
 	  var isNonNumeric = isNaN(value);
-	  if (isNonNumeric || value === 0 || isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name]) {
+	  if (isCustomProperty || isNonNumeric || value === 0 || isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name]) {
 	    return '' + value; // cast to string
 	  }
 	
@@ -12591,24 +13339,22 @@
 	
 	module.exports = dangerousStyleValue;
 
-/***/ },
-/* 177 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 184 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
 	
 	'use strict';
 	
-	var hyphenate = __webpack_require__(178);
+	var hyphenate = __webpack_require__(185);
 	
 	var msPattern = /^ms-/;
 	
@@ -12634,19 +13380,17 @@
 	
 	module.exports = hyphenateStyleName;
 
-/***/ },
-/* 178 */
-/***/ function(module, exports) {
+/***/ }),
+/* 185 */
+/***/ (function(module, exports) {
 
 	'use strict';
 	
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -12671,17 +13415,15 @@
 	
 	module.exports = hyphenate;
 
-/***/ },
-/* 179 */
-/***/ function(module, exports) {
+/***/ }),
+/* 186 */
+/***/ (function(module, exports) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 * @typechecks static-only
@@ -12705,28 +13447,26 @@
 	
 	module.exports = memoizeStringOnly;
 
-/***/ },
-/* 180 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(118);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var ReactInstrumentation = __webpack_require__(144);
+	var DOMProperty = __webpack_require__(124);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var ReactInstrumentation = __webpack_require__(150);
 	
-	var quoteAttributeValueForBrowser = __webpack_require__(181);
-	var warning = __webpack_require__(96);
+	var quoteAttributeValueForBrowser = __webpack_require__(188);
+	var warning = __webpack_require__(92);
 	
 	var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
 	var illegalAttributeNameCache = {};
@@ -12756,7 +13496,6 @@
 	 * Operations for dealing with DOM properties.
 	 */
 	var DOMPropertyOperations = {
-	
 	  /**
 	   * Creates markup for the ID property.
 	   *
@@ -12941,28 +13680,25 @@
 	      });
 	    }
 	  }
-	
 	};
 	
 	module.exports = DOMPropertyOperations;
 
-/***/ },
-/* 181 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var escapeTextContentForBrowser = __webpack_require__(163);
+	var escapeTextContentForBrowser = __webpack_require__(170);
 	
 	/**
 	 * Escapes attribute value to prevent scripting attacks.
@@ -12976,30 +13712,28 @@
 	
 	module.exports = quoteAttributeValueForBrowser;
 
-/***/ },
-/* 182 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _assign = __webpack_require__(89);
+	var _assign = __webpack_require__(88);
 	
-	var EventPluginRegistry = __webpack_require__(125);
-	var ReactEventEmitterMixin = __webpack_require__(183);
-	var ViewportMetrics = __webpack_require__(153);
+	var EventPluginRegistry = __webpack_require__(131);
+	var ReactEventEmitterMixin = __webpack_require__(190);
+	var ViewportMetrics = __webpack_require__(160);
 	
-	var getVendorPrefixedEventName = __webpack_require__(184);
-	var isEventSupported = __webpack_require__(147);
+	var getVendorPrefixedEventName = __webpack_require__(191);
+	var isEventSupported = __webpack_require__(154);
 	
 	/**
 	 * Summary of `ReactBrowserEventEmitter` event handling:
@@ -13157,7 +13891,6 @@
 	 * @internal
 	 */
 	var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
-	
 	  /**
 	   * Injectable event backend
 	   */
@@ -13231,14 +13964,12 @@
 	            ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent('topWheel', 'DOMMouseScroll', mountAt);
 	          }
 	        } else if (dependency === 'topScroll') {
-	
 	          if (isEventSupported('scroll', true)) {
 	            ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent('topScroll', 'scroll', mountAt);
 	          } else {
 	            ReactBrowserEventEmitter.ReactEventListener.trapBubbledEvent('topScroll', 'scroll', ReactBrowserEventEmitter.ReactEventListener.WINDOW_HANDLE);
 	          }
 	        } else if (dependency === 'topFocus' || dependency === 'topBlur') {
-	
 	          if (isEventSupported('focus', true)) {
 	            ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent('topFocus', 'focus', mountAt);
 	            ReactBrowserEventEmitter.ReactEventListener.trapCapturedEvent('topBlur', 'blur', mountAt);
@@ -13303,28 +14034,25 @@
 	      isMonitoringScrollValue = true;
 	    }
 	  }
-	
 	});
 	
 	module.exports = ReactBrowserEventEmitter;
 
-/***/ },
-/* 183 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var EventPluginHub = __webpack_require__(124);
+	var EventPluginHub = __webpack_require__(130);
 	
 	function runEventQueueInBatch(events) {
 	  EventPluginHub.enqueueEvents(events);
@@ -13332,7 +14060,6 @@
 	}
 	
 	var ReactEventEmitterMixin = {
-	
 	  /**
 	   * Streams a fired top-level event to `EventPluginHub` where plugins have the
 	   * opportunity to create `ReactEvent`s to be dispatched.
@@ -13345,23 +14072,21 @@
 	
 	module.exports = ReactEventEmitterMixin;
 
-/***/ },
-/* 184 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var ExecutionEnvironment = __webpack_require__(130);
+	var ExecutionEnvironment = __webpack_require__(136);
 	
 	/**
 	 * Generate a mapping of standard vendor prefixes using the defined style property and event name.
@@ -13450,32 +14175,30 @@
 	
 	module.exports = getVendorPrefixedEventName;
 
-/***/ },
-/* 185 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 192 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117),
-	    _assign = __webpack_require__(89);
+	var _prodInvariant = __webpack_require__(123),
+	    _assign = __webpack_require__(88);
 	
-	var DOMPropertyOperations = __webpack_require__(180);
-	var LinkedValueUtils = __webpack_require__(186);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var ReactUpdates = __webpack_require__(138);
+	var DOMPropertyOperations = __webpack_require__(187);
+	var LinkedValueUtils = __webpack_require__(193);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var ReactUpdates = __webpack_require__(144);
 	
-	var invariant = __webpack_require__(93);
-	var warning = __webpack_require__(96);
+	var invariant = __webpack_require__(96);
+	var warning = __webpack_require__(92);
 	
 	var didWarnValueLink = false;
 	var didWarnCheckedLink = false;
@@ -13568,12 +14291,9 @@
 	      initialChecked: props.checked != null ? props.checked : props.defaultChecked,
 	      initialValue: props.value != null ? props.value : defaultValue,
 	      listeners: null,
-	      onChange: _handleChange.bind(inst)
+	      onChange: _handleChange.bind(inst),
+	      controlled: isControlled(props)
 	    };
-	
-	    if (false) {
-	      inst._wrapperState.controlled = isControlled(props);
-	    }
 	  },
 	
 	  updateWrapper: function (inst) {
@@ -13602,18 +14322,40 @@
 	    var node = ReactDOMComponentTree.getNodeFromInstance(inst);
 	    var value = LinkedValueUtils.getValue(props);
 	    if (value != null) {
+	      if (value === 0 && node.value === '') {
+	        node.value = '0';
+	        // Note: IE9 reports a number inputs as 'text', so check props instead.
+	      } else if (props.type === 'number') {
+	        // Simulate `input.valueAsNumber`. IE9 does not support it
+	        var valueAsNumber = parseFloat(node.value, 10) || 0;
 	
-	      // Cast `value` to a string to ensure the value is set correctly. While
-	      // browsers typically do this as necessary, jsdom doesn't.
-	      var newValue = '' + value;
-	
-	      // To avoid side effects (such as losing text selection), only set value if changed
-	      if (newValue !== node.value) {
-	        node.value = newValue;
+	        if (
+	        // eslint-disable-next-line
+	        value != valueAsNumber ||
+	        // eslint-disable-next-line
+	        value == valueAsNumber && node.value != value) {
+	          // Cast `value` to a string to ensure the value is set correctly. While
+	          // browsers typically do this as necessary, jsdom doesn't.
+	          node.value = '' + value;
+	        }
+	      } else if (node.value !== '' + value) {
+	        // Cast `value` to a string to ensure the value is set correctly. While
+	        // browsers typically do this as necessary, jsdom doesn't.
+	        node.value = '' + value;
 	      }
 	    } else {
 	      if (props.value == null && props.defaultValue != null) {
-	        node.defaultValue = '' + props.defaultValue;
+	        // In Chrome, assigning defaultValue to certain input types triggers input validation.
+	        // For number inputs, the display value loses trailing decimal points. For email inputs,
+	        // Chrome raises "The specified value <x> is not a valid email address".
+	        //
+	        // Here we check to see if the defaultValue has actually changed, avoiding these problems
+	        // when the user is inputting text
+	        //
+	        // https://github.com/facebook/react/issues/7253
+	        if (node.defaultValue !== '' + props.defaultValue) {
+	          node.defaultValue = '' + props.defaultValue;
+	        }
 	      }
 	      if (props.checked == null && props.defaultChecked != null) {
 	        node.defaultChecked = !!props.defaultChecked;
@@ -13722,38 +14464,39 @@
 	
 	module.exports = ReactDOMInput;
 
-/***/ },
-/* 186 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var React = __webpack_require__(88);
-	var ReactPropTypesSecret = __webpack_require__(187);
+	var ReactPropTypesSecret = __webpack_require__(194);
+	var propTypesFactory = __webpack_require__(108);
 	
-	var invariant = __webpack_require__(93);
-	var warning = __webpack_require__(96);
+	var React = __webpack_require__(87);
+	var PropTypes = propTypesFactory(React.isValidElement);
+	
+	var invariant = __webpack_require__(96);
+	var warning = __webpack_require__(92);
 	
 	var hasReadOnlyValue = {
-	  'button': true,
-	  'checkbox': true,
-	  'image': true,
-	  'hidden': true,
-	  'radio': true,
-	  'reset': true,
-	  'submit': true
+	  button: true,
+	  checkbox: true,
+	  image: true,
+	  hidden: true,
+	  radio: true,
+	  reset: true,
+	  submit: true
 	};
 	
 	function _assertSingleLink(inputProps) {
@@ -13782,7 +14525,7 @@
 	    }
 	    return new Error('You provided a `checked` prop to a form field without an ' + '`onChange` handler. This will render a read-only field. If ' + 'the field should be mutable use `defaultChecked`. Otherwise, ' + 'set either `onChange` or `readOnly`.');
 	  },
-	  onChange: React.PropTypes.func
+	  onChange: PropTypes.func
 	};
 	
 	var loggedTypeFailures = {};
@@ -13861,17 +14604,15 @@
 	
 	module.exports = LinkedValueUtils;
 
-/***/ },
-/* 187 */
-/***/ function(module, exports) {
+/***/ }),
+/* 194 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -13882,29 +14623,27 @@
 	
 	module.exports = ReactPropTypesSecret;
 
-/***/ },
-/* 188 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 195 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _assign = __webpack_require__(89);
+	var _assign = __webpack_require__(88);
 	
-	var React = __webpack_require__(88);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var ReactDOMSelect = __webpack_require__(189);
+	var React = __webpack_require__(87);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var ReactDOMSelect = __webpack_require__(196);
 	
-	var warning = __webpack_require__(96);
+	var warning = __webpack_require__(92);
 	var didWarnInvalidOptionChildren = false;
 	
 	function flattenChildren(children) {
@@ -14004,34 +14743,31 @@
 	
 	    return hostProps;
 	  }
-	
 	};
 	
 	module.exports = ReactDOMOption;
 
-/***/ },
-/* 189 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 196 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _assign = __webpack_require__(89);
+	var _assign = __webpack_require__(88);
 	
-	var LinkedValueUtils = __webpack_require__(186);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var ReactUpdates = __webpack_require__(138);
+	var LinkedValueUtils = __webpack_require__(193);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var ReactUpdates = __webpack_require__(144);
 	
-	var warning = __webpack_require__(96);
+	var warning = __webpack_require__(92);
 	
 	var didWarnValueLink = false;
 	var didWarnValueDefaultValue = false;
@@ -14213,31 +14949,29 @@
 	
 	module.exports = ReactDOMSelect;
 
-/***/ },
-/* 190 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 197 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117),
-	    _assign = __webpack_require__(89);
+	var _prodInvariant = __webpack_require__(123),
+	    _assign = __webpack_require__(88);
 	
-	var LinkedValueUtils = __webpack_require__(186);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var ReactUpdates = __webpack_require__(138);
+	var LinkedValueUtils = __webpack_require__(193);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var ReactUpdates = __webpack_require__(144);
 	
-	var invariant = __webpack_require__(93);
-	var warning = __webpack_require__(96);
+	var invariant = __webpack_require__(96);
+	var warning = __webpack_require__(92);
 	
 	var didWarnValueLink = false;
 	var didWarnValDefaultVal = false;
@@ -14356,9 +15090,15 @@
 	    // This is in postMount because we need access to the DOM node, which is not
 	    // available until after the component has mounted.
 	    var node = ReactDOMComponentTree.getNodeFromInstance(inst);
+	    var textContent = node.textContent;
 	
-	    // Warning: node.value may be the empty string at this point (IE11) if placeholder is set.
-	    node.value = node.textContent; // Detach value from defaultValue
+	    // Only set node.value if textContent is equal to the expected
+	    // initial value. In IE10/IE11 there is a bug where the placeholder attribute
+	    // will populate textContent as well.
+	    // https://developer.microsoft.com/microsoft-edge/platform/issues/101525/
+	    if (textContent === inst._wrapperState.initialValue) {
+	      node.value = textContent;
+	    }
 	  }
 	};
 	
@@ -14371,35 +15111,33 @@
 	
 	module.exports = ReactDOMTextarea;
 
-/***/ },
-/* 191 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var ReactComponentEnvironment = __webpack_require__(192);
-	var ReactInstanceMap = __webpack_require__(193);
-	var ReactInstrumentation = __webpack_require__(144);
+	var ReactComponentEnvironment = __webpack_require__(199);
+	var ReactInstanceMap = __webpack_require__(200);
+	var ReactInstrumentation = __webpack_require__(150);
 	
-	var ReactCurrentOwner = __webpack_require__(95);
-	var ReactReconciler = __webpack_require__(141);
-	var ReactChildReconciler = __webpack_require__(194);
+	var ReactCurrentOwner = __webpack_require__(101);
+	var ReactReconciler = __webpack_require__(147);
+	var ReactChildReconciler = __webpack_require__(201);
 	
-	var emptyFunction = __webpack_require__(97);
-	var flattenChildren = __webpack_require__(209);
-	var invariant = __webpack_require__(93);
+	var emptyFunction = __webpack_require__(93);
+	var flattenChildren = __webpack_require__(216);
+	var invariant = __webpack_require__(96);
 	
 	/**
 	 * Make an update for markup to be rendered and inserted at a supplied index.
@@ -14545,7 +15283,6 @@
 	 * @internal
 	 */
 	var ReactMultiChild = {
-	
 	  /**
 	   * Provides common functionality for components that must reconcile multiple
 	   * children. This is used by `ReactDOMComponent` to mount, update, and
@@ -14554,7 +15291,6 @@
 	   * @lends {ReactMultiChild.prototype}
 	   */
 	  Mixin: {
-	
 	    _reconcilerInstantiateChildren: function (nestedChildren, transaction, context) {
 	      if (false) {
 	        var selfDebugID = getDebugID(this);
@@ -14818,38 +15554,33 @@
 	      child._mountIndex = null;
 	      return update;
 	    }
-	
 	  }
-	
 	};
 	
 	module.exports = ReactMultiChild;
 
-/***/ },
-/* 192 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 199 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	var injected = false;
 	
 	var ReactComponentEnvironment = {
-	
 	  /**
 	   * Optionally injectable hook for swapping out mount images in the middle of
 	   * the tree.
@@ -14870,22 +15601,19 @@
 	      injected = true;
 	    }
 	  }
-	
 	};
 	
 	module.exports = ReactComponentEnvironment;
 
-/***/ },
-/* 193 */
-/***/ function(module, exports) {
+/***/ }),
+/* 200 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -14901,7 +15629,6 @@
 	// TODO: Replace this with ES6: var ReactInstanceMap = new Map();
 	
 	var ReactInstanceMap = {
-	
 	  /**
 	   * This API should be called `delete` but we'd have to make sure to always
 	   * transform these to strings for IE support. When this transform is fully
@@ -14922,34 +15649,31 @@
 	  set: function (key, value) {
 	    key._reactInternalInstance = value;
 	  }
-	
 	};
 	
 	module.exports = ReactInstanceMap;
 
-/***/ },
-/* 194 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 201 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var ReactReconciler = __webpack_require__(141);
+	var ReactReconciler = __webpack_require__(147);
 	
-	var instantiateReactComponent = __webpack_require__(196);
-	var KeyEscapeUtils = __webpack_require__(204);
-	var shouldUpdateReactComponent = __webpack_require__(200);
-	var traverseAllChildren = __webpack_require__(205);
-	var warning = __webpack_require__(96);
+	var instantiateReactComponent = __webpack_require__(203);
+	var KeyEscapeUtils = __webpack_require__(211);
+	var shouldUpdateReactComponent = __webpack_require__(207);
+	var traverseAllChildren = __webpack_require__(212);
+	var warning = __webpack_require__(92);
 	
 	var ReactComponentTreeHook;
 	
@@ -14959,7 +15683,7 @@
 	  // https://github.com/facebook/react/issues/7240
 	  // Remove the inline requires when we don't need them anymore:
 	  // https://github.com/facebook/react/pull/7178
-	  ReactComponentTreeHook = __webpack_require__(208);
+	  ReactComponentTreeHook = __webpack_require__(215);
 	}
 	
 	function instantiateChild(childInstances, child, name, selfDebugID) {
@@ -14992,8 +15716,8 @@
 	   * @return {?object} A set of child instances.
 	   * @internal
 	   */
-	  instantiateChildren: function (nestedChildNodes, transaction, context, selfDebugID // 0 in production and for roots
-	  ) {
+	  instantiateChildren: function (nestedChildNodes, transaction, context, selfDebugID) // 0 in production and for roots
+	  {
 	    if (nestedChildNodes == null) {
 	      return null;
 	    }
@@ -15019,8 +15743,8 @@
 	   * @return {?object} A new set of child instances.
 	   * @internal
 	   */
-	  updateChildren: function (prevChildren, nextChildren, mountImages, removedNodes, transaction, hostParent, hostContainerInfo, context, selfDebugID // 0 in production and for roots
-	  ) {
+	  updateChildren: function (prevChildren, nextChildren, mountImages, removedNodes, transaction, hostParent, hostContainerInfo, context, selfDebugID) // 0 in production and for roots
+	  {
 	    // We currently don't have a way to track moves here but if we use iterators
 	    // instead of for..in we can zip the iterators and check if an item has
 	    // moved.
@@ -15080,15 +15804,14 @@
 	      }
 	    }
 	  }
-	
 	};
 	
 	module.exports = ReactChildReconciler;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(195)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(202)))
 
-/***/ },
-/* 195 */
-/***/ function(module, exports) {
+/***/ }),
+/* 202 */
+/***/ (function(module, exports) {
 
 	// shim for using process in browser
 	var process = module.exports = {};
@@ -15260,6 +15983,10 @@
 	process.removeListener = noop;
 	process.removeAllListeners = noop;
 	process.emit = noop;
+	process.prependListener = noop;
+	process.prependOnceListener = noop;
+	
+	process.listeners = function (name) { return [] }
 	
 	process.binding = function (name) {
 	    throw new Error('process.binding is not supported');
@@ -15272,40 +15999,35 @@
 	process.umask = function() { return 0; };
 
 
-/***/ },
-/* 196 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 203 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117),
-	    _assign = __webpack_require__(89);
+	var _prodInvariant = __webpack_require__(123),
+	    _assign = __webpack_require__(88);
 	
-	var ReactCompositeComponent = __webpack_require__(197);
-	var ReactEmptyComponent = __webpack_require__(201);
-	var ReactHostComponent = __webpack_require__(202);
+	var ReactCompositeComponent = __webpack_require__(204);
+	var ReactEmptyComponent = __webpack_require__(208);
+	var ReactHostComponent = __webpack_require__(209);
 	
-	var getNextDebugID = __webpack_require__(203);
-	var invariant = __webpack_require__(93);
-	var warning = __webpack_require__(96);
+	var getNextDebugID = __webpack_require__(210);
+	var invariant = __webpack_require__(96);
+	var warning = __webpack_require__(92);
 	
 	// To avoid a cyclic dependency, we create the final class in this module
 	var ReactCompositeComponentWrapper = function (element) {
 	  this.construct(element);
 	};
-	_assign(ReactCompositeComponentWrapper.prototype, ReactCompositeComponent, {
-	  _instantiateReactComponent: instantiateReactComponent
-	});
 	
 	function getDeclarationErrorAddendum(owner) {
 	  if (owner) {
@@ -15343,7 +16065,17 @@
 	    instance = ReactEmptyComponent.create(instantiateReactComponent);
 	  } else if (typeof node === 'object') {
 	    var element = node;
-	    !(element && (typeof element.type === 'function' || typeof element.type === 'string')) ?  false ? invariant(false, 'Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s', element.type == null ? element.type : typeof element.type, getDeclarationErrorAddendum(element._owner)) : _prodInvariant('130', element.type == null ? element.type : typeof element.type, getDeclarationErrorAddendum(element._owner)) : void 0;
+	    var type = element.type;
+	    if (typeof type !== 'function' && typeof type !== 'string') {
+	      var info = '';
+	      if (false) {
+	        if (type === undefined || typeof type === 'object' && type !== null && Object.keys(type).length === 0) {
+	          info += ' You likely forgot to export your component from the file ' + "it's defined in.";
+	        }
+	      }
+	      info += getDeclarationErrorAddendum(element._owner);
+	       true ?  false ? invariant(false, 'Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s', type == null ? type : typeof type, info) : _prodInvariant('130', type == null ? type : typeof type, info) : void 0;
+	    }
 	
 	    // Special case string values
 	    if (typeof element.type === 'string') {
@@ -15392,45 +16124,47 @@
 	  return instance;
 	}
 	
+	_assign(ReactCompositeComponentWrapper.prototype, ReactCompositeComponent, {
+	  _instantiateReactComponent: instantiateReactComponent
+	});
+	
 	module.exports = instantiateReactComponent;
 
-/***/ },
-/* 197 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 204 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117),
-	    _assign = __webpack_require__(89);
+	var _prodInvariant = __webpack_require__(123),
+	    _assign = __webpack_require__(88);
 	
-	var React = __webpack_require__(88);
-	var ReactComponentEnvironment = __webpack_require__(192);
-	var ReactCurrentOwner = __webpack_require__(95);
-	var ReactErrorUtils = __webpack_require__(127);
-	var ReactInstanceMap = __webpack_require__(193);
-	var ReactInstrumentation = __webpack_require__(144);
-	var ReactNodeTypes = __webpack_require__(198);
-	var ReactReconciler = __webpack_require__(141);
+	var React = __webpack_require__(87);
+	var ReactComponentEnvironment = __webpack_require__(199);
+	var ReactCurrentOwner = __webpack_require__(101);
+	var ReactErrorUtils = __webpack_require__(133);
+	var ReactInstanceMap = __webpack_require__(200);
+	var ReactInstrumentation = __webpack_require__(150);
+	var ReactNodeTypes = __webpack_require__(205);
+	var ReactReconciler = __webpack_require__(147);
 	
 	if (false) {
 	  var checkReactTypeSpec = require('./checkReactTypeSpec');
 	}
 	
-	var emptyObject = __webpack_require__(105);
-	var invariant = __webpack_require__(93);
-	var shallowEqual = __webpack_require__(199);
-	var shouldUpdateReactComponent = __webpack_require__(200);
-	var warning = __webpack_require__(96);
+	var emptyObject = __webpack_require__(95);
+	var invariant = __webpack_require__(96);
+	var shallowEqual = __webpack_require__(206);
+	var shouldUpdateReactComponent = __webpack_require__(207);
+	var warning = __webpack_require__(92);
 	
 	var CompositeTypes = {
 	  ImpureClass: 0,
@@ -15517,7 +16251,6 @@
 	 * @lends {ReactCompositeComponent.prototype}
 	 */
 	var ReactCompositeComponent = {
-	
 	  /**
 	   * Base constructor for all composite component.
 	   *
@@ -15613,7 +16346,7 @@
 	      var propsMutated = inst.props !== publicProps;
 	      var componentName = Component.displayName || Component.name || 'Component';
 	
-	      process.env.NODE_ENV !== 'production' ? warning(inst.props === undefined || !propsMutated, '%s(...): When calling super() in `%s`, make sure to pass ' + 'up the same props that your component\'s constructor was passed.', componentName, componentName) : void 0;
+	      process.env.NODE_ENV !== 'production' ? warning(inst.props === undefined || !propsMutated, '%s(...): When calling super() in `%s`, make sure to pass ' + "up the same props that your component's constructor was passed.", componentName, componentName) : void 0;
 	    }
 	
 	    // These should be set up in the constructor, but as a convenience for
@@ -15632,7 +16365,7 @@
 	      // Since plain JS classes are defined without any special initialization
 	      // logic, we can not catch common errors early. Therefore, we have to
 	      // catch them here, at initialization time, instead.
-	      process.env.NODE_ENV !== 'production' ? warning(!inst.getInitialState || inst.getInitialState.isReactClassApproved, 'getInitialState was defined on %s, a plain JavaScript class. ' + 'This is only supported for classes created using React.createClass. ' + 'Did you mean to define a state property instead?', this.getName() || 'a component') : void 0;
+	      process.env.NODE_ENV !== 'production' ? warning(!inst.getInitialState || inst.getInitialState.isReactClassApproved || inst.state, 'getInitialState was defined on %s, a plain JavaScript class. ' + 'This is only supported for classes created using React.createClass. ' + 'Did you mean to define a state property instead?', this.getName() || 'a component') : void 0;
 	      process.env.NODE_ENV !== 'production' ? warning(!inst.getDefaultProps || inst.getDefaultProps.isReactClassApproved, 'getDefaultProps was defined on %s, a plain JavaScript class. ' + 'This is only supported for classes created using React.createClass. ' + 'Use a static property to define defaultProps instead.', this.getName() || 'a component') : void 0;
 	      process.env.NODE_ENV !== 'production' ? warning(!inst.propTypes, 'propTypes was defined as an instance property on %s. Use a static ' + 'property to define propTypes instead.', this.getName() || 'a component') : void 0;
 	      process.env.NODE_ENV !== 'production' ? warning(!inst.contextTypes, 'contextTypes was defined as an instance property on %s. Use a ' + 'static property to define contextTypes instead.', this.getName() || 'a component') : void 0;
@@ -15914,7 +16647,7 @@
 	    if (childContext) {
 	      !(typeof Component.childContextTypes === 'object') ?  false ? invariant(false, '%s.getChildContext(): childContextTypes must be defined in order to use getChildContext().', this.getName() || 'ReactCompositeComponent') : _prodInvariant('107', this.getName() || 'ReactCompositeComponent') : void 0;
 	      if (false) {
-	        this._checkContextTypes(Component.childContextTypes, childContext, 'childContext');
+	        this._checkContextTypes(Component.childContextTypes, childContext, 'child context');
 	      }
 	      for (var name in childContext) {
 	        !(name in Component.childContextTypes) ?  false ? invariant(false, '%s.getChildContext(): key "%s" is not defined in childContextTypes.', this.getName() || 'ReactCompositeComponent', name) : _prodInvariant('108', this.getName() || 'ReactCompositeComponent', name) : void 0;
@@ -16295,33 +17028,30 @@
 	
 	  // Stub
 	  _instantiateReactComponent: null
-	
 	};
 	
 	module.exports = ReactCompositeComponent;
 
-/***/ },
-/* 198 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 205 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var React = __webpack_require__(88);
+	var React = __webpack_require__(87);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	var ReactNodeTypes = {
 	  HOST: 0,
@@ -16344,17 +17074,15 @@
 	
 	module.exports = ReactNodeTypes;
 
-/***/ },
-/* 199 */
-/***/ function(module, exports) {
+/***/ }),
+/* 206 */
+/***/ (function(module, exports) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 * 
@@ -16416,17 +17144,15 @@
 	
 	module.exports = shallowEqual;
 
-/***/ },
-/* 200 */
-/***/ function(module, exports) {
+/***/ }),
+/* 207 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -16462,17 +17188,15 @@
 	
 	module.exports = shouldUpdateReactComponent;
 
-/***/ },
-/* 201 */
-/***/ function(module, exports) {
+/***/ }),
+/* 208 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -16496,30 +17220,25 @@
 	
 	module.exports = ReactEmptyComponent;
 
-/***/ },
-/* 202 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 209 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117),
-	    _assign = __webpack_require__(89);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	var genericComponentClass = null;
-	// This registry keeps track of wrapper classes around host tags.
-	var tagToComponentClass = {};
 	var textComponentClass = null;
 	
 	var ReactHostComponentInjection = {
@@ -16532,11 +17251,6 @@
 	  // rendered as props.
 	  injectTextComponentClass: function (componentClass) {
 	    textComponentClass = componentClass;
-	  },
-	  // This accepts a keyed object with classes as values. Each key represents a
-	  // tag. That particular tag will use this class instead of the generic one.
-	  injectComponentClasses: function (componentClasses) {
-	    _assign(tagToComponentClass, componentClasses);
 	  }
 	};
 	
@@ -16576,17 +17290,15 @@
 	
 	module.exports = ReactHostComponent;
 
-/***/ },
-/* 203 */
-/***/ function(module, exports) {
+/***/ }),
+/* 210 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -16601,17 +17313,15 @@
 	
 	module.exports = getNextDebugID;
 
-/***/ },
-/* 204 */
-/***/ function(module, exports) {
+/***/ }),
+/* 211 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -16664,31 +17374,29 @@
 	
 	module.exports = KeyEscapeUtils;
 
-/***/ },
-/* 205 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 212 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var ReactCurrentOwner = __webpack_require__(95);
-	var REACT_ELEMENT_TYPE = __webpack_require__(206);
+	var ReactCurrentOwner = __webpack_require__(101);
+	var REACT_ELEMENT_TYPE = __webpack_require__(213);
 	
-	var getIteratorFn = __webpack_require__(207);
-	var invariant = __webpack_require__(93);
-	var KeyEscapeUtils = __webpack_require__(204);
-	var warning = __webpack_require__(96);
+	var getIteratorFn = __webpack_require__(214);
+	var invariant = __webpack_require__(96);
+	var KeyEscapeUtils = __webpack_require__(211);
+	var warning = __webpack_require__(92);
 	
 	var SEPARATOR = '.';
 	var SUBSEPARATOR = ':';
@@ -16801,7 +17509,7 @@
 	      if (false) {
 	        addendum = ' If you meant to render a collection of children, use an array ' + 'instead or wrap the object using createFragment(object) from the ' + 'React add-ons.';
 	        if (children._isReactElement) {
-	          addendum = ' It looks like you\'re using an element created by a different ' + 'version of React. Make sure to use only one copy of React.';
+	          addendum = " It looks like you're using an element created by a different " + 'version of React. Make sure to use only one copy of React.';
 	        }
 	        if (ReactCurrentOwner.current) {
 	          var name = ReactCurrentOwner.current.getName();
@@ -16844,17 +17552,15 @@
 	
 	module.exports = traverseAllChildren;
 
-/***/ },
-/* 206 */
-/***/ function(module, exports) {
+/***/ }),
+/* 213 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -16868,17 +17574,15 @@
 	
 	module.exports = REACT_ELEMENT_TYPE;
 
-/***/ },
-/* 207 */
-/***/ function(module, exports) {
+/***/ }),
+/* 214 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -16913,29 +17617,27 @@
 	
 	module.exports = getIteratorFn;
 
-/***/ },
-/* 208 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 215 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2016-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2016-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(92);
+	var _prodInvariant = __webpack_require__(90);
 	
-	var ReactCurrentOwner = __webpack_require__(95);
+	var ReactCurrentOwner = __webpack_require__(101);
 	
-	var invariant = __webpack_require__(93);
-	var warning = __webpack_require__(96);
+	var invariant = __webpack_require__(96);
+	var warning = __webpack_require__(92);
 	
 	function isNative(fn) {
 	  // Based on isNative() from Lodash
@@ -16943,11 +17645,11 @@
 	  var hasOwnProperty = Object.prototype.hasOwnProperty;
 	  var reIsNative = RegExp('^' + funcToString
 	  // Take an example native function source for comparison
-	  .call(hasOwnProperty)
+	  .call(hasOwnProperty
 	  // Strip regex characters so we can use it for regex
-	  .replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
+	  ).replace(/[\\^$.*+?()[\]{}|]/g, '\\$&'
 	  // Remove hasOwnProperty from the template to make it generic
-	  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$');
+	  ).replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$');
 	  try {
 	    var source = funcToString.call(fn);
 	    return reIsNative.test(source);
@@ -17246,31 +17948,74 @@
 	
 	
 	  getRootIDs: getRootIDs,
-	  getRegisteredIDs: getItemIDs
+	  getRegisteredIDs: getItemIDs,
+	
+	  pushNonStandardWarningStack: function (isCreatingElement, currentSource) {
+	    if (typeof console.reactStack !== 'function') {
+	      return;
+	    }
+	
+	    var stack = [];
+	    var currentOwner = ReactCurrentOwner.current;
+	    var id = currentOwner && currentOwner._debugID;
+	
+	    try {
+	      if (isCreatingElement) {
+	        stack.push({
+	          name: id ? ReactComponentTreeHook.getDisplayName(id) : null,
+	          fileName: currentSource ? currentSource.fileName : null,
+	          lineNumber: currentSource ? currentSource.lineNumber : null
+	        });
+	      }
+	
+	      while (id) {
+	        var element = ReactComponentTreeHook.getElement(id);
+	        var parentID = ReactComponentTreeHook.getParentID(id);
+	        var ownerID = ReactComponentTreeHook.getOwnerID(id);
+	        var ownerName = ownerID ? ReactComponentTreeHook.getDisplayName(ownerID) : null;
+	        var source = element && element._source;
+	        stack.push({
+	          name: ownerName,
+	          fileName: source ? source.fileName : null,
+	          lineNumber: source ? source.lineNumber : null
+	        });
+	        id = parentID;
+	      }
+	    } catch (err) {
+	      // Internal state is messed up.
+	      // Stop building the stack (it's just a nice to have).
+	    }
+	
+	    console.reactStack(stack);
+	  },
+	  popNonStandardWarningStack: function () {
+	    if (typeof console.reactStackEnd !== 'function') {
+	      return;
+	    }
+	    console.reactStackEnd();
+	  }
 	};
 	
 	module.exports = ReactComponentTreeHook;
 
-/***/ },
-/* 209 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 216 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
 	
 	'use strict';
 	
-	var KeyEscapeUtils = __webpack_require__(204);
-	var traverseAllChildren = __webpack_require__(205);
-	var warning = __webpack_require__(96);
+	var KeyEscapeUtils = __webpack_require__(211);
+	var traverseAllChildren = __webpack_require__(212);
+	var warning = __webpack_require__(92);
 	
 	var ReactComponentTreeHook;
 	
@@ -17280,7 +18025,7 @@
 	  // https://github.com/facebook/react/issues/7240
 	  // Remove the inline requires when we don't need them anymore:
 	  // https://github.com/facebook/react/pull/7178
-	  ReactComponentTreeHook = __webpack_require__(208);
+	  ReactComponentTreeHook = __webpack_require__(215);
 	}
 	
 	/**
@@ -17330,30 +18075,28 @@
 	}
 	
 	module.exports = flattenChildren;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(195)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(202)))
 
-/***/ },
-/* 210 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 217 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _assign = __webpack_require__(89);
+	var _assign = __webpack_require__(88);
 	
-	var PooledClass = __webpack_require__(132);
-	var Transaction = __webpack_require__(145);
-	var ReactInstrumentation = __webpack_require__(144);
-	var ReactServerUpdateQueue = __webpack_require__(211);
+	var PooledClass = __webpack_require__(138);
+	var Transaction = __webpack_require__(151);
+	var ReactInstrumentation = __webpack_require__(150);
+	var ReactServerUpdateQueue = __webpack_require__(218);
 	
 	/**
 	 * Executed within the scope of the `Transaction` instance. Consider these as
@@ -17426,17 +18169,15 @@
 	
 	module.exports = ReactServerRenderingTransaction;
 
-/***/ },
-/* 211 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 218 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2015-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2015-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -17445,9 +18186,9 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var ReactUpdateQueue = __webpack_require__(212);
+	var ReactUpdateQueue = __webpack_require__(219);
 	
-	var warning = __webpack_require__(96);
+	var warning = __webpack_require__(92);
 	
 	function warnNoop(publicInstance, callerName) {
 	  if (false) {
@@ -17569,31 +18310,29 @@
 	
 	module.exports = ReactServerUpdateQueue;
 
-/***/ },
-/* 212 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 219 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2015-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2015-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var ReactCurrentOwner = __webpack_require__(95);
-	var ReactInstanceMap = __webpack_require__(193);
-	var ReactInstrumentation = __webpack_require__(144);
-	var ReactUpdates = __webpack_require__(138);
+	var ReactCurrentOwner = __webpack_require__(101);
+	var ReactInstanceMap = __webpack_require__(200);
+	var ReactInstrumentation = __webpack_require__(150);
+	var ReactUpdates = __webpack_require__(144);
 	
-	var invariant = __webpack_require__(93);
-	var warning = __webpack_require__(96);
+	var invariant = __webpack_require__(96);
+	var warning = __webpack_require__(92);
 	
 	function enqueueUpdate(internalInstance) {
 	  ReactUpdates.enqueueUpdate(internalInstance);
@@ -17626,7 +18365,7 @@
 	  }
 	
 	  if (false) {
-	    process.env.NODE_ENV !== 'production' ? warning(ReactCurrentOwner.current == null, '%s(...): Cannot update during an existing state transition (such as ' + 'within `render` or another component\'s constructor). Render methods ' + 'should be a pure function of props and state; constructor ' + 'side-effects are an anti-pattern, but can be moved to ' + '`componentWillMount`.', callerName) : void 0;
+	    process.env.NODE_ENV !== 'production' ? warning(ReactCurrentOwner.current == null, '%s(...): Cannot update during an existing state transition (such as ' + "within `render` or another component's constructor). Render methods " + 'should be a pure function of props and state; constructor ' + 'side-effects are an anti-pattern, but can be moved to ' + '`componentWillMount`.', callerName) : void 0;
 	  }
 	
 	  return internalInstance;
@@ -17637,7 +18376,6 @@
 	 * reconciliation step.
 	 */
 	var ReactUpdateQueue = {
-	
 	  /**
 	   * Checks whether or not this composite component is mounted.
 	   * @param {ReactClass} publicInstance The instance we want to test.
@@ -17743,7 +18481,7 @@
 	   * @param {object} completeState Next state.
 	   * @internal
 	   */
-	  enqueueReplaceState: function (publicInstance, completeState) {
+	  enqueueReplaceState: function (publicInstance, completeState, callback) {
 	    var internalInstance = getInternalInstanceReadyForUpdate(publicInstance, 'replaceState');
 	
 	    if (!internalInstance) {
@@ -17752,6 +18490,16 @@
 	
 	    internalInstance._pendingStateQueue = [completeState];
 	    internalInstance._pendingReplaceState = true;
+	
+	    // Future-proof 15.5
+	    if (callback !== undefined && callback !== null) {
+	      ReactUpdateQueue.validateCallback(callback, 'replaceState');
+	      if (internalInstance._pendingCallbacks) {
+	        internalInstance._pendingCallbacks.push(callback);
+	      } else {
+	        internalInstance._pendingCallbacks = [callback];
+	      }
+	    }
 	
 	    enqueueUpdate(internalInstance);
 	  },
@@ -17794,31 +18542,28 @@
 	  validateCallback: function (callback, callerName) {
 	    !(!callback || typeof callback === 'function') ?  false ? invariant(false, '%s(...): Expected the last optional `callback` argument to be a function. Instead received: %s.', callerName, formatUnexpectedArgument(callback)) : _prodInvariant('122', callerName, formatUnexpectedArgument(callback)) : void 0;
 	  }
-	
 	};
 	
 	module.exports = ReactUpdateQueue;
 
-/***/ },
-/* 213 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 220 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2015-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2015-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _assign = __webpack_require__(89);
+	var _assign = __webpack_require__(88);
 	
-	var emptyFunction = __webpack_require__(97);
-	var warning = __webpack_require__(96);
+	var emptyFunction = __webpack_require__(93);
+	var warning = __webpack_require__(92);
 	
 	var validateDOMNesting = emptyFunction;
 	
@@ -17926,7 +18671,6 @@
 	      // but
 	      case 'option':
 	        return tag === '#text';
-	
 	      // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intd
 	      // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-incaption
 	      // No special behavior since these rules fall back to "in body" mode for
@@ -17935,25 +18679,20 @@
 	      // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intr
 	      case 'tr':
 	        return tag === 'th' || tag === 'td' || tag === 'style' || tag === 'script' || tag === 'template';
-	
 	      // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intbody
 	      case 'tbody':
 	      case 'thead':
 	      case 'tfoot':
 	        return tag === 'tr' || tag === 'style' || tag === 'script' || tag === 'template';
-	
 	      // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-incolgroup
 	      case 'colgroup':
 	        return tag === 'col' || tag === 'template';
-	
 	      // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intable
 	      case 'table':
 	        return tag === 'caption' || tag === 'colgroup' || tag === 'tbody' || tag === 'tfoot' || tag === 'thead' || tag === 'style' || tag === 'script' || tag === 'template';
-	
 	      // https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-inhead
 	      case 'head':
 	        return tag === 'base' || tag === 'basefont' || tag === 'bgsound' || tag === 'link' || tag === 'meta' || tag === 'title' || tag === 'noscript' || tag === 'noframes' || tag === 'style' || tag === 'script' || tag === 'template';
-	
 	      // https://html.spec.whatwg.org/multipage/semantics.html#the-html-element
 	      case 'html':
 	        return tag === 'head' || tag === 'body';
@@ -18029,16 +18768,11 @@
 	      case 'section':
 	      case 'summary':
 	      case 'ul':
-	
 	      case 'pre':
 	      case 'listing':
-	
 	      case 'table':
-	
 	      case 'hr':
-	
 	      case 'xmp':
-	
 	      case 'h1':
 	      case 'h2':
 	      case 'h3':
@@ -18154,7 +18888,7 @@
 	          tagDisplayName = 'Text nodes';
 	        } else {
 	          tagDisplayName = 'Whitespace text nodes';
-	          whitespaceInfo = ' Make sure you don\'t have any extra whitespace between tags on ' + 'each line of your source code.';
+	          whitespaceInfo = " Make sure you don't have any extra whitespace between tags on " + 'each line of your source code.';
 	        }
 	      } else {
 	        tagDisplayName = '<' + childTag + '>';
@@ -18185,26 +18919,24 @@
 	
 	module.exports = validateDOMNesting;
 
-/***/ },
-/* 214 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 221 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2014-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _assign = __webpack_require__(89);
+	var _assign = __webpack_require__(88);
 	
-	var DOMLazyTree = __webpack_require__(158);
-	var ReactDOMComponentTree = __webpack_require__(116);
+	var DOMLazyTree = __webpack_require__(165);
+	var ReactDOMComponentTree = __webpack_require__(122);
 	
 	var ReactDOMEmptyComponent = function (instantiate) {
 	  // ReactCompositeComponent uses this:
@@ -18249,25 +18981,23 @@
 	
 	module.exports = ReactDOMEmptyComponent;
 
-/***/ },
-/* 215 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 222 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2015-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2015-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var invariant = __webpack_require__(93);
+	var invariant = __webpack_require__(96);
 	
 	/**
 	 * Return the lowest common ancestor of A and B, or null if they are in
@@ -18389,32 +19119,30 @@
 	  traverseEnterLeave: traverseEnterLeave
 	};
 
-/***/ },
-/* 216 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 223 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117),
-	    _assign = __webpack_require__(89);
+	var _prodInvariant = __webpack_require__(123),
+	    _assign = __webpack_require__(88);
 	
-	var DOMChildrenOperations = __webpack_require__(157);
-	var DOMLazyTree = __webpack_require__(158);
-	var ReactDOMComponentTree = __webpack_require__(116);
+	var DOMChildrenOperations = __webpack_require__(164);
+	var DOMLazyTree = __webpack_require__(165);
+	var ReactDOMComponentTree = __webpack_require__(122);
 	
-	var escapeTextContentForBrowser = __webpack_require__(163);
-	var invariant = __webpack_require__(93);
-	var validateDOMNesting = __webpack_require__(213);
+	var escapeTextContentForBrowser = __webpack_require__(170);
+	var invariant = __webpack_require__(96);
+	var validateDOMNesting = __webpack_require__(220);
 	
 	/**
 	 * Text nodes violate a couple assumptions that React makes about components:
@@ -18447,7 +19175,6 @@
 	};
 	
 	_assign(ReactDOMTextComponent.prototype, {
-	
 	  /**
 	   * Creates the markup for this text node. This node is not intended to have
 	   * any features besides containing text content.
@@ -18552,33 +19279,30 @@
 	    this._commentNodes = null;
 	    ReactDOMComponentTree.uncacheNode(this);
 	  }
-	
 	});
 	
 	module.exports = ReactDOMTextComponent;
 
-/***/ },
-/* 217 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 224 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _assign = __webpack_require__(89);
+	var _assign = __webpack_require__(88);
 	
-	var ReactUpdates = __webpack_require__(138);
-	var Transaction = __webpack_require__(145);
+	var ReactUpdates = __webpack_require__(144);
+	var Transaction = __webpack_require__(151);
 	
-	var emptyFunction = __webpack_require__(97);
+	var emptyFunction = __webpack_require__(93);
 	
 	var RESET_BATCHED_UPDATES = {
 	  initialize: emptyFunction,
@@ -18629,32 +19353,30 @@
 	
 	module.exports = ReactDefaultBatchingStrategy;
 
-/***/ },
-/* 218 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 225 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _assign = __webpack_require__(89);
+	var _assign = __webpack_require__(88);
 	
-	var EventListener = __webpack_require__(219);
-	var ExecutionEnvironment = __webpack_require__(130);
-	var PooledClass = __webpack_require__(132);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var ReactUpdates = __webpack_require__(138);
+	var EventListener = __webpack_require__(226);
+	var ExecutionEnvironment = __webpack_require__(136);
+	var PooledClass = __webpack_require__(138);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var ReactUpdates = __webpack_require__(144);
 	
-	var getEventTarget = __webpack_require__(146);
-	var getUnboundedScrollPosition = __webpack_require__(220);
+	var getEventTarget = __webpack_require__(153);
+	var getUnboundedScrollPosition = __webpack_require__(227);
 	
 	/**
 	 * Find the deepest React component completely containing the root of the
@@ -18788,31 +19510,22 @@
 	
 	module.exports = ReactEventListener;
 
-/***/ },
-/* 219 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 226 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * Licensed under the Apache License, Version 2.0 (the "License");
-	 * you may not use this file except in compliance with the License.
-	 * You may obtain a copy of the License at
-	 *
-	 * http://www.apache.org/licenses/LICENSE-2.0
-	 *
-	 * Unless required by applicable law or agreed to in writing, software
-	 * distributed under the License is distributed on an "AS IS" BASIS,
-	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	 * See the License for the specific language governing permissions and
-	 * limitations under the License.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
 	
-	var emptyFunction = __webpack_require__(97);
+	var emptyFunction = __webpack_require__(93);
 	
 	/**
 	 * Upstream version of event listener. Does not take into account specific
@@ -18876,17 +19589,15 @@
 	
 	module.exports = EventListener;
 
-/***/ },
-/* 220 */
-/***/ function(module, exports) {
+/***/ }),
+/* 227 */
+/***/ (function(module, exports) {
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -18905,10 +19616,10 @@
 	 */
 	
 	function getUnboundedScrollPosition(scrollable) {
-	  if (scrollable === window) {
+	  if (scrollable.Window && scrollable instanceof scrollable.Window) {
 	    return {
-	      x: window.pageXOffset || document.documentElement.scrollLeft,
-	      y: window.pageYOffset || document.documentElement.scrollTop
+	      x: scrollable.pageXOffset || scrollable.document.documentElement.scrollLeft,
+	      y: scrollable.pageYOffset || scrollable.document.documentElement.scrollTop
 	    };
 	  }
 	  return {
@@ -18919,30 +19630,28 @@
 	
 	module.exports = getUnboundedScrollPosition;
 
-/***/ },
-/* 221 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var DOMProperty = __webpack_require__(118);
-	var EventPluginHub = __webpack_require__(124);
-	var EventPluginUtils = __webpack_require__(126);
-	var ReactComponentEnvironment = __webpack_require__(192);
-	var ReactEmptyComponent = __webpack_require__(201);
-	var ReactBrowserEventEmitter = __webpack_require__(182);
-	var ReactHostComponent = __webpack_require__(202);
-	var ReactUpdates = __webpack_require__(138);
+	var DOMProperty = __webpack_require__(124);
+	var EventPluginHub = __webpack_require__(130);
+	var EventPluginUtils = __webpack_require__(132);
+	var ReactComponentEnvironment = __webpack_require__(199);
+	var ReactEmptyComponent = __webpack_require__(208);
+	var ReactBrowserEventEmitter = __webpack_require__(189);
+	var ReactHostComponent = __webpack_require__(209);
+	var ReactUpdates = __webpack_require__(144);
 	
 	var ReactInjection = {
 	  Component: ReactComponentEnvironment.injection,
@@ -18957,31 +19666,29 @@
 	
 	module.exports = ReactInjection;
 
-/***/ },
-/* 222 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _assign = __webpack_require__(89);
+	var _assign = __webpack_require__(88);
 	
-	var CallbackQueue = __webpack_require__(139);
-	var PooledClass = __webpack_require__(132);
-	var ReactBrowserEventEmitter = __webpack_require__(182);
-	var ReactInputSelection = __webpack_require__(223);
-	var ReactInstrumentation = __webpack_require__(144);
-	var Transaction = __webpack_require__(145);
-	var ReactUpdateQueue = __webpack_require__(212);
+	var CallbackQueue = __webpack_require__(145);
+	var PooledClass = __webpack_require__(138);
+	var ReactBrowserEventEmitter = __webpack_require__(189);
+	var ReactInputSelection = __webpack_require__(230);
+	var ReactInstrumentation = __webpack_require__(150);
+	var Transaction = __webpack_require__(151);
+	var ReactUpdateQueue = __webpack_require__(219);
 	
 	/**
 	 * Ensures that, when possible, the selection range (currently selected text
@@ -19139,27 +19846,25 @@
 	
 	module.exports = ReactReconcileTransaction;
 
-/***/ },
-/* 223 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 230 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var ReactDOMSelection = __webpack_require__(224);
+	var ReactDOMSelection = __webpack_require__(231);
 	
-	var containsNode = __webpack_require__(226);
-	var focusNode = __webpack_require__(171);
-	var getActiveElement = __webpack_require__(229);
+	var containsNode = __webpack_require__(233);
+	var focusNode = __webpack_require__(178);
+	var getActiveElement = __webpack_require__(236);
 	
 	function isInDocument(node) {
 	  return containsNode(document.documentElement, node);
@@ -19172,7 +19877,6 @@
 	 * Input selection module for React.
 	 */
 	var ReactInputSelection = {
-	
 	  hasSelectionCapabilities: function (elem) {
 	    var nodeName = elem && elem.nodeName && elem.nodeName.toLowerCase();
 	    return nodeName && (nodeName === 'input' && elem.type === 'text' || nodeName === 'textarea' || elem.contentEditable === 'true');
@@ -19267,26 +19971,24 @@
 	
 	module.exports = ReactInputSelection;
 
-/***/ },
-/* 224 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var ExecutionEnvironment = __webpack_require__(130);
+	var ExecutionEnvironment = __webpack_require__(136);
 	
-	var getNodeForCharacterOffset = __webpack_require__(225);
-	var getTextContentAccessor = __webpack_require__(133);
+	var getNodeForCharacterOffset = __webpack_require__(232);
+	var getTextContentAccessor = __webpack_require__(139);
 	
 	/**
 	 * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -19483,17 +20185,15 @@
 	
 	module.exports = ReactDOMSelection;
 
-/***/ },
-/* 225 */
-/***/ function(module, exports) {
+/***/ }),
+/* 232 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -19561,24 +20261,22 @@
 	
 	module.exports = getNodeForCharacterOffset;
 
-/***/ },
-/* 226 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
 	
-	var isTextNode = __webpack_require__(227);
+	var isTextNode = __webpack_require__(234);
 	
 	/*eslint-disable no-bitwise */
 	
@@ -19605,24 +20303,22 @@
 	
 	module.exports = containsNode;
 
-/***/ },
-/* 227 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
 	
-	var isNode = __webpack_require__(228);
+	var isNode = __webpack_require__(235);
 	
 	/**
 	 * @param {*} object The object to check.
@@ -19634,19 +20330,17 @@
 	
 	module.exports = isTextNode;
 
-/***/ },
-/* 228 */
-/***/ function(module, exports) {
+/***/ }),
+/* 235 */
+/***/ (function(module, exports) {
 
 	'use strict';
 	
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -19656,24 +20350,24 @@
 	 * @return {boolean} Whether or not the object is a DOM node.
 	 */
 	function isNode(object) {
-	  return !!(object && (typeof Node === 'function' ? object instanceof Node : typeof object === 'object' && typeof object.nodeType === 'number' && typeof object.nodeName === 'string'));
+	  var doc = object ? object.ownerDocument || object : document;
+	  var defaultView = doc.defaultView || window;
+	  return !!(object && (typeof defaultView.Node === 'function' ? object instanceof defaultView.Node : typeof object === 'object' && typeof object.nodeType === 'number' && typeof object.nodeName === 'string'));
 	}
 	
 	module.exports = isNode;
 
-/***/ },
-/* 229 */
-/***/ function(module, exports) {
+/***/ }),
+/* 236 */
+/***/ (function(module, exports) {
 
 	'use strict';
 	
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * @typechecks
 	 */
@@ -19686,31 +20380,33 @@
 	 *
 	 * The activeElement will be null only if the document or document body is not
 	 * yet defined.
+	 *
+	 * @param {?DOMDocument} doc Defaults to current document.
+	 * @return {?DOMElement}
 	 */
-	function getActiveElement() /*?DOMElement*/{
-	  if (typeof document === 'undefined') {
+	function getActiveElement(doc) /*?DOMElement*/{
+	  doc = doc || (typeof document !== 'undefined' ? document : undefined);
+	  if (typeof doc === 'undefined') {
 	    return null;
 	  }
 	  try {
-	    return document.activeElement || document.body;
+	    return doc.activeElement || doc.body;
 	  } catch (e) {
-	    return document.body;
+	    return doc.body;
 	  }
 	}
 	
 	module.exports = getActiveElement;
 
-/***/ },
-/* 230 */
-/***/ function(module, exports) {
+/***/ }),
+/* 237 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -20006,31 +20702,29 @@
 	
 	module.exports = SVGDOMPropertyConfig;
 
-/***/ },
-/* 231 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var EventPropagators = __webpack_require__(123);
-	var ExecutionEnvironment = __webpack_require__(130);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var ReactInputSelection = __webpack_require__(223);
-	var SyntheticEvent = __webpack_require__(135);
+	var EventPropagators = __webpack_require__(129);
+	var ExecutionEnvironment = __webpack_require__(136);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var ReactInputSelection = __webpack_require__(230);
+	var SyntheticEvent = __webpack_require__(141);
 	
-	var getActiveElement = __webpack_require__(229);
-	var isTextInputElement = __webpack_require__(148);
-	var shallowEqual = __webpack_require__(199);
+	var getActiveElement = __webpack_require__(236);
+	var isTextInputElement = __webpack_require__(155);
+	var shallowEqual = __webpack_require__(206);
 	
 	var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
 	
@@ -20135,7 +20829,6 @@
 	 * - Fires after user input.
 	 */
 	var SelectEventPlugin = {
-	
 	  eventTypes: eventTypes,
 	
 	  extractEvents: function (topLevelType, targetInst, nativeEvent, nativeEventTarget) {
@@ -20159,7 +20852,6 @@
 	        activeElementInst = null;
 	        lastSelection = null;
 	        break;
-	
 	      // Don't fire the event while the user is dragging. This matches the
 	      // semantics of the native select event.
 	      case 'topMouseDown':
@@ -20169,7 +20861,6 @@
 	      case 'topMouseUp':
 	        mouseDown = false;
 	        return constructSelectEvent(nativeEvent, nativeEventTarget);
-	
 	      // Chrome and IE fire non-standard event when selection is changed (and
 	      // sometimes when it hasn't). IE's event fires out of order with respect
 	      // to key and input events on deletion, so we discard it.
@@ -20201,43 +20892,41 @@
 	
 	module.exports = SelectEventPlugin;
 
-/***/ },
-/* 232 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var EventListener = __webpack_require__(219);
-	var EventPropagators = __webpack_require__(123);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var SyntheticAnimationEvent = __webpack_require__(233);
-	var SyntheticClipboardEvent = __webpack_require__(234);
-	var SyntheticEvent = __webpack_require__(135);
-	var SyntheticFocusEvent = __webpack_require__(235);
-	var SyntheticKeyboardEvent = __webpack_require__(236);
-	var SyntheticMouseEvent = __webpack_require__(151);
-	var SyntheticDragEvent = __webpack_require__(239);
-	var SyntheticTouchEvent = __webpack_require__(240);
-	var SyntheticTransitionEvent = __webpack_require__(241);
-	var SyntheticUIEvent = __webpack_require__(152);
-	var SyntheticWheelEvent = __webpack_require__(242);
+	var EventListener = __webpack_require__(226);
+	var EventPropagators = __webpack_require__(129);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var SyntheticAnimationEvent = __webpack_require__(240);
+	var SyntheticClipboardEvent = __webpack_require__(241);
+	var SyntheticEvent = __webpack_require__(141);
+	var SyntheticFocusEvent = __webpack_require__(242);
+	var SyntheticKeyboardEvent = __webpack_require__(243);
+	var SyntheticMouseEvent = __webpack_require__(158);
+	var SyntheticDragEvent = __webpack_require__(246);
+	var SyntheticTouchEvent = __webpack_require__(247);
+	var SyntheticTransitionEvent = __webpack_require__(248);
+	var SyntheticUIEvent = __webpack_require__(159);
+	var SyntheticWheelEvent = __webpack_require__(249);
 	
-	var emptyFunction = __webpack_require__(97);
-	var getEventCharCode = __webpack_require__(237);
-	var invariant = __webpack_require__(93);
+	var emptyFunction = __webpack_require__(93);
+	var getEventCharCode = __webpack_require__(244);
+	var invariant = __webpack_require__(96);
 	
 	/**
 	 * Turns
@@ -20288,7 +20977,6 @@
 	}
 	
 	var SimpleEventPlugin = {
-	
 	  eventTypes: eventTypes,
 	
 	  extractEvents: function (topLevelType, targetInst, nativeEvent, nativeEventTarget) {
@@ -20428,28 +21116,25 @@
 	      delete onClickListeners[key];
 	    }
 	  }
-	
 	};
 	
 	module.exports = SimpleEventPlugin;
 
-/***/ },
-/* 233 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var SyntheticEvent = __webpack_require__(135);
+	var SyntheticEvent = __webpack_require__(141);
 	
 	/**
 	 * @interface Event
@@ -20476,23 +21161,21 @@
 	
 	module.exports = SyntheticAnimationEvent;
 
-/***/ },
-/* 234 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var SyntheticEvent = __webpack_require__(135);
+	var SyntheticEvent = __webpack_require__(141);
 	
 	/**
 	 * @interface Event
@@ -20518,23 +21201,21 @@
 	
 	module.exports = SyntheticClipboardEvent;
 
-/***/ },
-/* 235 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 242 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(152);
+	var SyntheticUIEvent = __webpack_require__(159);
 	
 	/**
 	 * @interface FocusEvent
@@ -20558,27 +21239,25 @@
 	
 	module.exports = SyntheticFocusEvent;
 
-/***/ },
-/* 236 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 243 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(152);
+	var SyntheticUIEvent = __webpack_require__(159);
 	
-	var getEventCharCode = __webpack_require__(237);
-	var getEventKey = __webpack_require__(238);
-	var getEventModifierState = __webpack_require__(154);
+	var getEventCharCode = __webpack_require__(244);
+	var getEventKey = __webpack_require__(245);
+	var getEventModifierState = __webpack_require__(161);
 	
 	/**
 	 * @interface KeyboardEvent
@@ -20646,17 +21325,15 @@
 	
 	module.exports = SyntheticKeyboardEvent;
 
-/***/ },
-/* 237 */
-/***/ function(module, exports) {
+/***/ }),
+/* 244 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -20700,41 +21377,39 @@
 	
 	module.exports = getEventCharCode;
 
-/***/ },
-/* 238 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 245 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var getEventCharCode = __webpack_require__(237);
+	var getEventCharCode = __webpack_require__(244);
 	
 	/**
 	 * Normalization of deprecated HTML5 `key` values
 	 * @see https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent#Key_names
 	 */
 	var normalizeKey = {
-	  'Esc': 'Escape',
-	  'Spacebar': ' ',
-	  'Left': 'ArrowLeft',
-	  'Up': 'ArrowUp',
-	  'Right': 'ArrowRight',
-	  'Down': 'ArrowDown',
-	  'Del': 'Delete',
-	  'Win': 'OS',
-	  'Menu': 'ContextMenu',
-	  'Apps': 'ContextMenu',
-	  'Scroll': 'ScrollLock',
-	  'MozPrintableKey': 'Unidentified'
+	  Esc: 'Escape',
+	  Spacebar: ' ',
+	  Left: 'ArrowLeft',
+	  Up: 'ArrowUp',
+	  Right: 'ArrowRight',
+	  Down: 'ArrowDown',
+	  Del: 'Delete',
+	  Win: 'OS',
+	  Menu: 'ContextMenu',
+	  Apps: 'ContextMenu',
+	  Scroll: 'ScrollLock',
+	  MozPrintableKey: 'Unidentified'
 	};
 	
 	/**
@@ -20764,8 +21439,18 @@
 	  40: 'ArrowDown',
 	  45: 'Insert',
 	  46: 'Delete',
-	  112: 'F1', 113: 'F2', 114: 'F3', 115: 'F4', 116: 'F5', 117: 'F6',
-	  118: 'F7', 119: 'F8', 120: 'F9', 121: 'F10', 122: 'F11', 123: 'F12',
+	  112: 'F1',
+	  113: 'F2',
+	  114: 'F3',
+	  115: 'F4',
+	  116: 'F5',
+	  117: 'F6',
+	  118: 'F7',
+	  119: 'F8',
+	  120: 'F9',
+	  121: 'F10',
+	  122: 'F11',
+	  123: 'F12',
 	  144: 'NumLock',
 	  145: 'ScrollLock',
 	  224: 'Meta'
@@ -20806,23 +21491,21 @@
 	
 	module.exports = getEventKey;
 
-/***/ },
-/* 239 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 246 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var SyntheticMouseEvent = __webpack_require__(151);
+	var SyntheticMouseEvent = __webpack_require__(158);
 	
 	/**
 	 * @interface DragEvent
@@ -20846,25 +21529,23 @@
 	
 	module.exports = SyntheticDragEvent;
 
-/***/ },
-/* 240 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 247 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(152);
+	var SyntheticUIEvent = __webpack_require__(159);
 	
-	var getEventModifierState = __webpack_require__(154);
+	var getEventModifierState = __webpack_require__(161);
 	
 	/**
 	 * @interface TouchEvent
@@ -20895,23 +21576,21 @@
 	
 	module.exports = SyntheticTouchEvent;
 
-/***/ },
-/* 241 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var SyntheticEvent = __webpack_require__(135);
+	var SyntheticEvent = __webpack_require__(141);
 	
 	/**
 	 * @interface Event
@@ -20938,23 +21617,21 @@
 	
 	module.exports = SyntheticTransitionEvent;
 
-/***/ },
-/* 242 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 249 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var SyntheticMouseEvent = __webpack_require__(151);
+	var SyntheticMouseEvent = __webpack_require__(158);
 	
 	/**
 	 * @interface WheelEvent
@@ -20962,15 +21639,12 @@
 	 */
 	var WheelEventInterface = {
 	  deltaX: function (event) {
-	    return 'deltaX' in event ? event.deltaX :
-	    // Fallback to `wheelDeltaX` for Webkit and normalize (right is positive).
+	    return 'deltaX' in event ? event.deltaX : // Fallback to `wheelDeltaX` for Webkit and normalize (right is positive).
 	    'wheelDeltaX' in event ? -event.wheelDeltaX : 0;
 	  },
 	  deltaY: function (event) {
-	    return 'deltaY' in event ? event.deltaY :
-	    // Fallback to `wheelDeltaY` for Webkit and normalize (down is positive).
-	    'wheelDeltaY' in event ? -event.wheelDeltaY :
-	    // Fallback to `wheelDelta` for IE<9 and normalize (down is positive).
+	    return 'deltaY' in event ? event.deltaY : // Fallback to `wheelDeltaY` for Webkit and normalize (down is positive).
+	    'wheelDeltaY' in event ? -event.wheelDeltaY : // Fallback to `wheelDelta` for IE<9 and normalize (down is positive).
 	    'wheelDelta' in event ? -event.wheelDelta : 0;
 	  },
 	  deltaZ: null,
@@ -20996,46 +21670,44 @@
 	
 	module.exports = SyntheticWheelEvent;
 
-/***/ },
-/* 243 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var DOMLazyTree = __webpack_require__(158);
-	var DOMProperty = __webpack_require__(118);
-	var React = __webpack_require__(88);
-	var ReactBrowserEventEmitter = __webpack_require__(182);
-	var ReactCurrentOwner = __webpack_require__(95);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var ReactDOMContainerInfo = __webpack_require__(244);
-	var ReactDOMFeatureFlags = __webpack_require__(245);
-	var ReactFeatureFlags = __webpack_require__(140);
-	var ReactInstanceMap = __webpack_require__(193);
-	var ReactInstrumentation = __webpack_require__(144);
-	var ReactMarkupChecksum = __webpack_require__(246);
-	var ReactReconciler = __webpack_require__(141);
-	var ReactUpdateQueue = __webpack_require__(212);
-	var ReactUpdates = __webpack_require__(138);
+	var DOMLazyTree = __webpack_require__(165);
+	var DOMProperty = __webpack_require__(124);
+	var React = __webpack_require__(87);
+	var ReactBrowserEventEmitter = __webpack_require__(189);
+	var ReactCurrentOwner = __webpack_require__(101);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var ReactDOMContainerInfo = __webpack_require__(251);
+	var ReactDOMFeatureFlags = __webpack_require__(252);
+	var ReactFeatureFlags = __webpack_require__(146);
+	var ReactInstanceMap = __webpack_require__(200);
+	var ReactInstrumentation = __webpack_require__(150);
+	var ReactMarkupChecksum = __webpack_require__(253);
+	var ReactReconciler = __webpack_require__(147);
+	var ReactUpdateQueue = __webpack_require__(219);
+	var ReactUpdates = __webpack_require__(144);
 	
-	var emptyObject = __webpack_require__(105);
-	var instantiateReactComponent = __webpack_require__(196);
-	var invariant = __webpack_require__(93);
-	var setInnerHTML = __webpack_require__(160);
-	var shouldUpdateReactComponent = __webpack_require__(200);
-	var warning = __webpack_require__(96);
+	var emptyObject = __webpack_require__(95);
+	var instantiateReactComponent = __webpack_require__(203);
+	var invariant = __webpack_require__(96);
+	var setInnerHTML = __webpack_require__(167);
+	var shouldUpdateReactComponent = __webpack_require__(207);
+	var warning = __webpack_require__(92);
 	
 	var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
 	var ROOT_ATTR_NAME = DOMProperty.ROOT_ATTRIBUTE_NAME;
@@ -21258,7 +21930,6 @@
 	 * Inside of `container`, the first element rendered is the "reactRoot".
 	 */
 	var ReactMount = {
-	
 	  TopLevelWrapper: TopLevelWrapper,
 	
 	  /**
@@ -21347,13 +22018,14 @@
 	
 	  _renderSubtreeIntoContainer: function (parentComponent, nextElement, container, callback) {
 	    ReactUpdateQueue.validateCallback(callback, 'ReactDOM.render');
-	    !React.isValidElement(nextElement) ?  false ? invariant(false, 'ReactDOM.render(): Invalid component element.%s', typeof nextElement === 'string' ? ' Instead of passing a string like \'div\', pass ' + 'React.createElement(\'div\') or <div />.' : typeof nextElement === 'function' ? ' Instead of passing a class like Foo, pass ' + 'React.createElement(Foo) or <Foo />.' :
-	    // Check if it quacks like an element
-	    nextElement != null && nextElement.props !== undefined ? ' This may be caused by unintentionally loading two independent ' + 'copies of React.' : '') : _prodInvariant('39', typeof nextElement === 'string' ? ' Instead of passing a string like \'div\', pass ' + 'React.createElement(\'div\') or <div />.' : typeof nextElement === 'function' ? ' Instead of passing a class like Foo, pass ' + 'React.createElement(Foo) or <Foo />.' : nextElement != null && nextElement.props !== undefined ? ' This may be caused by unintentionally loading two independent ' + 'copies of React.' : '') : void 0;
+	    !React.isValidElement(nextElement) ?  false ? invariant(false, 'ReactDOM.render(): Invalid component element.%s', typeof nextElement === 'string' ? " Instead of passing a string like 'div', pass " + "React.createElement('div') or <div />." : typeof nextElement === 'function' ? ' Instead of passing a class like Foo, pass ' + 'React.createElement(Foo) or <Foo />.' : // Check if it quacks like an element
+	    nextElement != null && nextElement.props !== undefined ? ' This may be caused by unintentionally loading two independent ' + 'copies of React.' : '') : _prodInvariant('39', typeof nextElement === 'string' ? " Instead of passing a string like 'div', pass " + "React.createElement('div') or <div />." : typeof nextElement === 'function' ? ' Instead of passing a class like Foo, pass ' + 'React.createElement(Foo) or <Foo />.' : nextElement != null && nextElement.props !== undefined ? ' This may be caused by unintentionally loading two independent ' + 'copies of React.' : '') : void 0;
 	
 	     false ? warning(!container || !container.tagName || container.tagName.toUpperCase() !== 'BODY', 'render(): Rendering components directly into document.body is ' + 'discouraged, since its children are often manipulated by third-party ' + 'scripts and browser extensions. This may lead to subtle ' + 'reconciliation issues. Try rendering into a container element created ' + 'for your app.') : void 0;
 	
-	    var nextWrappedElement = React.createElement(TopLevelWrapper, { child: nextElement });
+	    var nextWrappedElement = React.createElement(TopLevelWrapper, {
+	      child: nextElement
+	    });
 	
 	    var nextContext;
 	    if (parentComponent) {
@@ -21442,7 +22114,7 @@
 	    !isValidContainer(container) ?  false ? invariant(false, 'unmountComponentAtNode(...): Target container is not a DOM element.') : _prodInvariant('40') : void 0;
 	
 	    if (false) {
-	      process.env.NODE_ENV !== 'production' ? warning(!nodeIsRenderedByOtherInstance(container), 'unmountComponentAtNode(): The node you\'re attempting to unmount ' + 'was rendered by another copy of React.') : void 0;
+	      process.env.NODE_ENV !== 'production' ? warning(!nodeIsRenderedByOtherInstance(container), "unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by another copy of React.') : void 0;
 	    }
 	
 	    var prevComponent = getTopLevelWrapperInContainer(container);
@@ -21455,7 +22127,7 @@
 	      var isContainerReactRoot = container.nodeType === 1 && container.hasAttribute(ROOT_ATTR_NAME);
 	
 	      if (false) {
-	        process.env.NODE_ENV !== 'production' ? warning(!containerHasNonRootReactChild, 'unmountComponentAtNode(): The node you\'re attempting to unmount ' + 'was rendered by React and is not a top-level container. %s', isContainerReactRoot ? 'You may have accidentally passed in a React root node instead ' + 'of its container.' : 'Instead, have the parent component update its state and ' + 'rerender in order to remove this component.') : void 0;
+	        process.env.NODE_ENV !== 'production' ? warning(!containerHasNonRootReactChild, "unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by React and is not a top-level container. %s', isContainerReactRoot ? 'You may have accidentally passed in a React root node instead ' + 'of its container.' : 'Instead, have the parent component update its state and ' + 'rerender in order to remove this component.') : void 0;
 	      }
 	
 	      return false;
@@ -21538,23 +22210,21 @@
 	
 	module.exports = ReactMount;
 
-/***/ },
-/* 244 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 251 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var validateDOMNesting = __webpack_require__(213);
+	var validateDOMNesting = __webpack_require__(220);
 	
 	var DOC_NODE_TYPE = 9;
 	
@@ -21575,17 +22245,15 @@
 	
 	module.exports = ReactDOMContainerInfo;
 
-/***/ },
-/* 245 */
-/***/ function(module, exports) {
+/***/ }),
+/* 252 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
@@ -21598,23 +22266,21 @@
 	
 	module.exports = ReactDOMFeatureFlags;
 
-/***/ },
-/* 246 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 253 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var adler32 = __webpack_require__(247);
+	var adler32 = __webpack_require__(254);
 	
 	var TAG_END = /\/?>/;
 	var COMMENT_START = /^<\!\-\-/;
@@ -21652,17 +22318,15 @@
 	
 	module.exports = ReactMarkupChecksum;
 
-/***/ },
-/* 247 */
-/***/ function(module, exports) {
+/***/ }),
+/* 254 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 * 
 	 */
@@ -21700,49 +22364,45 @@
 	
 	module.exports = adler32;
 
-/***/ },
-/* 248 */
-/***/ function(module, exports) {
+/***/ }),
+/* 255 */
+/***/ (function(module, exports) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	module.exports = '15.4.1';
+	module.exports = '15.6.2';
 
-/***/ },
-/* 249 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 256 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var _prodInvariant = __webpack_require__(117);
+	var _prodInvariant = __webpack_require__(123);
 	
-	var ReactCurrentOwner = __webpack_require__(95);
-	var ReactDOMComponentTree = __webpack_require__(116);
-	var ReactInstanceMap = __webpack_require__(193);
+	var ReactCurrentOwner = __webpack_require__(101);
+	var ReactDOMComponentTree = __webpack_require__(122);
+	var ReactInstanceMap = __webpack_require__(200);
 	
-	var getHostComponentFromComposite = __webpack_require__(250);
-	var invariant = __webpack_require__(93);
-	var warning = __webpack_require__(96);
+	var getHostComponentFromComposite = __webpack_require__(257);
+	var invariant = __webpack_require__(96);
+	var warning = __webpack_require__(92);
 	
 	/**
 	 * Returns the DOM node rendered by this element.
@@ -21782,23 +22442,21 @@
 	
 	module.exports = findDOMNode;
 
-/***/ },
-/* 250 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 257 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var ReactNodeTypes = __webpack_require__(198);
+	var ReactNodeTypes = __webpack_require__(205);
 	
 	function getHostComponentFromComposite(inst) {
 	  var type;
@@ -21816,30 +22474,28 @@
 	
 	module.exports = getHostComponentFromComposite;
 
-/***/ },
-/* 251 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 258 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
+	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
 	 *
 	 */
 	
 	'use strict';
 	
-	var ReactMount = __webpack_require__(243);
+	var ReactMount = __webpack_require__(250);
 	
 	module.exports = ReactMount.renderSubtreeIntoContainer;
 
-/***/ },
-/* 252 */,
-/* 253 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 259 */,
+/* 260 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -21847,11 +22503,11 @@
 	  value: true
 	});
 	
-	var _assign = __webpack_require__(254);
+	var _assign = __webpack_require__(261);
 	
 	var _assign2 = _interopRequireDefault(_assign);
 	
-	var _extends2 = __webpack_require__(258);
+	var _extends2 = __webpack_require__(265);
 	
 	var _extends3 = _interopRequireDefault(_extends2);
 	
@@ -21860,7 +22516,7 @@
 	exports.createChildren = createChildren;
 	exports.default = createElement;
 	
-	var _react = __webpack_require__(87);
+	var _react = __webpack_require__(86);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
@@ -21910,9 +22566,13 @@
 	    return value;
 	  } else if (TagName) {
 	    var childrenCreator = createChildren(stylesheet, useInlineStyles);
-	    var props = useInlineStyles ? {
+	    var nonStylesheetClassNames = useInlineStyles && properties.className && properties.className.filter(function (className) {
+	      return !stylesheet[className];
+	    });
+	    var className = nonStylesheetClassNames && nonStylesheetClassNames.length ? nonStylesheetClassNames : undefined;
+	    var props = useInlineStyles ? (0, _extends3.default)({}, properties, { className: className }, {
 	      style: createStyleObject(properties.className, (0, _assign2.default)({}, properties.style, style), stylesheet)
-	    } : { className: createClassNameString(properties.className) };
+	    }) : (0, _extends3.default)({}, properties, { className: createClassNameString(properties.className) });
 	    var children = childrenCreator(node.children);
 	    return _react2.default.createElement(
 	      TagName,
@@ -21922,75 +22582,79 @@
 	  }
 	}
 
-/***/ },
-/* 254 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 261 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(255), __esModule: true };
+	module.exports = { "default": __webpack_require__(262), __esModule: true };
 
-/***/ },
-/* 255 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 262 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(256);
+	__webpack_require__(263);
 	module.exports = __webpack_require__(14).Object.assign;
 
-/***/ },
-/* 256 */
-/***/ function(module, exports, __webpack_require__) {
+
+/***/ }),
+/* 263 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.3.1 Object.assign(target, source)
 	var $export = __webpack_require__(13);
 	
-	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(257)});
+	$export($export.S + $export.F, 'Object', { assign: __webpack_require__(264) });
 
-/***/ },
-/* 257 */
-/***/ function(module, exports, __webpack_require__) {
+
+/***/ }),
+/* 264 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// 19.1.2.1 Object.assign(target, source, ...)
-	var getKeys  = __webpack_require__(46)
-	  , gOPS     = __webpack_require__(70)
-	  , pIE      = __webpack_require__(71)
-	  , toObject = __webpack_require__(4)
-	  , IObject  = __webpack_require__(49)
-	  , $assign  = Object.assign;
+	var getKeys = __webpack_require__(46);
+	var gOPS = __webpack_require__(69);
+	var pIE = __webpack_require__(70);
+	var toObject = __webpack_require__(4);
+	var IObject = __webpack_require__(49);
+	var $assign = Object.assign;
 	
 	// should work with symbols and should have deterministic property order (V8 bug)
-	module.exports = !$assign || __webpack_require__(23)(function(){
-	  var A = {}
-	    , B = {}
-	    , S = Symbol()
-	    , K = 'abcdefghijklmnopqrst';
+	module.exports = !$assign || __webpack_require__(23)(function () {
+	  var A = {};
+	  var B = {};
+	  // eslint-disable-next-line no-undef
+	  var S = Symbol();
+	  var K = 'abcdefghijklmnopqrst';
 	  A[S] = 7;
-	  K.split('').forEach(function(k){ B[k] = k; });
+	  K.split('').forEach(function (k) { B[k] = k; });
 	  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-	}) ? function assign(target, source){ // eslint-disable-line no-unused-vars
-	  var T     = toObject(target)
-	    , aLen  = arguments.length
-	    , index = 1
-	    , getSymbols = gOPS.f
-	    , isEnum     = pIE.f;
-	  while(aLen > index){
-	    var S      = IObject(arguments[index++])
-	      , keys   = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S)
-	      , length = keys.length
-	      , j      = 0
-	      , key;
-	    while(length > j)if(isEnum.call(S, key = keys[j++]))T[key] = S[key];
+	}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
+	  var T = toObject(target);
+	  var aLen = arguments.length;
+	  var index = 1;
+	  var getSymbols = gOPS.f;
+	  var isEnum = pIE.f;
+	  while (aLen > index) {
+	    var S = IObject(arguments[index++]);
+	    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
+	    var length = keys.length;
+	    var j = 0;
+	    var key;
+	    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
 	  } return T;
 	} : $assign;
 
-/***/ },
-/* 258 */
-/***/ function(module, exports, __webpack_require__) {
+
+/***/ }),
+/* 265 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	exports.__esModule = true;
 	
-	var _assign = __webpack_require__(254);
+	var _assign = __webpack_require__(261);
 	
 	var _assign2 = _interopRequireDefault(_assign);
 	
@@ -22010,9 +22674,9 @@
 	  return target;
 	};
 
-/***/ },
-/* 259 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 266 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -22020,13 +22684,13 @@
 	  value: true
 	});
 	
-	var _assign = __webpack_require__(254);
-	
-	var _assign2 = _interopRequireDefault(_assign);
-	
-	var _objectWithoutProperties2 = __webpack_require__(260);
+	var _objectWithoutProperties2 = __webpack_require__(267);
 	
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+	
+	var _assign = __webpack_require__(261);
+	
+	var _assign2 = _interopRequireDefault(_assign);
 	
 	exports.default = function (astGenerator, defaultStyle) {
 	  return function SyntaxHighlighter(_ref6) {
@@ -22047,8 +22711,8 @@
 	        lineNumberContainerStyle = _ref6.lineNumberContainerStyle,
 	        lineNumberStyle = _ref6.lineNumberStyle,
 	        wrapLines = _ref6.wrapLines,
-	        _ref6$lineStyle = _ref6.lineStyle,
-	        lineStyle = _ref6$lineStyle === undefined ? {} : _ref6$lineStyle,
+	        _ref6$lineProps = _ref6.lineProps,
+	        lineProps = _ref6$lineProps === undefined ? {} : _ref6$lineProps,
 	        renderer = _ref6.renderer,
 	        _ref6$PreTag = _ref6.PreTag,
 	        PreTag = _ref6$PreTag === undefined ? 'pre' : _ref6$PreTag,
@@ -22056,7 +22720,7 @@
 	        CodeTag = _ref6$CodeTag === undefined ? 'code' : _ref6$CodeTag,
 	        _ref6$code = _ref6.code,
 	        code = _ref6$code === undefined ? Array.isArray(children) ? children[0] : children : _ref6$code,
-	        rest = (0, _objectWithoutProperties3.default)(_ref6, ['language', 'children', 'style', 'customStyle', 'codeTagProps', 'useInlineStyles', 'showLineNumbers', 'startingLineNumber', 'lineNumberContainerStyle', 'lineNumberStyle', 'wrapLines', 'lineStyle', 'renderer', 'PreTag', 'CodeTag', 'code']);
+	        rest = (0, _objectWithoutProperties3.default)(_ref6, ['language', 'children', 'style', 'customStyle', 'codeTagProps', 'useInlineStyles', 'showLineNumbers', 'startingLineNumber', 'lineNumberContainerStyle', 'lineNumberStyle', 'wrapLines', 'lineProps', 'renderer', 'PreTag', 'CodeTag', 'code']);
 	
 	    /* 
 	     * some custom renderers rely on individual row elements so we need to turn wrapLines on 
@@ -22071,9 +22735,10 @@
 	    }
 	    var defaultPreStyle = style.hljs || style['pre[class*=\"language-\"]'] || { backgroundColor: '#fff' };
 	    var preProps = useInlineStyles ? (0, _assign2.default)({}, rest, { style: (0, _assign2.default)({}, defaultPreStyle, customStyle) }) : (0, _assign2.default)({}, rest, { className: 'hljs' });
-	    var tree = wrapLines ? wrapLinesInSpan(codeTree, lineStyle) : codeTree.value;
+	    var tree = wrapLines ? wrapLinesInSpan(codeTree, lineProps) : codeTree.value;
 	    var lineNumbers = showLineNumbers ? _react2.default.createElement(LineNumbers, {
 	      containerStyle: lineNumberContainerStyle,
+	      codeStyle: codeTagProps.style || {},
 	      numberStyle: lineNumberStyle,
 	      startingLineNumber: startingLineNumber,
 	      codeString: code
@@ -22091,11 +22756,11 @@
 	  };
 	};
 	
-	var _react = __webpack_require__(87);
+	var _react = __webpack_require__(86);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _createElement = __webpack_require__(253);
+	var _createElement = __webpack_require__(260);
 	
 	var _createElement2 = _interopRequireDefault(_createElement);
 	
@@ -22127,6 +22792,7 @@
 	
 	function LineNumbers(_ref2) {
 	  var codeString = _ref2.codeString,
+	      codeStyle = _ref2.codeStyle,
 	      _ref2$containerStyle = _ref2.containerStyle,
 	      containerStyle = _ref2$containerStyle === undefined ? { float: 'left', paddingRight: '10px' } : _ref2$containerStyle,
 	      _ref2$numberStyle = _ref2.numberStyle,
@@ -22135,7 +22801,7 @@
 	
 	  return _react2.default.createElement(
 	    'code',
-	    { style: containerStyle },
+	    { style: (0, _assign2.default)({}, codeStyle, containerStyle) },
 	    getLineNumbers({
 	      lines: codeString.replace(/\n$/, '').split('\n'),
 	      style: numberStyle,
@@ -22147,17 +22813,16 @@
 	function createLineElement(_ref3) {
 	  var children = _ref3.children,
 	      lineNumber = _ref3.lineNumber,
-	      lineStyle = _ref3.lineStyle,
+	      lineProps = _ref3.lineProps,
 	      _ref3$className = _ref3.className,
 	      className = _ref3$className === undefined ? [] : _ref3$className;
 	
+	  var properties = (typeof lineProps === 'function' ? lineProps(lineNumber) : lineProps) || {};
+	  properties.className = properties.className ? className.concat(properties.className) : className;
 	  return {
 	    type: 'element',
 	    tagName: 'span',
-	    properties: {
-	      className: className,
-	      style: typeof lineStyle === 'function' ? lineStyle(lineNumber) : lineStyle
-	    },
+	    properties: properties,
 	    children: children
 	  };
 	}
@@ -22181,7 +22846,7 @@
 	  return newTree;
 	}
 	
-	function wrapLinesInSpan(codeTree, lineStyle) {
+	function wrapLinesInSpan(codeTree, lineProps) {
 	  var tree = flattenCodeTree(codeTree.value);
 	  var newTree = [];
 	  var lastLineBreakIndex = -1;
@@ -22192,29 +22857,28 @@
 	    var value = node.children[0].value;
 	    var newLines = getNewLines(value);
 	    if (newLines) {
-	      (function () {
-	        var splitValue = value.split('\n');
-	        splitValue.forEach(function (text, i) {
-	          var lineNumber = newTree.length + 1;
-	          var newChild = { type: 'text', value: text + '\n' };
-	          if (i === 0) {
-	            var _children = tree.slice(lastLineBreakIndex + 1, index).concat(createLineElement({ children: [newChild], className: node.properties.className }));
-	            newTree.push(createLineElement({ children: _children, lineNumber: lineNumber, lineStyle: lineStyle }));
-	          } else if (i === splitValue.length - 1) {
-	            var stringChild = tree[index + 1] && tree[index + 1].children && tree[index + 1].children[0];
-	            if (stringChild) {
-	              var lastLineInPreviousSpan = { type: 'text', value: '' + text };
-	              var newElem = createLineElement({ children: [lastLineInPreviousSpan], className: node.properties.className });
-	              tree.splice(index + 1, 0, newElem);
-	            } else {
-	              newTree.push(createLineElement({ children: [newChild], lineNumber: lineNumber, lineStyle: lineStyle }));
-	            }
+	      console.log(node.properties.className, "conor");
+	      var splitValue = value.split('\n');
+	      splitValue.forEach(function (text, i) {
+	        var lineNumber = newTree.length + 1;
+	        var newChild = { type: 'text', value: text + '\n' };
+	        if (i === 0) {
+	          var _children = tree.slice(lastLineBreakIndex + 1, index).concat(createLineElement({ children: [newChild], className: node.properties.className }));
+	          newTree.push(createLineElement({ children: _children, lineNumber: lineNumber, lineProps: lineProps }));
+	        } else if (i === splitValue.length - 1) {
+	          var stringChild = tree[index + 1] && tree[index + 1].children && tree[index + 1].children[0];
+	          if (stringChild) {
+	            var lastLineInPreviousSpan = { type: 'text', value: '' + text };
+	            var newElem = createLineElement({ children: [lastLineInPreviousSpan], className: node.properties.className });
+	            tree.splice(index + 1, 0, newElem);
 	          } else {
-	            newTree.push(createLineElement({ children: [newChild], lineNumber: lineNumber, lineStyle: lineStyle }));
+	            newTree.push(createLineElement({ children: [newChild], lineNumber: lineNumber, lineProps: lineProps }));
 	          }
-	        });
-	        lastLineBreakIndex = index;
-	      })();
+	        } else {
+	          newTree.push(createLineElement({ children: [newChild], lineNumber: lineNumber, lineProps: lineProps }));
+	        }
+	      });
+	      lastLineBreakIndex = index;
 	    }
 	    index++;
 	  };
@@ -22225,7 +22889,7 @@
 	  if (lastLineBreakIndex !== tree.length - 1) {
 	    var children = tree.slice(lastLineBreakIndex + 1, tree.length);
 	    if (children && children.length) {
-	      newTree.push(createLineElement({ children: children, lineNumber: newTree.length + 1, lineStyle: lineStyle }));
+	      newTree.push(createLineElement({ children: children, lineNumber: newTree.length + 1, lineProps: lineProps }));
 	    }
 	  }
 	  return newTree;
@@ -22262,12 +22926,16 @@
 	      return astGenerator.highlightAuto(code);
 	    }
 	  }
-	  return language && language !== 'text' ? { value: astGenerator.highlight(code, language) } : { value: defaultCodeValue };
+	  try {
+	    return language && language !== 'text' ? { value: astGenerator.highlight(code, language) } : { value: defaultCodeValue };
+	  } catch (e) {
+	    return { value: defaultCodeValue };
+	  }
 	}
 
-/***/ },
-/* 260 */
-/***/ function(module, exports) {
+/***/ }),
+/* 267 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -22285,14 +22953,7 @@
 	  return target;
 	};
 
-/***/ },
-/* 261 */,
-/* 262 */,
-/* 263 */,
-/* 264 */,
-/* 265 */,
-/* 266 */,
-/* 267 */,
+/***/ }),
 /* 268 */,
 /* 269 */,
 /* 270 */,
@@ -22546,35 +23207,45 @@
 /* 518 */,
 /* 519 */,
 /* 520 */,
-/* 521 */
-/***/ function(module, exports, __webpack_require__) {
+/* 521 */,
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(522), __esModule: true };
+	module.exports = { "default": __webpack_require__(530), __esModule: true };
 
-/***/ },
-/* 522 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 530 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(523);
+	__webpack_require__(531);
 	module.exports = __webpack_require__(14).Object.keys;
 
-/***/ },
-/* 523 */
-/***/ function(module, exports, __webpack_require__) {
+
+/***/ }),
+/* 531 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(4)
-	  , $keys    = __webpack_require__(46);
+	var toObject = __webpack_require__(4);
+	var $keys = __webpack_require__(46);
 	
-	__webpack_require__(12)('keys', function(){
-	  return function keys(it){
+	__webpack_require__(12)('keys', function () {
+	  return function keys(it) {
 	    return $keys(toObject(it));
 	  };
 	});
 
-/***/ },
-/* 524 */
-/***/ function(module, exports, __webpack_require__) {
+
+/***/ }),
+/* 532 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -22582,15 +23253,15 @@
 	  value: true
 	});
 	
-	var _highlight = __webpack_require__(259);
+	var _highlight = __webpack_require__(266);
 	
 	var _highlight2 = _interopRequireDefault(_highlight);
 	
-	var _prism = __webpack_require__(525);
+	var _prism = __webpack_require__(533);
 	
 	var _prism2 = _interopRequireDefault(_prism);
 	
-	var _refractor = __webpack_require__(526);
+	var _refractor = __webpack_require__(534);
 	
 	var _refractor2 = _interopRequireDefault(_refractor);
 	
@@ -22598,9 +23269,9 @@
 	
 	exports.default = (0, _highlight2.default)(_refractor2.default, _prism2.default);
 
-/***/ },
-/* 525 */
-/***/ function(module, exports) {
+/***/ }),
+/* 533 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -22619,11 +23290,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none"
 	    },
@@ -22638,11 +23309,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "padding": "1em",
@@ -22703,7 +23374,7 @@
 	        "color": "#999"
 	    },
 	    ".namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "property": {
 	        "color": "#905"
@@ -22745,24 +23416,24 @@
 	        "color": "#690"
 	    },
 	    "operator": {
-	        "color": "#a67f59",
+	        "color": "#9a6e3a",
 	        "background": "hsla(0, 0%, 100%, .5)"
 	    },
 	    "entity": {
-	        "color": "#a67f59",
+	        "color": "#9a6e3a",
 	        "background": "hsla(0, 0%, 100%, .5)",
 	        "cursor": "help"
 	    },
 	    "url": {
-	        "color": "#a67f59",
+	        "color": "#9a6e3a",
 	        "background": "hsla(0, 0%, 100%, .5)"
 	    },
 	    ".language-css .token.string": {
-	        "color": "#a67f59",
+	        "color": "#9a6e3a",
 	        "background": "hsla(0, 0%, 100%, .5)"
 	    },
 	    ".style .token.string": {
-	        "color": "#a67f59",
+	        "color": "#9a6e3a",
 	        "background": "hsla(0, 0%, 100%, .5)"
 	    },
 	    "atrule": {
@@ -22775,6 +23446,9 @@
 	        "color": "#07a"
 	    },
 	    "function": {
+	        "color": "#DD4A68"
+	    },
+	    "class-name": {
 	        "color": "#DD4A68"
 	    },
 	    "regex": {
@@ -22795,245 +23469,263 @@
 	    }
 	};
 
-/***/ },
-/* 526 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 534 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	'use strict'
 	
-	var refractor = __webpack_require__(527);
+	var refractor = __webpack_require__(535)
 	
-	module.exports = refractor;
+	module.exports = refractor
 	
-	refractor.register(__webpack_require__(540));
-	refractor.register(__webpack_require__(541));
-	refractor.register(__webpack_require__(542));
-	refractor.register(__webpack_require__(543));
-	refractor.register(__webpack_require__(544));
-	refractor.register(__webpack_require__(545));
-	refractor.register(__webpack_require__(546));
-	refractor.register(__webpack_require__(549));
-	refractor.register(__webpack_require__(550));
-	refractor.register(__webpack_require__(551));
-	refractor.register(__webpack_require__(552));
-	refractor.register(__webpack_require__(553));
-	refractor.register(__webpack_require__(554));
-	refractor.register(__webpack_require__(555));
-	refractor.register(__webpack_require__(556));
-	refractor.register(__webpack_require__(557));
-	refractor.register(__webpack_require__(558));
-	refractor.register(__webpack_require__(548));
-	refractor.register(__webpack_require__(559));
-	refractor.register(__webpack_require__(547));
-	refractor.register(__webpack_require__(560));
-	refractor.register(__webpack_require__(562));
-	refractor.register(__webpack_require__(563));
-	refractor.register(__webpack_require__(564));
-	refractor.register(__webpack_require__(565));
-	refractor.register(__webpack_require__(566));
-	refractor.register(__webpack_require__(567));
-	refractor.register(__webpack_require__(568));
-	refractor.register(__webpack_require__(569));
-	refractor.register(__webpack_require__(570));
-	refractor.register(__webpack_require__(571));
-	refractor.register(__webpack_require__(572));
-	refractor.register(__webpack_require__(573));
-	refractor.register(__webpack_require__(574));
-	refractor.register(__webpack_require__(575));
-	refractor.register(__webpack_require__(576));
-	refractor.register(__webpack_require__(577));
-	refractor.register(__webpack_require__(578));
-	refractor.register(__webpack_require__(579));
-	refractor.register(__webpack_require__(580));
-	refractor.register(__webpack_require__(581));
-	refractor.register(__webpack_require__(582));
-	refractor.register(__webpack_require__(583));
-	refractor.register(__webpack_require__(584));
-	refractor.register(__webpack_require__(585));
-	refractor.register(__webpack_require__(586));
-	refractor.register(__webpack_require__(587));
-	refractor.register(__webpack_require__(588));
-	refractor.register(__webpack_require__(589));
-	refractor.register(__webpack_require__(590));
-	refractor.register(__webpack_require__(591));
-	refractor.register(__webpack_require__(592));
-	refractor.register(__webpack_require__(593));
-	refractor.register(__webpack_require__(594));
-	refractor.register(__webpack_require__(595));
-	refractor.register(__webpack_require__(596));
-	refractor.register(__webpack_require__(597));
-	refractor.register(__webpack_require__(598));
-	refractor.register(__webpack_require__(599));
-	refractor.register(__webpack_require__(600));
-	refractor.register(__webpack_require__(601));
-	refractor.register(__webpack_require__(602));
-	refractor.register(__webpack_require__(603));
-	refractor.register(__webpack_require__(604));
-	refractor.register(__webpack_require__(605));
-	refractor.register(__webpack_require__(606));
-	refractor.register(__webpack_require__(607));
-	refractor.register(__webpack_require__(608));
-	refractor.register(__webpack_require__(609));
-	refractor.register(__webpack_require__(610));
-	refractor.register(__webpack_require__(611));
-	refractor.register(__webpack_require__(612));
-	refractor.register(__webpack_require__(613));
-	refractor.register(__webpack_require__(614));
-	refractor.register(__webpack_require__(615));
-	refractor.register(__webpack_require__(616));
-	refractor.register(__webpack_require__(617));
-	refractor.register(__webpack_require__(618));
-	refractor.register(__webpack_require__(619));
-	refractor.register(__webpack_require__(620));
-	refractor.register(__webpack_require__(621));
-	refractor.register(__webpack_require__(622));
-	refractor.register(__webpack_require__(623));
-	refractor.register(__webpack_require__(624));
-	refractor.register(__webpack_require__(625));
-	refractor.register(__webpack_require__(626));
-	refractor.register(__webpack_require__(627));
-	refractor.register(__webpack_require__(628));
-	refractor.register(__webpack_require__(629));
-	refractor.register(__webpack_require__(630));
-	refractor.register(__webpack_require__(631));
-	refractor.register(__webpack_require__(632));
-	refractor.register(__webpack_require__(633));
-	refractor.register(__webpack_require__(634));
-	refractor.register(__webpack_require__(635));
-	refractor.register(__webpack_require__(636));
-	refractor.register(__webpack_require__(637));
-	refractor.register(__webpack_require__(638));
-	refractor.register(__webpack_require__(639));
-	refractor.register(__webpack_require__(561));
-	refractor.register(__webpack_require__(640));
-	refractor.register(__webpack_require__(641));
-	refractor.register(__webpack_require__(642));
-	refractor.register(__webpack_require__(643));
-	refractor.register(__webpack_require__(644));
-	refractor.register(__webpack_require__(645));
-	refractor.register(__webpack_require__(646));
-	refractor.register(__webpack_require__(647));
-	refractor.register(__webpack_require__(648));
-	refractor.register(__webpack_require__(649));
-	refractor.register(__webpack_require__(650));
-	refractor.register(__webpack_require__(651));
-	refractor.register(__webpack_require__(652));
-	refractor.register(__webpack_require__(653));
-	refractor.register(__webpack_require__(654));
-	refractor.register(__webpack_require__(655));
-	refractor.register(__webpack_require__(656));
-	refractor.register(__webpack_require__(657));
-	refractor.register(__webpack_require__(658));
-	refractor.register(__webpack_require__(659));
-	refractor.register(__webpack_require__(660));
-	refractor.register(__webpack_require__(661));
+	refractor.register(__webpack_require__(548))
+	refractor.register(__webpack_require__(549))
+	refractor.register(__webpack_require__(550))
+	refractor.register(__webpack_require__(551))
+	refractor.register(__webpack_require__(552))
+	refractor.register(__webpack_require__(553))
+	refractor.register(__webpack_require__(554))
+	refractor.register(__webpack_require__(557))
+	refractor.register(__webpack_require__(558))
+	refractor.register(__webpack_require__(559))
+	refractor.register(__webpack_require__(560))
+	refractor.register(__webpack_require__(561))
+	refractor.register(__webpack_require__(562))
+	refractor.register(__webpack_require__(563))
+	refractor.register(__webpack_require__(564))
+	refractor.register(__webpack_require__(565))
+	refractor.register(__webpack_require__(566))
+	refractor.register(__webpack_require__(567))
+	refractor.register(__webpack_require__(568))
+	refractor.register(__webpack_require__(556))
+	refractor.register(__webpack_require__(569))
+	refractor.register(__webpack_require__(570))
+	refractor.register(__webpack_require__(555))
+	refractor.register(__webpack_require__(571))
+	refractor.register(__webpack_require__(573))
+	refractor.register(__webpack_require__(574))
+	refractor.register(__webpack_require__(575))
+	refractor.register(__webpack_require__(576))
+	refractor.register(__webpack_require__(577))
+	refractor.register(__webpack_require__(578))
+	refractor.register(__webpack_require__(579))
+	refractor.register(__webpack_require__(580))
+	refractor.register(__webpack_require__(581))
+	refractor.register(__webpack_require__(582))
+	refractor.register(__webpack_require__(583))
+	refractor.register(__webpack_require__(584))
+	refractor.register(__webpack_require__(585))
+	refractor.register(__webpack_require__(586))
+	refractor.register(__webpack_require__(587))
+	refractor.register(__webpack_require__(588))
+	refractor.register(__webpack_require__(589))
+	refractor.register(__webpack_require__(590))
+	refractor.register(__webpack_require__(591))
+	refractor.register(__webpack_require__(592))
+	refractor.register(__webpack_require__(593))
+	refractor.register(__webpack_require__(594))
+	refractor.register(__webpack_require__(595))
+	refractor.register(__webpack_require__(596))
+	refractor.register(__webpack_require__(597))
+	refractor.register(__webpack_require__(598))
+	refractor.register(__webpack_require__(599))
+	refractor.register(__webpack_require__(600))
+	refractor.register(__webpack_require__(601))
+	refractor.register(__webpack_require__(602))
+	refractor.register(__webpack_require__(603))
+	refractor.register(__webpack_require__(604))
+	refractor.register(__webpack_require__(605))
+	refractor.register(__webpack_require__(606))
+	refractor.register(__webpack_require__(607))
+	refractor.register(__webpack_require__(608))
+	refractor.register(__webpack_require__(609))
+	refractor.register(__webpack_require__(610))
+	refractor.register(__webpack_require__(611))
+	refractor.register(__webpack_require__(612))
+	refractor.register(__webpack_require__(613))
+	refractor.register(__webpack_require__(614))
+	refractor.register(__webpack_require__(615))
+	refractor.register(__webpack_require__(616))
+	refractor.register(__webpack_require__(617))
+	refractor.register(__webpack_require__(618))
+	refractor.register(__webpack_require__(619))
+	refractor.register(__webpack_require__(620))
+	refractor.register(__webpack_require__(621))
+	refractor.register(__webpack_require__(622))
+	refractor.register(__webpack_require__(623))
+	refractor.register(__webpack_require__(624))
+	refractor.register(__webpack_require__(625))
+	refractor.register(__webpack_require__(626))
+	refractor.register(__webpack_require__(627))
+	refractor.register(__webpack_require__(628))
+	refractor.register(__webpack_require__(629))
+	refractor.register(__webpack_require__(630))
+	refractor.register(__webpack_require__(631))
+	refractor.register(__webpack_require__(632))
+	refractor.register(__webpack_require__(633))
+	refractor.register(__webpack_require__(634))
+	refractor.register(__webpack_require__(635))
+	refractor.register(__webpack_require__(636))
+	refractor.register(__webpack_require__(637))
+	refractor.register(__webpack_require__(638))
+	refractor.register(__webpack_require__(639))
+	refractor.register(__webpack_require__(640))
+	refractor.register(__webpack_require__(641))
+	refractor.register(__webpack_require__(642))
+	refractor.register(__webpack_require__(643))
+	refractor.register(__webpack_require__(644))
+	refractor.register(__webpack_require__(645))
+	refractor.register(__webpack_require__(646))
+	refractor.register(__webpack_require__(648))
+	refractor.register(__webpack_require__(649))
+	refractor.register(__webpack_require__(650))
+	refractor.register(__webpack_require__(651))
+	refractor.register(__webpack_require__(652))
+	refractor.register(__webpack_require__(653))
+	refractor.register(__webpack_require__(654))
+	refractor.register(__webpack_require__(655))
+	refractor.register(__webpack_require__(656))
+	refractor.register(__webpack_require__(657))
+	refractor.register(__webpack_require__(658))
+	refractor.register(__webpack_require__(659))
+	refractor.register(__webpack_require__(660))
+	refractor.register(__webpack_require__(661))
+	refractor.register(__webpack_require__(662))
+	refractor.register(__webpack_require__(663))
+	refractor.register(__webpack_require__(664))
+	refractor.register(__webpack_require__(572))
+	refractor.register(__webpack_require__(665))
+	refractor.register(__webpack_require__(666))
+	refractor.register(__webpack_require__(667))
+	refractor.register(__webpack_require__(668))
+	refractor.register(__webpack_require__(669))
+	refractor.register(__webpack_require__(670))
+	refractor.register(__webpack_require__(671))
+	refractor.register(__webpack_require__(672))
+	refractor.register(__webpack_require__(673))
+	refractor.register(__webpack_require__(647))
+	refractor.register(__webpack_require__(674))
+	refractor.register(__webpack_require__(675))
+	refractor.register(__webpack_require__(676))
+	refractor.register(__webpack_require__(677))
+	refractor.register(__webpack_require__(678))
+	refractor.register(__webpack_require__(680))
+	refractor.register(__webpack_require__(679))
+	refractor.register(__webpack_require__(681))
+	refractor.register(__webpack_require__(682))
+	refractor.register(__webpack_require__(683))
+	refractor.register(__webpack_require__(684))
+	refractor.register(__webpack_require__(685))
+	refractor.register(__webpack_require__(686))
+	refractor.register(__webpack_require__(687))
+	refractor.register(__webpack_require__(688))
+	refractor.register(__webpack_require__(689))
+	refractor.register(__webpack_require__(690))
+	refractor.register(__webpack_require__(691))
 
 
-/***/ },
-/* 527 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 535 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict'
 	
 	/* global window */
 	
-	var restore = capture();
+	var restore = capture()
 	
 	/* istanbul ignore next - Don't allow Prism to run on page load in browser. */
-	var ctx = typeof window === 'undefined' ? {} : window;
+	var ctx = typeof window === 'undefined' ? {} : window
 	
-	ctx.Prism = {manual: true};
+	ctx.Prism = {manual: true}
 	
 	/* Load all stuff in `prism.js` itself, except for
 	 * `prism-file-highlight.js`.
 	 * The wrapped non-leaky grammars are loaded instead of
 	 * Prism’s originals. */
-	var h = __webpack_require__(528);
-	var Prism = __webpack_require__(535);
-	var markup = __webpack_require__(536);
-	var css = __webpack_require__(537);
-	var clike = __webpack_require__(538);
-	var js = __webpack_require__(539);
+	var h = __webpack_require__(536)
+	var Prism = __webpack_require__(543)
+	var markup = __webpack_require__(544)
+	var css = __webpack_require__(545)
+	var clike = __webpack_require__(546)
+	var js = __webpack_require__(547)
 	
-	restore();
+	restore()
 	
-	var own = {}.hasOwnProperty;
+	var own = {}.hasOwnProperty
 	
 	/* Inherit. */
 	function Refractor() {}
 	
-	Refractor.prototype = Prism;
+	Refractor.prototype = Prism
 	
 	/* Construct. */
-	var refract = new Refractor();
+	var refract = new Refractor()
 	
 	/* Expose. */
-	module.exports = refract;
+	module.exports = refract
 	
 	/* Create. */
-	refract.highlight = highlight;
-	refract.register = register;
-	refract.registered = registered;
+	refract.highlight = highlight
+	refract.register = register
+	refract.registered = registered
 	
 	/* Register bundled grammars. */
-	register(markup);
-	register(css);
-	register(clike);
-	register(js);
+	register(markup)
+	register(css)
+	register(clike)
+	register(js)
 	
-	refract.util.encode = encode;
-	refract.Token.stringify = stringify;
+	refract.util.encode = encode
+	refract.Token.stringify = stringify
 	
 	function register(grammar) {
 	  if (typeof grammar !== 'function' || !grammar.displayName) {
-	    throw new Error('Expected `function` for `grammar`, got `' + grammar + '`');
+	    throw new Error('Expected `function` for `grammar`, got `' + grammar + '`')
 	  }
 	
 	  /* Do not duplicate registrations. */
 	  if (refract.languages[grammar.displayName] === undefined) {
-	    grammar(refract);
+	    grammar(refract)
 	  }
 	}
 	
-	function highlight(value, name, language) {
-	  var sup = Prism.highlight;
-	  var syntax;
+	function highlight(value, name) {
+	  var sup = Prism.highlight
 	
 	  if (typeof value !== 'string') {
-	    throw new Error('Expected `string` for `value`, got `' + value + '`');
+	    throw new Error('Expected `string` for `value`, got `' + value + '`')
 	  }
 	
 	  if (typeof name !== 'string') {
-	    throw new Error('Expected `string` for `name`, got `' + name + '`');
+	    throw new Error('Expected `string` for `name`, got `' + name + '`')
 	  }
 	
 	  if (!own.call(refract.languages, name)) {
-	    throw new Error('Unknown language: `' + name + '` is not registered');
+	    throw new Error('Unknown language: `' + name + '` is not registered')
 	  }
 	
-	  syntax = refract.languages[name];
-	
-	  return sup.call(this, value, syntax, language);
+	  return sup.call(this, value, refract.languages[name], name)
 	}
 	
 	function registered(language) {
-	  console.log(language);
 	  if (typeof language !== 'string') {
-	    throw new Error('Expected `string` for `language`, got `' + language + '`');
+	    throw new Error('Expected `string` for `language`, got `' + language + '`')
 	  }
 	
-	  return own.call(refract.languages, language);
+	  return own.call(refract.languages, language)
 	}
 	
 	function stringify(value, language, parent) {
-	  var env;
+	  var env
 	
 	  if (typeof value === 'string') {
-	    return {type: 'text', value: value};
+	    return {type: 'text', value: value}
 	  }
 	
 	  if (refract.util.type(value) === 'Array') {
-	    return stringifyAll(value, language);
+	    return stringifyAll(value, language)
 	  }
 	
 	  env = {
@@ -23044,83 +23736,79 @@
 	    attributes: {},
 	    language: language,
 	    parent: parent
-	  };
-	
-	  if (value.alias) {
-	    env.classes = env.classes.concat(value.alias);
 	  }
 	
-	  refract.hooks.run('wrap', env);
+	  if (value.alias) {
+	    env.classes = env.classes.concat(value.alias)
+	  }
 	
-	  return h(
-	    env.tag + '.' + env.classes.join('.'),
-	    env.attributes,
-	    env.content
-	  );
+	  refract.hooks.run('wrap', env)
+	
+	  return h(env.tag + '.' + env.classes.join('.'), env.attributes, env.content)
 	}
 	
 	function stringifyAll(values, language) {
-	  var result = [];
-	  var length = values.length;
-	  var index = -1;
-	  var value;
+	  var result = []
+	  var length = values.length
+	  var index = -1
+	  var value
 	
 	  while (++index < length) {
-	    value = values[index];
+	    value = values[index]
 	
 	    if (value !== '' && value !== null && value !== undefined) {
-	      result.push(value);
+	      result.push(value)
 	    }
 	  }
 	
-	  index = -1;
-	  length = result.length;
+	  index = -1
+	  length = result.length
 	
 	  while (++index < length) {
-	    value = result[index];
-	    result[index] = refract.Token.stringify(value, language, result);
+	    value = result[index]
+	    result[index] = refract.Token.stringify(value, language, result)
 	  }
 	
-	  return result;
+	  return result
 	}
 	
 	function encode(tokens) {
-	  return tokens;
+	  return tokens
 	}
 	
 	function capture() {
-	  var defined = 'Prism' in global;
+	  var defined = 'Prism' in global
 	  /* istanbul ignore next */
-	  var current = defined ? global.Prism : undefined;
+	  var current = defined ? global.Prism : undefined
 	
-	  return restore;
+	  return restore
 	
 	  function restore() {
 	    /* istanbul ignore else - Clean leaks after Prism. */
 	    if (defined) {
-	      global.Prism = current;
+	      global.Prism = current
 	    } else {
-	      delete global.Prism;
+	      delete global.Prism
 	    }
 	
-	    defined = undefined;
-	    current = undefined;
+	    defined = undefined
+	    current = undefined
 	  }
 	}
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
-/***/ },
-/* 528 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 536 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var parseSelector = __webpack_require__(529);
-	var camelcase = __webpack_require__(530);
-	var propertyInformation = __webpack_require__(531);
-	var spaces = __webpack_require__(532).parse;
-	var commas = __webpack_require__(534).parse;
+	var parseSelector = __webpack_require__(537);
+	var camelcase = __webpack_require__(538);
+	var propertyInformation = __webpack_require__(539);
+	var spaces = __webpack_require__(540).parse;
+	var commas = __webpack_require__(542).parse;
 	
 	module.exports = h;
 	
@@ -23296,9 +23984,9 @@
 	}
 
 
-/***/ },
-/* 529 */
-/***/ function(module, exports) {
+/***/ }),
+/* 537 */
+/***/ (function(module, exports) {
 
 	'use strict';
 	
@@ -23367,9 +24055,9 @@
 	}
 
 
-/***/ },
-/* 530 */
-/***/ function(module, exports) {
+/***/ }),
+/* 538 */
+/***/ (function(module, exports) {
 
 	'use strict';
 	
@@ -23429,9 +24117,9 @@
 	};
 
 
-/***/ },
-/* 531 */
-/***/ function(module, exports) {
+/***/ }),
+/* 539 */
+/***/ (function(module, exports) {
 
 	'use strict';
 	
@@ -23695,13 +24383,13 @@
 	}
 
 
-/***/ },
-/* 532 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 540 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var trim = __webpack_require__(533);
+	var trim = __webpack_require__(541);
 	
 	exports.parse = parse;
 	exports.stringify = stringify;
@@ -23725,9 +24413,9 @@
 	}
 
 
-/***/ },
-/* 533 */
-/***/ function(module, exports) {
+/***/ }),
+/* 541 */
+/***/ (function(module, exports) {
 
 	
 	exports = module.exports = trim;
@@ -23745,16 +24433,16 @@
 	};
 
 
-/***/ },
-/* 534 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 542 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	exports.parse = parse;
 	exports.stringify = stringify;
 	
-	var trim = __webpack_require__(533);
+	var trim = __webpack_require__(541);
 	
 	var C_COMMA = ',';
 	var C_SPACE = ' ';
@@ -23809,9 +24497,9 @@
 	}
 
 
-/***/ },
-/* 535 */
-/***/ function(module, exports) {
+/***/ }),
+/* 543 */
+/***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {var _self = (typeof window !== 'undefined')
 		? window   // if in browser
@@ -23830,7 +24518,7 @@
 	var Prism = (function(){
 	
 	// Private helper vars
-	var lang = /\blang(?:uage)?-(\w+)\b/i;
+	var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 	var uniqueId = 0;
 	
 	var _ = _self.Prism = {
@@ -23859,23 +24547,38 @@
 			},
 	
 			// Deep clone a language definition (e.g. to extend it)
-			clone: function (o) {
+			clone: function (o, visited) {
 				var type = _.util.type(o);
+				visited = visited || {};
 	
 				switch (type) {
 					case 'Object':
+						if (visited[_.util.objId(o)]) {
+							return visited[_.util.objId(o)];
+						}
 						var clone = {};
+						visited[_.util.objId(o)] = clone;
 	
 						for (var key in o) {
 							if (o.hasOwnProperty(key)) {
-								clone[key] = _.util.clone(o[key]);
+								clone[key] = _.util.clone(o[key], visited);
 							}
 						}
 	
 						return clone;
 	
 					case 'Array':
-						return o.map(function(v) { return _.util.clone(v); });
+						if (visited[_.util.objId(o)]) {
+							return visited[_.util.objId(o)];
+						}
+						var clone = [];
+						visited[_.util.objId(o)] = clone;
+	
+						o.forEach(function (v, i) {
+							clone[i] = _.util.clone(v, visited);
+						});
+	
+						return clone;
 				}
 	
 				return o;
@@ -23970,6 +24673,10 @@
 		plugins: {},
 	
 		highlightAll: function(async, callback) {
+			_.highlightAllUnder(document, async, callback);
+		},
+	
+		highlightAllUnder: function(container, async, callback) {
 			var env = {
 				callback: callback,
 				selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
@@ -23977,7 +24684,7 @@
 	
 			_.hooks.run("before-highlightall", env);
 	
-			var elements = env.elements || document.querySelectorAll(env.selector);
+			var elements = env.elements || container.querySelectorAll(env.selector);
 	
 			for (var i=0, element; element = elements[i++];) {
 				_.highlightElement(element, async === true, env.callback);
@@ -24068,8 +24775,15 @@
 		},
 	
 		highlight: function (text, grammar, language) {
-			var tokens = _.tokenize(text, grammar);
-			return Token.stringify(_.util.encode(tokens), language);
+			var env = {
+				code: text,
+				grammar: grammar,
+				language: language
+			};
+			_.hooks.run('before-tokenize', env);
+			env.tokens = _.tokenize(env.code, env.grammar);
+			_.hooks.run('after-tokenize', env);
+			return Token.stringify(_.util.encode(env.tokens), env.language);
 		},
 	
 		matchGrammar: function (text, strarr, grammar, index, startPos, oneshot, target) {
@@ -24117,15 +24831,9 @@
 							continue;
 						}
 	
-						pattern.lastIndex = 0;
-	
-						var match = pattern.exec(str),
-						    delNum = 1;
-	
-						// Greedy patterns can override/remove up to two previously matched tokens
-						if (!match && greedy && i != strarr.length - 1) {
+						if (greedy && i != strarr.length - 1) {
 							pattern.lastIndex = pos;
-							match = pattern.exec(text);
+							var match = pattern.exec(text);
 							if (!match) {
 								break;
 							}
@@ -24144,11 +24852,8 @@
 								}
 							}
 	
-							/*
-							 * If strarr[i] is a Token, then the match starts inside another Token, which is invalid
-							 * If strarr[k - 1] is greedy we are in conflict with another greedy pattern
-							 */
-							if (strarr[i] instanceof Token || strarr[k - 1].greedy) {
+							// If strarr[i] is a Token, then the match starts inside another Token, which is invalid
+							if (strarr[i] instanceof Token) {
 								continue;
 							}
 	
@@ -24156,6 +24861,11 @@
 							delNum = k - i;
 							str = text.slice(pos, p);
 							match.index -= pos;
+						} else {
+							pattern.lastIndex = 0;
+	
+							var match = pattern.exec(str),
+								delNum = 1;
 						}
 	
 						if (!match) {
@@ -24167,7 +24877,7 @@
 						}
 	
 						if(lookbehind) {
-							lookbehindLength = match[1].length;
+							lookbehindLength = match[1] ? match[1].length : 0;
 						}
 	
 						var from = match.index + lookbehindLength,
@@ -24351,15 +25061,15 @@
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
-/***/ },
-/* 536 */
-/***/ function(module, exports) {
+/***/ }),
+/* 544 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = markup;
-	markup.displayName = 'markup';
-	markup.aliases = ['xml', 'html', 'mathml', 'svg'];
+	module.exports = markup
+	markup.displayName = 'markup'
+	markup.aliases = ['xml', 'html', 'mathml', 'svg']
 	function markup(Prism) {
 	  Prism.languages.markup = {
 	    comment: /<!--[\s\S]*?-->/,
@@ -24367,7 +25077,8 @@
 	    doctype: /<!DOCTYPE[\s\S]+?>/i,
 	    cdata: /<!\[CDATA\[[\s\S]*?]]>/i,
 	    tag: {
-	      pattern: /<\/?(?!\d)[^\s>\/=$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
+	      pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
+	      greedy: true,
 	      inside: {
 	        tag: {
 	          pattern: /^<\/?[^\s>\/]+/i,
@@ -24398,31 +25109,31 @@
 	      }
 	    },
 	    entity: /&#?[\da-z]{1,8};/i
-	  };
+	  }
 	  Prism.languages.markup['tag'].inside['attr-value'].inside['entity'] =
-	    Prism.languages.markup['entity'];
+	    Prism.languages.markup['entity']
 	  // Plugin to make entity title show the real entity, idea by Roman Komarov
 	  Prism.hooks.add('wrap', function(env) {
 	    if (env.type === 'entity') {
-	      env.attributes['title'] = env.content.replace(/&amp;/, '&');
+	      env.attributes['title'] = env.content.replace(/&amp;/, '&')
 	    }
-	  });
-	  Prism.languages.xml = Prism.languages.markup;
-	  Prism.languages.html = Prism.languages.markup;
-	  Prism.languages.mathml = Prism.languages.markup;
-	  Prism.languages.svg = Prism.languages.markup;
+	  })
+	  Prism.languages.xml = Prism.languages.markup
+	  Prism.languages.html = Prism.languages.markup
+	  Prism.languages.mathml = Prism.languages.markup
+	  Prism.languages.svg = Prism.languages.markup
 	}
 
 
-/***/ },
-/* 537 */
-/***/ function(module, exports) {
+/***/ }),
+/* 545 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = css;
-	css.displayName = 'css';
-	css.aliases = [];
+	module.exports = css
+	css.displayName = 'css'
+	css.aliases = []
 	function css(Prism) {
 	  Prism.languages.css = {
 	    comment: /\/\*[\s\S]*?\*\//,
@@ -24439,24 +25150,22 @@
 	      pattern: /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
 	      greedy: true
 	    },
-	    property: /[\w-]+(?=\s*:)/i,
+	    property: /[-_a-z\xA0-\uFFFF][-\w\xA0-\uFFFF]*(?=\s*:)/i,
 	    important: /\B!important\b/i,
 	    function: /[-a-z0-9]+(?=\()/i,
 	    punctuation: /[(){};:]/
-	  };
-	  Prism.languages.css['atrule'].inside.rest = Prism.util.clone(
-	    Prism.languages.css
-	  );
+	  }
+	  Prism.languages.css['atrule'].inside.rest = Prism.languages.css
 	  if (Prism.languages.markup) {
 	    Prism.languages.insertBefore('markup', 'tag', {
 	      style: {
 	        pattern: /(<style[\s\S]*?>)[\s\S]*?(?=<\/style>)/i,
 	        lookbehind: true,
 	        inside: Prism.languages.css,
-	        alias: 'language-css'
+	        alias: 'language-css',
+	        greedy: true
 	      }
-	    });
-	
+	    })
 	    Prism.languages.insertBefore(
 	      'inside',
 	      'attr-value',
@@ -24478,20 +25187,20 @@
 	        }
 	      },
 	      Prism.languages.markup.tag
-	    );
+	    )
 	  }
 	}
 
 
-/***/ },
-/* 538 */
-/***/ function(module, exports) {
+/***/ }),
+/* 546 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = clike;
-	clike.displayName = 'clike';
-	clike.aliases = [];
+	module.exports = clike
+	clike.displayName = 'clike'
+	clike.aliases = []
 	function clike(Prism) {
 	  Prism.languages.clike = {
 	    comment: [
@@ -24501,7 +25210,8 @@
 	      },
 	      {
 	        pattern: /(^|[^\\:])\/\/.*/,
-	        lookbehind: true
+	        lookbehind: true,
+	        greedy: true
 	      }
 	    ],
 	    string: {
@@ -24518,42 +25228,43 @@
 	    keyword: /\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,
 	    boolean: /\b(?:true|false)\b/,
 	    function: /[a-z0-9_]+(?=\()/i,
-	    number: /\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,
+	    number: /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
 	    operator: /--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,
 	    punctuation: /[{}[\];(),.:]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 539 */
-/***/ function(module, exports) {
+/***/ }),
+/* 547 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = javascript;
-	javascript.displayName = 'javascript';
-	javascript.aliases = ['js'];
+	module.exports = javascript
+	javascript.displayName = 'javascript'
+	javascript.aliases = ['js']
 	function javascript(Prism) {
 	  Prism.languages.javascript = Prism.languages.extend('clike', {
 	    keyword: /\b(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/,
-	    number: /\b-?(?:0[xX][\dA-Fa-f]+|0[bB][01]+|0[oO][0-7]+|\d*\.?\d+(?:[Ee][+-]?\d+)?|NaN|Infinity)\b/,
+	    number: /\b(?:0[xX][\dA-Fa-f]+|0[bB][01]+|0[oO][0-7]+|NaN|Infinity)\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
 	    // Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)
-	    function: /[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\s*\()/i,
+	    function: /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*\()/i,
 	    operator: /-[-=]?|\+[+=]?|!=?=?|<<?=?|>>?>?=?|=(?:==?|>)?|&[&=]?|\|[|=]?|\*\*?=?|\/=?|~|\^=?|%=?|\?|\.{3}/
-	  });
+	  })
 	  Prism.languages.insertBefore('javascript', 'keyword', {
 	    regex: {
-	      pattern: /(^|[^/])\/(?!\/)(\[[^\]\r\n]+]|\\.|[^/\\\[\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,
+	      pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(\[[^\]\r\n]+]|\\.|[^/\\\[\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,
 	      lookbehind: true,
 	      greedy: true
 	    },
 	    // This must be declared before keyword because we use "function" inside the look-forward
 	    'function-variable': {
-	      pattern: /[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\s*=\s*(?:function\b|(?:\([^()]*\)|[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*)\s*=>))/i,
+	      pattern: /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=\s*(?:function\b|(?:\([^()]*\)|[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/i,
 	      alias: 'function'
-	    }
-	  });
+	    },
+	    constant: /\b[A-Z][A-Z\d_]*\b/
+	  })
 	  Prism.languages.insertBefore('javascript', 'string', {
 	    'template-string': {
 	      pattern: /`(?:\\[\s\S]|[^\\`])*`/,
@@ -24572,30 +25283,31 @@
 	        string: /[\s\S]+/
 	      }
 	    }
-	  });
+	  })
 	  if (Prism.languages.markup) {
 	    Prism.languages.insertBefore('markup', 'tag', {
 	      script: {
 	        pattern: /(<script[\s\S]*?>)[\s\S]*?(?=<\/script>)/i,
 	        lookbehind: true,
 	        inside: Prism.languages.javascript,
-	        alias: 'language-javascript'
+	        alias: 'language-javascript',
+	        greedy: true
 	      }
-	    });
+	    })
 	  }
-	  Prism.languages.js = Prism.languages.javascript;
+	  Prism.languages.js = Prism.languages.javascript
 	}
 
 
-/***/ },
-/* 540 */
-/***/ function(module, exports) {
+/***/ }),
+/* 548 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = abap;
-	abap.displayName = 'abap';
-	abap.aliases = [];
+	module.exports = abap
+	abap.displayName = 'abap'
+	abap.aliases = []
 	function abap(Prism) {
 	  Prism.languages.abap = {
 	    comment: /^\*.*/m,
@@ -24647,25 +25359,25 @@
 	      }
 	    ],
 	    punctuation: /[,.:()]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 541 */
-/***/ function(module, exports) {
+/***/ }),
+/* 549 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = actionscript;
-	actionscript.displayName = 'actionscript';
-	actionscript.aliases = [];
+	module.exports = actionscript
+	actionscript.displayName = 'actionscript'
+	actionscript.aliases = []
 	function actionscript(Prism) {
 	  Prism.languages.actionscript = Prism.languages.extend('javascript', {
 	    keyword: /\b(?:as|break|case|catch|class|const|default|delete|do|else|extends|finally|for|function|if|implements|import|in|instanceof|interface|internal|is|native|new|null|package|private|protected|public|return|super|switch|this|throw|try|typeof|use|var|void|while|with|dynamic|each|final|get|include|namespace|native|override|set|static)\b/,
 	    operator: /\+\+|--|(?:[+\-*\/%^]|&&?|\|\|?|<<?|>>?>?|[!=]=?)=?|[~?@]/
-	  });
-	  Prism.languages.actionscript['class-name'].alias = 'function';
+	  })
+	  Prism.languages.actionscript['class-name'].alias = 'function'
 	  if (Prism.languages.markup) {
 	    Prism.languages.insertBefore('actionscript', 'string', {
 	      xml: {
@@ -24675,20 +25387,20 @@
 	          rest: Prism.languages.markup
 	        }
 	      }
-	    });
+	    })
 	  }
 	}
 
 
-/***/ },
-/* 542 */
-/***/ function(module, exports) {
+/***/ }),
+/* 550 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = ada;
-	ada.displayName = 'ada';
-	ada.aliases = [];
+	module.exports = ada
+	ada.displayName = 'ada'
+	ada.aliases = []
 	function ada(Prism) {
 	  Prism.languages.ada = {
 	    comment: /--.*/,
@@ -24708,19 +25420,19 @@
 	    punctuation: /\.\.?|[,;():]/,
 	    char: /'.'/,
 	    variable: /\b[a-z](?:[_a-z\d])*\b/i
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 543 */
-/***/ function(module, exports) {
+/***/ }),
+/* 551 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = apacheconf;
-	apacheconf.displayName = 'apacheconf';
-	apacheconf.aliases = [];
+	module.exports = apacheconf
+	apacheconf.displayName = 'apacheconf'
+	apacheconf.aliases = []
 	function apacheconf(Prism) {
 	  Prism.languages.apacheconf = {
 	    comment: /#.*/,
@@ -24768,19 +25480,19 @@
 	    },
 	    variable: /[$%]\{?(?:\w\.?[-+:]?)+\}?/,
 	    regex: /\^?.*\$|\^.*\$?/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 544 */
-/***/ function(module, exports) {
+/***/ }),
+/* 552 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = apl;
-	apl.displayName = 'apl';
-	apl.aliases = [];
+	module.exports = apl
+	apl.displayName = 'apl'
+	apl.aliases = []
 	function apl(Prism) {
 	  Prism.languages.apl = {
 	    comment: /(?:⍝|#[! ]).*$/m,
@@ -24813,19 +25525,19 @@
 	      pattern: /[{}⍺⍵⍶⍹∇⍫:]/,
 	      alias: 'builtin'
 	    }
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 545 */
-/***/ function(module, exports) {
+/***/ }),
+/* 553 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = applescript;
-	applescript.displayName = 'applescript';
-	applescript.aliases = [];
+	module.exports = applescript
+	applescript.displayName = 'applescript'
+	applescript.aliases = []
 	function applescript(Prism) {
 	  Prism.languages.applescript = {
 	    comment: [
@@ -24835,7 +25547,7 @@
 	      /#.+/
 	    ],
 	    string: /"(?:\\.|[^"\\\r\n])*"/,
-	    number: /\b-?\d*\.?\d+([Ee]-?\d+)?\b/,
+	    number: /(?:\b\d+\.?\d*|\B\.\d+)(?:e-?\d+)?\b/i,
 	    operator: [
 	      /[&=≠≤≥*+\-\/÷^]|[<>]=?/,
 	      /\b(?:(?:start|begin|end)s? with|(?:(?:does not|doesn't) contain|contains?)|(?:is|isn't|is not) (?:in|contained by)|(?:(?:is|isn't|is not) )?(?:greater|less) than(?: or equal)?(?: to)?|(?:(?:does not|doesn't) come|comes) (?:before|after)|(?:is|isn't|is not) equal(?: to)?|(?:(?:does not|doesn't) equal|equals|equal to|isn't|is not)|(?:a )?(?:ref(?: to)?|reference to)|(?:and|or|div|mod|as|not))\b/
@@ -24846,69 +25558,76 @@
 	      alias: 'builtin'
 	    },
 	    punctuation: /[{}():,¬«»《》]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 546 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 554 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	var cpp = __webpack_require__(547);
-	module.exports = arduino;
-	arduino.displayName = 'arduino';
-	arduino.aliases = [];
+	'use strict'
+	var refractorCpp = __webpack_require__(555)
+	module.exports = arduino
+	arduino.displayName = 'arduino'
+	arduino.aliases = []
 	function arduino(Prism) {
-	  Prism.register(cpp);
+	  Prism.register(refractorCpp)
 	  Prism.languages.arduino = Prism.languages.extend('cpp', {
 	    keyword: /\b(?:setup|if|else|while|do|for|return|in|instanceof|default|function|loop|goto|switch|case|new|try|throw|catch|finally|null|break|continue|boolean|bool|void|byte|word|string|String|array|int|long|integer|double)\b/,
 	    builtin: /\b(?:KeyboardController|MouseController|SoftwareSerial|EthernetServer|EthernetClient|LiquidCrystal|LiquidCrystal_I2C|RobotControl|GSMVoiceCall|EthernetUDP|EsploraTFT|HttpClient|RobotMotor|WiFiClient|GSMScanner|FileSystem|Scheduler|GSMServer|YunClient|YunServer|IPAddress|GSMClient|GSMModem|Keyboard|Ethernet|Console|GSMBand|Esplora|Stepper|Process|WiFiUDP|GSM_SMS|Mailbox|USBHost|Firmata|PImage|Client|Server|GSMPIN|FileIO|Bridge|Serial|EEPROM|Stream|Mouse|Audio|Servo|File|Task|GPRS|WiFi|Wire|TFT|GSM|SPI|SD|runShellCommandAsynchronously|analogWriteResolution|retrieveCallingNumber|printFirmwareVersion|analogReadResolution|sendDigitalPortPair|noListenOnLocalhost|readJoystickButton|setFirmwareVersion|readJoystickSwitch|scrollDisplayRight|getVoiceCallStatus|scrollDisplayLeft|writeMicroseconds|delayMicroseconds|beginTransmission|getSignalStrength|runAsynchronously|getAsynchronously|listenOnLocalhost|getCurrentCarrier|readAccelerometer|messageAvailable|sendDigitalPorts|lineFollowConfig|countryNameWrite|runShellCommand|readStringUntil|rewindDirectory|readTemperature|setClockDivider|readLightSensor|endTransmission|analogReference|detachInterrupt|countryNameRead|attachInterrupt|encryptionType|readBytesUntil|robotNameWrite|readMicrophone|robotNameRead|cityNameWrite|userNameWrite|readJoystickY|readJoystickX|mouseReleased|openNextFile|scanNetworks|noInterrupts|digitalWrite|beginSpeaker|mousePressed|isActionDone|mouseDragged|displayLogos|noAutoscroll|addParameter|remoteNumber|getModifiers|keyboardRead|userNameRead|waitContinue|processInput|parseCommand|printVersion|readNetworks|writeMessage|blinkVersion|cityNameRead|readMessage|setDataMode|parsePacket|isListening|setBitOrder|beginPacket|isDirectory|motorsWrite|drawCompass|digitalRead|clearScreen|serialEvent|rightToLeft|setTextSize|leftToRight|requestFrom|keyReleased|compassRead|analogWrite|interrupts|WiFiServer|disconnect|playMelody|parseFloat|autoscroll|getPINUsed|setPINUsed|setTimeout|sendAnalog|readSlider|analogRead|beginWrite|createChar|motorsStop|keyPressed|tempoWrite|readButton|subnetMask|debugPrint|macAddress|writeGreen|randomSeed|attachGPRS|readString|sendString|remotePort|releaseAll|mouseMoved|background|getXChange|getYChange|answerCall|getResult|voiceCall|endPacket|constrain|getSocket|writeJSON|getButton|available|connected|findUntil|readBytes|exitValue|readGreen|writeBlue|startLoop|IPAddress|isPressed|sendSysex|pauseMode|gatewayIP|setCursor|getOemKey|tuneWrite|noDisplay|loadImage|switchPIN|onRequest|onReceive|changePIN|playFile|noBuffer|parseInt|overflow|checkPIN|knobRead|beginTFT|bitClear|updateIR|bitWrite|position|writeRGB|highByte|writeRed|setSpeed|readBlue|noStroke|remoteIP|transfer|shutdown|hangCall|beginSMS|endWrite|attached|maintain|noCursor|checkReg|checkPUK|shiftOut|isValid|shiftIn|pulseIn|connect|println|localIP|pinMode|getIMEI|display|noBlink|process|getBand|running|beginSD|drawBMP|lowByte|setBand|release|bitRead|prepare|pointTo|readRed|setMode|noFill|remove|listen|stroke|detach|attach|noTone|exists|buffer|height|bitSet|circle|config|cursor|random|IRread|setDNS|endSMS|getKey|micros|millis|begin|print|write|ready|flush|width|isPIN|blink|clear|press|mkdir|rmdir|close|point|yield|image|BSSID|click|delay|read|text|move|peek|beep|rect|line|open|seek|fill|size|turn|stop|home|find|step|tone|sqrt|RSSI|SSID|end|bit|tan|cos|sin|pow|map|abs|max|min|get|run|put)\b/,
 	    constant: /\b(?:DIGITAL_MESSAGE|FIRMATA_STRING|ANALOG_MESSAGE|REPORT_DIGITAL|REPORT_ANALOG|INPUT_PULLUP|SET_PIN_MODE|INTERNAL2V56|SYSTEM_RESET|LED_BUILTIN|INTERNAL1V1|SYSEX_START|INTERNAL|EXTERNAL|DEFAULT|OUTPUT|INPUT|HIGH|LOW)\b/
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 547 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 555 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	var c = __webpack_require__(548);
-	module.exports = cpp;
-	cpp.displayName = 'cpp';
-	cpp.aliases = [];
+	'use strict'
+	var refractorC = __webpack_require__(556)
+	module.exports = cpp
+	cpp.displayName = 'cpp'
+	cpp.aliases = []
 	function cpp(Prism) {
-	  Prism.register(c);
+	  Prism.register(refractorC)
 	  Prism.languages.cpp = Prism.languages.extend('c', {
-	    keyword: /\b(?:alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,
+	    keyword: /\b(?:alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|int8_t|int16_t|int32_t|int64_t|uint8_t|uint16_t|uint32_t|uint64_t|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,
 	    boolean: /\b(?:true|false)\b/,
 	    operator: /--?|\+\+?|!=?|<{1,2}=?|>{1,2}=?|->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|\|?|\?|\*|\/|\b(?:and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/
-	  });
+	  })
 	  Prism.languages.insertBefore('cpp', 'keyword', {
 	    'class-name': {
 	      pattern: /(class\s+)\w+/i,
 	      lookbehind: true
 	    }
-	  });
+	  })
+	  Prism.languages.insertBefore('cpp', 'string', {
+	    'raw-string': {
+	      pattern: /R"([^()\\ ]{0,16})\([\s\S]*?\)\1"/,
+	      alias: 'string',
+	      greedy: true
+	    }
+	  })
 	}
 
 
-/***/ },
-/* 548 */
-/***/ function(module, exports) {
+/***/ }),
+/* 556 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = c;
-	c.displayName = 'c';
-	c.aliases = [];
+	module.exports = c
+	c.displayName = 'c'
+	c.aliases = []
 	function c(Prism) {
 	  Prism.languages.c = Prism.languages.extend('clike', {
 	    keyword: /\b(?:_Alignas|_Alignof|_Atomic|_Bool|_Complex|_Generic|_Imaginary|_Noreturn|_Static_assert|_Thread_local|asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,
 	    operator: /-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|\|?|[~^%?*\/]/,
-	    number: /\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i
-	  });
+	    number: /(?:\b0x[\da-f]+|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?)[ful]*/i
+	  })
 	  Prism.languages.insertBefore('c', 'string', {
 	    macro: {
 	      // allow for multiline macro definitions
@@ -24932,23 +25651,46 @@
 	    },
 	    // highlight predefined macros as constants
 	    constant: /\b(?:__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|SEEK_CUR|SEEK_END|SEEK_SET|stdin|stdout|stderr)\b/
-	  });
-	  delete Prism.languages.c['class-name'];
-	  delete Prism.languages.c['boolean'];
+	  })
+	  delete Prism.languages.c['class-name']
+	  delete Prism.languages.c['boolean']
 	}
 
 
-/***/ },
-/* 549 */
-/***/ function(module, exports) {
+/***/ }),
+/* 557 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = asciidoc;
-	asciidoc.displayName = 'asciidoc';
-	asciidoc.aliases = [];
+	module.exports = arff
+	arff.displayName = 'arff'
+	arff.aliases = []
+	function arff(Prism) {
+	  Prism.languages.arff = {
+	    comment: /%.*/,
+	    string: {
+	      pattern: /(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,
+	      greedy: true
+	    },
+	    keyword: /@(?:attribute|data|end|relation)\b/i,
+	    number: /\b\d+(?:\.\d+)?\b/,
+	    punctuation: /[{},]/
+	  }
+	}
+
+
+/***/ }),
+/* 558 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = asciidoc
+	asciidoc.displayName = 'asciidoc'
+	asciidoc.aliases = []
 	function asciidoc(Prism) {
-	  (function(Prism) {
+	  ;(function(Prism) {
 	    var attributes = {
 	      pattern: /(^[ \t]*)\[(?!\[)(?:(["'$`])(?:(?!\2)[^\\]|\\.)*\2|\[(?:[^\]\\]|\\.)*\]|[^\]\\]|\\.)*\]/m,
 	      lookbehind: true,
@@ -24973,7 +25715,7 @@
 	        // The negative look-ahead prevents blank matches
 	        'attr-value': /(?!^\s+$).+/
 	      }
-	    };
+	    }
 	    Prism.languages.asciidoc = {
 	      'comment-block': {
 	        pattern: /^(\/{4,})(?:\r?\n|\r)(?:[\s\S]*(?:\r?\n|\r))??\1/m,
@@ -25137,20 +25879,20 @@
 	        lookbehind: true,
 	        alias: 'punctuation'
 	      }
-	    };
+	    }
 	    // Allow some nesting. There is no recursion though, so cloning should not be needed.
 	    attributes.inside['interpreted'].inside.rest = {
 	      macro: Prism.languages.asciidoc['macro'],
 	      inline: Prism.languages.asciidoc['inline'],
 	      replacement: Prism.languages.asciidoc['replacement'],
 	      entity: Prism.languages.asciidoc['entity']
-	    };
+	    }
 	    Prism.languages.asciidoc['passthrough-block'].inside.rest = {
 	      macro: Prism.languages.asciidoc['macro']
-	    };
+	    }
 	    Prism.languages.asciidoc['literal-block'].inside.rest = {
 	      callout: Prism.languages.asciidoc['callout']
-	    };
+	    }
 	    Prism.languages.asciidoc['table'].inside.rest = {
 	      'comment-block': Prism.languages.asciidoc['comment-block'],
 	      'passthrough-block': Prism.languages.asciidoc['passthrough-block'],
@@ -25172,7 +25914,7 @@
 	      replacement: Prism.languages.asciidoc['replacement'],
 	      entity: Prism.languages.asciidoc['entity'],
 	      'line-continuation': Prism.languages.asciidoc['line-continuation']
-	    };
+	    }
 	    Prism.languages.asciidoc['other-block'].inside.rest = {
 	      table: Prism.languages.asciidoc['table'],
 	      'list-punctuation': Prism.languages.asciidoc['list-punctuation'],
@@ -25189,32 +25931,73 @@
 	      replacement: Prism.languages.asciidoc['replacement'],
 	      entity: Prism.languages.asciidoc['entity'],
 	      'line-continuation': Prism.languages.asciidoc['line-continuation']
-	    };
+	    }
 	    Prism.languages.asciidoc['title'].inside.rest = {
 	      macro: Prism.languages.asciidoc['macro'],
 	      inline: Prism.languages.asciidoc['inline'],
 	      replacement: Prism.languages.asciidoc['replacement'],
 	      entity: Prism.languages.asciidoc['entity']
-	    };
+	    }
 	    // Plugin to make entity title show the real entity, idea by Roman Komarov
 	    Prism.hooks.add('wrap', function(env) {
 	      if (env.type === 'entity') {
-	        env.attributes['title'] = env.content.replace(/&amp;/, '&');
+	        env.attributes['title'] = env.content.replace(/&amp;/, '&')
 	      }
-	    });
-	  })(Prism);
+	    })
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 550 */
-/***/ function(module, exports) {
+/***/ }),
+/* 559 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = aspnet;
-	aspnet.displayName = 'aspnet';
-	aspnet.aliases = [];
+	module.exports = asm6502
+	asm6502.displayName = 'asm6502'
+	asm6502.aliases = []
+	function asm6502(Prism) {
+	  Prism.languages.asm6502 = {
+	    comment: /;.*/,
+	    directive: {
+	      pattern: /\.\w+(?= )/,
+	      alias: 'keyword'
+	    },
+	    string: /(["'`])(?:\\.|(?!\1)[^\\\r\n])*\1/,
+	    opcode: {
+	      pattern: /\b(?:adc|and|asl|bcc|bcs|beq|bit|bmi|bne|bpl|brk|bvc|bvs|clc|cld|cli|clv|cmp|cpx|cpy|dec|dex|dey|eor|inc|inx|iny|jmp|jsr|lda|ldx|ldy|lsr|nop|ora|pha|php|pla|plp|rol|ror|rti|rts|sbc|sec|sed|sei|sta|stx|sty|tax|tay|tsx|txa|txs|tya|ADC|AND|ASL|BCC|BCS|BEQ|BIT|BMI|BNE|BPL|BRK|BVC|BVS|CLC|CLD|CLI|CLV|CMP|CPX|CPY|DEC|DEX|DEY|EOR|INC|INX|INY|JMP|JSR|LDA|LDX|LDY|LSR|NOP|ORA|PHA|PHP|PLA|PLP|ROL|ROR|RTI|RTS|SBC|SEC|SED|SEI|STA|STX|STY|TAX|TAY|TSX|TXA|TXS|TYA)\b/,
+	      alias: 'property'
+	    },
+	    hexnumber: {
+	      pattern: /#?\$[\da-f]{2,4}/i,
+	      alias: 'string'
+	    },
+	    binarynumber: {
+	      pattern: /#?%[01]+/,
+	      alias: 'string'
+	    },
+	    decimalnumber: {
+	      pattern: /#?\d+/,
+	      alias: 'string'
+	    },
+	    register: {
+	      pattern: /\b[xya]\b/i,
+	      alias: 'variable'
+	    }
+	  }
+	}
+
+
+/***/ }),
+/* 560 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = aspnet
+	aspnet.displayName = 'aspnet'
+	aspnet.aliases = []
 	function aspnet(Prism) {
 	  Prism.languages.aspnet = Prism.languages.extend('markup', {
 	    'page-directive tag': {
@@ -25231,9 +26014,9 @@
 	        rest: Prism.languages.csharp
 	      }
 	    }
-	  });
+	  })
 	  // Regexp copied from prism-markup, with a negative look-ahead added
-	  Prism.languages.aspnet.tag.pattern = /<(?!%)\/?[^\s>\/]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
+	  Prism.languages.aspnet.tag.pattern = /<(?!%)\/?[^\s>\/]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i
 	  // match directives of attribute value foo="<% Bar %>"
 	  Prism.languages.insertBefore(
 	    'inside',
@@ -25242,10 +26025,10 @@
 	      'directive tag': Prism.languages.aspnet['directive tag']
 	    },
 	    Prism.languages.aspnet.tag.inside['attr-value']
-	  );
+	  )
 	  Prism.languages.insertBefore('aspnet', 'comment', {
 	    'asp comment': /<%--[\s\S]*?--%>/
-	  });
+	  })
 	  // script runat="server" contains csharp, not javascript
 	  Prism.languages.insertBefore(
 	    'aspnet',
@@ -25257,19 +26040,19 @@
 	        inside: Prism.languages.csharp || {}
 	      }
 	    }
-	  );
+	  )
 	}
 
 
-/***/ },
-/* 551 */
-/***/ function(module, exports) {
+/***/ }),
+/* 561 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = autohotkey;
-	autohotkey.displayName = 'autohotkey';
-	autohotkey.aliases = [];
+	module.exports = autohotkey
+	autohotkey.displayName = 'autohotkey'
+	autohotkey.aliases = []
 	function autohotkey(Prism) {
 	  // NOTES - follows first-first highlight method, block is locked after highlight, different from SyntaxHl
 	  Prism.languages.autohotkey = {
@@ -25281,7 +26064,7 @@
 	    function: /[^(); \t,\n+*\-=?>:\\\/<&%\[\]]+?(?=\()/m, //function - don't use .*\) in the end bcoz string locks it
 	    tag: /^[ \t]*[^\s:]+?(?=:(?:[^:]|$))/m, //labels
 	    variable: /%\w+%/,
-	    number: /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee]-?\d+)?)\b/,
+	    number: /\b0x[\dA-Fa-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee]-?\d+)?/,
 	    operator: /\?|\/\/?=?|:=|\|[=|]?|&[=&]?|\+[=+]?|-[=-]?|\*[=*]?|<(?:<=?|>|=)?|>>?=?|[.^!=~]=?|\b(?:AND|NOT|OR)\b/,
 	    punctuation: /[{}[\]():,]/,
 	    boolean: /\b(?:true|false)\b/,
@@ -25291,19 +26074,19 @@
 	    symbol: /\b(?:alt|altdown|altup|appskey|backspace|browser_back|browser_favorites|browser_forward|browser_home|browser_refresh|browser_search|browser_stop|bs|capslock|ctrl|ctrlbreak|ctrldown|ctrlup|del|delete|down|end|enter|esc|escape|f1|f10|f11|f12|f13|f14|f15|f16|f17|f18|f19|f2|f20|f21|f22|f23|f24|f3|f4|f5|f6|f7|f8|f9|home|ins|insert|joy1|joy10|joy11|joy12|joy13|joy14|joy15|joy16|joy17|joy18|joy19|joy2|joy20|joy21|joy22|joy23|joy24|joy25|joy26|joy27|joy28|joy29|joy3|joy30|joy31|joy32|joy4|joy5|joy6|joy7|joy8|joy9|joyaxes|joybuttons|joyinfo|joyname|joypov|joyr|joyu|joyv|joyx|joyy|joyz|lalt|launch_app1|launch_app2|launch_mail|launch_media|lbutton|lcontrol|lctrl|left|lshift|lwin|lwindown|lwinup|mbutton|media_next|media_play_pause|media_prev|media_stop|numlock|numpad0|numpad1|numpad2|numpad3|numpad4|numpad5|numpad6|numpad7|numpad8|numpad9|numpadadd|numpadclear|numpaddel|numpaddiv|numpaddot|numpaddown|numpadend|numpadenter|numpadhome|numpadins|numpadleft|numpadmult|numpadpgdn|numpadpgup|numpadright|numpadsub|numpadup|pgdn|pgup|printscreen|ralt|rbutton|rcontrol|rctrl|right|rshift|rwin|rwindown|rwinup|scrolllock|shift|shiftdown|shiftup|space|tab|up|volume_down|volume_mute|volume_up|wheeldown|wheelleft|wheelright|wheelup|xbutton1|xbutton2)\b/i,
 	    important: /#\b(?:AllowSameLineComments|ClipboardTimeout|CommentFlag|ErrorStdOut|EscapeChar|HotkeyInterval|HotkeyModifierTimeout|Hotstring|IfWinActive|IfWinExist|IfWinNotActive|IfWinNotExist|Include|IncludeAgain|InstallKeybdHook|InstallMouseHook|KeyHistory|LTrim|MaxHotkeysPerInterval|MaxMem|MaxThreads|MaxThreadsBuffer|MaxThreadsPerHotkey|NoEnv|NoTrayIcon|Persistent|SingleInstance|UseHook|WinActivateForce)\b/i,
 	    keyword: /\b(?:Abort|AboveNormal|Add|ahk_class|ahk_group|ahk_id|ahk_pid|All|Alnum|Alpha|AltSubmit|AltTab|AltTabAndMenu|AltTabMenu|AltTabMenuDismiss|AlwaysOnTop|AutoSize|Background|BackgroundTrans|BelowNormal|between|BitAnd|BitNot|BitOr|BitShiftLeft|BitShiftRight|BitXOr|Bold|Border|Button|ByRef|Checkbox|Checked|CheckedGray|Choose|ChooseString|Close|Color|ComboBox|Contains|ControlList|Count|Date|DateTime|Days|DDL|Default|DeleteAll|Delimiter|Deref|Destroy|Digit|Disable|Disabled|DropDownList|Edit|Eject|Else|Enable|Enabled|Error|Exist|Expand|ExStyle|FileSystem|First|Flash|Float|FloatFast|Focus|Font|for|global|Grid|Group|GroupBox|GuiClose|GuiContextMenu|GuiDropFiles|GuiEscape|GuiSize|Hdr|Hidden|Hide|High|HKCC|HKCR|HKCU|HKEY_CLASSES_ROOT|HKEY_CURRENT_CONFIG|HKEY_CURRENT_USER|HKEY_LOCAL_MACHINE|HKEY_USERS|HKLM|HKU|Hours|HScroll|Icon|IconSmall|ID|IDLast|If|IfEqual|IfExist|IfGreater|IfGreaterOrEqual|IfInString|IfLess|IfLessOrEqual|IfMsgBox|IfNotEqual|IfNotExist|IfNotInString|IfWinActive|IfWinExist|IfWinNotActive|IfWinNotExist|Ignore|ImageList|in|Integer|IntegerFast|Interrupt|is|italic|Join|Label|LastFound|LastFoundExist|Limit|Lines|List|ListBox|ListView|local|Lock|Logoff|Low|Lower|Lowercase|MainWindow|Margin|Maximize|MaximizeBox|MaxSize|Minimize|MinimizeBox|MinMax|MinSize|Minutes|MonthCal|Mouse|Move|Multi|NA|No|NoActivate|NoDefault|NoHide|NoIcon|NoMainWindow|norm|Normal|NoSort|NoSortHdr|NoStandard|Not|NoTab|NoTimers|Number|Off|Ok|On|OwnDialogs|Owner|Parse|Password|Picture|Pixel|Pos|Pow|Priority|ProcessName|Radio|Range|Read|ReadOnly|Realtime|Redraw|REG_BINARY|REG_DWORD|REG_EXPAND_SZ|REG_MULTI_SZ|REG_SZ|Region|Relative|Rename|Report|Resize|Restore|Retry|RGB|Screen|Seconds|Section|Serial|SetLabel|ShiftAltTab|Show|Single|Slider|SortDesc|Standard|static|Status|StatusBar|StatusCD|strike|Style|Submit|SysMenu|Tab2|TabStop|Text|Theme|Tile|ToggleCheck|ToggleEnable|ToolWindow|Top|Topmost|TransColor|Transparent|Tray|TreeView|TryAgain|Type|UnCheck|underline|Unicode|Unlock|UpDown|Upper|Uppercase|UseErrorLevel|Vis|VisFirst|Visible|VScroll|Wait|WaitClose|WantCtrlA|WantF2|WantReturn|While|Wrap|Xdigit|xm|xp|xs|Yes|ym|yp|ys)\b/i
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 552 */
-/***/ function(module, exports) {
+/***/ }),
+/* 562 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = autoit;
-	autoit.displayName = 'autoit';
-	autoit.aliases = [];
+	module.exports = autoit
+	autoit.displayName = 'autoit'
+	autoit.aliases = []
 	function autoit(Prism) {
 	  Prism.languages.autoit = {
 	    comment: [
@@ -25338,21 +26121,21 @@
 	    boolean: /\b(?:True|False)\b/i,
 	    operator: /<[=>]?|[-+*\/=&>]=?|[?^]|\b(?:And|Or|Not)\b/i,
 	    punctuation: /[\[\]().,:]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 553 */
-/***/ function(module, exports) {
+/***/ }),
+/* 563 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = bash;
-	bash.displayName = 'bash';
-	bash.aliases = [];
+	module.exports = bash
+	bash.displayName = 'bash'
+	bash.aliases = ['shell']
 	function bash(Prism) {
-	  (function(Prism) {
+	  ;(function(Prism) {
 	    var insideString = {
 	      variable: [
 	        // Arithmetic Environment
@@ -25367,7 +26150,7 @@
 	              },
 	              /^\$\(\(/
 	            ],
-	            number: /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee]-?\d+)?)\b/,
+	            number: /\b0x[\dA-Fa-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee]-?\d+)?/,
 	            // Operators according to https://www.gnu.org/software/bash/manual/bashref.html#Shell-Arithmetic
 	            operator: /--?|-=|\+\+?|\+=|!=?|~|\*\*?|\*=|\/=?|%=?|<<=?|>>=?|<=?|>=?|==?|&&?|&=|\^=?|\|\|?|\|=|\?|:/,
 	            // If there is no $ sign at the beginning highlight (( and )) as punctuation
@@ -25377,13 +26160,14 @@
 	        // Command Substitution
 	        {
 	          pattern: /\$\([^)]+\)|`[^`]+`/,
+	          greedy: true,
 	          inside: {
 	            variable: /^\$\(|^`|\)$|`$/
 	          }
 	        },
 	        /\$(?:[\w#?*!@]+|\{[^}]+\})/i
 	      ]
-	    };
+	    }
 	    Prism.languages.bash = {
 	      shebang: {
 	        pattern: /^#!\s*\/bin\/bash|^#!\s*\/bin\/sh/,
@@ -25402,7 +26186,7 @@
 	          inside: insideString
 	        },
 	        {
-	          pattern: /(["'])(?:\\[\s\S]|(?!\1)[^\\])*\1/,
+	          pattern: /(["'])(?:\\[\s\S]|\$\([^)]+\)|`[^`]+`|(?!\1)[^\\])*\1/,
 	          greedy: true,
 	          inside: insideString
 	        }
@@ -25410,7 +26194,7 @@
 	      variable: insideString.variable,
 	      // Originally based on http://ss64.com/bash/
 	      function: {
-	        pattern: /(^|[\s;|&])(?:alias|apropos|apt-get|aptitude|aspell|awk|basename|bash|bc|bg|builtin|bzip2|cal|cat|cd|cfdisk|chgrp|chmod|chown|chroot|chkconfig|cksum|clear|cmp|comm|command|cp|cron|crontab|csplit|cut|date|dc|dd|ddrescue|df|diff|diff3|dig|dir|dircolors|dirname|dirs|dmesg|du|egrep|eject|enable|env|ethtool|eval|exec|expand|expect|export|expr|fdformat|fdisk|fg|fgrep|file|find|fmt|fold|format|free|fsck|ftp|fuser|gawk|getopts|git|grep|groupadd|groupdel|groupmod|groups|gzip|hash|head|help|hg|history|hostname|htop|iconv|id|ifconfig|ifdown|ifup|import|install|jobs|join|kill|killall|less|link|ln|locate|logname|logout|look|lpc|lpr|lprint|lprintd|lprintq|lprm|ls|lsof|make|man|mkdir|mkfifo|mkisofs|mknod|more|most|mount|mtools|mtr|mv|mmv|nano|netstat|nice|nl|nohup|notify-send|npm|nslookup|open|op|passwd|paste|pathchk|ping|pkill|popd|pr|printcap|printenv|printf|ps|pushd|pv|pwd|quota|quotacheck|quotactl|ram|rar|rcp|read|readarray|readonly|reboot|rename|renice|remsync|rev|rm|rmdir|rsync|screen|scp|sdiff|sed|seq|service|sftp|shift|shopt|shutdown|sleep|slocate|sort|source|split|ssh|stat|strace|su|sudo|sum|suspend|sync|tail|tar|tee|test|time|timeout|times|touch|top|traceroute|trap|tr|tsort|tty|type|ulimit|umask|umount|unalias|uname|unexpand|uniq|units|unrar|unshar|uptime|useradd|userdel|usermod|users|uuencode|uudecode|v|vdir|vi|vmstat|wait|watch|wc|wget|whereis|which|who|whoami|write|xargs|xdg-open|yes|zip)(?=$|[\s;|&])/,
+	        pattern: /(^|[\s;|&])(?:alias|apropos|apt-get|aptitude|aspell|awk|basename|bash|bc|bg|builtin|bzip2|cal|cat|cd|cfdisk|chgrp|chmod|chown|chroot|chkconfig|cksum|clear|cmp|comm|command|cp|cron|crontab|csplit|curl|cut|date|dc|dd|ddrescue|df|diff|diff3|dig|dir|dircolors|dirname|dirs|dmesg|du|egrep|eject|enable|env|ethtool|eval|exec|expand|expect|export|expr|fdformat|fdisk|fg|fgrep|file|find|fmt|fold|format|free|fsck|ftp|fuser|gawk|getopts|git|grep|groupadd|groupdel|groupmod|groups|gzip|hash|head|help|hg|history|hostname|htop|iconv|id|ifconfig|ifdown|ifup|import|install|jobs|join|kill|killall|less|link|ln|locate|logname|logout|look|lpc|lpr|lprint|lprintd|lprintq|lprm|ls|lsof|make|man|mkdir|mkfifo|mkisofs|mknod|more|most|mount|mtools|mtr|mv|mmv|nano|netstat|nice|nl|nohup|notify-send|npm|nslookup|open|op|passwd|paste|pathchk|ping|pkill|popd|pr|printcap|printenv|printf|ps|pushd|pv|pwd|quota|quotacheck|quotactl|ram|rar|rcp|read|readarray|readonly|reboot|rename|renice|remsync|rev|rm|rmdir|rsync|screen|scp|sdiff|sed|seq|service|sftp|shift|shopt|shutdown|sleep|slocate|sort|source|split|ssh|stat|strace|su|sudo|sum|suspend|sync|tail|tar|tee|test|time|timeout|times|touch|top|traceroute|trap|tr|tsort|tty|type|ulimit|umask|umount|unalias|uname|unexpand|uniq|units|unrar|unshar|uptime|useradd|userdel|usermod|users|uuencode|uudecode|v|vdir|vi|vmstat|wait|watch|wc|wget|whereis|which|who|whoami|write|xargs|xdg-open|yes|zip)(?=$|[\s;|&])/,
 	        lookbehind: true
 	      },
 	      keyword: {
@@ -25423,65 +26207,71 @@
 	      },
 	      operator: /&&?|\|\|?|==?|!=?|<<<?|>>|<=?|>=?|=~/,
 	      punctuation: /\$?\(\(?|\)\)?|\.\.|[{}[\];]/
-	    };
-	    var inside = insideString.variable[1].inside;
-	    inside['function'] = Prism.languages.bash['function'];
-	    inside.keyword = Prism.languages.bash.keyword;
-	    inside.boolean = Prism.languages.bash.boolean;
-	    inside.operator = Prism.languages.bash.operator;
-	    inside.punctuation = Prism.languages.bash.punctuation;
-	  })(Prism);
+	    }
+	    var inside = insideString.variable[1].inside
+	    inside.string = Prism.languages.bash.string
+	    inside['function'] = Prism.languages.bash['function']
+	    inside.keyword = Prism.languages.bash.keyword
+	    inside.boolean = Prism.languages.bash.boolean
+	    inside.operator = Prism.languages.bash.operator
+	    inside.punctuation = Prism.languages.bash.punctuation
+	
+	    Prism.languages.shell = Prism.languages.bash
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 554 */
-/***/ function(module, exports) {
+/***/ }),
+/* 564 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = basic;
-	basic.displayName = 'basic';
-	basic.aliases = [];
+	module.exports = basic
+	basic.displayName = 'basic'
+	basic.aliases = []
 	function basic(Prism) {
 	  Prism.languages.basic = {
-	    string: /"(?:""|[!#$%&'()*,\/:;<=>?^_ +\-.A-Z\d])*"/i,
 	    comment: {
 	      pattern: /(?:!|REM\b).+/i,
 	      inside: {
 	        keyword: /^REM/i
 	      }
 	    },
-	    number: /(?:\b|\B[.-])(?:\d+\.?\d*)(?:E[+-]?\d+)?/i,
+	    string: {
+	      pattern: /"(?:""|[!#$%&'()*,\/:;<=>?^_ +\-.A-Z\d])*"/i,
+	      greedy: true
+	    },
+	    number: /(?:\b\d+\.?\d*|\B\.\d+)(?:E[+-]?\d+)?/i,
 	    keyword: /\b(?:AS|BEEP|BLOAD|BSAVE|CALL(?: ABSOLUTE)?|CASE|CHAIN|CHDIR|CLEAR|CLOSE|CLS|COM|COMMON|CONST|DATA|DECLARE|DEF(?: FN| SEG|DBL|INT|LNG|SNG|STR)|DIM|DO|DOUBLE|ELSE|ELSEIF|END|ENVIRON|ERASE|ERROR|EXIT|FIELD|FILES|FOR|FUNCTION|GET|GOSUB|GOTO|IF|INPUT|INTEGER|IOCTL|KEY|KILL|LINE INPUT|LOCATE|LOCK|LONG|LOOP|LSET|MKDIR|NAME|NEXT|OFF|ON(?: COM| ERROR| KEY| TIMER)?|OPEN|OPTION BASE|OUT|POKE|PUT|READ|REDIM|REM|RESTORE|RESUME|RETURN|RMDIR|RSET|RUN|SHARED|SINGLE|SELECT CASE|SHELL|SLEEP|STATIC|STEP|STOP|STRING|SUB|SWAP|SYSTEM|THEN|TIMER|TO|TROFF|TRON|TYPE|UNLOCK|UNTIL|USING|VIEW PRINT|WAIT|WEND|WHILE|WRITE)(?:\$|\b)/i,
 	    function: /\b(?:ABS|ACCESS|ACOS|ANGLE|AREA|ARITHMETIC|ARRAY|ASIN|ASK|AT|ATN|BASE|BEGIN|BREAK|CAUSE|CEIL|CHR|CLIP|COLLATE|COLOR|CON|COS|COSH|COT|CSC|DATE|DATUM|DEBUG|DECIMAL|DEF|DEG|DEGREES|DELETE|DET|DEVICE|DISPLAY|DOT|ELAPSED|EPS|ERASABLE|EXLINE|EXP|EXTERNAL|EXTYPE|FILETYPE|FIXED|FP|GO|GRAPH|HANDLER|IDN|IMAGE|IN|INT|INTERNAL|IP|IS|KEYED|LBOUND|LCASE|LEFT|LEN|LENGTH|LET|LINE|LINES|LOG|LOG10|LOG2|LTRIM|MARGIN|MAT|MAX|MAXNUM|MID|MIN|MISSING|MOD|NATIVE|NUL|NUMERIC|OF|OPTION|ORD|ORGANIZATION|OUTIN|OUTPUT|PI|POINT|POINTER|POINTS|POS|PRINT|PROGRAM|PROMPT|RAD|RADIANS|RANDOMIZE|RECORD|RECSIZE|RECTYPE|RELATIVE|REMAINDER|REPEAT|REST|RETRY|REWRITE|RIGHT|RND|ROUND|RTRIM|SAME|SEC|SELECT|SEQUENTIAL|SET|SETTER|SGN|SIN|SINH|SIZE|SKIP|SQR|STANDARD|STATUS|STR|STREAM|STYLE|TAB|TAN|TANH|TEMPLATE|TEXT|THERE|TIME|TIMEOUT|TRACE|TRANSFORM|TRUNCATE|UBOUND|UCASE|USE|VAL|VARIABLE|VIEWPORT|WHEN|WINDOW|WITH|ZER|ZONEWIDTH)(?:\$|\b)/i,
 	    operator: /<[=>]?|>=?|[+\-*\/^=&]|\b(?:AND|EQV|IMP|NOT|OR|XOR)\b/i,
 	    punctuation: /[,;:()]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 555 */
-/***/ function(module, exports) {
+/***/ }),
+/* 565 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = batch;
-	batch.displayName = 'batch';
-	batch.aliases = [];
+	module.exports = batch
+	batch.displayName = 'batch'
+	batch.aliases = []
 	function batch(Prism) {
-	  (function(Prism) {
-	    var variable = /%%?[~:\w]+%?|!\S+!/;
+	  ;(function(Prism) {
+	    var variable = /%%?[~:\w]+%?|!\S+!/
 	    var parameter = {
 	      pattern: /\/[a-z?]+(?=[ :]|$):?|-[a-z]\b|--[a-z-]+\b/im,
 	      alias: 'attr-name',
 	      inside: {
 	        punctuation: /:/
 	      }
-	    };
-	    var string = /"[^"]*"/;
-	    var number = /(?:\b|-)\d+\b/;
+	    }
+	    var string = /"[^"]*"/
+	    var number = /(?:\b|-)\d+\b/
 	    Prism.languages.batch = {
 	      comment: [
 	        /^::.*/m,
@@ -25564,23 +26354,23 @@
 	      ],
 	      operator: /[&@]/,
 	      punctuation: /[()']/
-	    };
-	  })(Prism);
+	    }
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 556 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 566 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	var c = __webpack_require__(548);
-	module.exports = bison;
-	bison.displayName = 'bison';
-	bison.aliases = [];
+	'use strict'
+	var refractorC = __webpack_require__(556)
+	module.exports = bison
+	bison.displayName = 'bison'
+	bison.aliases = []
 	function bison(Prism) {
-	  Prism.register(c);
-	  Prism.languages.bison = Prism.languages.extend('c', {});
+	  Prism.register(refractorC)
+	  Prism.languages.bison = Prism.languages.extend('c', {})
 	  Prism.languages.insertBefore('bison', 'comment', {
 	    bison: {
 	      // This should match all the beginning of the file
@@ -25617,19 +26407,19 @@
 	        punctuation: /%[%?]|[|:;\[\]<>]/
 	      }
 	    }
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 557 */
-/***/ function(module, exports) {
+/***/ }),
+/* 567 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = brainfuck;
-	brainfuck.displayName = 'brainfuck';
-	brainfuck.aliases = [];
+	module.exports = brainfuck
+	brainfuck.displayName = 'brainfuck'
+	brainfuck.aliases = []
 	function brainfuck(Prism) {
 	  Prism.languages.brainfuck = {
 	    pointer: {
@@ -25650,19 +26440,19 @@
 	    },
 	    operator: /[.,]/,
 	    comment: /\S+/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 558 */
-/***/ function(module, exports) {
+/***/ }),
+/* 568 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = bro;
-	bro.displayName = 'bro';
-	bro.aliases = [];
+	module.exports = bro
+	bro.displayName = 'bro'
+	bro.aliases = []
 	function bro(Prism) {
 	  Prism.languages.bro = {
 	    comment: {
@@ -25698,29 +26488,55 @@
 	    },
 	    keyword: /\b(?:break|next|continue|alarm|using|of|add|delete|export|print|return|schedule|when|timeout|addr|any|bool|count|double|enum|file|int|interval|pattern|opaque|port|record|set|string|subnet|table|time|vector|for|if|else|in|module|function)\b/,
 	    operator: /--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&|\|\|?|\?|\*|\/|~|\^|%/,
-	    number: /\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,
+	    number: /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
 	    punctuation: /[{}[\];(),.:]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 559 */
-/***/ function(module, exports) {
+/***/ }),
+/* 569 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = coffeescript;
-	coffeescript.displayName = 'coffeescript';
-	coffeescript.aliases = [];
+	module.exports = clojure
+	clojure.displayName = 'clojure'
+	clojure.aliases = []
+	function clojure(Prism) {
+	  // Copied from https://github.com/jeluard/prism-clojure
+	  Prism.languages.clojure = {
+	    comment: /;+.*/,
+	    string: /"(?:\\.|[^\\"\r\n])*"/,
+	    operator: /(?:::|[:|'])\b[a-z][\w*+!?-]*\b/i, //used for symbols and keywords
+	    keyword: {
+	      pattern: /([^\w+*'?-])(?:def|if|do|let|\.\.|quote|var|->>|->|fn|loop|recur|throw|try|monitor-enter|\.|new|set!|def\-|defn|defn\-|defmacro|defmulti|defmethod|defstruct|defonce|declare|definline|definterface|defprotocol|==|defrecord|>=|deftype|<=|defproject|ns|\*|\+|\-|\/|<|=|>|accessor|agent|agent-errors|aget|alength|all-ns|alter|and|append-child|apply|array-map|aset|aset-boolean|aset-byte|aset-char|aset-double|aset-float|aset-int|aset-long|aset-short|assert|assoc|await|await-for|bean|binding|bit-and|bit-not|bit-or|bit-shift-left|bit-shift-right|bit-xor|boolean|branch\?|butlast|byte|cast|char|children|class|clear-agent-errors|comment|commute|comp|comparator|complement|concat|conj|cons|constantly|cond|if-not|construct-proxy|contains\?|count|create-ns|create-struct|cycle|dec|deref|difference|disj|dissoc|distinct|doall|doc|dorun|doseq|dosync|dotimes|doto|double|down|drop|drop-while|edit|end\?|ensure|eval|every\?|false\?|ffirst|file-seq|filter|find|find-doc|find-ns|find-var|first|float|flush|for|fnseq|frest|gensym|get-proxy-class|get|hash-map|hash-set|identical\?|identity|if-let|import|in-ns|inc|index|insert-child|insert-left|insert-right|inspect-table|inspect-tree|instance\?|int|interleave|intersection|into|into-array|iterate|join|key|keys|keyword|keyword\?|last|lazy-cat|lazy-cons|left|lefts|line-seq|list\*|list|load|load-file|locking|long|loop|macroexpand|macroexpand-1|make-array|make-node|map|map-invert|map\?|mapcat|max|max-key|memfn|merge|merge-with|meta|min|min-key|name|namespace|neg\?|new|newline|next|nil\?|node|not|not-any\?|not-every\?|not=|ns-imports|ns-interns|ns-map|ns-name|ns-publics|ns-refers|ns-resolve|ns-unmap|nth|nthrest|or|parse|partial|path|peek|pop|pos\?|pr|pr-str|print|print-str|println|println-str|prn|prn-str|project|proxy|proxy-mappings|quot|rand|rand-int|range|re-find|re-groups|re-matcher|re-matches|re-pattern|re-seq|read|read-line|reduce|ref|ref-set|refer|rem|remove|remove-method|remove-ns|rename|rename-keys|repeat|replace|replicate|resolve|rest|resultset-seq|reverse|rfirst|right|rights|root|rrest|rseq|second|select|select-keys|send|send-off|seq|seq-zip|seq\?|set|short|slurp|some|sort|sort-by|sorted-map|sorted-map-by|sorted-set|special-symbol\?|split-at|split-with|str|string\?|struct|struct-map|subs|subvec|symbol|symbol\?|sync|take|take-nth|take-while|test|time|to-array|to-array-2d|tree-seq|true\?|union|up|update-proxy|val|vals|var-get|var-set|var\?|vector|vector-zip|vector\?|when|when-first|when-let|when-not|with-local-vars|with-meta|with-open|with-out-str|xml-seq|xml-zip|zero\?|zipmap|zipper)(?=[^\w+*'?-])/,
+	      lookbehind: true
+	    },
+	    boolean: /\b(?:true|false|nil)\b/,
+	    number: /\b[0-9A-Fa-f]+\b/,
+	    punctuation: /[{}\[\](),]/
+	  }
+	}
+
+
+/***/ }),
+/* 570 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = coffeescript
+	coffeescript.displayName = 'coffeescript'
+	coffeescript.aliases = []
 	function coffeescript(Prism) {
-	  (function(Prism) {
+	  ;(function(Prism) {
 	    // Ignore comments starting with { to privilege string interpolation highlighting
 	    var comment = /#(?!\{).+/,
 	      interpolation = {
 	        pattern: /#\{[^}]+\}/,
 	        alias: 'variable'
-	      };
+	      }
 	    Prism.languages.coffeescript = Prism.languages.extend('javascript', {
 	      comment: comment,
 	      string: [
@@ -25743,7 +26559,7 @@
 	        pattern: /@(?!\d)\w+/,
 	        alias: 'variable'
 	      }
-	    });
+	    })
 	    Prism.languages.insertBefore('coffeescript', 'comment', {
 	      'multiline-comment': {
 	        pattern: /###[\s\S]+?###/,
@@ -25758,7 +26574,7 @@
 	          interpolation: interpolation
 	        }
 	      }
-	    });
+	    })
 	    Prism.languages.insertBefore('coffeescript', 'string', {
 	      'inline-javascript': {
 	        pattern: /`(?:\\[\s\S]|[^\\`])*`/,
@@ -25786,28 +26602,28 @@
 	          }
 	        }
 	      ]
-	    });
+	    })
 	    Prism.languages.insertBefore('coffeescript', 'keyword', {
 	      // Object property
 	      property: /(?!\d)\w+(?=\s*:(?!:))/
-	    });
-	    delete Prism.languages.coffeescript['template-string'];
-	  })(Prism);
+	    })
+	    delete Prism.languages.coffeescript['template-string']
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 560 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 571 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	var ruby = __webpack_require__(561);
-	module.exports = crystal;
-	crystal.displayName = 'crystal';
-	crystal.aliases = [];
+	'use strict'
+	var refractorRuby = __webpack_require__(572)
+	module.exports = crystal
+	crystal.displayName = 'crystal'
+	crystal.aliases = []
 	function crystal(Prism) {
-	  Prism.register(ruby);
-	  (function(Prism) {
+	  Prism.register(refractorRuby)
+	  ;(function(Prism) {
 	    Prism.languages.crystal = Prism.languages.extend('ruby', {
 	      keyword: [
 	        /\b(?:abstract|alias|as|asm|begin|break|case|class|def|do|else|elsif|end|ensure|enum|extend|for|fun|if|include|instance_sizeof|lib|macro|module|next|of|out|pointerof|private|protected|rescue|return|require|select|self|sizeof|struct|super|then|type|typeof|uninitialized|union|unless|until|when|while|with|yield|__DIR__|__END_LINE__|__FILE__|__LINE__)\b/,
@@ -25816,9 +26632,8 @@
 	          lookbehind: true
 	        }
 	      ],
-	      number: /\b(?:0b[01_]*[01]|0o[0-7_]*[0-7]|0x[0-9a-fA-F_]*[0-9a-fA-F]|(?:\d(?:[0-9_]*\d)?)(?:\.[0-9_]*\d)?(?:[eE][+-]?[0-9_]*\d)?)(?:_(?:[uif](?:8|16|32|64))?)?\b/
-	    });
-	    var rest = Prism.util.clone(Prism.languages.crystal);
+	      number: /\b(?:0b[01_]*[01]|0o[0-7_]*[0-7]|0x[\da-fA-F_]*[\da-fA-F]|(?:\d(?:[\d_]*\d)?)(?:\.[\d_]*\d)?(?:[eE][+-]?[\d_]*\d)?)(?:_(?:[uif](?:8|16|32|64))?)?\b/
+	    })
 	    Prism.languages.insertBefore('crystal', 'string', {
 	      attribute: {
 	        pattern: /@\[.+?\]/,
@@ -25828,7 +26643,7 @@
 	            pattern: /^@\[|\]$/,
 	            alias: 'tag'
 	          },
-	          rest: rest
+	          rest: Prism.languages.crystal
 	        }
 	      },
 	      expansion: [
@@ -25839,7 +26654,7 @@
 	              pattern: /^\{\{|\}\}$/,
 	              alias: 'tag'
 	            },
-	            rest: rest
+	            rest: Prism.languages.crystal
 	          }
 	        },
 	        {
@@ -25849,24 +26664,24 @@
 	              pattern: /^\{%|%\}$/,
 	              alias: 'tag'
 	            },
-	            rest: rest
+	            rest: Prism.languages.crystal
 	          }
 	        }
 	      ]
-	    });
-	  })(Prism);
+	    })
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 561 */
-/***/ function(module, exports) {
+/***/ }),
+/* 572 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = ruby;
-	ruby.displayName = 'ruby';
-	ruby.aliases = [];
+	module.exports = ruby
+	ruby.displayName = 'ruby'
+	ruby.aliases = []
 	function ruby(Prism) {
 	  /**
 	   * Original by Samuel Flores
@@ -25874,14 +26689,17 @@
 	   * Adds the following new token classes:
 	   *      constant, builtin, variable, symbol, regex
 	   */
-	  (function(Prism) {
+	  ;(function(Prism) {
 	    Prism.languages.ruby = Prism.languages.extend('clike', {
 	      comment: [
-	        /#(?!\{[^\r\n]*?\}).*/,
-	        /^=begin(?:\r?\n|\r)(?:.*(?:\r?\n|\r))*?=end/m
+	        /#.*/,
+	        {
+	          pattern: /^=begin(?:\r?\n|\r)(?:.*(?:\r?\n|\r))*?=end/m,
+	          greedy: true
+	        }
 	      ],
-	      keyword: /\b(?:alias|and|BEGIN|begin|break|case|class|def|define_method|defined|do|each|else|elsif|END|end|ensure|false|for|if|in|module|new|next|nil|not|or|raise|redo|require|rescue|retry|return|self|super|then|throw|true|undef|unless|until|when|while|yield)\b/
-	    });
+	      keyword: /\b(?:alias|and|BEGIN|begin|break|case|class|def|define_method|defined|do|each|else|elsif|END|end|ensure|false|for|if|in|module|new|next|nil|not|or|protected|private|public|raise|redo|require|rescue|retry|return|self|super|then|throw|true|undef|unless|until|when|while|yield)\b/
+	    })
 	    var interpolation = {
 	      pattern: /#\{[^}]+\}/,
 	      inside: {
@@ -25889,9 +26707,9 @@
 	          pattern: /^#\{|\}$/,
 	          alias: 'tag'
 	        },
-	        rest: Prism.util.clone(Prism.languages.ruby)
+	        rest: Prism.languages.ruby
 	      }
-	    };
+	    }
 	    Prism.languages.insertBefore('ruby', 'keyword', {
 	      regex: [
 	        {
@@ -25937,12 +26755,15 @@
 	        }
 	      ],
 	      variable: /[@$]+[a-zA-Z_]\w*(?:[?!]|\b)/,
-	      symbol: /:[a-zA-Z_]\w*(?:[?!]|\b)/
-	    });
+	      symbol: {
+	        pattern: /(^|[^:]):[a-zA-Z_]\w*(?:[?!]|\b)/,
+	        lookbehind: true
+	      }
+	    })
 	    Prism.languages.insertBefore('ruby', 'number', {
 	      builtin: /\b(?:Array|Bignum|Binding|Class|Continuation|Dir|Exception|FalseClass|File|Stat|Fixnum|Float|Hash|Integer|IO|MatchData|Method|Module|NilClass|Numeric|Object|Proc|Range|Regexp|String|Struct|TMS|Symbol|ThreadGroup|Thread|Time|TrueClass)\b/,
 	      constant: /\b[A-Z]\w*(?:[?!]|\b)/
-	    });
+	    })
 	    Prism.languages.ruby.string = [
 	      {
 	        pattern: /%[qQiIwWxs]?([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1/,
@@ -25987,23 +26808,23 @@
 	          interpolation: interpolation
 	        }
 	      }
-	    ];
-	  })(Prism);
+	    ]
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 562 */
-/***/ function(module, exports) {
+/***/ }),
+/* 573 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = csharp;
-	csharp.displayName = 'csharp';
-	csharp.aliases = [];
+	module.exports = csharp
+	csharp.displayName = 'csharp'
+	csharp.aliases = ['dotnet']
 	function csharp(Prism) {
 	  Prism.languages.csharp = Prism.languages.extend('clike', {
-	    keyword: /\b(abstract|as|async|await|base|bool|break|byte|case|catch|char|checked|class|const|continue|decimal|default|delegate|do|double|else|enum|event|explicit|extern|false|finally|fixed|float|for|foreach|goto|if|implicit|in|int|interface|internal|is|lock|long|namespace|new|null|object|operator|out|override|params|private|protected|public|readonly|ref|return|sbyte|sealed|short|sizeof|stackalloc|static|string|struct|switch|this|throw|true|try|typeof|uint|ulong|unchecked|unsafe|ushort|using|virtual|void|volatile|while|add|alias|ascending|async|await|descending|dynamic|from|get|global|group|into|join|let|orderby|partial|remove|select|set|value|var|where|yield)\b/,
+	    keyword: /\b(?:abstract|add|alias|as|ascending|async|await|base|bool|break|byte|case|catch|char|checked|class|const|continue|decimal|default|delegate|descending|do|double|dynamic|else|enum|event|explicit|extern|false|finally|fixed|float|for|foreach|from|get|global|goto|group|if|implicit|in|int|interface|internal|into|is|join|let|lock|long|namespace|new|null|object|operator|orderby|out|override|params|partial|private|protected|public|readonly|ref|remove|return|sbyte|sealed|select|set|short|sizeof|stackalloc|static|string|struct|switch|this|throw|true|try|typeof|uint|ulong|unchecked|unsafe|ushort|using|value|var|virtual|void|volatile|where|while|yield)\b/,
 	    string: [
 	      {
 	        pattern: /@("|')(?:\1\1|\\[\s\S]|(?!\1)[^\\])*\1/,
@@ -26014,13 +26835,52 @@
 	        greedy: true
 	      }
 	    ],
-	    number: /\b-?(?:0x[\da-f]+|\d*\.?\d+f?)\b/i
-	  });
-	  Prism.languages.insertBefore('csharp', 'keyword', {
+	    'class-name': [
+	      {
+	        // (Foo bar, Bar baz)
+	        pattern: /\b[A-Z]\w*(?:\.\w+)*\b(?=\s+\w+)/,
+	        inside: {
+	          punctuation: /\./
+	        }
+	      },
+	      {
+	        // [Foo]
+	        pattern: /(\[)[A-Z]\w*(?:\.\w+)*\b/,
+	        lookbehind: true,
+	        inside: {
+	          punctuation: /\./
+	        }
+	      },
+	      {
+	        // class Foo : Bar
+	        pattern: /(\b(?:class|interface)\s+[A-Z]\w*(?:\.\w+)*\s*:\s*)[A-Z]\w*(?:\.\w+)*\b/,
+	        lookbehind: true,
+	        inside: {
+	          punctuation: /\./
+	        }
+	      },
+	      {
+	        // class Foo
+	        pattern: /((?:\b(?:class|interface|new)\s+)|(?:catch\s+\())[A-Z]\w*(?:\.\w+)*\b/,
+	        lookbehind: true,
+	        inside: {
+	          punctuation: /\./
+	        }
+	      }
+	    ],
+	    number: /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)f?/i
+	  })
+	  Prism.languages.insertBefore('csharp', 'class-name', {
 	    'generic-method': {
-	      pattern: /[a-z0-9_]+\s*<[^>\r\n]+?>\s*(?=\()/i,
-	      alias: 'function',
+	      pattern: /\w+\s*<[^>\r\n]+?>\s*(?=\()/,
 	      inside: {
+	        function: /^\w+/,
+	        'class-name': {
+	          pattern: /\b[A-Z]\w*(?:\.\w+)*\b/,
+	          inside: {
+	            punctuation: /\./
+	          }
+	        },
 	        keyword: Prism.languages.csharp.keyword,
 	        punctuation: /[<>(),.:]/
 	      }
@@ -26038,19 +26898,57 @@
 	        }
 	      }
 	    }
-	  });
+	  })
+	  Prism.languages.dotnet = Prism.languages.csharp
 	}
 
 
-/***/ },
-/* 563 */
-/***/ function(module, exports) {
+/***/ }),
+/* 574 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = cssExtras;
-	cssExtras.displayName = 'cssExtras';
-	cssExtras.aliases = [];
+	module.exports = csp
+	csp.displayName = 'csp'
+	csp.aliases = []
+	function csp(Prism) {
+	  /**
+	   * Original by Scott Helme.
+	   *
+	   * Reference: https://scotthelme.co.uk/csp-cheat-sheet/
+	   *
+	   * Supports the following:
+	   *  - CSP Level 1
+	   *  - CSP Level 2
+	   *  - CSP Level 3
+	   */
+	  Prism.languages.csp = {
+	    directive: {
+	      pattern: /\b(?:(?:base-uri|form-action|frame-ancestors|plugin-types|referrer|reflected-xss|report-to|report-uri|require-sri-for|sandbox) |(?:block-all-mixed-content|disown-opener|upgrade-insecure-requests)(?: |;)|(?:child|connect|default|font|frame|img|manifest|media|object|script|style|worker)-src )/i,
+	      alias: 'keyword'
+	    },
+	    safe: {
+	      pattern: /'(?:self|none|strict-dynamic|(?:nonce-|sha(?:256|384|512)-)[a-zA-Z\d+=/]+)'/,
+	      alias: 'selector'
+	    },
+	    unsafe: {
+	      pattern: /(?:'unsafe-inline'|'unsafe-eval'|'unsafe-hashed-attributes'|\*)/,
+	      alias: 'function'
+	    }
+	  }
+	}
+
+
+/***/ }),
+/* 575 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = cssExtras
+	cssExtras.displayName = 'cssExtras'
+	cssExtras.aliases = []
 	function cssExtras(Prism) {
 	  Prism.languages.css.selector = {
 	    pattern: /[^{}\s][^{}]*(?=\s*\{)/,
@@ -26061,24 +26959,24 @@
 	      id: /#[-:.\w]+/,
 	      attribute: /\[[^\]]+\]/
 	    }
-	  };
+	  }
 	  Prism.languages.insertBefore('css', 'function', {
 	    hexcode: /#[\da-f]{3,8}/i,
 	    entity: /\\[\da-f]{1,8}/i,
 	    number: /[\d%.]+/
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 564 */
-/***/ function(module, exports) {
+/***/ }),
+/* 576 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = d;
-	d.displayName = 'd';
-	d.aliases = [];
+	module.exports = d
+	d.displayName = 'd'
+	d.aliases = []
 	function d(Prism) {
 	  Prism.languages.d = Prism.languages.extend('clike', {
 	    string: [
@@ -26108,7 +27006,7 @@
 	    // In order: $, keywords and special tokens, globally defined symbols
 	    keyword: /\$|\b(?:abstract|alias|align|asm|assert|auto|body|bool|break|byte|case|cast|catch|cdouble|cent|cfloat|char|class|const|continue|creal|dchar|debug|default|delegate|delete|deprecated|do|double|else|enum|export|extern|false|final|finally|float|for|foreach|foreach_reverse|function|goto|idouble|if|ifloat|immutable|import|inout|int|interface|invariant|ireal|lazy|long|macro|mixin|module|new|nothrow|null|out|override|package|pragma|private|protected|public|pure|real|ref|return|scope|shared|short|static|struct|super|switch|synchronized|template|this|throw|true|try|typedef|typeid|typeof|ubyte|ucent|uint|ulong|union|unittest|ushort|version|void|volatile|wchar|while|with|__(?:(?:FILE|MODULE|LINE|FUNCTION|PRETTY_FUNCTION|DATE|EOF|TIME|TIMESTAMP|VENDOR|VERSION)__|gshared|traits|vector|parameters)|string|wstring|dstring|size_t|ptrdiff_t)\b/,
 	    operator: /\|[|=]?|&[&=]?|\+[+=]?|-[-=]?|\.?\.\.|=[>=]?|!(?:i[ns]\b|<>?=?|>=?|=)?|\bi[ns]\b|(?:<[<>]?|>>?>?|\^\^|[*\/%^~])=?/
-	  });
+	  })
 	  Prism.languages.d.comment = [
 	    // Shebang
 	    /^\s*#!.+/,
@@ -26118,36 +27016,36 @@
 	      pattern: /(^|[^\\])\/\+(?:\/\+[\s\S]*?\+\/|[\s\S])*?\+\//,
 	      lookbehind: true
 	    }
-	  ].concat(Prism.languages.d.comment);
+	  ].concat(Prism.languages.d.comment)
 	  Prism.languages.insertBefore('d', 'comment', {
 	    'token-string': {
 	      // Allow one level of nesting
 	      pattern: /\bq\{(?:\{[^}]*\}|[^}])*\}/,
 	      alias: 'string'
 	    }
-	  });
+	  })
 	  Prism.languages.insertBefore('d', 'keyword', {
 	    property: /\B@\w*/
-	  });
+	  })
 	  Prism.languages.insertBefore('d', 'function', {
 	    register: {
 	      // Iasm registers
 	      pattern: /\b(?:[ABCD][LHX]|E[ABCD]X|E?(?:BP|SP|DI|SI)|[ECSDGF]S|CR[0234]|DR[012367]|TR[3-7]|X?MM[0-7]|R[ABCD]X|[BS]PL|R[BS]P|[DS]IL|R[DS]I|R(?:[89]|1[0-5])[BWD]?|XMM(?:[89]|1[0-5])|YMM(?:1[0-5]|\d))\b|\bST(?:\([0-7]\)|\b)/,
 	      alias: 'variable'
 	    }
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 565 */
-/***/ function(module, exports) {
+/***/ }),
+/* 577 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = dart;
-	dart.displayName = 'dart';
-	dart.aliases = [];
+	module.exports = dart
+	dart.displayName = 'dart'
+	dart.aliases = []
 	function dart(Prism) {
 	  Prism.languages.dart = Prism.languages.extend('clike', {
 	    string: [
@@ -26165,25 +27063,25 @@
 	      /\b(?:abstract|assert|async|await|break|case|catch|class|const|continue|default|deferred|do|dynamic|else|enum|export|external|extends|factory|final|finally|for|get|if|implements|import|in|library|new|null|operator|part|rethrow|return|set|static|super|switch|this|throw|try|typedef|var|void|while|with|yield)\b/
 	    ],
 	    operator: /\bis!|\b(?:as|is)\b|\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>]=?|\?/
-	  });
+	  })
 	  Prism.languages.insertBefore('dart', 'function', {
 	    metadata: {
 	      pattern: /@\w+/,
 	      alias: 'symbol'
 	    }
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 566 */
-/***/ function(module, exports) {
+/***/ }),
+/* 578 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = diff;
-	diff.displayName = 'diff';
-	diff.aliases = [];
+	module.exports = diff
+	diff.displayName = 'diff'
+	diff.aliases = []
 	function diff(Prism) {
 	  Prism.languages.diff = {
 	    coord: [
@@ -26202,19 +27100,19 @@
 	      pattern: /^!(?!!).+$/m,
 	      alias: 'important'
 	    }
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 567 */
-/***/ function(module, exports) {
+/***/ }),
+/* 579 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = django;
-	django.displayName = 'django';
-	django.aliases = ['jinja2'];
+	module.exports = django
+	django.displayName = 'django'
+	django.aliases = ['jinja2']
 	function django(Prism) {
 	  // Django/Jinja2 syntax definition for Prism.js <http://prismjs.com> syntax highlighter.
 	  // Mostly it works OK but can paint code incorrectly on complex html/template tag combinations.
@@ -26235,19 +27133,19 @@
 	        punctuation: /[[\];(),.:]/
 	      }
 	    }
-	  };
+	  }
 	  Prism.languages.django = Prism.languages.extend('markup', {
 	    comment: /(?:<!--|{#)[\s\S]*?(?:#}|-->)/
-	  });
+	  })
 	  // Updated html tag pattern to allow template tags inside html tags
-	  Prism.languages.django.tag.pattern = /<\/?(?!\d)[^\s>\/=$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^>=]+))?)*\s*\/?>/i;
-	  Prism.languages.insertBefore('django', 'entity', _django_template);
+	  Prism.languages.django.tag.pattern = /<\/?(?!\d)[^\s>\/=$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^>=]+))?)*\s*\/?>/i
+	  Prism.languages.insertBefore('django', 'entity', _django_template)
 	  Prism.languages.insertBefore(
 	    'inside',
 	    'tag',
 	    _django_template,
 	    Prism.languages.django.tag
-	  );
+	  )
 	  if (Prism.languages.javascript) {
 	    // Combine js code and template tags painting inside <script> blocks
 	    Prism.languages.insertBefore(
@@ -26255,8 +27153,8 @@
 	      'string',
 	      _django_template,
 	      Prism.languages.django.script
-	    );
-	    Prism.languages.django.script.inside.string.inside = _django_template;
+	    )
+	    Prism.languages.django.script.inside.string.inside = _django_template
 	  }
 	  if (Prism.languages.css) {
 	    // Combine css code and template tags painting inside <style> blocks
@@ -26265,23 +27163,23 @@
 	      'atrule',
 	      {tag: _django_template.property},
 	      Prism.languages.django.style
-	    );
-	    Prism.languages.django.style.inside.string.inside = _django_template;
+	    )
+	    Prism.languages.django.style.inside.string.inside = _django_template
 	  }
 	  // Add an Jinja2 alias
-	  Prism.languages.jinja2 = Prism.languages.django;
+	  Prism.languages.jinja2 = Prism.languages.django
 	}
 
 
-/***/ },
-/* 568 */
-/***/ function(module, exports) {
+/***/ }),
+/* 580 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = docker;
-	docker.displayName = 'docker';
-	docker.aliases = ['dockerfile'];
+	module.exports = docker
+	docker.displayName = 'docker'
+	docker.aliases = ['dockerfile']
 	function docker(Prism) {
 	  Prism.languages.docker = {
 	    keyword: {
@@ -26291,32 +27189,32 @@
 	    string: /("|')(?:(?!\1)[^\\\r\n]|\\(?:\r\n|[\s\S]))*\1/,
 	    comment: /#.*/,
 	    punctuation: /---|\.\.\.|[:[\]{}\-,|>?]/
-	  };
-	  Prism.languages.dockerfile = Prism.languages.docker;
+	  }
+	  Prism.languages.dockerfile = Prism.languages.docker
 	}
 
 
-/***/ },
-/* 569 */
-/***/ function(module, exports) {
+/***/ }),
+/* 581 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = eiffel;
-	eiffel.displayName = 'eiffel';
-	eiffel.aliases = [];
+	module.exports = eiffel
+	eiffel.displayName = 'eiffel'
+	eiffel.aliases = []
 	function eiffel(Prism) {
 	  Prism.languages.eiffel = {
 	    comment: /--.*/,
 	    string: [
 	      // Aligned-verbatim-strings
 	      {
-	        pattern: /"([^[]*)\[[\s\S]+?\]\1"/,
+	        pattern: /"([^[]*)\[[\s\S]*?\]\1"/,
 	        greedy: true
 	      },
 	      // Non-aligned-verbatim-strings
 	      {
-	        pattern: /"([^{]*)\{[\s\S]+?\}\1"/,
+	        pattern: /"([^{]*)\{[\s\S]*?\}\1"/,
 	        greedy: true
 	      },
 	      // Single-line string
@@ -26338,34 +27236,34 @@
 	      // hexa | octal | bin
 	      /\b0[xcb][\da-f](?:_*[\da-f])*\b/i,
 	      // Decimal
-	      /(?:\d(?:_*\d)*)?\.(?:(?:\d(?:_*\d)*)?[eE][+-]?)?\d(?:_*\d)*|\d(?:_*\d)*\.?/
+	      /(?:\d(?:_*\d)*)?\.(?:(?:\d(?:_*\d)*)?e[+-]?)?\d(?:_*\d)*|\d(?:_*\d)*\.?/i
 	    ],
 	    punctuation: /:=|<<|>>|\(\||\|\)|->|\.(?=\w)|[{}[\];(),:?]/,
 	    operator: /\\\\|\|\.\.\||\.\.|\/[~\/=]?|[><]=?|[-+*^=~]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 570 */
-/***/ function(module, exports) {
+/***/ }),
+/* 582 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = elixir;
-	elixir.displayName = 'elixir';
-	elixir.aliases = [];
+	module.exports = elixir
+	elixir.displayName = 'elixir'
+	elixir.aliases = []
 	function elixir(Prism) {
 	  Prism.languages.elixir = {
-	    // Negative look-ahead is needed for string interpolation
-	    // Negative look-behind is needed to avoid highlighting markdown headers in
-	    // multi-line doc strings
 	    comment: {
-	      pattern: /(^|[^#])#(?![{#]).*/m,
+	      pattern: /#.*/m,
 	      lookbehind: true
 	    },
 	    // ~r"""foo""" (multi-line), ~r'''foo''' (multi-line), ~r/foo/, ~r|foo|, ~r"foo", ~r'foo', ~r(foo), ~r[foo], ~r{foo}, ~r<foo>
-	    regex: /~[rR](?:("""|''')(?:\\[\s\S]|(?!\1)[^\\])+\1|([\/|"'])(?:\\.|(?!\2)[^\\\r\n])+\2|\((?:\\.|[^\\)\r\n])+\)|\[(?:\\.|[^\\\]\r\n])+\]|\{(?:\\.|[^\\}\r\n])+\}|<(?:\\.|[^\\>\r\n])+>)[uismxfr]*/,
+	    regex: {
+	      pattern: /~[rR](?:("""|''')(?:\\[\s\S]|(?!\1)[^\\])+\1|([\/|"'])(?:\\.|(?!\2)[^\\\r\n])+\2|\((?:\\.|[^\\)\r\n])+\)|\[(?:\\.|[^\\\]\r\n])+\]|\{(?:\\.|[^\\}\r\n])+\}|<(?:\\.|[^\\>\r\n])+>)[uismxfr]*/,
+	      greedy: true
+	    },
 	    string: [
 	      {
 	        // ~s"""foo""" (multi-line), ~s'''foo''' (multi-line), ~s/foo/, ~s|foo|, ~s"foo", ~s'foo', ~s(foo), ~s[foo], ~s{foo} (with interpolation care), ~s<foo>
@@ -26432,7 +27330,7 @@
 	      }
 	    ],
 	    punctuation: /<<|>>|[.,%\[\]{}()]/
-	  };
+	  }
 	  Prism.languages.elixir.string.forEach(function(o) {
 	    o.inside = {
 	      interpolation: {
@@ -26442,23 +27340,114 @@
 	            pattern: /^#\{|\}$/,
 	            alias: 'punctuation'
 	          },
-	          rest: Prism.util.clone(Prism.languages.elixir)
+	          rest: Prism.languages.elixir
 	        }
 	      }
-	    };
-	  });
+	    }
+	  })
 	}
 
 
-/***/ },
-/* 571 */
-/***/ function(module, exports) {
+/***/ }),
+/* 583 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = erlang;
-	erlang.displayName = 'erlang';
-	erlang.aliases = [];
+	module.exports = elm
+	elm.displayName = 'elm'
+	elm.aliases = []
+	function elm(Prism) {
+	  Prism.languages.elm = {
+	    comment: /--.*|{-[\s\S]*?-}/,
+	    char: {
+	      pattern: /'(?:[^\\'\r\n]|\\(?:[abfnrtv\\']|\d+|x[0-9a-fA-F]+))'/,
+	      greedy: true
+	    },
+	    string: [
+	      {
+	        // Multiline strings are wrapped in triple ". Quotes may appear unescaped.
+	        pattern: /"""[\s\S]*?"""/,
+	        greedy: true
+	      },
+	      {
+	        pattern: /"(?:[^\\"\r\n]|\\(?:[abfnrtv\\"]|\d+|x[0-9a-fA-F]+))*"/,
+	        greedy: true
+	      }
+	    ],
+	    import_statement: {
+	      // The imported or hidden names are not included in this import
+	      // statement. This is because we want to highlight those exactly like
+	      // we do for the names in the program.
+	      pattern: /^\s*import\s+[A-Z]\w*(?:\.[A-Z]\w*)*(?:\s+as\s+([A-Z]\w*)(?:\.[A-Z]\w*)*)?(?:\s+exposing\s+)?/m,
+	      inside: {
+	        keyword: /\b(?:import|as|exposing)\b/
+	      }
+	    },
+	    keyword: /\b(?:alias|as|case|else|exposing|if|in|infixl|infixr|let|module|of|then|type)\b/,
+	    // These are builtin variables only. Constructors are highlighted later as a constant.
+	    builtin: /\b(?:abs|acos|always|asin|atan|atan2|ceiling|clamp|compare|cos|curry|degrees|e|flip|floor|fromPolar|identity|isInfinite|isNaN|logBase|max|min|negate|never|not|pi|radians|rem|round|sin|sqrt|tan|toFloat|toPolar|toString|truncate|turns|uncurry|xor)\b/,
+	    // decimal integers and floating point numbers | hexadecimal integers
+	    number: /\b(?:\d+(?:\.\d+)?(?:e[+-]?\d+)?|0x[0-9a-f]+)\b/i,
+	    // Most of this is needed because of the meaning of a single '.'.
+	    // If it stands alone freely, it is the function composition.
+	    // It may also be a separator between a module name and an identifier => no
+	    // operator. If it comes together with other special characters it is an
+	    // operator too.
+	    // Valid operator characters in 0.18: +-/*=.$<>:&|^?%#@~!
+	    // Ref: https://groups.google.com/forum/#!msg/elm-dev/0AHSnDdkSkQ/E0SVU70JEQAJ
+	    operator: /\s\.\s|[+\-/*=.$<>:&|^?%#@~!]{2,}|[+\-/*=$<>:&|^?%#@~!]/,
+	    // In Elm, nearly everything is a variable, do not highlight these.
+	    hvariable: /\b(?:[A-Z]\w*\.)*[a-z]\w*\b/,
+	    constant: /\b(?:[A-Z]\w*\.)*[A-Z]\w*\b/,
+	    punctuation: /[{}[\]|(),.:]/
+	  }
+	}
+
+
+/***/ }),
+/* 584 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict'
+	var refractorRuby = __webpack_require__(572)
+	module.exports = erb
+	erb.displayName = 'erb'
+	erb.aliases = []
+	function erb(Prism) {
+	  Prism.register(refractorRuby)
+	  ;(function(Prism) {
+	    Prism.languages.erb = Prism.languages.extend('ruby', {})
+	    Prism.languages.insertBefore('erb', 'comment', {
+	      delimiter: {
+	        pattern: /^<%=?|%>$/,
+	        alias: 'punctuation'
+	      }
+	    })
+	    Prism.hooks.add('before-tokenize', function(env) {
+	      var erbPattern = /<%=?[\s\S]+?%>/g
+	      Prism.languages['markup-templating'].buildPlaceholders(
+	        env,
+	        'erb',
+	        erbPattern
+	      )
+	    })
+	    Prism.hooks.add('after-tokenize', function(env) {
+	      Prism.languages['markup-templating'].tokenizePlaceholders(env, 'erb')
+	    })
+	  })(Prism)
+	}
+
+
+/***/ }),
+/* 585 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = erlang
+	erlang.displayName = 'erlang'
+	erlang.aliases = []
 	function erlang(Prism) {
 	  Prism.languages.erlang = {
 	    comment: /%.+/,
@@ -26476,7 +27465,11 @@
 	    },
 	    boolean: /\b(?:true|false)\b/,
 	    keyword: /\b(?:fun|when|case|of|end|if|receive|after|try|catch)\b/,
-	    number: [/\$\\?./, /\d+#[a-z0-9]+/i, /(?:\b|-)\d*\.?\d+([Ee][+-]?\d+)?\b/],
+	    number: [
+	      /\$\\?./,
+	      /\d+#[a-z0-9]+/i,
+	      /(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i
+	    ],
 	    function: /\b[a-z][\w@]*(?=\()/,
 	    variable: {
 	      // Look-behind is used to prevent wrong highlighting of atoms containing "@"
@@ -26498,19 +27491,65 @@
 	    ],
 	    atom: /\b[a-z][\w@]*/,
 	    punctuation: /[()[\]{}:;,.#|]|<<|>>/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 572 */
-/***/ function(module, exports) {
+/***/ }),
+/* 586 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = fortran;
-	fortran.displayName = 'fortran';
-	fortran.aliases = [];
+	module.exports = flow
+	flow.displayName = 'flow'
+	flow.aliases = []
+	function flow(Prism) {
+	  ;(function(Prism) {
+	    Prism.languages.flow = Prism.languages.extend('javascript', {})
+	    Prism.languages.insertBefore('flow', 'keyword', {
+	      type: [
+	        {
+	          pattern: /\b(?:[Nn]umber|[Ss]tring|[Bb]oolean|Function|any|mixed|null|void)\b/,
+	          alias: 'tag'
+	        }
+	      ]
+	    })
+	    Prism.languages.flow[
+	      'function-variable'
+	    ].pattern = /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=\s*(?:function\b|(?:\([^()]*\)(?:\s*:\s*\w+)?|[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/i
+	    Prism.languages.insertBefore('flow', 'operator', {
+	      'flow-punctuation': {
+	        pattern: /\{\||\|\}/,
+	        alias: 'punctuation'
+	      }
+	    })
+	    if (Prism.util.type(Prism.languages.flow.keyword) !== 'Array') {
+	      Prism.languages.flow.keyword = [Prism.languages.flow.keyword]
+	    }
+	    Prism.languages.flow.keyword.unshift(
+	      {
+	        pattern: /(^|[^$]\b)(?:type|opaque|declare|Class)\b(?!\$)/,
+	        lookbehind: true
+	      },
+	      {
+	        pattern: /(^|[^$]\B)\$(?:await|Diff|Exact|Keys|ObjMap|PropertyType|Shape|Record|Supertype|Subtype|Enum)\b(?!\$)/,
+	        lookbehind: true
+	      }
+	    )
+	  })(Prism)
+	}
+
+
+/***/ }),
+/* 587 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = fortran
+	fortran.displayName = 'fortran'
+	fortran.aliases = []
 	function fortran(Prism) {
 	  Prism.languages.fortran = {
 	    'quoted-number': {
@@ -26526,9 +27565,12 @@
 	        }
 	      }
 	    },
-	    comment: /!.*/,
+	    comment: {
+	      pattern: /!.*/,
+	      greedy: true
+	    },
 	    boolean: /\.(?:TRUE|FALSE)\.(?:_\w+)?/i,
-	    number: /(?:\b|[+-])(?:\d+(?:\.\d*)?|\.\d+)(?:[ED][+-]?\d+)?(?:_\w+)?/i,
+	    number: /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[ED][+-]?\d+)?(?:_\w+)?/i,
 	    keyword: [
 	      // Types
 	      /\b(?:INTEGER|REAL|DOUBLE ?PRECISION|COMPLEX|CHARACTER|LOGICAL)\b/i,
@@ -26548,19 +27590,19 @@
 	      }
 	    ],
 	    punctuation: /\(\/|\/\)|[(),;:&]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 573 */
-/***/ function(module, exports) {
+/***/ }),
+/* 588 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = fsharp;
-	fsharp.displayName = 'fsharp';
-	fsharp.aliases = [];
+	module.exports = fsharp
+	fsharp.displayName = 'fsharp'
+	fsharp.aliases = []
 	function fsharp(Prism) {
 	  Prism.languages.fsharp = Prism.languages.extend('clike', {
 	    comment: [
@@ -26579,12 +27621,12 @@
 	      greedy: true
 	    },
 	    number: [
-	      /\b-?0x[\da-fA-F]+(?:un|lf|LF)?\b/,
-	      /\b-?0b[01]+(?:y|uy)?\b/,
-	      /\b-?(?:\d*\.?\d+|\d+\.)(?:[fFmM]|[eE][+-]?\d+)?\b/,
-	      /\b-?\d+(?:y|uy|s|us|l|u|ul|L|UL|I)?\b/
+	      /\b0x[\da-fA-F]+(?:un|lf|LF)?\b/,
+	      /\b0b[01]+(?:y|uy)?\b/,
+	      /(?:\b\d+\.?\d*|\B\.\d+)(?:[fm]|e[+-]?\d+)?\b/i,
+	      /\b\d+(?:[IlLsy]|u[lsy]?|UL)?\b/
 	    ]
-	  });
+	  })
 	  Prism.languages.insertBefore('fsharp', 'keyword', {
 	    preprocessor: {
 	      pattern: /^[^\r\n\S]*#.*/m,
@@ -26597,19 +27639,60 @@
 	        }
 	      }
 	    }
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 574 */
-/***/ function(module, exports) {
+/***/ }),
+/* 589 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = gherkin;
-	gherkin.displayName = 'gherkin';
-	gherkin.aliases = [];
+	module.exports = gedcom
+	gedcom.displayName = 'gedcom'
+	gedcom.aliases = []
+	function gedcom(Prism) {
+	  Prism.languages.gedcom = {
+	    'line-value': {
+	      // Preceded by level, optional pointer, and tag
+	      pattern: /(^\s*\d+ +(?:@\w[\w!"$%&'()*+,\-./:;<=>?[\\\]^`{|}~\x80-\xfe #]*@ +)?\w+ +).+/m,
+	      lookbehind: true,
+	      inside: {
+	        pointer: {
+	          pattern: /^@\w[\w!"$%&'()*+,\-./:;<=>?[\\\]^`{|}~\x80-\xfe #]*@$/,
+	          alias: 'variable'
+	        }
+	      }
+	    },
+	    tag: {
+	      // Preceded by level and optional pointer
+	      pattern: /(^\s*\d+ +(?:@\w[\w!"$%&'()*+,\-./:;<=>?[\\\]^`{|}~\x80-\xfe #]*@ +)?)\w+/m,
+	      lookbehind: true,
+	      alias: 'string'
+	    },
+	    level: {
+	      pattern: /(^\s*)\d+/m,
+	      lookbehind: true,
+	      alias: 'number'
+	    },
+	    pointer: {
+	      pattern: /@\w[\w!"$%&'()*+,\-./:;<=>?[\\\]^`{|}~\x80-\xfe #]*@/,
+	      alias: 'variable'
+	    }
+	  }
+	}
+
+
+/***/ }),
+/* 590 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = gherkin
+	gherkin.displayName = 'gherkin'
+	gherkin.aliases = []
 	function gherkin(Prism) {
 	  Prism.languages.gherkin = {
 	    pystring: {
@@ -26689,19 +27772,19 @@
 	      pattern: /<[^>]+?>/,
 	      alias: 'variable'
 	    }
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 575 */
-/***/ function(module, exports) {
+/***/ }),
+/* 591 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = git;
-	git.displayName = 'git';
-	git.aliases = [];
+	module.exports = git
+	git.displayName = 'git'
+	git.aliases = []
 	function git(Prism) {
 	  Prism.languages.git = {
 	    /*
@@ -26765,69 +27848,69 @@
 	*     Add of a new line
 	*/
 	    commit_sha1: /^commit \w{40}$/m
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 576 */
-/***/ function(module, exports) {
+/***/ }),
+/* 592 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = glsl;
-	glsl.displayName = 'glsl';
-	glsl.aliases = [];
+	module.exports = glsl
+	glsl.displayName = 'glsl'
+	glsl.aliases = []
 	function glsl(Prism) {
 	  Prism.languages.glsl = Prism.languages.extend('clike', {
 	    comment: [/\/\*[\s\S]*?\*\//, /\/\/(?:\\(?:\r\n|[\s\S])|[^\\\r\n])*/],
-	    number: /\b(?:0x[\da-f]+|(?:\.\d+|\d+\.?\d*)(?:e[+-]?\d+)?)[ulf]*\b/i,
+	    number: /(?:\b0x[\da-f]+|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?)[ulf]*/i,
 	    keyword: /\b(?:attribute|const|uniform|varying|buffer|shared|coherent|volatile|restrict|readonly|writeonly|atomic_uint|layout|centroid|flat|smooth|noperspective|patch|sample|break|continue|do|for|while|switch|case|default|if|else|subroutine|in|out|inout|float|double|int|void|bool|true|false|invariant|precise|discard|return|d?mat[234](?:x[234])?|[ibdu]?vec[234]|uint|lowp|mediump|highp|precision|[iu]?sampler[123]D|[iu]?samplerCube|sampler[12]DShadow|samplerCubeShadow|[iu]?sampler[12]DArray|sampler[12]DArrayShadow|[iu]?sampler2DRect|sampler2DRectShadow|[iu]?samplerBuffer|[iu]?sampler2DMS(?:Array)?|[iu]?samplerCubeArray|samplerCubeArrayShadow|[iu]?image[123]D|[iu]?image2DRect|[iu]?imageCube|[iu]?imageBuffer|[iu]?image[12]DArray|[iu]?imageCubeArray|[iu]?image2DMS(?:Array)?|struct|common|partition|active|asm|class|union|enum|typedef|template|this|resource|goto|inline|noinline|public|static|extern|external|interface|long|short|half|fixed|unsigned|superp|input|output|hvec[234]|fvec[234]|sampler3DRect|filter|sizeof|cast|namespace|using)\b/
-	  });
+	  })
 	  Prism.languages.insertBefore('glsl', 'comment', {
 	    preprocessor: {
 	      pattern: /(^[ \t]*)#(?:(?:define|undef|if|ifdef|ifndef|else|elif|endif|error|pragma|extension|version|line)\b)?/m,
 	      lookbehind: true,
 	      alias: 'builtin'
 	    }
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 577 */
-/***/ function(module, exports) {
+/***/ }),
+/* 593 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = go;
-	go.displayName = 'go';
-	go.aliases = [];
+	module.exports = go
+	go.displayName = 'go'
+	go.aliases = []
 	function go(Prism) {
 	  Prism.languages.go = Prism.languages.extend('clike', {
 	    keyword: /\b(?:break|case|chan|const|continue|default|defer|else|fallthrough|for|func|go(?:to)?|if|import|interface|map|package|range|return|select|struct|switch|type|var)\b/,
 	    builtin: /\b(?:bool|byte|complex(?:64|128)|error|float(?:32|64)|rune|string|u?int(?:8|16|32|64)?|uintptr|append|cap|close|complex|copy|delete|imag|len|make|new|panic|print(?:ln)?|real|recover)\b/,
 	    boolean: /\b(?:_|iota|nil|true|false)\b/,
 	    operator: /[*\/%^!=]=?|\+[=+]?|-[=-]?|\|[=|]?|&(?:=|&|\^=?)?|>(?:>=?|=)?|<(?:<=?|=|-)?|:=|\.\.\./,
-	    number: /\b(-?(0x[a-f\d]+|(\d+\.?\d*|\.\d+)(e[-+]?\d+)?)i?)\b/i,
+	    number: /(?:\b0x[a-f\d]+|(?:\b\d+\.?\d*|\B\.\d+)(?:e[-+]?\d+)?)i?/i,
 	    string: {
 	      pattern: /(["'`])(\\[\s\S]|(?!\1)[^\\])*\1/,
 	      greedy: true
 	    }
-	  });
-	  delete Prism.languages.go['class-name'];
+	  })
+	  delete Prism.languages.go['class-name']
 	}
 
 
-/***/ },
-/* 578 */
-/***/ function(module, exports) {
+/***/ }),
+/* 594 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = graphql;
-	graphql.displayName = 'graphql';
-	graphql.aliases = [];
+	module.exports = graphql
+	graphql.displayName = 'graphql'
+	graphql.aliases = []
 	function graphql(Prism) {
 	  Prism.languages.graphql = {
 	    comment: /#.*/,
@@ -26835,7 +27918,7 @@
 	      pattern: /"(?:\\.|[^\\"\r\n])*"/,
 	      greedy: true
 	    },
-	    number: /(?:\B-|\b)\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b/,
+	    number: /(?:\B-|\b)\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
 	    boolean: /\b(?:true|false)\b/,
 	    variable: /\$[a-z_]\w*/i,
 	    directive: {
@@ -26852,19 +27935,19 @@
 	    ],
 	    operator: /!|=|\.{3}/,
 	    punctuation: /[!(){}\[\]:=,]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 579 */
-/***/ function(module, exports) {
+/***/ }),
+/* 595 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = groovy;
-	groovy.displayName = 'groovy';
-	groovy.aliases = [];
+	module.exports = groovy
+	groovy.displayName = 'groovy'
+	groovy.aliases = []
 	function groovy(Prism) {
 	  Prism.languages.groovy = Prism.languages.extend('clike', {
 	    keyword: /\b(?:as|def|in|abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|do|double|else|enum|extends|final|finally|float|for|goto|if|implements|import|instanceof|int|interface|long|native|new|package|private|protected|public|return|short|static|strictfp|super|switch|synchronized|this|throw|throws|trait|transient|try|void|volatile|while)\b/,
@@ -26884,57 +27967,57 @@
 	      lookbehind: true
 	    },
 	    punctuation: /\.+|[{}[\];(),:$]/
-	  });
+	  })
 	  Prism.languages.insertBefore('groovy', 'string', {
 	    shebang: {
 	      pattern: /#!.+/,
 	      alias: 'comment'
 	    }
-	  });
+	  })
 	  Prism.languages.insertBefore('groovy', 'punctuation', {
 	    'spock-block': /\b(?:setup|given|when|then|and|cleanup|expect|where):/
-	  });
+	  })
 	  Prism.languages.insertBefore('groovy', 'function', {
 	    annotation: {
 	      alias: 'punctuation',
 	      pattern: /(^|[^.])@\w+/,
 	      lookbehind: true
 	    }
-	  });
+	  })
 	  // Handle string interpolation
 	  Prism.hooks.add('wrap', function(env) {
 	    if (env.language === 'groovy' && env.type === 'string') {
-	      var delimiter = env.content[0];
+	      var delimiter = env.content[0]
 	      if (delimiter != "'") {
-	        var pattern = /([^\\])(?:\$(?:\{.*?\}|[\w.]+))/;
+	        var pattern = /([^\\])(?:\$(?:\{.*?\}|[\w.]+))/
 	        if (delimiter === '$') {
-	          pattern = /([^\$])(?:\$(?:\{.*?\}|[\w.]+))/;
+	          pattern = /([^\$])(?:\$(?:\{.*?\}|[\w.]+))/
 	        }
 	        // To prevent double HTML-encoding we have to decode env.content first
-	        env.content = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
+	        env.content = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&')
 	        env.content = Prism.highlight(env.content, {
 	          expression: {
 	            pattern: pattern,
 	            lookbehind: true,
 	            inside: Prism.languages.groovy
 	          }
-	        });
-	        env.classes.push(delimiter === '/' ? 'regex' : 'gstring');
+	        })
+	        env.classes.push(delimiter === '/' ? 'regex' : 'gstring')
 	      }
 	    }
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 580 */
-/***/ function(module, exports) {
+/***/ }),
+/* 596 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = haml;
-	haml.displayName = 'haml';
-	haml.aliases = [];
+	module.exports = haml
+	haml.displayName = 'haml'
+	haml.aliases = []
 	function haml(Prism) {
 	  /* TODO
 	Handle multiline code after tag
@@ -26942,7 +28025,7 @@
 	multiline |
 	code |
 	*/
-	  (function(Prism) {
+	  ;(function(Prism) {
 	    Prism.languages.haml = {
 	      // Multiline stuff should appear before the rest
 	      'multiline-comment': {
@@ -27046,9 +28129,9 @@
 	        pattern: /((?:^|\r?\n|\r)[\t ]*)[~=\-&!]+/,
 	        lookbehind: true
 	      }
-	    };
+	    }
 	    var filter_pattern =
-	      '((?:^|\\r?\\n|\\r)([\\t ]*)):{{filter_name}}(?:(?:\\r?\\n|\\r)(?:\\2[\\t ]+.+|\\s*?(?=\\r?\\n|\\r)))+';
+	      '((?:^|\\r?\\n|\\r)([\\t ]*)):{{filter_name}}(?:(?:\\r?\\n|\\r)(?:\\2[\\t ]+.+|\\s*?(?=\\r?\\n|\\r)))+'
 	    // Non exhaustive list of available filters and associated languages
 	    var filters = [
 	      'css',
@@ -27060,14 +28143,12 @@
 	      'ruby',
 	      'scss',
 	      'textile'
-	    ];
-	    var all_filters = {};
+	    ]
+	    var all_filters = {}
 	    for (var i = 0, l = filters.length; i < l; i++) {
-	      var filter = filters[i];
+	      var filter = filters[i]
 	      filter =
-	        typeof filter === 'string'
-	          ? {filter: filter, language: filter}
-	          : filter;
+	        typeof filter === 'string' ? {filter: filter, language: filter} : filter
 	      if (Prism.languages[filter.language]) {
 	        all_filters['filter-' + filter.filter] = {
 	          pattern: RegExp(
@@ -27081,120 +28162,76 @@
 	            },
 	            rest: Prism.languages[filter.language]
 	          }
-	        };
-	      }
-	    }
-	    Prism.languages.insertBefore('haml', 'filter', all_filters);
-	  })(Prism);
-	}
-
-
-/***/ },
-/* 581 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	module.exports = handlebars;
-	handlebars.displayName = 'handlebars';
-	handlebars.aliases = [];
-	function handlebars(Prism) {
-	  (function(Prism) {
-	    var handlebars_pattern = /\{\{\{[\s\S]+?\}\}\}|\{\{[\s\S]+?\}\}/;
-	    Prism.languages.handlebars = Prism.languages.extend('markup', {
-	      handlebars: {
-	        pattern: handlebars_pattern,
-	        inside: {
-	          delimiter: {
-	            pattern: /^\{\{\{?|\}\}\}?$/i,
-	            alias: 'punctuation'
-	          },
-	          string: /(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,
-	          number: /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee][+-]?\d+)?)\b/,
-	          boolean: /\b(?:true|false)\b/,
-	          block: {
-	            pattern: /^(\s*~?\s*)[#\/]\S+?(?=\s*~?\s*$|\s)/i,
-	            lookbehind: true,
-	            alias: 'keyword'
-	          },
-	          brackets: {
-	            pattern: /\[[^\]]+\]/,
-	            inside: {
-	              punctuation: /\[|\]/,
-	              variable: /[\s\S]+/
-	            }
-	          },
-	          punctuation: /[!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]/,
-	          variable: /[^!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~\s]+/
 	        }
 	      }
-	    });
-	    // Comments are inserted at top so that they can
-	    // surround markup
-	    Prism.languages.insertBefore('handlebars', 'tag', {
-	      'handlebars-comment': {
-	        pattern: /\{\{![\s\S]*?\}\}/,
-	        alias: ['handlebars', 'comment']
-	      }
-	    });
-	    // Tokenize all inline Handlebars expressions that are wrapped in {{ }} or {{{ }}}
-	    // This allows for easy Handlebars + markup highlighting
-	    Prism.hooks.add('before-highlight', function(env) {
-	      if (env.language !== 'handlebars') {
-	        return;
-	      }
-	      env.tokenStack = [];
-	      env.backupCode = env.code;
-	      env.code = env.code.replace(handlebars_pattern, function(match) {
-	        var i = env.tokenStack.length;
-	        // Check for existing strings
-	        while (env.backupCode.indexOf('___HANDLEBARS' + i + '___') !== -1) ++i;
-	        // Create a sparse array
-	        env.tokenStack[i] = match;
-	        return '___HANDLEBARS' + i + '___';
-	      });
-	    });
-	    // Restore env.code for other plugins (e.g. line-numbers)
-	    Prism.hooks.add('before-insert', function(env) {
-	      if (env.language === 'handlebars') {
-	        env.code = env.backupCode;
-	        delete env.backupCode;
-	      }
-	    });
-	    // Re-insert the tokens after highlighting
-	    // and highlight them with defined grammar
-	    Prism.hooks.add('after-highlight', function(env) {
-	      if (env.language !== 'handlebars') {
-	        return;
-	      }
-	      for (
-	        var i = 0, keys = Object.keys(env.tokenStack);
-	        i < keys.length;
-	        ++i
-	      ) {
-	        var k = keys[i];
-	        var t = env.tokenStack[k];
-	        // The replace prevents $$, $&, $`, $', $n, $nn from being interpreted as special patterns
-	        env.highlightedCode = env.highlightedCode.replace(
-	          '___HANDLEBARS' + k + '___',
-	          Prism.highlight(t, env.grammar, 'handlebars').replace(/\$/g, '$$$$')
-	        );
-	      }
-	      env.element.innerHTML = env.highlightedCode;
-	    });
-	  })(Prism);
+	    }
+	    Prism.languages.insertBefore('haml', 'filter', all_filters)
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 582 */
-/***/ function(module, exports) {
+/***/ }),
+/* 597 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = haskell;
-	haskell.displayName = 'haskell';
-	haskell.aliases = [];
+	module.exports = handlebars
+	handlebars.displayName = 'handlebars'
+	handlebars.aliases = []
+	function handlebars(Prism) {
+	  ;(function(Prism) {
+	    Prism.languages.handlebars = {
+	      comment: /\{\{![\s\S]*?\}\}/,
+	      delimiter: {
+	        pattern: /^\{\{\{?|\}\}\}?$/i,
+	        alias: 'punctuation'
+	      },
+	      string: /(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,
+	      number: /\b0x[\dA-Fa-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
+	      boolean: /\b(?:true|false)\b/,
+	      block: {
+	        pattern: /^(\s*~?\s*)[#\/]\S+?(?=\s*~?\s*$|\s)/i,
+	        lookbehind: true,
+	        alias: 'keyword'
+	      },
+	      brackets: {
+	        pattern: /\[[^\]]+\]/,
+	        inside: {
+	          punctuation: /\[|\]/,
+	          variable: /[\s\S]+/
+	        }
+	      },
+	      punctuation: /[!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]/,
+	      variable: /[^!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~\s]+/
+	    }
+	    Prism.hooks.add('before-tokenize', function(env) {
+	      var handlebarsPattern = /\{\{\{[\s\S]+?\}\}\}|\{\{[\s\S]+?\}\}/g
+	      Prism.languages['markup-templating'].buildPlaceholders(
+	        env,
+	        'handlebars',
+	        handlebarsPattern
+	      )
+	    })
+	    Prism.hooks.add('after-tokenize', function(env) {
+	      Prism.languages['markup-templating'].tokenizePlaceholders(
+	        env,
+	        'handlebars'
+	      )
+	    })
+	  })(Prism)
+	}
+
+
+/***/ }),
+/* 598 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = haskell
+	haskell.displayName = 'haskell'
+	haskell.aliases = []
 	function haskell(Prism) {
 	  Prism.languages.haskell = {
 	    comment: {
@@ -27231,19 +28268,19 @@
 	    hvariable: /\b(?:[A-Z][\w']*\.)*[_a-z][\w']*\b/,
 	    constant: /\b(?:[A-Z][\w']*\.)*[A-Z][\w']*\b/,
 	    punctuation: /[{}[\];(),.:]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 583 */
-/***/ function(module, exports) {
+/***/ }),
+/* 599 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = haxe;
-	haxe.displayName = 'haxe';
-	haxe.aliases = [];
+	module.exports = haxe
+	haxe.displayName = 'haxe'
+	haxe.aliases = []
 	function haxe(Prism) {
 	  Prism.languages.haxe = Prism.languages.extend('clike', {
 	    // Strings can be multi-line
@@ -27267,13 +28304,13 @@
 	    // The final look-ahead prevents highlighting of keywords if expressions such as "haxe.macro.Expr"
 	    keyword: /\bthis\b|\b(?:abstract|as|break|case|cast|catch|class|continue|default|do|dynamic|else|enum|extends|extern|from|for|function|if|implements|import|in|inline|interface|macro|new|null|override|public|private|return|static|super|switch|throw|to|try|typedef|using|var|while)(?!\.)\b/,
 	    operator: /\.{3}|\+\+?|-[->]?|[=!]=?|&&?|\|\|?|<[<=]?|>[>=]?|[*\/%~^]/
-	  });
+	  })
 	  Prism.languages.insertBefore('haxe', 'class-name', {
 	    regex: {
 	      pattern: /~\/(?:[^\/\\\r\n]|\\.)+\/[igmsu]*/,
 	      greedy: true
 	    }
-	  });
+	  })
 	  Prism.languages.insertBefore('haxe', 'keyword', {
 	    preprocessor: {
 	      pattern: /#\w+/,
@@ -27287,23 +28324,86 @@
 	      pattern: /\$(?:\w+|(?=\{))/,
 	      alias: 'variable'
 	    }
-	  });
-	  Prism.languages.haxe['string'].inside[
-	    'interpolation'
-	  ].inside.rest = Prism.util.clone(Prism.languages.haxe);
-	  delete Prism.languages.haxe['class-name'];
+	  })
+	  Prism.languages.haxe['string'].inside['interpolation'].inside.rest =
+	    Prism.languages.haxe
+	  delete Prism.languages.haxe['class-name']
 	}
 
 
-/***/ },
-/* 584 */
-/***/ function(module, exports) {
+/***/ }),
+/* 600 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = http;
-	http.displayName = 'http';
-	http.aliases = [];
+	module.exports = hpkp
+	hpkp.displayName = 'hpkp'
+	hpkp.aliases = []
+	function hpkp(Prism) {
+	  /**
+	   * Original by Scott Helme.
+	   *
+	   * Reference: https://scotthelme.co.uk/hpkp-cheat-sheet/
+	   */
+	  Prism.languages.hpkp = {
+	    directive: {
+	      pattern: /\b(?:(?:includeSubDomains|preload|strict)(?: |;)|pin-sha256="[a-zA-Z\d+=/]+"|(?:max-age|report-uri)=|report-to )/,
+	      alias: 'keyword'
+	    },
+	    safe: {
+	      pattern: /\d{7,}/,
+	      alias: 'selector'
+	    },
+	    unsafe: {
+	      pattern: /\d{0,6}/,
+	      alias: 'function'
+	    }
+	  }
+	}
+
+
+/***/ }),
+/* 601 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = hsts
+	hsts.displayName = 'hsts'
+	hsts.aliases = []
+	function hsts(Prism) {
+	  /**
+	   * Original by Scott Helme.
+	   *
+	   * Reference: https://scotthelme.co.uk/hsts-cheat-sheet/
+	   */
+	  Prism.languages.hsts = {
+	    directive: {
+	      pattern: /\b(?:max-age=|includeSubDomains|preload)/,
+	      alias: 'keyword'
+	    },
+	    safe: {
+	      pattern: /\d{8,}/,
+	      alias: 'selector'
+	    },
+	    unsafe: {
+	      pattern: /\d{0,7}/,
+	      alias: 'function'
+	    }
+	  }
+	}
+
+
+/***/ }),
+/* 602 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = http
+	http.displayName = 'http'
+	http.aliases = []
 	function http(Prism) {
 	  Prism.languages.http = {
 	    'request-line': {
@@ -27330,19 +28430,19 @@
 	      pattern: /^[\w-]+:(?=.)/m,
 	      alias: 'keyword'
 	    }
-	  };
+	  }
 	  // Create a mapping of Content-Type headers to language definitions
 	  var httpLanguages = {
 	    'application/json': Prism.languages.javascript,
 	    'application/xml': Prism.languages.markup,
 	    'text/xml': Prism.languages.markup,
 	    'text/html': Prism.languages.markup
-	  };
+	  }
 	  // Insert each content type parser that has its associated language
 	  // currently loaded.
 	  for (var contentType in httpLanguages) {
 	    if (httpLanguages[contentType]) {
-	      var options = {};
+	      var options = {}
 	      options[contentType] = {
 	        pattern: new RegExp(
 	          '(content-type:\\s*' +
@@ -27354,22 +28454,50 @@
 	        inside: {
 	          rest: httpLanguages[contentType]
 	        }
-	      };
-	      Prism.languages.insertBefore('http', 'header-name', options);
+	      }
+	      Prism.languages.insertBefore('http', 'header-name', options)
 	    }
 	  }
 	}
 
 
-/***/ },
-/* 585 */
-/***/ function(module, exports) {
+/***/ }),
+/* 603 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = icon;
-	icon.displayName = 'icon';
-	icon.aliases = [];
+	module.exports = ichigojam
+	ichigojam.displayName = 'ichigojam'
+	ichigojam.aliases = []
+	function ichigojam(Prism) {
+	  // according to the offical reference (EN)
+	  // https://ichigojam.net/IchigoJam-en.html
+	  Prism.languages.ichigojam = {
+	    comment: /(?:\B'|REM)(?:[^\n\r]*)/i,
+	    string: {
+	      pattern: /"(?:""|[!#$%&'()*,\/:;<=>?^_ +\-.A-Z\d])*"/i,
+	      greedy: true
+	    },
+	    number: /\B#[0-9A-F]+|\B`[01]+|(?:\b\d+\.?\d*|\B\.\d+)(?:E[+-]?\d+)?/i,
+	    keyword: /\b(?:BEEP|BPS|CASE|CLEAR|CLK|CLO|CLP|CLS|CLT|CLV|CONT|COPY|ELSE|END|FILE|FILES|FOR|GOSUB|GSB|GOTO|IF|INPUT|KBD|LED|LET|LIST|LOAD|LOCATE|LRUN|NEW|NEXT|OUT|RIGHT|PLAY|POKE|PRINT|PWM|REM|RENUM|RESET|RETURN|RTN|RUN|SAVE|SCROLL|SLEEP|SRND|STEP|STOP|SUB|TEMPO|THEN|TO|UART|VIDEO|WAIT)(?:\$|\b)/i,
+	    function: /\b(?:ABS|ANA|ASC|BIN|BTN|DEC|END|FREE|HELP|HEX|I2CR|I2CW|IN|INKEY|LEN|LINE|PEEK|RND|SCR|SOUND|STR|TICK|USR|VER|VPEEK|ZER)(?:\$|\b)/i,
+	    label: /(?:\B@[^\s]+)/i,
+	    operator: /<[=>]?|>=?|\|\||&&|[+\-*\/=|&^~!]|\b(?:AND|NOT|OR)\b/i,
+	    punctuation: /[\[,;:()\]]/
+	  }
+	}
+
+
+/***/ }),
+/* 604 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = icon
+	icon.displayName = 'icon'
+	icon.aliases = []
 	function icon(Prism) {
 	  Prism.languages.icon = {
 	    comment: /#.*/,
@@ -27390,19 +28518,19 @@
 	    function: /(?!\d)\w+(?=\s*[({]|\s*!\s*\[)/,
 	    operator: /[+-]:(?!=)|(?:[\/?@^%&]|\+\+?|--?|==?=?|~==?=?|\*\*?|\|\|\|?|<(?:->?|<?=?)|>>?=?)(?::=)?|:(?:=:?)?|[!.\\|~]/,
 	    punctuation: /[\[\](){},;]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 586 */
-/***/ function(module, exports) {
+/***/ }),
+/* 605 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = inform7;
-	inform7.displayName = 'inform7';
-	inform7.aliases = [];
+	module.exports = inform7
+	inform7.displayName = 'inform7'
+	inform7.aliases = []
 	function inform7(Prism) {
 	  Prism.languages.inform7 = {
 	    string: {
@@ -27429,7 +28557,7 @@
 	      alias: 'important'
 	    },
 	    number: {
-	      pattern: /(^|[^-])(?:(?:\b|-)\d+(?:\.\d+)?(?:\^\d+)?\w*|\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve))\b(?!-)/i,
+	      pattern: /(^|[^-])(?:\b\d+(?:\.\d+)?(?:\^\d+)?\w*|\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve))\b(?!-)/i,
 	      lookbehind: true
 	    },
 	    verb: {
@@ -27457,27 +28585,26 @@
 	      alias: 'variable'
 	    },
 	    punctuation: /[.,:;(){}]/
-	  };
-	  Prism.languages.inform7['string'].inside[
-	    'substitution'
-	  ].inside.rest = Prism.util.clone(Prism.languages.inform7);
+	  }
+	  Prism.languages.inform7['string'].inside['substitution'].inside.rest =
+	    Prism.languages.inform7
 	  // We don't want the remaining text in the substitution to be highlighted as the string.
 	  Prism.languages.inform7['string'].inside['substitution'].inside.rest.text = {
 	    pattern: /\S(?:\s*\S)*/,
 	    alias: 'comment'
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 587 */
-/***/ function(module, exports) {
+/***/ }),
+/* 606 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = ini;
-	ini.displayName = 'ini';
-	ini.aliases = [];
+	module.exports = ini
+	ini.displayName = 'ini'
+	ini.aliases = []
 	function ini(Prism) {
 	  Prism.languages.ini = {
 	    comment: /^[ \t]*;.*$/m,
@@ -27489,19 +28616,63 @@
 	        punctuation: /^[=]/
 	      }
 	    }
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 588 */
-/***/ function(module, exports) {
+/***/ }),
+/* 607 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = j;
-	j.displayName = 'j';
-	j.aliases = [];
+	module.exports = io
+	io.displayName = 'io'
+	io.aliases = []
+	function io(Prism) {
+	  Prism.languages.io = {
+	    comment: [
+	      {
+	        pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
+	        lookbehind: true
+	      },
+	      {
+	        pattern: /(^|[^\\])\/\/.*/,
+	        lookbehind: true
+	      },
+	      {
+	        pattern: /(^|[^\\])#.*/,
+	        lookbehind: true
+	      }
+	    ],
+	    'triple-quoted-string': {
+	      pattern: /"""(?:\\[\s\S]|(?!""")[^\\])*"""/,
+	      greedy: true,
+	      alias: 'string'
+	    },
+	    string: {
+	      pattern: /"(?:\\.|[^\\\r\n"])*"/,
+	      greedy: true
+	    },
+	    keyword: /\b(?:activate|activeCoroCount|asString|block|break|catch|clone|collectGarbage|compileString|continue|do|doFile|doMessage|doString|else|elseif|exit|for|foreach|forward|getSlot|getEnvironmentVariable|hasSlot|if|ifFalse|ifNil|ifNilEval|ifTrue|isActive|isNil|isResumable|list|message|method|parent|pass|pause|perform|performWithArgList|print|println|proto|raise|raiseResumable|removeSlot|resend|resume|schedulerSleepSeconds|self|sender|setSchedulerSleepSeconds|setSlot|shallowCopy|slotNames|super|system|then|thisBlock|thisContext|call|try|type|uniqueId|updateSlot|wait|while|write|yield)\b/,
+	    builtin: /\b(?:Array|AudioDevice|AudioMixer|Block|Box|Buffer|CFunction|CGI|Color|Curses|DBM|DNSResolver|DOConnection|DOProxy|DOServer|Date|Directory|Duration|DynLib|Error|Exception|FFT|File|Fnmatch|Font|Future|GL|GLE|GLScissor|GLU|GLUCylinder|GLUQuadric|GLUSphere|GLUT|Host|Image|Importer|LinkList|List|Lobby|Locals|MD5|MP3Decoder|MP3Encoder|Map|Message|Movie|Notification|Number|Object|OpenGL|Point|Protos|Regex|SGML|SGMLElement|SGMLParser|SQLite|Server|Sequence|ShowMessage|SleepyCat|SleepyCatCursor|Socket|SocketManager|Sound|Soup|Store|String|Tree|UDPSender|UPDReceiver|URL|User|Warning|WeakLink|Random|BigNum|Sequence)\b/,
+	    boolean: /\b(?:true|false|nil)\b/,
+	    number: /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e-?\d+)?/i,
+	    operator: /[=!*/%+-^&|]=|>>?=?|<<?=?|:?:?=|\+\+?|--?|\*\*?|\/\/?|%|\|\|?|&&?|(\b(?:return|and|or|not)\b)|@@?|\?\??|\.\./,
+	    punctuation: /[{}[\];(),.:]/
+	  }
+	}
+
+
+/***/ }),
+/* 608 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = j
+	j.displayName = 'j'
+	j.aliases = []
 	function j(Prism) {
 	  Prism.languages.j = {
 	    comment: /\bNB\..*/,
@@ -27527,52 +28698,62 @@
 	      alias: 'variable'
 	    },
 	    punctuation: /[()]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 589 */
-/***/ function(module, exports) {
+/***/ }),
+/* 609 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = java;
-	java.displayName = 'java';
-	java.aliases = [];
+	module.exports = java
+	java.displayName = 'java'
+	java.aliases = []
 	function java(Prism) {
 	  Prism.languages.java = Prism.languages.extend('clike', {
 	    keyword: /\b(?:abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while)\b/,
-	    number: /\b0b[01]+\b|\b0x[\da-f]*\.?[\da-fp\-]+\b|\b\d*\.?\d+(?:e[+-]?\d+)?[df]?\b/i,
+	    number: /\b0b[01]+\b|\b0x[\da-f]*\.?[\da-fp-]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?[df]?/i,
 	    operator: {
 	      pattern: /(^|[^.])(?:\+[+=]?|-[-=]?|!=?|<<?=?|>>?>?=?|==?|&[&=]?|\|[|=]?|\*=?|\/=?|%=?|\^=?|[?:~])/m,
 	      lookbehind: true
 	    }
-	  });
+	  })
 	  Prism.languages.insertBefore('java', 'function', {
 	    annotation: {
 	      alias: 'punctuation',
 	      pattern: /(^|[^.])@\w+/,
 	      lookbehind: true
 	    }
-	  });
+	  })
+	  Prism.languages.insertBefore('java', 'class-name', {
+	    generics: {
+	      pattern: /<\s*\w+(?:\.\w+)?(?:\s*,\s*\w+(?:\.\w+)?)*>/i,
+	      alias: 'function',
+	      inside: {
+	        keyword: Prism.languages.java.keyword,
+	        punctuation: /[<>(),.:]/
+	      }
+	    }
+	  })
 	}
 
 
-/***/ },
-/* 590 */
-/***/ function(module, exports) {
+/***/ }),
+/* 610 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = jolie;
-	jolie.displayName = 'jolie';
-	jolie.aliases = [];
+	module.exports = jolie
+	jolie.displayName = 'jolie'
+	jolie.aliases = []
 	function jolie(Prism) {
 	  Prism.languages.jolie = Prism.languages.extend('clike', {
 	    keyword: /\b(?:include|define|is_defined|undef|main|init|outputPort|inputPort|Location|Protocol|Interfaces|RequestResponse|OneWay|type|interface|extender|throws|cset|csets|forward|Aggregates|Redirects|embedded|courier|execution|sequential|concurrent|single|scope|install|throw|comp|cH|default|global|linkIn|linkOut|synchronized|this|new|for|if|else|while|in|Jolie|Java|Javascript|nullProcess|spawn|constants|with|provide|until|exit|foreach|instanceof|over|service)\b/,
 	    builtin: /\b(?:undefined|string|int|void|long|Byte|bool|double|float|char|any)\b/,
-	    number: /\b\d*\.?\d+(?:e[+-]?\d+)?l?\b/i,
+	    number: /(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?l?/i,
 	    operator: /-[-=>]?|\+[+=]?|<[<=]?|[>=*!]=?|&&|\|\||[:?\/%^]/,
 	    symbol: /[|;@]/,
 	    punctuation: /[,.]/,
@@ -27580,9 +28761,9 @@
 	      pattern: /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
 	      greedy: true
 	    }
-	  });
-	  delete Prism.languages.jolie['class-name'];
-	  delete Prism.languages.jolie['function'];
+	  })
+	  delete Prism.languages.jolie['class-name']
+	  delete Prism.languages.jolie['function']
 	  Prism.languages.insertBefore('jolie', 'keyword', {
 	    function: {
 	      pattern: /((?:\b(?:outputPort|inputPort|in|service|courier)\b|@)\s*)\w+/,
@@ -27621,19 +28802,19 @@
 	        }
 	      }
 	    }
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 591 */
-/***/ function(module, exports) {
+/***/ }),
+/* 611 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = json;
-	json.displayName = 'json';
-	json.aliases = ['jsonp'];
+	module.exports = json
+	json.displayName = 'json'
+	json.aliases = ['jsonp']
 	function json(Prism) {
 	  Prism.languages.json = {
 	    property: /"(?:\\.|[^\\"\r\n])*"(?=\s*:)/i,
@@ -27641,57 +28822,47 @@
 	      pattern: /"(?:\\.|[^\\"\r\n])*"(?!\s*:)/,
 	      greedy: true
 	    },
-	    number: /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee][+-]?\d+)?)\b/,
+	    number: /\b0x[\dA-Fa-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
 	    punctuation: /[{}[\]);,]/,
 	    operator: /:/g,
 	    boolean: /\b(?:true|false)\b/i,
 	    null: /\bnull\b/i
-	  };
-	  Prism.languages.jsonp = Prism.languages.json;
+	  }
+	  Prism.languages.jsonp = Prism.languages.json
 	}
 
 
-/***/ },
-/* 592 */
-/***/ function(module, exports) {
+/***/ }),
+/* 612 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = jsx;
-	jsx.displayName = 'jsx';
-	jsx.aliases = [];
+	module.exports = jsx
+	jsx.displayName = 'jsx'
+	jsx.aliases = []
 	function jsx(Prism) {
-	  (function(Prism) {
-	    var javascript = Prism.util.clone(Prism.languages.javascript);
-	    Prism.languages.jsx = Prism.languages.extend('markup', javascript);
-	    Prism.languages.jsx.tag.pattern = /<\/?[\w.:-]+\s*(?:\s+(?:[\w\.:-]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+|(?:\{[^}]*\})))?|\{\.{3}\w+\}))*\s*\/?>/i;
+	  ;(function(Prism) {
+	    var javascript = Prism.util.clone(Prism.languages.javascript)
+	    Prism.languages.jsx = Prism.languages.extend('markup', javascript)
+	    Prism.languages.jsx.tag.pattern = /<\/?[\w.:-]+\s*(?:\s+(?:[\w.:-]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s{'">=]+|\{(?:\{[^}]*\}|[^{}])+\}))?|\{\.{3}[a-z_$][\w$]*(?:\.[a-z_$][\w$]*)*\}))*\s*\/?>/i
 	    Prism.languages.jsx.tag.inside[
 	      'attr-value'
-	    ].pattern = /=(?!\{)(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">]+)/i;
+	    ].pattern = /=(?!\{)(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">]+)/i
 	    Prism.languages.insertBefore(
 	      'inside',
 	      'attr-name',
 	      {
 	        spread: {
-	          pattern: /\{\.{3}\w+\}/,
+	          pattern: /\{\.{3}[a-z_$][\w$]*(?:\.[a-z_$][\w$]*)*\}/,
 	          inside: {
-	            punctuation: /[{}]|\.{3}/,
+	            punctuation: /\.{3}|[{}.]/,
 	            'attr-value': /\w+/
 	          }
 	        }
 	      },
 	      Prism.languages.jsx.tag
-	    );
-	    var jsxExpression = Prism.util.clone(Prism.languages.jsx);
-	    delete jsxExpression.punctuation;
-	    jsxExpression = Prism.languages.insertBefore(
-	      'jsx',
-	      'operator',
-	      {
-	        punctuation: /=(?={)|[{}[\];(),.:]/
-	      },
-	      {jsx: jsxExpression}
-	    );
+	    )
 	    Prism.languages.insertBefore(
 	      'inside',
 	      'attr-value',
@@ -27699,25 +28870,138 @@
 	        script: {
 	          // Allow for one level of nesting
 	          pattern: /=(\{(?:\{[^}]*\}|[^}])+\})/i,
-	          inside: jsxExpression,
+	          inside: {
+	            'script-punctuation': {
+	              pattern: /^=(?={)/,
+	              alias: 'punctuation'
+	            },
+	            rest: Prism.languages.jsx
+	          },
 	          alias: 'language-javascript'
 	        }
 	      },
 	      Prism.languages.jsx.tag
-	    );
-	  })(Prism);
+	    )
+	    // The following will handle plain text inside tags
+	    var stringifyToken = function(token) {
+	      if (typeof token === 'string') {
+	        return token
+	      }
+	      if (typeof token.content === 'string') {
+	        return token.content
+	      }
+	      return token.content.map(stringifyToken).join('')
+	    }
+	    var walkTokens = function(tokens) {
+	      var openedTags = []
+	      for (var i = 0; i < tokens.length; i++) {
+	        var token = tokens[i]
+	        var notTagNorBrace = false
+	        if (typeof token !== 'string') {
+	          if (
+	            token.type === 'tag' &&
+	            token.content[0] &&
+	            token.content[0].type === 'tag'
+	          ) {
+	            // We found a tag, now find its kind
+	            if (token.content[0].content[0].content === '</') {
+	              // Closing tag
+	              if (
+	                openedTags.length > 0 &&
+	                openedTags[openedTags.length - 1].tagName ===
+	                  stringifyToken(token.content[0].content[1])
+	              ) {
+	                // Pop matching opening tag
+	                openedTags.pop()
+	              }
+	            } else {
+	              if (token.content[token.content.length - 1].content === '/>') {
+	                // Autoclosed tag, ignore
+	              } else {
+	                // Opening tag
+	                openedTags.push({
+	                  tagName: stringifyToken(token.content[0].content[1]),
+	                  openedBraces: 0
+	                })
+	              }
+	            }
+	          } else if (
+	            openedTags.length > 0 &&
+	            token.type === 'punctuation' &&
+	            token.content === '{'
+	          ) {
+	            // Here we might have entered a JSX context inside a tag
+	            openedTags[openedTags.length - 1].openedBraces++
+	          } else if (
+	            openedTags.length > 0 &&
+	            openedTags[openedTags.length - 1].openedBraces > 0 &&
+	            token.type === 'punctuation' &&
+	            token.content === '}'
+	          ) {
+	            // Here we might have left a JSX context inside a tag
+	            openedTags[openedTags.length - 1].openedBraces--
+	          } else {
+	            notTagNorBrace = true
+	          }
+	        }
+	        if (notTagNorBrace || typeof token === 'string') {
+	          if (
+	            openedTags.length > 0 &&
+	            openedTags[openedTags.length - 1].openedBraces === 0
+	          ) {
+	            // Here we are inside a tag, and not inside a JSX context.
+	            // That's plain text: drop any tokens matched.
+	            var plainText = stringifyToken(token)
+	            // And merge text with adjacent text
+	            if (
+	              i < tokens.length - 1 &&
+	              (typeof tokens[i + 1] === 'string' ||
+	                tokens[i + 1].type === 'plain-text')
+	            ) {
+	              plainText += stringifyToken(tokens[i + 1])
+	              tokens.splice(i + 1, 1)
+	            }
+	            if (
+	              i > 0 &&
+	              (typeof tokens[i - 1] === 'string' ||
+	                tokens[i - 1].type === 'plain-text')
+	            ) {
+	              plainText = stringifyToken(tokens[i - 1]) + plainText
+	              tokens.splice(i - 1, 1)
+	              i--
+	            }
+	            tokens[i] = new Prism.Token(
+	              'plain-text',
+	              plainText,
+	              null,
+	              plainText
+	            )
+	          }
+	        }
+	        if (token.content && typeof token.content !== 'string') {
+	          walkTokens(token.content)
+	        }
+	      }
+	    }
+	    Prism.hooks.add('after-tokenize', function(env) {
+	      if (env.language !== 'jsx' && env.language !== 'tsx') {
+	        return
+	      }
+	      walkTokens(env.tokens)
+	    })
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 593 */
-/***/ function(module, exports) {
+/***/ }),
+/* 613 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = julia;
-	julia.displayName = 'julia';
-	julia.aliases = [];
+	module.exports = julia
+	julia.displayName = 'julia'
+	julia.aliases = []
 	function julia(Prism) {
 	  Prism.languages.julia = {
 	    comment: {
@@ -27727,22 +29011,22 @@
 	    string: /("""|''')[\s\S]+?\1|("|')(?:\\.|(?!\2)[^\\\r\n])*\2/,
 	    keyword: /\b(?:abstract|baremodule|begin|bitstype|break|catch|ccall|const|continue|do|else|elseif|end|export|finally|for|function|global|if|immutable|import|importall|let|local|macro|module|print|println|quote|return|try|type|typealias|using|while)\b/,
 	    boolean: /\b(?:true|false)\b/,
-	    number: /\b-?(?:0[box])?(?:[\da-f]+\.?\d*|\.\d+)(?:[efp][+-]?\d+)?j?\b/i,
+	    number: /(?:\b(?=\d)|\B(?=\.))(?:0[box])?(?:[\da-f]+\.?\d*|\.\d+)(?:[efp][+-]?\d+)?j?/i,
 	    operator: /[-+*^%÷&$\\]=?|\/[\/=]?|!=?=?|\|[=>]?|<(?:<=?|[=:])?|>(?:=|>>?=?)?|==?=?|[~≠≤≥]/,
 	    punctuation: /[{}[\];(),.:]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 594 */
-/***/ function(module, exports) {
+/***/ }),
+/* 614 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = keyman;
-	keyman.displayName = 'keyman';
-	keyman.aliases = [];
+	module.exports = keyman
+	keyman.displayName = 'keyman'
+	keyman.aliases = []
 	function keyman(Prism) {
 	  Prism.languages.keyman = {
 	    comment: /\bc\s.*/i,
@@ -27758,21 +29042,21 @@
 	    number: /\b(?:U\+[\dA-F]+|d\d+|x[\da-f]+|\d+)\b/i, // U+####, x###, d### characters and numbers
 	    operator: /[+>\\,()]/,
 	    tag: /\$(?:keyman|kmfl|weaver|keymanweb|keymanonly):/i // prefixes
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 595 */
-/***/ function(module, exports) {
+/***/ }),
+/* 615 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = kotlin;
-	kotlin.displayName = 'kotlin';
-	kotlin.aliases = [];
+	module.exports = kotlin
+	kotlin.displayName = 'kotlin'
+	kotlin.aliases = []
 	function kotlin(Prism) {
-	  (function(Prism) {
+	  ;(function(Prism) {
 	    Prism.languages.kotlin = Prism.languages.extend('clike', {
 	      keyword: {
 	        // The lookbehind prevents wrong highlighting of e.g. kotlin.properties.get
@@ -27788,27 +29072,27 @@
 	      ],
 	      number: /\b(?:0[bx][\da-fA-F]+|\d+(?:\.\d+)?(?:e[+-]?\d+)?[fFL]?)\b/,
 	      operator: /\+[+=]?|-[-=>]?|==?=?|!(?:!|==?)?|[\/*%<>]=?|[?:]:?|\.\.|&&|\|\||\b(?:and|inv|or|shl|shr|ushr|xor)\b/
-	    });
-	    delete Prism.languages.kotlin['class-name'];
+	    })
+	    delete Prism.languages.kotlin['class-name']
 	    Prism.languages.insertBefore('kotlin', 'string', {
 	      'raw-string': {
 	        pattern: /("""|''')[\s\S]*?\1/,
 	        alias: 'string'
 	        // See interpolation below
 	      }
-	    });
+	    })
 	    Prism.languages.insertBefore('kotlin', 'keyword', {
 	      annotation: {
 	        pattern: /\B@(?:\w+:)?(?:[A-Z]\w*|\[[^\]]+\])/,
 	        alias: 'builtin'
 	      }
-	    });
+	    })
 	    Prism.languages.insertBefore('kotlin', 'function', {
 	      label: {
 	        pattern: /\w+@|@\w+/,
 	        alias: 'symbol'
 	      }
-	    });
+	    })
 	    var interpolation = [
 	      {
 	        pattern: /\$\{[^}]+\}/,
@@ -27817,41 +29101,41 @@
 	            pattern: /^\$\{|\}$/,
 	            alias: 'variable'
 	          },
-	          rest: Prism.util.clone(Prism.languages.kotlin)
+	          rest: Prism.languages.kotlin
 	        }
 	      },
 	      {
 	        pattern: /\$\w+/,
 	        alias: 'variable'
 	      }
-	    ];
+	    ]
 	    Prism.languages.kotlin['string'].inside = Prism.languages.kotlin[
 	      'raw-string'
 	    ].inside = {
 	      interpolation: interpolation
-	    };
-	  })(Prism);
+	    }
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 596 */
-/***/ function(module, exports) {
+/***/ }),
+/* 616 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = latex;
-	latex.displayName = 'latex';
-	latex.aliases = [];
+	module.exports = latex
+	latex.displayName = 'latex'
+	latex.aliases = []
 	function latex(Prism) {
-	  (function(Prism) {
+	  ;(function(Prism) {
 	    var funcPattern = /\\(?:[^a-z()[\]]|[a-z*]+)/i,
 	      insideEqu = {
 	        'equation-command': {
 	          pattern: funcPattern,
 	          alias: 'regex'
 	        }
-	      };
+	      }
 	    Prism.languages.latex = {
 	      comment: /%.*/m,
 	      // the verbatim environment prints whitespace to the document
@@ -27902,20 +29186,20 @@
 	        alias: 'selector'
 	      },
 	      punctuation: /[[\]{}&]/
-	    };
-	  })(Prism);
+	    }
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 597 */
-/***/ function(module, exports) {
+/***/ }),
+/* 617 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = less;
-	less.displayName = 'less';
-	less.aliases = [];
+	module.exports = less
+	less.displayName = 'less'
+	less.aliases = []
 	function less(Prism) {
 	  /* FIXME :
 	:extend() is not handled specifically : its highlighting is buggy.
@@ -27949,11 +29233,11 @@
 	    property: /(?:@\{[\w-]+\}|[\w-])+(?:\+_?)?(?=\s*:)/i,
 	    punctuation: /[{}();:,]/,
 	    operator: /[+\-*\/]/
-	  });
+	  })
 	  // Invert function and punctuation positions
 	  Prism.languages.insertBefore('less', 'punctuation', {
 	    function: Prism.languages.less.function
-	  });
+	  })
 	  Prism.languages.insertBefore('less', 'property', {
 	    variable: [
 	      // Variable declaration (the colon must be consumed!)
@@ -27971,19 +29255,250 @@
 	      lookbehind: true,
 	      alias: 'function'
 	    }
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 598 */
-/***/ function(module, exports) {
+/***/ }),
+/* 618 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = livescript;
-	livescript.displayName = 'livescript';
-	livescript.aliases = [];
+	module.exports = liquid
+	liquid.displayName = 'liquid'
+	liquid.aliases = []
+	function liquid(Prism) {
+	  Prism.languages.liquid = {
+	    keyword: /\b(?:comment|endcomment|if|elsif|else|endif|unless|endunless|for|endfor|case|endcase|when|in|break|assign|continue|limit|offset|range|reversed|raw|endraw|capture|endcapture|tablerow|endtablerow)\b/,
+	    number: /\b0b[01]+\b|\b0x[\da-f]*\.?[\da-fp-]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?[df]?/i,
+	    operator: {
+	      pattern: /(^|[^.])(?:\+[+=]?|-[-=]?|!=?|<<?=?|>>?>?=?|==?|&[&=]?|\|[|=]?|\*=?|\/=?|%=?|\^=?|[?:~])/m,
+	      lookbehind: true
+	    },
+	    function: {
+	      pattern: /(^|[\s;|&])(?:append|prepend|capitalize|cycle|cols|increment|decrement|abs|at_least|at_most|ceil|compact|concat|date|default|divided_by|downcase|escape|escape_once|first|floor|join|last|lstrip|map|minus|modulo|newline_to_br|plus|remove|remove_first|replace|replace_first|reverse|round|rstrip|size|slice|sort|sort_natural|split|strip|strip_html|strip_newlines|times|truncate|truncatewords|uniq|upcase|url_decode|url_encode|include|paginate)(?=$|[\s;|&])/,
+	      lookbehind: true
+	    }
+	  }
+	}
+
+
+/***/ }),
+/* 619 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = lisp
+	lisp.displayName = 'lisp'
+	lisp.aliases = []
+	function lisp(Prism) {
+	  ;(function(Prism) {
+	    // Functions to construct regular expressions
+	    // simple form
+	    // e.g. (interactive ... or (interactive)
+	    function simple_form(name) {
+	      return new RegExp('(\\()' + name + '(?=[\\s\\)])')
+	    }
+	    // booleans and numbers
+	    function primitive(pattern) {
+	      return new RegExp('([\\s([])' + pattern + '(?=[\\s)])')
+	    }
+	    // Patterns in regular expressions
+	    // Symbol name. See https://www.gnu.org/software/emacs/manual/html_node/elisp/Symbol-Type.html
+	    // & and : are excluded as they are usually used for special purposes
+	    var symbol = '[-+*/_~!@$%^=<>{}\\w]+'
+	    // symbol starting with & used in function arguments
+	    var marker = '&' + symbol
+	    // Open parenthesis for look-behind
+	    var par = '(\\()'
+	    var endpar = '(?=\\))'
+	    // End the pattern with look-ahead space
+	    var space = '(?=\\s)'
+	    var language = {
+	      // Three or four semicolons are considered a heading.
+	      // See https://www.gnu.org/software/emacs/manual/html_node/elisp/Comment-Tips.html
+	      heading: {
+	        pattern: /;;;.*/,
+	        alias: ['comment', 'title']
+	      },
+	      comment: /;.*/,
+	      string: {
+	        pattern: /"(?:[^"\\]*|\\.)*"/,
+	        greedy: true,
+	        inside: {
+	          argument: /[-A-Z]+(?=[.,\s])/,
+	          symbol: new RegExp('`' + symbol + "'")
+	        }
+	      },
+	      'quoted-symbol': {
+	        pattern: new RegExp("#?'" + symbol),
+	        alias: ['variable', 'symbol']
+	      },
+	      'lisp-property': {
+	        pattern: new RegExp(':' + symbol),
+	        alias: 'property'
+	      },
+	      splice: {
+	        pattern: new RegExp(',@?' + symbol),
+	        alias: ['symbol', 'variable']
+	      },
+	      keyword: [
+	        {
+	          pattern: new RegExp(
+	            par +
+	              '(?:(?:lexical-)?let\\*?|(?:cl-)?letf|if|when|while|unless|cons|cl-loop|and|or|not|cond|setq|error|message|null|require|provide|use-package)' +
+	              space
+	          ),
+	          lookbehind: true
+	        },
+	        {
+	          pattern: new RegExp(
+	            par +
+	              '(?:for|do|collect|return|finally|append|concat|in|by)' +
+	              space
+	          ),
+	          lookbehind: true
+	        }
+	      ],
+	      declare: {
+	        pattern: simple_form('declare'),
+	        lookbehind: true,
+	        alias: 'keyword'
+	      },
+	      interactive: {
+	        pattern: simple_form('interactive'),
+	        lookbehind: true,
+	        alias: 'keyword'
+	      },
+	      boolean: {
+	        pattern: primitive('(?:t|nil)'),
+	        lookbehind: true
+	      },
+	      number: {
+	        pattern: primitive('[-+]?\\d+(?:\\.\\d*)?'),
+	        lookbehind: true
+	      },
+	      defvar: {
+	        pattern: new RegExp(par + 'def(?:var|const|custom|group)\\s+' + symbol),
+	        lookbehind: true,
+	        inside: {
+	          keyword: /^def[a-z]+/,
+	          variable: new RegExp(symbol)
+	        }
+	      },
+	      defun: {
+	        pattern: new RegExp(
+	          par +
+	            '(?:cl-)?(?:defun\\*?|defmacro)\\s+' +
+	            symbol +
+	            '\\s+\\([\\s\\S]*?\\)'
+	        ),
+	        lookbehind: true,
+	        inside: {
+	          keyword: /^(?:cl-)?def\S+/,
+	          // See below, this property needs to be defined later so that it can
+	          // reference the language object.
+	          arguments: null,
+	          function: {
+	            pattern: new RegExp('(^\\s)' + symbol),
+	            lookbehind: true
+	          },
+	          punctuation: /[()]/
+	        }
+	      },
+	      lambda: {
+	        pattern: new RegExp(par + 'lambda\\s+\\((?:&?' + symbol + '\\s*)*\\)'),
+	        lookbehind: true,
+	        inside: {
+	          keyword: /^lambda/,
+	          // See below, this property needs to be defined later so that it can
+	          // reference the language object.
+	          arguments: null,
+	          punctuation: /[()]/
+	        }
+	      },
+	      car: {
+	        pattern: new RegExp(par + symbol),
+	        lookbehind: true
+	      },
+	      punctuation: [
+	        // open paren, brackets, and close paren
+	        /(['`,]?\(|[)\[\]])/,
+	        // cons
+	        {
+	          pattern: /(\s)\.(?=\s)/,
+	          lookbehind: true
+	        }
+	      ]
+	    }
+	    var arg = {
+	      'lisp-marker': new RegExp(marker),
+	      rest: {
+	        argument: {
+	          pattern: new RegExp(symbol),
+	          alias: 'variable'
+	        },
+	        varform: {
+	          pattern: new RegExp(par + symbol + '\\s+\\S[\\s\\S]*' + endpar),
+	          lookbehind: true,
+	          inside: {
+	            string: language.string,
+	            boolean: language.boolean,
+	            number: language.number,
+	            symbol: language.symbol,
+	            punctuation: /[()]/
+	          }
+	        }
+	      }
+	    }
+	    var forms = '\\S+(?:\\s+\\S+)*'
+	    var arglist = {
+	      pattern: new RegExp(par + '[\\s\\S]*' + endpar),
+	      lookbehind: true,
+	      inside: {
+	        'rest-vars': {
+	          pattern: new RegExp('&(?:rest|body)\\s+' + forms),
+	          inside: arg
+	        },
+	        'other-marker-vars': {
+	          pattern: new RegExp('&(?:optional|aux)\\s+' + forms),
+	          inside: arg
+	        },
+	        keys: {
+	          pattern: new RegExp(
+	            '&key\\s+' + forms + '(?:\\s+&allow-other-keys)?'
+	          ),
+	          inside: arg
+	        },
+	        argument: {
+	          pattern: new RegExp(symbol),
+	          alias: 'variable'
+	        },
+	        punctuation: /[()]/
+	      }
+	    }
+	    language['lambda'].inside.arguments = arglist
+	    language['defun'].inside.arguments = Prism.util.clone(arglist)
+	    language['defun'].inside.arguments.inside.sublist = arglist
+	    Prism.languages.lisp = language
+	    Prism.languages.elisp = language
+	    Prism.languages.emacs = language
+	    Prism.languages['emacs-lisp'] = language
+	  })(Prism)
+	}
+
+
+/***/ }),
+/* 620 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = livescript
+	livescript.displayName = 'livescript'
+	livescript.aliases = []
 	function livescript(Prism) {
 	  Prism.languages.livescript = {
 	    comment: [
@@ -28101,23 +29616,23 @@
 	      /\.(?:[=~]|\.\.?)|\.(?:[&|^]|<<|>>>?)\.|:(?:=|:=?)|&&|\|[|>]|<(?:<<?<?|--?!?|~~?!?|[|=?])?|>[>=?]?|-(?:->?|>)?|\+\+?|@@?|%%?|\*\*?|!(?:~?=|--?>|~?~>)?|~(?:~?>|=)?|==?|\^\^?|[\/?]/
 	    ],
 	    punctuation: /[(){}\[\]|.,:;`]/
-	  };
+	  }
 	  Prism.languages.livescript['interpolated-string'].inside[
 	    'interpolation'
 	  ].inside.rest =
-	    Prism.languages.livescript;
+	    Prism.languages.livescript
 	}
 
 
-/***/ },
-/* 599 */
-/***/ function(module, exports) {
+/***/ }),
+/* 621 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = lolcode;
-	lolcode.displayName = 'lolcode';
-	lolcode.aliases = [];
+	module.exports = lolcode
+	lolcode.displayName = 'lolcode'
+	lolcode.aliases = []
 	function lolcode(Prism) {
 	  Prism.languages.lolcode = {
 	    comment: [/\bOBTW\s+[\s\S]*?\s+TLDR\b/, /\bBTW.+/],
@@ -28129,7 +29644,7 @@
 	      },
 	      greedy: true
 	    },
-	    number: /(?:-|\b)\d*\.?\d+/,
+	    number: /(?:\B-)?(?:\b\d+\.?\d*|\B\.\d+)/,
 	    symbol: {
 	      pattern: /(^|\s)(?:A )?(?:YARN|NUMBR|NUMBAR|TROOF|BUKKIT|NOOB)(?=\s|,|$)/,
 	      lookbehind: true,
@@ -28166,19 +29681,19 @@
 	      lookbehind: true
 	    },
 	    punctuation: /\.{3}|…|,|!/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 600 */
-/***/ function(module, exports) {
+/***/ }),
+/* 622 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = lua;
-	lua.displayName = 'lua';
-	lua.aliases = [];
+	module.exports = lua
+	lua.displayName = 'lua'
+	lua.aliases = []
 	function lua(Prism) {
 	  Prism.languages.lua = {
 	    comment: /^#!.+|--(?:\[(=*)\[[\s\S]*?\]\1\]|.*)/m,
@@ -28199,19 +29714,19 @@
 	      }
 	    ],
 	    punctuation: /[\[\](){},;]|\.+|:+/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 601 */
-/***/ function(module, exports) {
+/***/ }),
+/* 623 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = makefile;
-	makefile.displayName = 'makefile';
-	makefile.aliases = [];
+	module.exports = makefile
+	makefile.displayName = 'makefile'
+	makefile.aliases = []
 	function makefile(Prism) {
 	  Prism.languages.makefile = {
 	    comment: {
@@ -28243,21 +29758,21 @@
 	    ],
 	    operator: /(?:::|[?:+!])?=|[|@]/,
 	    punctuation: /[:;(){}]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 602 */
-/***/ function(module, exports) {
+/***/ }),
+/* 624 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = markdown;
-	markdown.displayName = 'markdown';
-	markdown.aliases = [];
+	module.exports = markdown
+	markdown.displayName = 'markdown'
+	markdown.aliases = []
 	function markdown(Prism) {
-	  Prism.languages.markdown = Prism.languages.extend('markup', {});
+	  Prism.languages.markdown = Prism.languages.extend('markup', {})
 	  Prism.languages.insertBefore('markdown', 'prolog', {
 	    blockquote: {
 	      // > ...
@@ -28368,31 +29883,135 @@
 	        }
 	      }
 	    }
-	  });
-	  Prism.languages.markdown['bold'].inside['url'] = Prism.util.clone(
+	  })
+	  Prism.languages.markdown['bold'].inside['url'] =
 	    Prism.languages.markdown['url']
-	  );
-	  Prism.languages.markdown['italic'].inside['url'] = Prism.util.clone(
+	  Prism.languages.markdown['italic'].inside['url'] =
 	    Prism.languages.markdown['url']
-	  );
-	  Prism.languages.markdown['bold'].inside['italic'] = Prism.util.clone(
+	  Prism.languages.markdown['bold'].inside['italic'] =
 	    Prism.languages.markdown['italic']
-	  );
-	  Prism.languages.markdown['italic'].inside['bold'] = Prism.util.clone(
+	  Prism.languages.markdown['italic'].inside['bold'] =
 	    Prism.languages.markdown['bold']
-	  );
 	}
 
 
-/***/ },
-/* 603 */
-/***/ function(module, exports) {
+/***/ }),
+/* 625 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = matlab;
-	matlab.displayName = 'matlab';
-	matlab.aliases = [];
+	module.exports = markupTemplating
+	markupTemplating.displayName = 'markupTemplating'
+	markupTemplating.aliases = []
+	function markupTemplating(Prism) {
+	  Prism.languages['markup-templating'] = {}
+	  Object.defineProperties(Prism.languages['markup-templating'], {
+	    buildPlaceholders: {
+	      // Tokenize all inline templating expressions matching placeholderPattern
+	      // If the replaceFilter function is provided, it will be called with every match.
+	      // If it returns false, the match will not be replaced.
+	      value: function(env, language, placeholderPattern, replaceFilter) {
+	        if (env.language !== language) {
+	          return
+	        }
+	        env.tokenStack = []
+	        env.code = env.code.replace(placeholderPattern, function(match) {
+	          if (typeof replaceFilter === 'function' && !replaceFilter(match)) {
+	            return match
+	          }
+	          var i = env.tokenStack.length
+	          // Check for existing strings
+	          while (
+	            env.code.indexOf('___' + language.toUpperCase() + i + '___') !== -1
+	          )
+	            ++i
+	          // Create a sparse array
+	          env.tokenStack[i] = match
+	          return '___' + language.toUpperCase() + i + '___'
+	        })
+	        // Switch the grammar to markup
+	        env.grammar = Prism.languages.markup
+	      }
+	    },
+	    tokenizePlaceholders: {
+	      // Replace placeholders with proper tokens after tokenizing
+	      value: function(env, language) {
+	        if (env.language !== language || !env.tokenStack) {
+	          return
+	        }
+	        // Switch the grammar back
+	        env.grammar = Prism.languages[language]
+	        var j = 0
+	        var keys = Object.keys(env.tokenStack)
+	        var walkTokens = function(tokens) {
+	          if (j >= keys.length) {
+	            return
+	          }
+	          for (var i = 0; i < tokens.length; i++) {
+	            var token = tokens[i]
+	            if (
+	              typeof token === 'string' ||
+	              (token.content && typeof token.content === 'string')
+	            ) {
+	              var k = keys[j]
+	              var t = env.tokenStack[k]
+	              var s = typeof token === 'string' ? token : token.content
+	              var index = s.indexOf('___' + language.toUpperCase() + k + '___')
+	              if (index > -1) {
+	                ++j
+	                var before = s.substring(0, index)
+	                var middle = new Prism.Token(
+	                  language,
+	                  Prism.tokenize(t, env.grammar, language),
+	                  'language-' + language,
+	                  t
+	                )
+	                var after = s.substring(
+	                  index + ('___' + language.toUpperCase() + k + '___').length
+	                )
+	                var replacement
+	                if (before || after) {
+	                  replacement = [before, middle, after].filter(function(v) {
+	                    return !!v
+	                  })
+	                  walkTokens(replacement)
+	                } else {
+	                  replacement = middle
+	                }
+	                if (typeof token === 'string') {
+	                  Array.prototype.splice.apply(
+	                    tokens,
+	                    [i, 1].concat(replacement)
+	                  )
+	                } else {
+	                  token.content = replacement
+	                }
+	                if (j >= keys.length) {
+	                  break
+	                }
+	              }
+	            } else if (token.content && typeof token.content !== 'string') {
+	              walkTokens(token.content)
+	            }
+	          }
+	        }
+	        walkTokens(env.tokens)
+	      }
+	    }
+	  })
+	}
+
+
+/***/ }),
+/* 626 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = matlab
+	matlab.displayName = 'matlab'
+	matlab.aliases = []
 	function matlab(Prism) {
 	  Prism.languages.matlab = {
 	    comment: [/%\{[\s\S]*?\}%/, /%.+/],
@@ -28401,24 +30020,24 @@
 	      greedy: true
 	    },
 	    // FIXME We could handle imaginary numbers as a whole
-	    number: /\b-?(?:\d*\.?\d+(?:[eE][+-]?\d+)?(?:[ij])?|[ij])\b/,
+	    number: /(?:\b\d+\.?\d*|\B\.\d+)(?:[eE][+-]?\d+)?(?:[ij])?|\b[ij]\b/,
 	    keyword: /\b(?:break|case|catch|continue|else|elseif|end|for|function|if|inf|NaN|otherwise|parfor|pause|pi|return|switch|try|while)\b/,
 	    function: /(?!\d)\w+(?=\s*\()/,
 	    operator: /\.?[*^\/\\']|[+\-:@]|[<>=~]=?|&&?|\|\|?/,
 	    punctuation: /\.{3}|[.,;\[\](){}!]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 604 */
-/***/ function(module, exports) {
+/***/ }),
+/* 627 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = mel;
-	mel.displayName = 'mel';
-	mel.aliases = [];
+	module.exports = mel
+	mel.displayName = 'mel'
+	mel.aliases = []
 	function mel(Prism) {
 	  Prism.languages.mel = {
 	    comment: /\/\/.*/,
@@ -28439,7 +30058,7 @@
 	      greedy: true
 	    },
 	    variable: /\$\w+/,
-	    number: /(?:\b|-)(?:0x[\da-fA-F]+|\d+\.?\d*)/,
+	    number: /\b0x[\da-fA-F]+\b|\b\d+\.?\d*|\B\.\d+/,
 	    flag: {
 	      pattern: /-[^\d\W]\w*/,
 	      alias: 'operator'
@@ -28461,22 +30080,20 @@
 	      }
 	    ],
 	    punctuation: /<<|>>|[.,:;?\[\](){}]/
-	  };
-	  Prism.languages.mel['code'].inside.rest = Prism.util.clone(
-	    Prism.languages.mel
-	  );
+	  }
+	  Prism.languages.mel['code'].inside.rest = Prism.languages.mel
 	}
 
 
-/***/ },
-/* 605 */
-/***/ function(module, exports) {
+/***/ }),
+/* 628 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = mizar;
-	mizar.displayName = 'mizar';
-	mizar.aliases = [];
+	module.exports = mizar
+	mizar.displayName = 'mizar'
+	mizar.aliases = []
 	function mizar(Prism) {
 	  Prism.languages.mizar = {
 	    comment: /::.+/,
@@ -28489,23 +30106,32 @@
 	    number: /(?:\b|-)\d+\b/,
 	    operator: /\.\.\.|->|&|\.?=/,
 	    punctuation: /\(#|#\)|[,:;\[\](){}]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 606 */
-/***/ function(module, exports) {
+/***/ }),
+/* 629 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = monkey;
-	monkey.displayName = 'monkey';
-	monkey.aliases = [];
+	module.exports = monkey
+	monkey.displayName = 'monkey'
+	monkey.aliases = []
 	function monkey(Prism) {
 	  Prism.languages.monkey = {
 	    string: /"[^"\r\n]*"/,
-	    comment: [/^#Rem\s+[\s\S]*?^#End/im, /'.+/],
+	    comment: [
+	      {
+	        pattern: /^#Rem\s+[\s\S]*?^#End/im,
+	        greedy: true
+	      },
+	      {
+	        pattern: /'.+/,
+	        greedy: true
+	      }
+	    ],
 	    preprocessor: {
 	      pattern: /(^[ \t]*)#.+/m,
 	      lookbehind: true,
@@ -28524,44 +30150,44 @@
 	    keyword: /\b(?:Void|Strict|Public|Private|Property|Bool|Int|Float|String|Array|Object|Continue|Exit|Import|Extern|New|Self|Super|Try|Catch|Eachin|True|False|Extends|Abstract|Final|Select|Case|Default|Const|Local|Global|Field|Method|Function|Class|End|If|Then|Else|ElseIf|EndIf|While|Wend|Repeat|Until|Forever|For|To|Step|Next|Return|Module|Interface|Implements|Inline|Throw|Null)\b/i,
 	    operator: /\.\.|<[=>]?|>=?|:?=|(?:[+\-*\/&~|]|\b(?:Mod|Shl|Shr)\b)=?|\b(?:And|Not|Or)\b/i,
 	    punctuation: /[.,:;()\[\]]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 607 */
-/***/ function(module, exports) {
+/***/ }),
+/* 630 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = n4js;
-	n4js.displayName = 'n4js';
-	n4js.aliases = [];
+	module.exports = n4js
+	n4js.displayName = 'n4js'
+	n4js.aliases = []
 	function n4js(Prism) {
 	  Prism.languages.n4js = Prism.languages.extend('javascript', {
 	    // Keywords from N4JS language spec: https://numberfour.github.io/n4js/spec/N4JSSpec.html
 	    keyword: /\b(?:any|Array|boolean|break|case|catch|class|const|constructor|continue|debugger|declare|default|delete|do|else|enum|export|extends|false|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|module|new|null|number|package|private|protected|public|return|set|static|string|super|switch|this|throw|true|try|typeof|var|void|while|with|yield)\b/
-	  });
-	  Prism.languages.insertBefore('n4js', 'function', {
+	  })
+	  Prism.languages.insertBefore('n4js', 'constant', {
 	    // Annotations in N4JS spec: https://numberfour.github.io/n4js/spec/N4JSSpec.html#_annotations
 	    annotation: {
 	      pattern: /@+\w+/,
 	      alias: 'operator'
 	    }
-	  });
-	  Prism.languages.n4jsd = Prism.languages.n4js;
+	  })
+	  Prism.languages.n4jsd = Prism.languages.n4js
 	}
 
 
-/***/ },
-/* 608 */
-/***/ function(module, exports) {
+/***/ }),
+/* 631 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = nasm;
-	nasm.displayName = 'nasm';
-	nasm.aliases = [];
+	module.exports = nasm
+	nasm.displayName = 'nasm'
+	nasm.aliases = []
 	function nasm(Prism) {
 	  Prism.languages.nasm = {
 	    comment: /;.*$/m,
@@ -28584,21 +30210,21 @@
 	      pattern: /\b(?:st\d|[xyz]mm\d\d?|[cdt]r\d|r\d\d?[bwd]?|[er]?[abcd]x|[abcd][hl]|[er]?(?:bp|sp|si|di)|[cdefgs]s)\b/i,
 	      alias: 'variable'
 	    },
-	    number: /(?:\b|-|(?=\$))(?:0[hx][\da-f]*\.?[\da-f]+(?:p[+-]?\d+)?|\d[\da-f]+[hx]|\$\d[\da-f]*|0[oq][0-7]+|[0-7]+[oq]|0[by][01]+|[01]+[by]|0[dt]\d+|\d*\.?\d+(?:\.?e[+-]?\d+)?[dt]?)\b/i,
+	    number: /(?:\b|(?=\$))(?:0[hx][\da-f]*\.?[\da-f]+(?:p[+-]?\d+)?|\d[\da-f]+[hx]|\$\d[\da-f]*|0[oq][0-7]+|[0-7]+[oq]|0[by][01]+|[01]+[by]|0[dt]\d+|\d*\.?\d+(?:\.?e[+-]?\d+)?[dt]?)\b/i,
 	    operator: /[\[\]*+\-\/%<>=&|$!]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 609 */
-/***/ function(module, exports) {
+/***/ }),
+/* 632 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = nginx;
-	nginx.displayName = 'nginx';
-	nginx.aliases = [];
+	module.exports = nginx
+	nginx.displayName = 'nginx'
+	nginx.aliases = []
 	function nginx(Prism) {
 	  Prism.languages.nginx = Prism.languages.extend('clike', {
 	    comment: {
@@ -28606,22 +30232,22 @@
 	      lookbehind: true
 	    },
 	    keyword: /\b(?:CONTENT_|DOCUMENT_|GATEWAY_|HTTP_|HTTPS|if_not_empty|PATH_|QUERY_|REDIRECT_|REMOTE_|REQUEST_|SCGI|SCRIPT_|SERVER_|http|events|accept_mutex|accept_mutex_delay|access_log|add_after_body|add_before_body|add_header|addition_types|aio|alias|allow|ancient_browser|ancient_browser_value|auth|auth_basic|auth_basic_user_file|auth_http|auth_http_header|auth_http_timeout|autoindex|autoindex_exact_size|autoindex_localtime|break|charset|charset_map|charset_types|chunked_transfer_encoding|client_body_buffer_size|client_body_in_file_only|client_body_in_single_buffer|client_body_temp_path|client_body_timeout|client_header_buffer_size|client_header_timeout|client_max_body_size|connection_pool_size|create_full_put_path|daemon|dav_access|dav_methods|debug_connection|debug_points|default_type|deny|devpoll_changes|devpoll_events|directio|directio_alignment|disable_symlinks|empty_gif|env|epoll_events|error_log|error_page|expires|fastcgi_buffer_size|fastcgi_buffers|fastcgi_busy_buffers_size|fastcgi_cache|fastcgi_cache_bypass|fastcgi_cache_key|fastcgi_cache_lock|fastcgi_cache_lock_timeout|fastcgi_cache_methods|fastcgi_cache_min_uses|fastcgi_cache_path|fastcgi_cache_purge|fastcgi_cache_use_stale|fastcgi_cache_valid|fastcgi_connect_timeout|fastcgi_hide_header|fastcgi_ignore_client_abort|fastcgi_ignore_headers|fastcgi_index|fastcgi_intercept_errors|fastcgi_keep_conn|fastcgi_max_temp_file_size|fastcgi_next_upstream|fastcgi_no_cache|fastcgi_param|fastcgi_pass|fastcgi_pass_header|fastcgi_read_timeout|fastcgi_redirect_errors|fastcgi_send_timeout|fastcgi_split_path_info|fastcgi_store|fastcgi_store_access|fastcgi_temp_file_write_size|fastcgi_temp_path|flv|geo|geoip_city|geoip_country|google_perftools_profiles|gzip|gzip_buffers|gzip_comp_level|gzip_disable|gzip_http_version|gzip_min_length|gzip_proxied|gzip_static|gzip_types|gzip_vary|if|if_modified_since|ignore_invalid_headers|image_filter|image_filter_buffer|image_filter_jpeg_quality|image_filter_sharpen|image_filter_transparency|imap_capabilities|imap_client_buffer|include|index|internal|ip_hash|keepalive|keepalive_disable|keepalive_requests|keepalive_timeout|kqueue_changes|kqueue_events|large_client_header_buffers|limit_conn|limit_conn_log_level|limit_conn_zone|limit_except|limit_rate|limit_rate_after|limit_req|limit_req_log_level|limit_req_zone|limit_zone|lingering_close|lingering_time|lingering_timeout|listen|location|lock_file|log_format|log_format_combined|log_not_found|log_subrequest|map|map_hash_bucket_size|map_hash_max_size|master_process|max_ranges|memcached_buffer_size|memcached_connect_timeout|memcached_next_upstream|memcached_pass|memcached_read_timeout|memcached_send_timeout|merge_slashes|min_delete_depth|modern_browser|modern_browser_value|mp4|mp4_buffer_size|mp4_max_buffer_size|msie_padding|msie_refresh|multi_accept|open_file_cache|open_file_cache_errors|open_file_cache_min_uses|open_file_cache_valid|open_log_file_cache|optimize_server_names|override_charset|pcre_jit|perl|perl_modules|perl_require|perl_set|pid|pop3_auth|pop3_capabilities|port_in_redirect|post_action|postpone_output|protocol|proxy|proxy_buffer|proxy_buffer_size|proxy_buffering|proxy_buffers|proxy_busy_buffers_size|proxy_cache|proxy_cache_bypass|proxy_cache_key|proxy_cache_lock|proxy_cache_lock_timeout|proxy_cache_methods|proxy_cache_min_uses|proxy_cache_path|proxy_cache_use_stale|proxy_cache_valid|proxy_connect_timeout|proxy_cookie_domain|proxy_cookie_path|proxy_headers_hash_bucket_size|proxy_headers_hash_max_size|proxy_hide_header|proxy_http_version|proxy_ignore_client_abort|proxy_ignore_headers|proxy_intercept_errors|proxy_max_temp_file_size|proxy_method|proxy_next_upstream|proxy_no_cache|proxy_pass|proxy_pass_error_message|proxy_pass_header|proxy_pass_request_body|proxy_pass_request_headers|proxy_read_timeout|proxy_redirect|proxy_redirect_errors|proxy_send_lowat|proxy_send_timeout|proxy_set_body|proxy_set_header|proxy_ssl_session_reuse|proxy_store|proxy_store_access|proxy_temp_file_write_size|proxy_temp_path|proxy_timeout|proxy_upstream_fail_timeout|proxy_upstream_max_fails|random_index|read_ahead|real_ip_header|recursive_error_pages|request_pool_size|reset_timedout_connection|resolver|resolver_timeout|return|rewrite|root|rtsig_overflow_events|rtsig_overflow_test|rtsig_overflow_threshold|rtsig_signo|satisfy|satisfy_any|secure_link_secret|send_lowat|send_timeout|sendfile|sendfile_max_chunk|server|server_name|server_name_in_redirect|server_names_hash_bucket_size|server_names_hash_max_size|server_tokens|set|set_real_ip_from|smtp_auth|smtp_capabilities|so_keepalive|source_charset|split_clients|ssi|ssi_silent_errors|ssi_types|ssi_value_length|ssl|ssl_certificate|ssl_certificate_key|ssl_ciphers|ssl_client_certificate|ssl_crl|ssl_dhparam|ssl_engine|ssl_prefer_server_ciphers|ssl_protocols|ssl_session_cache|ssl_session_timeout|ssl_verify_client|ssl_verify_depth|starttls|stub_status|sub_filter|sub_filter_once|sub_filter_types|tcp_nodelay|tcp_nopush|timeout|timer_resolution|try_files|types|types_hash_bucket_size|types_hash_max_size|underscores_in_headers|uninitialized_variable_warn|upstream|use|user|userid|userid_domain|userid_expires|userid_name|userid_p3p|userid_path|userid_service|valid_referers|variables_hash_bucket_size|variables_hash_max_size|worker_connections|worker_cpu_affinity|worker_priority|worker_processes|worker_rlimit_core|worker_rlimit_nofile|worker_rlimit_sigpending|working_directory|xclient|xml_entities|xslt_entities|xslt_stylesheet|xslt_types)\b/i
-	  });
+	  })
 	  Prism.languages.insertBefore('nginx', 'keyword', {
 	    variable: /\$[a-z_]+/i
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 610 */
-/***/ function(module, exports) {
+/***/ }),
+/* 633 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = nim;
-	nim.displayName = 'nim';
-	nim.aliases = [];
+	module.exports = nim
+	nim.displayName = 'nim'
+	nim.aliases = []
 	function nim(Prism) {
 	  Prism.languages.nim = {
 	    comment: /#.*/,
@@ -28655,19 +30281,19 @@
 	      lookbehind: true
 	    },
 	    punctuation: /[({\[]\.|\.[)}\]]|[`(){}\[\],:]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 611 */
-/***/ function(module, exports) {
+/***/ }),
+/* 634 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = nix;
-	nix.displayName = 'nix';
-	nix.aliases = [];
+	module.exports = nix
+	nix.displayName = 'nix'
+	nix.aliases = []
 	function nix(Prism) {
 	  Prism.languages.nix = {
 	    comment: /\/\*[\s\S]*?\*\/|#.*/,
@@ -28706,22 +30332,21 @@
 	    boolean: /\b(?:true|false)\b/,
 	    operator: /[=!<>]=?|\+\+?|\|\||&&|\/\/|->?|[?@]/,
 	    punctuation: /[{}()[\].,:;]/
-	  };
-	  Prism.languages.nix.string.inside.interpolation.inside.rest = Prism.util.clone(
+	  }
+	  Prism.languages.nix.string.inside.interpolation.inside.rest =
 	    Prism.languages.nix
-	  );
 	}
 
 
-/***/ },
-/* 612 */
-/***/ function(module, exports) {
+/***/ }),
+/* 635 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = nsis;
-	nsis.displayName = 'nsis';
-	nsis.aliases = [];
+	module.exports = nsis
+	nsis.displayName = 'nsis'
+	nsis.aliases = []
 	function nsis(Prism) {
 	  /**
 	   * Original by Jan T. Sott (http://github.com/idleberg)
@@ -28738,51 +30363,51 @@
 	      greedy: true
 	    },
 	    keyword: {
-	      pattern: /(^\s*)(?:Abort|Add(?:BrandingImage|Size)|AdvSplash|Allow(?:RootDirInstall|SkipFiles)|AutoCloseWindow|Banner|BG(?:Font|Gradient|Image)|BrandingText|BringToFront|Call(?:InstDLL)?|Caption|ChangeUI|CheckBitmap|ClearErrors|CompletedText|ComponentText|CopyFiles|CRCCheck|Create(?:Directory|Font|ShortCut)|Delete(?:INISec|INIStr|RegKey|RegValue)?|Detail(?:Print|sButtonText)|Dialer|Dir(?:Text|Var|Verify)|EnableWindow|Enum(?:RegKey|RegValue)|Exch|Exec(?:Shell(?:Wait)?|Wait)?|ExpandEnvStrings|File(?:BufSize|Close|ErrorText|Open|Read|ReadByte|ReadUTF16LE|ReadWord|WriteUTF16LE|Seek|Write|WriteByte|WriteWord)?|Find(?:Close|First|Next|Window)|FlushINI|Get(?:CurInstType|CurrentAddress|DlgItem|DLLVersion(?:Local)?|ErrorLevel|FileTime(?:Local)?|FullPathName|Function(?:Address|End)?|InstDirError|LabelAddress|TempFileName)|Goto|HideWindow|Icon|If(?:Abort|Errors|FileExists|RebootFlag|Silent)|InitPluginsDir|Install(?:ButtonText|Colors|Dir(?:RegKey)?)|InstProgressFlags|Inst(?:Type(?:GetText|SetText)?)|Int(?:CmpU?|Fmt|Op)|IsWindow|Lang(?:DLL|String)|License(?:BkColor|Data|ForceSelection|LangString|Text)|LoadLanguageFile|LockWindow|Log(?:Set|Text)|Manifest(?:DPIAware|SupportedOS)|Math|MessageBox|MiscButtonText|Name|Nop|ns(?:Dialogs|Exec)|NSISdl|OutFile|Page(?:Callbacks)?|Pop|Push|Quit|Read(?:EnvStr|INIStr|RegDWORD|RegStr)|Reboot|RegDLL|Rename|RequestExecutionLevel|ReserveFile|Return|RMDir|SearchPath|Section(?:End|GetFlags|GetInstTypes|GetSize|GetText|Group|In|SetFlags|SetInstTypes|SetSize|SetText)?|SendMessage|Set(?:AutoClose|BrandingImage|Compress|Compressor(?:DictSize)?|CtlColors|CurInstType|DatablockOptimize|DateSave|Details(?:Print|View)|ErrorLevel|Errors|FileAttributes|Font|OutPath|Overwrite|RebootFlag|RegView|ShellVarContext|Silent)|Show(?:InstDetails|UninstDetails|Window)|Silent(?:Install|UnInstall)|Sleep|SpaceTexts|Splash|StartMenu|Str(?:CmpS?|Cpy|Len)|SubCaption|System|Unicode|Uninstall(?:ButtonText|Caption|Icon|SubCaption|Text)|UninstPage|UnRegDLL|UserInfo|Var|VI(?:AddVersionKey|FileVersion|ProductVersion)|VPatch|WindowIcon|Write(?:INIStr|Reg(?:Bin|DWORD|ExpandStr|MultiStr|None|Str)|Uninstaller)|XPStyle)\b/m,
+	      pattern: /(^\s*)(?:Abort|Add(?:BrandingImage|Size)|AdvSplash|Allow(?:RootDirInstall|SkipFiles)|AutoCloseWindow|Banner|BG(?:Font|Gradient|Image)|BrandingText|BringToFront|Call(?:InstDLL)?|Caption|ChangeUI|CheckBitmap|ClearErrors|CompletedText|ComponentText|CopyFiles|CRCCheck|Create(?:Directory|Font|ShortCut)|Delete(?:INISec|INIStr|RegKey|RegValue)?|Detail(?:Print|sButtonText)|Dialer|Dir(?:Text|Var|Verify)|EnableWindow|Enum(?:RegKey|RegValue)|Exch|Exec(?:Shell(?:Wait)?|Wait)?|ExpandEnvStrings|File(?:BufSize|Close|ErrorText|Open|Read|ReadByte|ReadUTF16LE|ReadWord|WriteUTF16LE|Seek|Write|WriteByte|WriteWord)?|Find(?:Close|First|Next|Window)|FlushINI|Get(?:CurInstType|CurrentAddress|DlgItem|DLLVersion(?:Local)?|ErrorLevel|FileTime(?:Local)?|FullPathName|Function(?:Address|End)?|InstDirError|LabelAddress|TempFileName)|Goto|HideWindow|Icon|If(?:Abort|Errors|FileExists|RebootFlag|Silent)|InitPluginsDir|Install(?:ButtonText|Colors|Dir(?:RegKey)?)|InstProgressFlags|Inst(?:Type(?:GetText|SetText)?)|Int(?:64|Ptr)?CmpU?|Int(?:64)?Fmt|Int(?:Ptr)?Op|IsWindow|Lang(?:DLL|String)|License(?:BkColor|Data|ForceSelection|LangString|Text)|LoadLanguageFile|LockWindow|Log(?:Set|Text)|Manifest(?:DPIAware|SupportedOS)|Math|MessageBox|MiscButtonText|Name|Nop|ns(?:Dialogs|Exec)|NSISdl|OutFile|Page(?:Callbacks)?|PE(?:DllCharacteristics|SubsysVer)|Pop|Push|Quit|Read(?:EnvStr|INIStr|RegDWORD|RegStr)|Reboot|RegDLL|Rename|RequestExecutionLevel|ReserveFile|Return|RMDir|SearchPath|Section(?:End|GetFlags|GetInstTypes|GetSize|GetText|Group|In|SetFlags|SetInstTypes|SetSize|SetText)?|SendMessage|Set(?:AutoClose|BrandingImage|Compress|Compressor(?:DictSize)?|CtlColors|CurInstType|DatablockOptimize|DateSave|Details(?:Print|View)|ErrorLevel|Errors|FileAttributes|Font|OutPath|Overwrite|PluginUnload|RebootFlag|RegView|ShellVarContext|Silent)|Show(?:InstDetails|UninstDetails|Window)|Silent(?:Install|UnInstall)|Sleep|SpaceTexts|Splash|StartMenu|Str(?:CmpS?|Cpy|Len)|SubCaption|System|Unicode|Uninstall(?:ButtonText|Caption|Icon|SubCaption|Text)|UninstPage|UnRegDLL|UserInfo|Var|VI(?:AddVersionKey|FileVersion|ProductVersion)|VPatch|WindowIcon|Write(?:INIStr|Reg(?:Bin|DWORD|ExpandStr|MultiStr|None|Str)|Uninstaller)|XPStyle)\b/m,
 	      lookbehind: true
 	    },
 	    property: /\b(?:admin|all|auto|both|colored|false|force|hide|highest|lastused|leave|listonly|none|normal|notset|off|on|open|print|show|silent|silentlog|smooth|textonly|true|user|ARCHIVE|FILE_(ATTRIBUTE_ARCHIVE|ATTRIBUTE_NORMAL|ATTRIBUTE_OFFLINE|ATTRIBUTE_READONLY|ATTRIBUTE_SYSTEM|ATTRIBUTE_TEMPORARY)|HK((CR|CU|LM)(32|64)?|DD|PD|U)|HKEY_(CLASSES_ROOT|CURRENT_CONFIG|CURRENT_USER|DYN_DATA|LOCAL_MACHINE|PERFORMANCE_DATA|USERS)|ID(ABORT|CANCEL|IGNORE|NO|OK|RETRY|YES)|MB_(ABORTRETRYIGNORE|DEFBUTTON1|DEFBUTTON2|DEFBUTTON3|DEFBUTTON4|ICONEXCLAMATION|ICONINFORMATION|ICONQUESTION|ICONSTOP|OK|OKCANCEL|RETRYCANCEL|RIGHT|RTLREADING|SETFOREGROUND|TOPMOST|USERICON|YESNO)|NORMAL|OFFLINE|READONLY|SHCTX|SHELL_CONTEXT|SYSTEM|TEMPORARY)\b/,
 	    constant: /\${[\w\.:\^-]+}|\$\([\w\.:\^-]+\)/i,
 	    variable: /\$\w+/i,
-	    number: /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee]-?\d+)?)\b/,
+	    number: /\b0x[\dA-Fa-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee]-?\d+)?/,
 	    operator: /--?|\+\+?|<=?|>=?|==?=?|&&?|\|\|?|[?*\/~^%]/,
 	    punctuation: /[{}[\];(),.:]/,
 	    important: {
-	      pattern: /(^\s*)!(?:addincludedir|addplugindir|appendfile|cd|define|delfile|echo|else|endif|error|execute|finalize|getdllversionsystem|ifdef|ifmacrodef|ifmacrondef|ifndef|if|include|insertmacro|macroend|macro|makensis|packhdr|pragma|searchparse|searchreplace|tempfile|undef|verbose|warning)\b/im,
+	      pattern: /(^\s*)!(?:addincludedir|addplugindir|appendfile|cd|define|delfile|echo|else|endif|error|execute|finalize|getdllversion|gettlbversion|ifdef|ifmacrodef|ifmacrondef|ifndef|if|include|insertmacro|macroend|macro|makensis|packhdr|pragma|searchparse|searchreplace|system|tempfile|undef|verbose|warning)\b/im,
 	      lookbehind: true
 	    }
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 613 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 636 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	var c = __webpack_require__(548);
-	module.exports = objectivec;
-	objectivec.displayName = 'objectivec';
-	objectivec.aliases = [];
+	'use strict'
+	var refractorC = __webpack_require__(556)
+	module.exports = objectivec
+	objectivec.displayName = 'objectivec'
+	objectivec.aliases = []
 	function objectivec(Prism) {
-	  Prism.register(c);
+	  Prism.register(refractorC)
 	  Prism.languages.objectivec = Prism.languages.extend('c', {
 	    keyword: /\b(?:asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while|in|self|super)\b|(?:@interface|@end|@implementation|@protocol|@class|@public|@protected|@private|@property|@try|@catch|@finally|@throw|@synthesize|@dynamic|@selector)\b/,
 	    string: /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1|@"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"/,
 	    operator: /-[->]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|\|?|[~^%?*\/@]/
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 614 */
-/***/ function(module, exports) {
+/***/ }),
+/* 637 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = ocaml;
-	ocaml.displayName = 'ocaml';
-	ocaml.aliases = [];
+	module.exports = ocaml
+	ocaml.displayName = 'ocaml'
+	ocaml.aliases = []
 	function ocaml(Prism) {
 	  Prism.languages.ocaml = {
 	    comment: /\(\*[\s\S]*?\*\)/,
@@ -28796,7 +30421,7 @@
 	        greedy: true
 	      }
 	    ],
-	    number: /\b-?(?:0x[\da-f][\da-f_]+|(?:0[bo])?\d[\d_]*\.?[\d_]*(?:e[+-]?[\d_]+)?)/i,
+	    number: /\b(?:0x[\da-f][\da-f_]+|(?:0[bo])?\d[\d_]*\.?[\d_]*(?:e[+-]?[\d_]+)?)/i,
 	    type: {
 	      pattern: /\B['`]\w*/,
 	      alias: 'variable'
@@ -28810,22 +30435,24 @@
 	    // Custom operators are allowed
 	    operator: /:=|[=<>@^|&+\-*\/$%!?~][!$%&*+\-.\/:<=>?@^|~]*|\b(?:and|asr|land|lor|lxor|lsl|lsr|mod|nor|or)\b/,
 	    punctuation: /[(){}\[\]|_.,:;]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 615 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 638 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	var c = __webpack_require__(548);
-	module.exports = opencl;
-	opencl.displayName = 'opencl';
-	opencl.aliases = [];
+	'use strict'
+	var refractorC = __webpack_require__(556)
+	var refractorCpp = __webpack_require__(555)
+	module.exports = opencl
+	opencl.displayName = 'opencl'
+	opencl.aliases = []
 	function opencl(Prism) {
-	  Prism.register(c);
-	  (function(Prism) {
+	  Prism.register(refractorC)
+	  Prism.register(refractorCpp)
+	  ;(function(Prism) {
 	    /* OpenCL kernel language */
 	    Prism.languages.opencl = Prism.languages.extend('c', {
 	      // Extracted from the official specs (2.0) and http://streamcomputing.eu/downloads/?opencl.lang (opencl-keywords, opencl-types) and http://sourceforge.net/tracker/?func=detail&aid=2957794&group_id=95717&atid=612384 (Words2, partly Words3)
@@ -28840,7 +30467,7 @@
 	        pattern: /\b(?:CHAR_(?:BIT|MAX|MIN)|CLK_(?:ADDRESS_(?:CLAMP(?:_TO_EDGE)?|NONE|REPEAT)|FILTER_(?:LINEAR|NEAREST)|(?:LOCAL|GLOBAL)_MEM_FENCE|NORMALIZED_COORDS_(?:FALSE|TRUE))|CL_(?:BGRA|(?:HALF_)?FLOAT|INTENSITY|LUMINANCE|A?R?G?B?[Ax]?|(?:(?:UN)?SIGNED|[US]NORM)_(?:INT(?:8|16|32))|UNORM_(?:INT_101010|SHORT_(?:555|565)))|(?:DBL|FLT)_(?:DIG|EPSILON|MANT_DIG|(?:MIN|MAX)(?:(?:_10)?_EXP)?)|FLT_RADIX|HUGE_VALF|INFINITY|(?:INT|LONG|SCHAR|SHRT|UCHAR|UINT|ULONG)_(?:MAX|MIN)|MAXFLOAT|M_(?:[12]_PI|2_SQRTPI|E|LN(?:2|10)|LOG(?:10|2)E?|PI[24]?|SQRT(?:1_2|2))|NAN)\b/,
 	        alias: 'constant'
 	      }
-	    });
+	    })
 	    var attributes = {
 	      // Extracted from http://streamcomputing.eu/downloads/?opencl_host.lang (opencl-types and opencl-host)
 	      'type-opencl-host': {
@@ -28861,29 +30488,29 @@
 	        pattern: /\bcl(?:BuildProgram|CloneKernel|CompileProgram|Create(?:Buffer|CommandQueue(?:WithProperties)?|Context|ContextFromType|Image|Image2D|Image3D|Kernel|KernelsInProgram|Pipe|ProgramWith(?:Binary|BuiltInKernels|IL|Source)|Sampler|SamplerWithProperties|SubBuffer|SubDevices|UserEvent)|Enqueue(?:(?:Barrier|Marker)(?:WithWaitList)?|Copy(?:Buffer(?:Rect|ToImage)?|Image(?:ToBuffer)?)|(?:Fill|Map)(?:Buffer|Image)|MigrateMemObjects|NDRangeKernel|NativeKernel|(?:Read|Write)(?:Buffer(?:Rect)?|Image)|SVM(?:Free|Map|MemFill|Memcpy|MigrateMem|Unmap)|Task|UnmapMemObject|WaitForEvents)|Finish|Flush|Get(?:CommandQueueInfo|ContextInfo|Device(?:AndHostTimer|IDs|Info)|Event(?:Profiling)?Info|ExtensionFunctionAddress(?:ForPlatform)?|HostTimer|ImageInfo|Kernel(?:ArgInfo|Info|SubGroupInfo|WorkGroupInfo)|MemObjectInfo|PipeInfo|Platform(?:IDs|Info)|Program(?:Build)?Info|SamplerInfo|SupportedImageFormats)|LinkProgram|(?:Release|Retain)(?:CommandQueue|Context|Device|Event|Kernel|MemObject|Program|Sampler)|SVM(?:Alloc|Free)|Set(?:CommandQueueProperty|DefaultDeviceCommandQueue|EventCallback|Kernel(?:Arg(?:SVMPointer)?|ExecInfo)|Kernel|MemObjectDestructorCallback|UserEventStatus)|Unload(?:Platform)?Compiler|WaitForEvents)\b/,
 	        alias: 'function'
 	      }
-	    };
+	    }
 	    /* OpenCL host API */
-	    Prism.languages.insertBefore('c', 'keyword', attributes);
+	    Prism.languages.insertBefore('c', 'keyword', attributes)
 	    // Extracted from doxygen class list http://github.khronos.org/OpenCL-CLHPP/annotated.html
 	    attributes['type-opencl-host-c++'] = {
 	      pattern: /\b(?:Buffer|BufferGL|BufferRenderGL|CommandQueue|Context|Device|DeviceCommandQueue|EnqueueArgs|Event|Image|Image1D|Image1DArray|Image1DBuffer|Image2D|Image2DArray|Image2DGL|Image3D|Image3DGL|ImageFormat|ImageGL|Kernel|KernelFunctor|LocalSpaceArg|Memory|NDRange|Pipe|Platform|Program|Sampler|SVMAllocator|SVMTraitAtomic|SVMTraitCoarse|SVMTraitFine|SVMTraitReadOnly|SVMTraitReadWrite|SVMTraitWriteOnly|UserEvent)\b/,
 	      alias: 'keyword'
-	    };
+	    }
 	    // C++ includes everything from the OpenCL C host API plus the classes defined in cl2.h
-	    Prism.languages.insertBefore('cpp', 'keyword', attributes);
-	  })(Prism);
+	    Prism.languages.insertBefore('cpp', 'keyword', attributes)
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 616 */
-/***/ function(module, exports) {
+/***/ }),
+/* 639 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = oz;
-	oz.displayName = 'oz';
-	oz.aliases = [];
+	module.exports = oz
+	oz.displayName = 'oz'
+	oz.aliases = []
 	function oz(Prism) {
 	  Prism.languages.oz = {
 	    comment: /\/\*[\s\S]*?\*\/|%.*/,
@@ -28909,19 +30536,19 @@
 	    'attr-name': /\w+(?=:)/,
 	    operator: /:(?:=|::?)|<[-:=]?|=(?:=|<?:?)|>=?:?|\\=:?|!!?|[|#+\-*\/,~^@]|\b(?:andthen|div|mod|orelse)\b/,
 	    punctuation: /[\[\](){}.:;?]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 617 */
-/***/ function(module, exports) {
+/***/ }),
+/* 640 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = parigp;
-	parigp.displayName = 'parigp';
-	parigp.aliases = [];
+	module.exports = parigp
+	parigp.displayName = 'parigp'
+	parigp.aliases = []
 	function parigp(Prism) {
 	  Prism.languages.parigp = {
 	    comment: /\/\*[\s\S]*?\*\/|\\\\.*/,
@@ -28957,13 +30584,13 @@
 	        'return',
 	        'until',
 	        'while'
-	      ];
+	      ]
 	      keywords = keywords
 	        .map(function(keyword) {
-	          return keyword.split('').join(' *');
+	          return keyword.split('').join(' *')
 	        })
-	        .join('|');
-	      return RegExp('\\b(?:' + keywords + ')\\b');
+	        .join('|')
+	      return RegExp('\\b(?:' + keywords + ')\\b')
 	    })(),
 	    function: /\w[\w ]*?(?= *\()/,
 	    number: {
@@ -28973,19 +30600,19 @@
 	    },
 	    operator: /\. *\.|[*\/!](?: *=)?|%(?: *=|(?: *#)?(?: *')*)?|\+(?: *[+=])?|-(?: *[-=>])?|<(?:(?: *<)?(?: *=)?| *>)?|>(?: *>)?(?: *=)?|=(?: *=){0,2}|\\(?: *\/)?(?: *=)?|&(?: *&)?|\| *\||['#~^]/,
 	    punctuation: /[\[\]{}().,:;|]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 618 */
-/***/ function(module, exports) {
+/***/ }),
+/* 641 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = parser;
-	parser.displayName = 'parser';
-	parser.aliases = [];
+	module.exports = parser
+	parser.displayName = 'parser'
+	parser.aliases = []
 	function parser(Prism) {
 	  Prism.languages.parser = Prism.languages.extend('markup', {
 	    keyword: {
@@ -29015,7 +30642,7 @@
 	      alias: 'builtin'
 	    },
 	    punctuation: /[\[\](){};]/
-	  });
+	  })
 	  Prism.languages.insertBefore('parser', 'keyword', {
 	    'parser-comment': {
 	      pattern: /(\s)#.*/,
@@ -29042,7 +30669,7 @@
 	        punctuation: Prism.languages.parser.punctuation
 	      }
 	    }
-	  });
+	  })
 	  Prism.languages.insertBefore(
 	    'inside',
 	    'punctuation',
@@ -29058,19 +30685,19 @@
 	      }
 	    },
 	    Prism.languages.parser['tag'].inside['attr-value']
-	  );
+	  )
 	}
 
 
-/***/ },
-/* 619 */
-/***/ function(module, exports) {
+/***/ }),
+/* 642 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = pascal;
-	pascal.displayName = 'pascal';
-	pascal.aliases = [];
+	module.exports = pascal
+	pascal.displayName = 'pascal'
+	pascal.aliases = []
 	function pascal(Prism) {
 	  // Based on Free Pascal
 	  /* TODO
@@ -29106,9 +30733,9 @@
 	    ],
 	    number: [
 	      // Hexadecimal, octal and binary
-	      /[+-]?(?:[&%]\d+|\$[a-f\d]+)/i,
+	      /(?:[&%]\d+|\$[a-f\d]+)/i,
 	      // Decimal
-	      /([+-]|\b)\d+(?:\.\d+)?(?:e[+-]?\d+)?/i
+	      /\b\d+(?:\.\d+)?(?:e[+-]?\d+)?/i
 	    ],
 	    operator: [
 	      /\.\.|\*\*|:=|<[<=>]?|>[>=]?|[+\-*\/]=?|[@^=]/i,
@@ -29118,19 +30745,19 @@
 	      }
 	    ],
 	    punctuation: /\(\.|\.\)|[()\[\]:;,.]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 620 */
-/***/ function(module, exports) {
+/***/ }),
+/* 643 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = perl;
-	perl.displayName = 'perl';
-	perl.aliases = [];
+	module.exports = perl
+	perl.displayName = 'perl'
+	perl.aliases = []
 	function perl(Prism) {
 	  Prism.languages.perl = {
 	    comment: [
@@ -29315,23 +30942,24 @@
 	      }
 	    },
 	    keyword: /\b(?:any|break|continue|default|delete|die|do|else|elsif|eval|for|foreach|given|goto|if|last|local|my|next|our|package|print|redo|require|say|state|sub|switch|undef|unless|until|use|when|while)\b/,
-	    number: /\b-?(?:0x[\dA-Fa-f](?:_?[\dA-Fa-f])*|0b[01](?:_?[01])*|(?:\d(?:_?\d)*)?\.?\d(?:_?\d)*(?:[Ee][+-]?\d+)?)\b/,
+	    number: /\b(?:0x[\dA-Fa-f](?:_?[\dA-Fa-f])*|0b[01](?:_?[01])*|(?:\d(?:_?\d)*)?\.?\d(?:_?\d)*(?:[Ee][+-]?\d+)?)\b/,
 	    operator: /-[rwxoRWXOezsfdlpSbctugkTBMAC]\b|\+[+=]?|-[-=>]?|\*\*?=?|\/\/?=?|=[=~>]?|~[~=]?|\|\|?=?|&&?=?|<(?:=>?|<=?)?|>>?=?|![~=]?|[%^]=?|\.(?:=|\.\.?)?|[\\?]|\bx(?:=|\b)|\b(?:lt|gt|le|ge|eq|ne|cmp|not|and|or|xor)\b/,
 	    punctuation: /[{}[\];(),:]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 621 */
-/***/ function(module, exports) {
+/***/ }),
+/* 644 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	module.exports = phpExtras;
-	phpExtras.displayName = 'phpExtras';
-	phpExtras.aliases = [];
+	'use strict'
+	var refractorPhp = __webpack_require__(645)
+	module.exports = phpExtras
+	phpExtras.displayName = 'phpExtras'
+	phpExtras.aliases = []
 	function phpExtras(Prism) {
+	  Prism.register(refractorPhp)
 	  Prism.languages.insertBefore('php', 'variable', {
 	    this: /\$this\b/,
 	    global: /\$(?:_(?:SERVER|GET|POST|FILES|REQUEST|SESSION|ENV|COOKIE)|GLOBALS|HTTP_RAW_POST_DATA|argc|argv|php_errormsg|http_response_header)\b/,
@@ -29342,19 +30970,19 @@
 	        punctuation: /::|\\/
 	      }
 	    }
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 622 */
-/***/ function(module, exports) {
+/***/ }),
+/* 645 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = php;
-	php.displayName = 'php';
-	php.aliases = [];
+	module.exports = php
+	php.displayName = 'php'
+	php.aliases = []
 	function php(Prism) {
 	  /**
 	   * Original by Aaron Harun: http://aahacreative.com/2012/07/31/php-syntax-highlighting-prism/
@@ -29368,111 +30996,187 @@
 	   * Adds the following new token classes:
 	   *      constant, delimiter, variable, function, package
 	   */
-	  Prism.languages.php = Prism.languages.extend('clike', {
-	    keyword: /\b(?:and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|private|protected|parent|throw|null|echo|print|trait|namespace|final|yield|goto|instanceof|finally|try|catch)\b/i,
-	    constant: /\b[A-Z0-9_]{2,}\b/,
-	    comment: {
-	      pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
-	      lookbehind: true
-	    }
-	  });
-	  // Shell-like comments are matched after strings, because they are less
-	  // common than strings containing hashes...
-	  Prism.languages.insertBefore('php', 'class-name', {
-	    'shell-comment': {
-	      pattern: /(^|[^\\])#.*/,
-	      lookbehind: true,
-	      alias: 'comment'
-	    }
-	  });
-	  Prism.languages.insertBefore('php', 'keyword', {
-	    delimiter: {
-	      pattern: /\?>|<\?(?:php|=)?/i,
-	      alias: 'important'
-	    },
-	    variable: /\$\w+\b/i,
-	    package: {
-	      pattern: /(\\|namespace\s+|use\s+)[\w\\]+/,
+	  ;(function(Prism) {
+	    Prism.languages.php = Prism.languages.extend('clike', {
+	      keyword: /\b(?:and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|private|protected|parent|throw|null|echo|print|trait|namespace|final|yield|goto|instanceof|finally|try|catch)\b/i,
+	      constant: /\b[A-Z0-9_]{2,}\b/,
+	      comment: {
+	        pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
+	        lookbehind: true
+	      }
+	    })
+	    Prism.languages.insertBefore('php', 'string', {
+	      'shell-comment': {
+	        pattern: /(^|[^\\])#.*/,
+	        lookbehind: true,
+	        alias: 'comment'
+	      }
+	    })
+	    Prism.languages.insertBefore('php', 'keyword', {
+	      delimiter: {
+	        pattern: /\?>|<\?(?:php|=)?/i,
+	        alias: 'important'
+	      },
+	      variable: /\$+(?:\w+\b|(?={))/i,
+	      package: {
+	        pattern: /(\\|namespace\s+|use\s+)[\w\\]+/,
+	        lookbehind: true,
+	        inside: {
+	          punctuation: /\\/
+	        }
+	      }
+	    })
+	    // Must be defined after the function pattern
+	    Prism.languages.insertBefore('php', 'operator', {
+	      property: {
+	        pattern: /(->)[\w]+/,
+	        lookbehind: true
+	      }
+	    })
+	    Prism.languages.insertBefore('php', 'string', {
+	      'nowdoc-string': {
+	        pattern: /<<<'([^']+)'(?:\r\n?|\n)(?:.*(?:\r\n?|\n))*?\1;/,
+	        greedy: true,
+	        alias: 'string',
+	        inside: {
+	          delimiter: {
+	            pattern: /^<<<'[^']+'|[a-z_]\w*;$/i,
+	            alias: 'symbol',
+	            inside: {
+	              punctuation: /^<<<'?|[';]$/
+	            }
+	          }
+	        }
+	      },
+	      'heredoc-string': {
+	        pattern: /<<<(?:"([^"]+)"(?:\r\n?|\n)(?:.*(?:\r\n?|\n))*?\1;|([a-z_]\w*)(?:\r\n?|\n)(?:.*(?:\r\n?|\n))*?\2;)/i,
+	        greedy: true,
+	        alias: 'string',
+	        inside: {
+	          delimiter: {
+	            pattern: /^<<<(?:"[^"]+"|[a-z_]\w*)|[a-z_]\w*;$/i,
+	            alias: 'symbol',
+	            inside: {
+	              punctuation: /^<<<"?|[";]$/
+	            }
+	          },
+	          interpolation: null // See below
+	        }
+	      },
+	      'single-quoted-string': {
+	        pattern: /'(?:\\[\s\S]|[^\\'])*'/,
+	        greedy: true,
+	        alias: 'string'
+	      },
+	      'double-quoted-string': {
+	        pattern: /"(?:\\[\s\S]|[^\\"])*"/,
+	        greedy: true,
+	        alias: 'string',
+	        inside: {
+	          interpolation: null // See below
+	        }
+	      }
+	    })
+	    // The different types of PHP strings "replace" the C-like standard string
+	    delete Prism.languages.php['string']
+	    var string_interpolation = {
+	      pattern: /{\$(?:{(?:{[^{}]+}|[^{}]+)}|[^{}])+}|(^|[^\\{])\$+(?:\w+(?:\[.+?]|->\w+)*)/,
 	      lookbehind: true,
 	      inside: {
-	        punctuation: /\\/
+	        rest: Prism.languages.php
 	      }
 	    }
-	  });
-	  // Must be defined after the function pattern
-	  Prism.languages.insertBefore('php', 'operator', {
-	    property: {
-	      pattern: /(->)[\w]+/,
+	    Prism.languages.php['heredoc-string'].inside[
+	      'interpolation'
+	    ] = string_interpolation
+	    Prism.languages.php['double-quoted-string'].inside[
+	      'interpolation'
+	    ] = string_interpolation
+	    Prism.hooks.add('before-tokenize', function(env) {
+	      if (!/(?:<\?php|<\?)/gi.test(env.code)) {
+	        return
+	      }
+	      var phpPattern = /(?:<\?php|<\?)[\s\S]*?(?:\?>|$)/gi
+	      Prism.languages['markup-templating'].buildPlaceholders(
+	        env,
+	        'php',
+	        phpPattern
+	      )
+	    })
+	    Prism.hooks.add('after-tokenize', function(env) {
+	      Prism.languages['markup-templating'].tokenizePlaceholders(env, 'php')
+	    })
+	  })(Prism)
+	}
+
+
+/***/ }),
+/* 646 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict'
+	var refractorSql = __webpack_require__(647)
+	module.exports = plsql
+	plsql.displayName = 'plsql'
+	plsql.aliases = []
+	function plsql(Prism) {
+	  Prism.register(refractorSql)
+	  Prism.languages.plsql = Prism.languages.extend('sql', {
+	    comment: [/\/\*[\s\S]*?\*\//, /--.*/]
+	  })
+	  if (Prism.util.type(Prism.languages.plsql['keyword']) !== 'Array') {
+	    Prism.languages.plsql['keyword'] = [Prism.languages.plsql['keyword']]
+	  }
+	  Prism.languages.plsql['keyword'].unshift(
+	    /\b(?:ACCESS|AGENT|AGGREGATE|ARRAY|ARROW|AT|ATTRIBUTE|AUDIT|AUTHID|BFILE_BASE|BLOB_BASE|BLOCK|BODY|BOTH|BOUND|BYTE|CALLING|CHAR_BASE|CHARSET(?:FORM|ID)|CLOB_BASE|COLAUTH|COLLECT|CLUSTERS?|COMPILED|COMPRESS|CONSTANT|CONSTRUCTOR|CONTEXT|CRASH|CUSTOMDATUM|DANGLING|DATE_BASE|DEFINE|DETERMINISTIC|DURATION|ELEMENT|EMPTY|EXCEPTIONS?|EXCLUSIVE|EXTERNAL|FINAL|FORALL|FORM|FOUND|GENERAL|HEAP|HIDDEN|IDENTIFIED|IMMEDIATE|INCLUDING|INCREMENT|INDICATOR|INDEXES|INDICES|INFINITE|INITIAL|ISOPEN|INSTANTIABLE|INTERFACE|INVALIDATE|JAVA|LARGE|LEADING|LENGTH|LIBRARY|LIKE[24C]|LIMITED|LONG|LOOP|MAP|MAXEXTENTS|MAXLEN|MEMBER|MINUS|MLSLABEL|MULTISET|NAME|NAN|NATIVE|NEW|NOAUDIT|NOCOMPRESS|NOCOPY|NOTFOUND|NOWAIT|NUMBER(?:_BASE)?|OBJECT|OCI(?:COLL|DATE|DATETIME|DURATION|INTERVAL|LOBLOCATOR|NUMBER|RAW|REF|REFCURSOR|ROWID|STRING|TYPE)|OFFLINE|ONLINE|ONLY|OPAQUE|OPERATOR|ORACLE|ORADATA|ORGANIZATION|ORL(?:ANY|VARY)|OTHERS|OVERLAPS|OVERRIDING|PACKAGE|PARALLEL_ENABLE|PARAMETERS?|PASCAL|PCTFREE|PIPE(?:LINED)?|PRAGMA|PRIOR|PRIVATE|RAISE|RANGE|RAW|RECORD|REF|REFERENCE|REM|REMAINDER|RESULT|RESOURCE|RETURNING|REVERSE|ROW(?:ID|NUM|TYPE)|SAMPLE|SB[124]|SEGMENT|SELF|SEPARATE|SEQUENCE|SHORT|SIZE(?:_T)?|SPARSE|SQL(?:CODE|DATA|NAME|STATE)|STANDARD|STATIC|STDDEV|STORED|STRING|STRUCT|STYLE|SUBMULTISET|SUBPARTITION|SUBSTITUTABLE|SUBTYPE|SUCCESSFUL|SYNONYM|SYSDATE|TABAUTH|TDO|THE|TIMEZONE_(?:ABBR|HOUR|MINUTE|REGION)|TRAILING|TRANSAC(?:TIONAL)?|TRUSTED|UB[124]|UID|UNDER|UNTRUSTED|VALIDATE|VALIST|VARCHAR2|VARIABLE|VARIANCE|VARRAY|VIEWS|VOID|WHENEVER|WRAPPED|ZONE)\b/i
+	  )
+	  if (Prism.util.type(Prism.languages.plsql['operator']) !== 'Array') {
+	    Prism.languages.plsql['operator'] = [Prism.languages.plsql['operator']]
+	  }
+	  Prism.languages.plsql['operator'].unshift(/:=/)
+	}
+
+
+/***/ }),
+/* 647 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = sql
+	sql.displayName = 'sql'
+	sql.aliases = []
+	function sql(Prism) {
+	  Prism.languages.sql = {
+	    comment: {
+	      pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|(?:--|\/\/|#).*)/,
 	      lookbehind: true
-	    }
-	  });
-	  // Add HTML support if the markup language exists
-	  if (Prism.languages.markup) {
-	    // Tokenize all inline PHP blocks that are wrapped in <?php ?>
-	    // This allows for easy PHP + markup highlighting
-	    Prism.hooks.add('before-highlight', function(env) {
-	      if (env.language !== 'php' || !/(?:<\?php|<\?)/gi.test(env.code)) {
-	        return;
-	      }
-	      env.tokenStack = [];
-	      env.backupCode = env.code;
-	      env.code = env.code.replace(/(?:<\?php|<\?)[\s\S]*?(?:\?>|$)/gi, function(
-	        match
-	      ) {
-	        var i = env.tokenStack.length;
-	        // Check for existing strings
-	        while (env.backupCode.indexOf('___PHP' + i + '___') !== -1) ++i;
-	        // Create a sparse array
-	        env.tokenStack[i] = match;
-	        return '___PHP' + i + '___';
-	      });
-	      // Switch the grammar to markup
-	      env.grammar = Prism.languages.markup;
-	    });
-	    // Restore env.code for other plugins (e.g. line-numbers)
-	    Prism.hooks.add('before-insert', function(env) {
-	      if (env.language === 'php' && env.backupCode) {
-	        env.code = env.backupCode;
-	        delete env.backupCode;
-	      }
-	    });
-	    // Re-insert the tokens after highlighting
-	    Prism.hooks.add('after-highlight', function(env) {
-	      if (env.language !== 'php' || !env.tokenStack) {
-	        return;
-	      }
-	      // Switch the grammar back
-	      env.grammar = Prism.languages.php;
-	      for (
-	        var i = 0, keys = Object.keys(env.tokenStack);
-	        i < keys.length;
-	        ++i
-	      ) {
-	        var k = keys[i];
-	        var t = env.tokenStack[k];
-	        // The replace prevents $$, $&, $`, $', $n, $nn from being interpreted as special patterns
-	        env.highlightedCode = env.highlightedCode.replace(
-	          '___PHP' + k + '___',
-	          '<span class="token php language-php">' +
-	            Prism.highlight(t, env.grammar, 'php').replace(/\$/g, '$$$$') +
-	            '</span>'
-	        );
-	      }
-	      env.element.innerHTML = env.highlightedCode;
-	    });
+	    },
+	    string: {
+	      pattern: /(^|[^@\\])("|')(?:\\[\s\S]|(?!\2)[^\\])*\2/,
+	      greedy: true,
+	      lookbehind: true
+	    },
+	    variable: /@[\w.$]+|@(["'`])(?:\\[\s\S]|(?!\1)[^\\])+\1/,
+	    function: /\b(?:AVG|COUNT|FIRST|FORMAT|LAST|LCASE|LEN|MAX|MID|MIN|MOD|NOW|ROUND|SUM|UCASE)(?=\s*\()/i, // Should we highlight user defined functions too?
+	    keyword: /\b(?:ACTION|ADD|AFTER|ALGORITHM|ALL|ALTER|ANALYZE|ANY|APPLY|AS|ASC|AUTHORIZATION|AUTO_INCREMENT|BACKUP|BDB|BEGIN|BERKELEYDB|BIGINT|BINARY|BIT|BLOB|BOOL|BOOLEAN|BREAK|BROWSE|BTREE|BULK|BY|CALL|CASCADED?|CASE|CHAIN|CHAR(?:ACTER|SET)?|CHECK(?:POINT)?|CLOSE|CLUSTERED|COALESCE|COLLATE|COLUMNS?|COMMENT|COMMIT(?:TED)?|COMPUTE|CONNECT|CONSISTENT|CONSTRAINT|CONTAINS(?:TABLE)?|CONTINUE|CONVERT|CREATE|CROSS|CURRENT(?:_DATE|_TIME|_TIMESTAMP|_USER)?|CURSOR|CYCLE|DATA(?:BASES?)?|DATE(?:TIME)?|DAY|DBCC|DEALLOCATE|DEC|DECIMAL|DECLARE|DEFAULT|DEFINER|DELAYED|DELETE|DELIMITERS?|DENY|DESC|DESCRIBE|DETERMINISTIC|DISABLE|DISCARD|DISK|DISTINCT|DISTINCTROW|DISTRIBUTED|DO|DOUBLE|DROP|DUMMY|DUMP(?:FILE)?|DUPLICATE|ELSE(?:IF)?|ENABLE|ENCLOSED|END|ENGINE|ENUM|ERRLVL|ERRORS|ESCAPED?|EXCEPT|EXEC(?:UTE)?|EXISTS|EXIT|EXPLAIN|EXTENDED|FETCH|FIELDS|FILE|FILLFACTOR|FIRST|FIXED|FLOAT|FOLLOWING|FOR(?: EACH ROW)?|FORCE|FOREIGN|FREETEXT(?:TABLE)?|FROM|FULL|FUNCTION|GEOMETRY(?:COLLECTION)?|GLOBAL|GOTO|GRANT|GROUP|HANDLER|HASH|HAVING|HOLDLOCK|HOUR|IDENTITY(?:_INSERT|COL)?|IF|IGNORE|IMPORT|INDEX|INFILE|INNER|INNODB|INOUT|INSERT|INT|INTEGER|INTERSECT|INTERVAL|INTO|INVOKER|ISOLATION|ITERATE|JOIN|KEYS?|KILL|LANGUAGE|LAST|LEAVE|LEFT|LEVEL|LIMIT|LINENO|LINES|LINESTRING|LOAD|LOCAL|LOCK|LONG(?:BLOB|TEXT)|LOOP|MATCH(?:ED)?|MEDIUM(?:BLOB|INT|TEXT)|MERGE|MIDDLEINT|MINUTE|MODE|MODIFIES|MODIFY|MONTH|MULTI(?:LINESTRING|POINT|POLYGON)|NATIONAL|NATURAL|NCHAR|NEXT|NO|NONCLUSTERED|NULLIF|NUMERIC|OFF?|OFFSETS?|ON|OPEN(?:DATASOURCE|QUERY|ROWSET)?|OPTIMIZE|OPTION(?:ALLY)?|ORDER|OUT(?:ER|FILE)?|OVER|PARTIAL|PARTITION|PERCENT|PIVOT|PLAN|POINT|POLYGON|PRECEDING|PRECISION|PREPARE|PREV|PRIMARY|PRINT|PRIVILEGES|PROC(?:EDURE)?|PUBLIC|PURGE|QUICK|RAISERROR|READS?|REAL|RECONFIGURE|REFERENCES|RELEASE|RENAME|REPEAT(?:ABLE)?|REPLACE|REPLICATION|REQUIRE|RESIGNAL|RESTORE|RESTRICT|RETURNS?|REVOKE|RIGHT|ROLLBACK|ROUTINE|ROW(?:COUNT|GUIDCOL|S)?|RTREE|RULE|SAVE(?:POINT)?|SCHEMA|SECOND|SELECT|SERIAL(?:IZABLE)?|SESSION(?:_USER)?|SET(?:USER)?|SHARE|SHOW|SHUTDOWN|SIMPLE|SMALLINT|SNAPSHOT|SOME|SONAME|SQL|START(?:ING)?|STATISTICS|STATUS|STRIPED|SYSTEM_USER|TABLES?|TABLESPACE|TEMP(?:ORARY|TABLE)?|TERMINATED|TEXT(?:SIZE)?|THEN|TIME(?:STAMP)?|TINY(?:BLOB|INT|TEXT)|TOP?|TRAN(?:SACTIONS?)?|TRIGGER|TRUNCATE|TSEQUAL|TYPES?|UNBOUNDED|UNCOMMITTED|UNDEFINED|UNION|UNIQUE|UNLOCK|UNPIVOT|UNSIGNED|UPDATE(?:TEXT)?|USAGE|USE|USER|USING|VALUES?|VAR(?:BINARY|CHAR|CHARACTER|YING)|VIEW|WAITFOR|WARNINGS|WHEN|WHERE|WHILE|WITH(?: ROLLUP|IN)?|WORK|WRITE(?:TEXT)?|YEAR)\b/i,
+	    boolean: /\b(?:TRUE|FALSE|NULL)\b/i,
+	    number: /\b0x[\da-f]+\b|\b\d+\.?\d*|\B\.\d+\b/i,
+	    operator: /[-+*\/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?|\b(?:AND|BETWEEN|IN|LIKE|NOT|OR|IS|DIV|REGEXP|RLIKE|SOUNDS LIKE|XOR)\b/i,
+	    punctuation: /[;[\]()`,.]/
 	  }
 	}
 
 
-/***/ },
-/* 623 */
-/***/ function(module, exports) {
+/***/ }),
+/* 648 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = powershell;
-	powershell.displayName = 'powershell';
-	powershell.aliases = [];
+	module.exports = powershell
+	powershell.displayName = 'powershell'
+	powershell.aliases = []
 	function powershell(Prism) {
 	  Prism.languages.powershell = {
 	    comment: [
@@ -29491,7 +31195,8 @@
 	        greedy: true,
 	        inside: {
 	          function: {
-	            pattern: /[^`]\$\(.*?\)/,
+	            pattern: /(^|[^`])\$\(.*?\)/,
+	            lookbehind: true,
 	            // Populated at end of file
 	            inside: {}
 	          }
@@ -29503,7 +31208,8 @@
 	      }
 	    ],
 	    // Matches name spaces as well as casts, attribute decorators. Force starting with letter to avoid matching array indices
-	    namespace: /\[[a-z][\s\S]*?\]/i,
+	    // Supports two levels of nested brackets (e.g. `[OutputType([System.Collections.Generic.List[int]])]`)
+	    namespace: /\[[a-z](?:\[(?:\[[^\]]*]|[^\[\]])*]|[^\[\]])*]/i,
 	    boolean: /\$(?:true|false)\b/i,
 	    variable: /\$\w+\b/i,
 	    // Cmdlets and aliases. Aliases should come last, otherwise "write" gets preferred over "write-host" for example
@@ -29520,32 +31226,31 @@
 	      lookbehind: true
 	    },
 	    punctuation: /[|{}[\];(),.]/
-	  };
+	  }
 	  // Variable interpolation inside strings, and nested expressions
 	  Prism.languages.powershell.string[0].inside.boolean =
-	    Prism.languages.powershell.boolean;
+	    Prism.languages.powershell.boolean
 	  Prism.languages.powershell.string[0].inside.variable =
-	    Prism.languages.powershell.variable;
-	  Prism.languages.powershell.string[0].inside.function.inside = Prism.util.clone(
+	    Prism.languages.powershell.variable
+	  Prism.languages.powershell.string[0].inside.function.inside =
 	    Prism.languages.powershell
-	  );
 	}
 
 
-/***/ },
-/* 624 */
-/***/ function(module, exports) {
+/***/ }),
+/* 649 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = processing;
-	processing.displayName = 'processing';
-	processing.aliases = [];
+	module.exports = processing
+	processing.displayName = 'processing'
+	processing.aliases = []
 	function processing(Prism) {
 	  Prism.languages.processing = Prism.languages.extend('clike', {
 	    keyword: /\b(?:break|catch|case|class|continue|default|else|extends|final|for|if|implements|import|new|null|private|public|return|static|super|switch|this|try|void|while)\b/,
 	    operator: /<[<=]?|>[>=]?|&&?|\|\|?|[%?]|[!=+\-*\/]=?/
-	  });
+	  })
 	  Prism.languages.insertBefore('processing', 'number', {
 	    // Special case: XML is a type
 	    constant: /\b(?!XML\b)[A-Z][A-Z\d_]+\b/,
@@ -29553,23 +31258,23 @@
 	      pattern: /\b(?:boolean|byte|char|color|double|float|int|XML|[A-Z]\w*)\b/,
 	      alias: 'variable'
 	    }
-	  });
+	  })
 	  // Spaces are allowed between function name and parenthesis
-	  Prism.languages.processing['function'].pattern = /\w+(?=\s*\()/;
+	  Prism.languages.processing['function'].pattern = /\w+(?=\s*\()/
 	  // Class-names is not styled by default
-	  Prism.languages.processing['class-name'].alias = 'variable';
+	  Prism.languages.processing['class-name'].alias = 'variable'
 	}
 
 
-/***/ },
-/* 625 */
-/***/ function(module, exports) {
+/***/ }),
+/* 650 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = prolog;
-	prolog.displayName = 'prolog';
-	prolog.aliases = [];
+	module.exports = prolog
+	prolog.displayName = 'prolog'
+	prolog.aliases = []
 	function prolog(Prism) {
 	  Prism.languages.prolog = {
 	    // Syntax depends on the implementation
@@ -29587,19 +31292,19 @@
 	    // Custom operators are allowed
 	    operator: /[:\\=><\-?*@\/;+^|!$.]+|\b(?:is|mod|not|xor)\b/,
 	    punctuation: /[(){}\[\],]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 626 */
-/***/ function(module, exports) {
+/***/ }),
+/* 651 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = properties;
-	properties.displayName = 'properties';
-	properties.aliases = [];
+	module.exports = properties
+	properties.displayName = 'properties'
+	properties.aliases = []
 	function properties(Prism) {
 	  Prism.languages.properties = {
 	    comment: /^[ \t]*[#!].*$/m,
@@ -29609,19 +31314,19 @@
 	    },
 	    'attr-name': /^[ \t]*(?:\\(?:\r\n|[\s\S])|[^\\\s:=])+?(?= *[=:] *| )/m,
 	    punctuation: /[=:]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 627 */
-/***/ function(module, exports) {
+/***/ }),
+/* 652 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = protobuf;
-	protobuf.displayName = 'protobuf';
-	protobuf.aliases = [];
+	module.exports = protobuf
+	protobuf.displayName = 'protobuf'
+	protobuf.aliases = []
 	function protobuf(Prism) {
 	  Prism.languages.protobuf = Prism.languages.extend('clike', {
 	    keyword: /\b(?:package|import|message|enum)\b/,
@@ -29630,21 +31335,21 @@
 	      pattern: /\b(?:double|float|int32|int64|uint32|uint64|sint32|sint64|fixed32|fixed64|sfixed32|sfixed64|bool|string|bytes)\b/,
 	      alias: 'symbol'
 	    }
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 628 */
-/***/ function(module, exports) {
+/***/ }),
+/* 653 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = pug;
-	pug.displayName = 'pug';
-	pug.aliases = [];
+	module.exports = pug
+	pug.displayName = 'pug'
+	pug.aliases = []
 	function pug(Prism) {
-	  (function(Prism) {
+	  ;(function(Prism) {
 	    // TODO:
 	    // - Add CSS highlighting inside <style> tags
 	    // - Add support for multi-line code blocks
@@ -29791,9 +31496,9 @@
 	        }
 	      ],
 	      punctuation: /[.\-!=|]+/
-	    };
+	    }
 	    var filter_pattern =
-	      '(^([\\t ]*)):{{filter_name}}(?:(?:\\r?\\n|\\r(?!\\n))(?:\\2[\\t ]+.+|\\s*?(?=\\r?\\n|\\r)))+';
+	      '(^([\\t ]*)):{{filter_name}}(?:(?:\\r?\\n|\\r(?!\\n))(?:\\2[\\t ]+.+|\\s*?(?=\\r?\\n|\\r)))+'
 	    // Non exhaustive list of available filters and associated languages
 	    var filters = [
 	      {filter: 'atpl', language: 'twig'},
@@ -29809,14 +31514,12 @@
 	      {filter: 'sass', language: 'scss'},
 	      'stylus',
 	      'swig'
-	    ];
-	    var all_filters = {};
+	    ]
+	    var all_filters = {}
 	    for (var i = 0, l = filters.length; i < l; i++) {
-	      var filter = filters[i];
+	      var filter = filters[i]
 	      filter =
-	        typeof filter === 'string'
-	          ? {filter: filter, language: filter}
-	          : filter;
+	        typeof filter === 'string' ? {filter: filter, language: filter} : filter
 	      if (Prism.languages[filter.language]) {
 	        all_filters['filter-' + filter.filter] = {
 	          pattern: RegExp(
@@ -29831,25 +31534,25 @@
 	            },
 	            rest: Prism.languages[filter.language]
 	          }
-	        };
+	        }
 	      }
 	    }
-	    Prism.languages.insertBefore('pug', 'filter', all_filters);
-	  })(Prism);
+	    Prism.languages.insertBefore('pug', 'filter', all_filters)
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 629 */
-/***/ function(module, exports) {
+/***/ }),
+/* 654 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = puppet;
-	puppet.displayName = 'puppet';
-	puppet.aliases = [];
+	module.exports = puppet
+	puppet.displayName = 'puppet'
+	puppet.aliases = []
 	function puppet(Prism) {
-	  (function(Prism) {
+	  ;(function(Prism) {
 	    Prism.languages.puppet = {
 	      heredoc: [
 	        // Matches the content of a quoted heredoc string (subject to interpolation)
@@ -29867,6 +31570,7 @@
 	        {
 	          pattern: /(@\(([^"\r\n\/):]+)(?:\/[nrts$uL]*)?\).*(?:\r?\n|\r))(?:.*(?:\r?\n|\r))*?[ \t]*\|?[ \t]*-?[ \t]*\2/,
 	          lookbehind: true,
+	          greedy: true,
 	          alias: 'string',
 	          inside: {
 	            // Matches the end tag
@@ -29888,12 +31592,14 @@
 	      'multiline-comment': {
 	        pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
 	        lookbehind: true,
+	        greedy: true,
 	        alias: 'comment'
 	      },
 	      regex: {
 	        // Must be prefixed with the keyword "node" or a non-word char
 	        pattern: /((?:\bnode\s+|[~=\(\[\{,]\s*|[=+]>\s*|^\s*))\/(?:[^\/\\]|\\[\s\S])+\/(?:[imx]+\b|\B)/,
 	        lookbehind: true,
+	        greedy: true,
 	        inside: {
 	          // Extended regexes must have the x flag. They can contain single-line comments.
 	          'extended-regex': {
@@ -29906,11 +31612,13 @@
 	      },
 	      comment: {
 	        pattern: /(^|[^\\])#.*/,
-	        lookbehind: true
+	        lookbehind: true,
+	        greedy: true
 	      },
 	      string: {
 	        // Allow for one nested level of double quotes inside interpolation
 	        pattern: /(["'])(?:\$\{(?:[^'"}]|(["'])(?:(?!\2)[^\\]|\\[\s\S])*\2)+\}|(?!\1)[^\\]|\\[\s\S])*\1/,
+	        greedy: true,
 	        inside: {
 	          'double-quoted': {
 	            pattern: /^"[\s\S]*"$/,
@@ -29944,7 +31652,7 @@
 	      },
 	      operator: /=[=~>]?|![=~]?|<(?:<\|?|[=~|-])?|>[>=]?|->?|~>|\|>?>?|[*\/%+?]|\b(?:and|in|or)\b/,
 	      punctuation: /[\[\]{}().,;]|:+/
-	    };
+	    }
 	    var interpolation = [
 	      {
 	        // Allow for one nested level of braces inside interpolation
@@ -29964,7 +31672,7 @@
 	            pattern: /^\$/,
 	            alias: 'variable'
 	          },
-	          rest: Prism.util.clone(Prism.languages.puppet)
+	          rest: Prism.languages.puppet
 	        }
 	      },
 	      {
@@ -29975,27 +31683,27 @@
 	          punctuation: /::/
 	        }
 	      }
-	    ];
-	    Prism.languages.puppet['heredoc'][0].inside.interpolation = interpolation;
+	    ]
+	    Prism.languages.puppet['heredoc'][0].inside.interpolation = interpolation
 	    Prism.languages.puppet['string'].inside[
 	      'double-quoted'
-	    ].inside.interpolation = interpolation;
-	  })(Prism);
+	    ].inside.interpolation = interpolation
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 630 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 655 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	var c = __webpack_require__(548);
-	module.exports = pure;
-	pure.displayName = 'pure';
-	pure.aliases = [];
+	'use strict'
+	var refractorC = __webpack_require__(556)
+	module.exports = pure
+	pure.displayName = 'pure'
+	pure.aliases = []
 	function pure(Prism) {
-	  Prism.register(c);
-	  (function(Prism) {
+	  Prism.register(refractorC)
+	  ;(function(Prism) {
 	    Prism.languages.pure = {
 	      comment: [
 	        {
@@ -30042,23 +31750,23 @@
 	      operator: /(?=\b_|[^_])[!"#$%&'*+,\-.\/:<=>?@\\^_`|~\u00a1-\u00bf\u00d7-\u00f7\u20d0-\u2bff]+|\b(?:and|div|mod|not|or)\b/,
 	      // FIXME: How can we prevent | and , to be highlighted as operator when they are used alone?
 	      punctuation: /[(){}\[\];,|]/
-	    };
+	    }
 	    var inlineLanguages = [
 	      'c',
 	      {lang: 'c++', alias: 'cpp'},
 	      'fortran',
 	      'ats',
 	      'dsp'
-	    ];
-	    var inlineLanguageRe = '%< *-\\*- *{lang}\\d* *-\\*-[\\s\\S]+?%>';
+	    ]
+	    var inlineLanguageRe = '%< *-\\*- *{lang}\\d* *-\\*-[\\s\\S]+?%>'
 	    inlineLanguages.forEach(function(lang) {
-	      var alias = lang;
+	      var alias = lang
 	      if (typeof lang !== 'string') {
-	        alias = lang.alias;
-	        lang = lang.lang;
+	        alias = lang.alias
+	        lang = lang.lang
 	      }
 	      if (Prism.languages[alias]) {
-	        var o = {};
+	        var o = {}
 	        o['inline-lang-' + alias] = {
 	          pattern: RegExp(
 	            inlineLanguageRe.replace(
@@ -30068,32 +31776,32 @@
 	            'i'
 	          ),
 	          inside: Prism.util.clone(Prism.languages.pure['inline-lang'].inside)
-	        };
+	        }
 	        o['inline-lang-' + alias].inside.rest = Prism.util.clone(
 	          Prism.languages[alias]
-	        );
-	        Prism.languages.insertBefore('pure', 'inline-lang', o);
+	        )
+	        Prism.languages.insertBefore('pure', 'inline-lang', o)
 	      }
-	    });
+	    })
 	    // C is the default inline language
 	    if (Prism.languages.c) {
 	      Prism.languages.pure['inline-lang'].inside.rest = Prism.util.clone(
 	        Prism.languages.c
-	      );
+	      )
 	    }
-	  })(Prism);
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 631 */
-/***/ function(module, exports) {
+/***/ }),
+/* 656 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = python;
-	python.displayName = 'python';
-	python.aliases = [];
+	module.exports = python
+	python.displayName = 'python'
+	python.aliases = []
 	function python(Prism) {
 	  Prism.languages.python = {
 	    comment: {
@@ -30120,22 +31828,22 @@
 	    keyword: /\b(?:as|assert|async|await|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|nonlocal|pass|print|raise|return|try|while|with|yield)\b/,
 	    builtin: /\b(?:__import__|abs|all|any|apply|ascii|basestring|bin|bool|buffer|bytearray|bytes|callable|chr|classmethod|cmp|coerce|compile|complex|delattr|dict|dir|divmod|enumerate|eval|execfile|file|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|intern|isinstance|issubclass|iter|len|list|locals|long|map|max|memoryview|min|next|object|oct|open|ord|pow|property|range|raw_input|reduce|reload|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|unichr|unicode|vars|xrange|zip)\b/,
 	    boolean: /\b(?:True|False|None)\b/,
-	    number: /\b-?(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*\.?\d*|\.\d+)(?:e[+-]?\d+)?j?\b/i,
+	    number: /(?:\b(?=\d)|\B(?=\.))(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*\.?\d*|\.\d+)(?:e[+-]?\d+)?j?\b/i,
 	    operator: /[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]|\b(?:or|and|not)\b/,
 	    punctuation: /[{}[\];(),.:]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 632 */
-/***/ function(module, exports) {
+/***/ }),
+/* 657 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = q;
-	q.displayName = 'q';
-	q.aliases = [];
+	module.exports = q
+	q.displayName = 'q'
+	q.aliases = []
 	function q(Prism) {
 	  Prism.languages.q = {
 	    string: /"(?:\\.|[^"\\\r\n])*"/,
@@ -30144,7 +31852,8 @@
 	      // When / is following a space (or a right parenthesis, bracket, or brace), it is ignored with the rest of the line.
 	      {
 	        pattern: /([\t )\]}])\/.*/,
-	        lookbehind: true
+	        lookbehind: true,
+	        greedy: true
 	      },
 	      // From http://code.kx.com/wiki/Reference/Slash:
 	      // A line which has / as its first character and contains at least one other non-whitespace character is a whole-line comment and is ignored entirely.
@@ -30153,12 +31862,19 @@
 	      // The / and \ must be the first char on the line, but may be followed by any amount of whitespace.
 	      {
 	        pattern: /(^|\r?\n|\r)\/[\t ]*(?:(?:\r?\n|\r)(?:.*(?:\r?\n|\r))*?(?:\\(?=[\t ]*(?:\r?\n|\r))|$)|\S.*)/,
-	        lookbehind: true
+	        lookbehind: true,
+	        greedy: true
 	      },
 	      // From http://code.kx.com/wiki/Reference/Slash:
 	      // A \ on a line by itself with no preceding matching / will comment to end of file.
-	      /^\\[\t ]*(?:\r?\n|\r)[\s\S]+/m,
-	      /^#!.+/m
+	      {
+	        pattern: /^\\[\t ]*(?:\r?\n|\r)[\s\S]+/m,
+	        greedy: true
+	      },
+	      {
+	        pattern: /^#!.+/m,
+	        greedy: true
+	      }
 	    ],
 	    symbol: /`(?::\S+|[\w.]*)/,
 	    datetime: {
@@ -30167,7 +31883,7 @@
 	    },
 	    // The negative look-ahead prevents bad highlighting
 	    // of verbs 0: and 1:
-	    number: /\b-?(?![01]:)(?:0[wn]|0W[hj]?|0N[hje]?|0x[\da-fA-F]+|\d+\.?\d*(?:e[+-]?\d+)?[hjfeb]?)/,
+	    number: /\b(?![01]:)(?:0[wn]|0W[hj]?|0N[hje]?|0x[\da-fA-F]+|\d+\.?\d*(?:e[+-]?\d+)?[hjfeb]?)/,
 	    keyword: /\\\w+\b|\b(?:abs|acos|aj0?|all|and|any|asc|asin|asof|atan|attr|avgs?|binr?|by|ceiling|cols|cor|cos|count|cov|cross|csv|cut|delete|deltas|desc|dev|differ|distinct|div|do|dsave|ej|enlist|eval|except|exec|exit|exp|fby|fills|first|fkeys|flip|floor|from|get|getenv|group|gtime|hclose|hcount|hdel|hopen|hsym|iasc|identity|idesc|if|ij|in|insert|inter|inv|keys?|last|like|list|ljf?|load|log|lower|lsq|ltime|ltrim|mavg|maxs?|mcount|md5|mdev|med|meta|mins?|mmax|mmin|mmu|mod|msum|neg|next|not|null|or|over|parse|peach|pj|plist|prds?|prev|prior|rand|rank|ratios|raze|read0|read1|reciprocal|reval|reverse|rload|rotate|rsave|rtrim|save|scan|scov|sdev|select|set|setenv|show|signum|sin|sqrt|ssr?|string|sublist|sums?|sv|svar|system|tables|tan|til|trim|txf|type|uj|ungroup|union|update|upper|upsert|value|var|views?|vs|wavg|where|while|within|wj1?|wsum|ww|xasc|xbar|xcols?|xdesc|xexp|xgroup|xkey|xlog|xprev|xrank)\b/,
 	    adverb: {
 	      pattern: /['\/\\]:?|\beach\b/,
@@ -30178,19 +31894,19 @@
 	      alias: 'operator'
 	    },
 	    punctuation: /[(){}\[\];.]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 633 */
-/***/ function(module, exports) {
+/***/ }),
+/* 658 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = qore;
-	qore.displayName = 'qore';
-	qore.aliases = [];
+	module.exports = qore
+	qore.displayName = 'qore'
+	qore.aliases = []
 	function qore(Prism) {
 	  Prism.languages.qore = Prism.languages.extend('clike', {
 	    comment: {
@@ -30211,19 +31927,19 @@
 	      lookbehind: true
 	    },
 	    function: /\$?\b(?!\d)\w+(?=\()/
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 634 */
-/***/ function(module, exports) {
+/***/ }),
+/* 659 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = r;
-	r.displayName = 'r';
-	r.aliases = [];
+	module.exports = r
+	r.displayName = 'r'
+	r.aliases = []
 	function r(Prism) {
 	  Prism.languages.r = {
 	    comment: /#.*/,
@@ -30241,24 +31957,24 @@
 	    ellipsis: /\.\.(?:\.|\d+)/,
 	    number: [
 	      /\b(?:NaN|Inf)\b/,
-	      /\b(?:0x[\dA-Fa-f]+(?:\.\d*)?|\d*\.?\d+)(?:[EePp][+-]?\d+)?[iL]?\b/
+	      /(?:\b0x[\dA-Fa-f]+(?:\.\d*)?|\b\d+\.?\d*|\B\.\d+)(?:[EePp][+-]?\d+)?[iL]?/
 	    ],
 	    keyword: /\b(?:if|else|repeat|while|function|for|in|next|break|NULL|NA|NA_integer_|NA_real_|NA_complex_|NA_character_)\b/,
 	    operator: /->?>?|<(?:=|<?-)?|[>=!]=?|::?|&&?|\|\|?|[+*\/^$@~]/,
 	    punctuation: /[(){}\[\],;]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 635 */
-/***/ function(module, exports) {
+/***/ }),
+/* 660 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = reason;
-	reason.displayName = 'reason';
-	reason.aliases = [];
+	module.exports = reason
+	reason.displayName = 'reason'
+	reason.aliases = []
 	function reason(Prism) {
 	  Prism.languages.reason = Prism.languages.extend('clike', {
 	    comment: {
@@ -30273,7 +31989,7 @@
 	    'class-name': /\b[A-Z]\w*/,
 	    keyword: /\b(?:and|as|assert|begin|class|constraint|do|done|downto|else|end|exception|external|for|fun|function|functor|if|in|include|inherit|initializer|lazy|let|method|module|mutable|new|nonrec|object|of|open|or|private|rec|sig|struct|switch|then|to|try|type|val|virtual|when|while|with)\b/,
 	    operator: /\.{3}|:[:=]|=(?:==?|>)?|<=?|>=?|[|^?'#!~`]|[+\-*\/]\.?|\b(?:mod|land|lor|lxor|lsl|lsr|asr)\b/
-	  });
+	  })
 	  Prism.languages.insertBefore('reason', 'class-name', {
 	    character: {
 	      pattern: /'(?:\\x[\da-f]{2}|\\o[0-3][0-7][0-7]|\\\d{3}|\\.|[^'\\\r\n])'/,
@@ -30288,21 +32004,21 @@
 	      pattern: /\b[a-z]\w*(?=::)/,
 	      alias: 'symbol'
 	    }
-	  });
+	  })
 	  // We can't match functions property, so let's not even try.
-	  delete Prism.languages.reason.function;
+	  delete Prism.languages.reason.function
 	}
 
 
-/***/ },
-/* 636 */
-/***/ function(module, exports) {
+/***/ }),
+/* 661 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = renpy;
-	renpy.displayName = 'renpy';
-	renpy.aliases = [];
+	module.exports = renpy
+	renpy.displayName = 'renpy'
+	renpy.aliases = []
 	function renpy(Prism) {
 	  Prism.languages.renpy = {
 	    // TODO Write tests.
@@ -30319,22 +32035,22 @@
 	    tag: /\b(?:label|image|menu|[hv]box|frame|text|imagemap|imagebutton|bar|vbar|screen|textbutton|buttoscreenn|fixed|grid|input|key|mousearea|side|timer|viewport|window|hotspot|hotbar|self|button|drag|draggroup|tag|mm_menu_frame|nvl|block|parallel)\b|\$/,
 	    keyword: /\b(?:as|assert|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|pass|print|raise|return|try|while|yield|adjustment|alignaround|allow|angle|around|box_layout|cache|changed|child_size|clicked|clipping|corner1|corner2|default|delay|exclude|scope|slow|slow_abortable|slow_done|sound|style_group|substitute|suffix|transform_anchor|transpose|unhovered|config|theme|mm_root|gm_root|rounded_window|build|disabled_text|disabled|widget_selected|widget_text|widget_hover|widget|updater|behind|call|expression|hide|init|jump|onlayer|python|renpy|scene|set|show|transform|play|queue|stop|pause|define|window|repeat|contains|choice|on|function|event|animation|clockwise|counterclockwise|circles|knot|null|None|random|has|add|use|fade|dissolve|style|store|id|voice|center|left|right|less_rounded|music|movie|clear|persistent|ui)\b/,
 	    boolean: /\b(?:[Tt]rue|[Ff]alse)\b/,
-	    number: /\b-?(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*\.?\d*|\.\d+)(?:e[+-]?\d+)?j?\b/i,
+	    number: /(?:\b(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*\.?\d*)|\B\.\d+)(?:e[+-]?\d+)?j?/i,
 	    operator: /[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]|\b(?:or|and|not|with|at)\b/,
 	    punctuation: /[{}[\];(),.:]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 637 */
-/***/ function(module, exports) {
+/***/ }),
+/* 662 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = rest;
-	rest.displayName = 'rest';
-	rest.aliases = [];
+	module.exports = rest
+	rest.displayName = 'rest'
+	rest.aliases = []
 	function rest(Prism) {
 	  Prism.languages.rest = {
 	    table: [
@@ -30533,19 +32249,19 @@
 	      pattern: /(^\s*)(?:\|(?= |$)|(?:---?|—|\.\.|__)(?= )|\.\.$)/m,
 	      lookbehind: true
 	    }
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 638 */
-/***/ function(module, exports) {
+/***/ }),
+/* 663 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = rip;
-	rip.displayName = 'rip';
-	rip.aliases = [];
+	module.exports = rip
+	rip.displayName = 'rip'
+	rip.aliases = []
 	function rip(Prism) {
 	  Prism.languages.rip = {
 	    comment: /#.*/,
@@ -30569,19 +32285,19 @@
 	    number: /[+-]?(?:(?:\d+\.\d+)|(?:\d+))/,
 	    punctuation: /(?:\.{2,3})|[`,.:;=\/\\()<>\[\]{}]/,
 	    reference: /[^\d\s`'",.:;#\/\\()<>\[\]{}][^\s`'",.:;#\/\\()<>\[\]{}]*/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 639 */
-/***/ function(module, exports) {
+/***/ }),
+/* 664 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = roboconf;
-	roboconf.displayName = 'roboconf';
-	roboconf.aliases = [];
+	module.exports = roboconf
+	roboconf.displayName = 'roboconf'
+	roboconf.aliases = []
 	function roboconf(Prism) {
 	  Prism.languages.roboconf = {
 	    comment: /#.*/,
@@ -30609,19 +32325,19 @@
 	      alias: 'operator'
 	    },
 	    punctuation: /[{},.;:=]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 640 */
-/***/ function(module, exports) {
+/***/ }),
+/* 665 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = rust;
-	rust.displayName = 'rust';
-	rust.aliases = [];
+	module.exports = rust
+	rust.displayName = 'rust'
+	rust.aliases = []
 	function rust(Prism) {
 	  /* TODO
 	Add support for Markdown notation inside doc comments
@@ -30646,10 +32362,18 @@
 	        greedy: true
 	      },
 	      {
-	        pattern: /b?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
+	        pattern: /b?"(?:\\.|[^\\\r\n"])*"/,
 	        greedy: true
 	      }
 	    ],
+	    char: {
+	      pattern: /b?'(?:\\(?:x[0-7][\da-fA-F]|u{(?:[\da-fA-F]_*){1,6}|.)|[^\\\r\n\t'])'/,
+	      alias: 'string'
+	    },
+	    'lifetime-annotation': {
+	      pattern: /'[^\s>']+/,
+	      alias: 'symbol'
+	    },
 	    keyword: /\b(?:abstract|alignof|as|be|box|break|const|continue|crate|do|else|enum|extern|false|final|fn|for|if|impl|in|let|loop|match|mod|move|mut|offsetof|once|override|priv|pub|pure|ref|return|sizeof|static|self|struct|super|true|trait|type|typeof|unsafe|unsized|use|virtual|where|while|yield)\b/,
 	    attribute: {
 	      pattern: /#!?\[.+?\]/,
@@ -30666,7 +32390,7 @@
 	      alias: 'function'
 	    },
 	    // Hex, oct, bin, dec numbers with visual separators and type suffix
-	    number: /\b-?(?:0x[\dA-Fa-f](?:_?[\dA-Fa-f])*|0o[0-7](?:_?[0-7])*|0b[01](?:_?[01])*|(\d(?:_?\d)*)?\.?\d(?:_?\d)*(?:[Ee][+-]?\d+)?)(?:_?(?:[iu](?:8|16|32|64)?|f32|f64))?\b/,
+	    number: /\b(?:0x[\dA-Fa-f](?:_?[\dA-Fa-f])*|0o[0-7](?:_?[0-7])*|0b[01](?:_?[01])*|(\d(?:_?\d)*)?\.?\d(?:_?\d)*(?:[Ee][+-]?\d+)?)(?:_?(?:[iu](?:8|16|32|64)?|f32|f64))?\b/,
 	    // Closure params should not be confused with bitwise OR |
 	    'closure-params': {
 	      pattern: /\|[^|]*\|(?=\s*[{-])/,
@@ -30676,20 +32400,20 @@
 	      }
 	    },
 	    punctuation: /[{}[\];(),:]|\.+|->/,
-	    operator: /[-+*\/%!^=]=?|@|&[&=]?|\|[|=]?|<<?=?|>>?=?/
-	  };
+	    operator: /[-+*\/%!^]=?|=[=>]?|@|&[&=]?|\|[|=]?|<<?=?|>>?=?/
+	  }
 	}
 
 
-/***/ },
-/* 641 */
-/***/ function(module, exports) {
+/***/ }),
+/* 666 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = sas;
-	sas.displayName = 'sas';
-	sas.aliases = [];
+	module.exports = sas
+	sas.displayName = 'sas'
+	sas.aliases = []
 	function sas(Prism) {
 	  Prism.languages.sas = {
 	    datalines: {
@@ -30721,31 +32445,31 @@
 	    },
 	    keyword: /\b(?:data|else|format|if|input|proc\s\w+|quit|run|then)\b/i,
 	    // Decimal (1.2e23), hexadecimal (0c1x)
-	    number: /(?:\B-|\b)(?:[\da-f]+x|\d+(?:\.\d+)?(?:e[+-]?\d+)?)/i,
+	    number: /\b(?:[\da-f]+x|\d+(?:\.\d+)?(?:e[+-]?\d+)?)/i,
 	    operator: /\*\*?|\|\|?|!!?|¦¦?|<[>=]?|>[<=]?|[-+\/=&]|[~¬^]=?|\b(?:eq|ne|gt|lt|ge|le|in|not)\b/i,
 	    punctuation: /[$%@.(){}\[\];,\\]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 642 */
-/***/ function(module, exports) {
+/***/ }),
+/* 667 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = sass;
-	sass.displayName = 'sass';
-	sass.aliases = [];
+	module.exports = sass
+	sass.displayName = 'sass'
+	sass.aliases = []
 	function sass(Prism) {
-	  (function(Prism) {
+	  ;(function(Prism) {
 	    Prism.languages.sass = Prism.languages.extend('css', {
 	      // Sass comments don't need to be closed, only indented
 	      comment: {
 	        pattern: /^([ \t]*)\/[\/*].*(?:(?:\r?\n|\r)\1[ \t]+.+)*/m,
 	        lookbehind: true
 	      }
-	    });
+	    })
 	    Prism.languages.insertBefore('sass', 'atrule', {
 	      // We want to consume the whole line
 	      'atrule-line': {
@@ -30755,16 +32479,16 @@
 	          atrule: /(?:@[\w-]+|[+=])/m
 	        }
 	      }
-	    });
-	    delete Prism.languages.sass.atrule;
-	    var variable = /\$[-\w]+|#\{\$[-\w]+\}/;
+	    })
+	    delete Prism.languages.sass.atrule
+	    var variable = /\$[-\w]+|#\{\$[-\w]+\}/
 	    var operator = [
 	      /[+*\/%]|[=!]=|<=?|>=?|\b(?:and|or|not)\b/,
 	      {
 	        pattern: /(\s+)-(?=\s)/,
 	        lookbehind: true
 	      }
-	    ];
+	    ]
 	    Prism.languages.insertBefore('sass', 'property', {
 	      // We want to consume the whole line
 	      'variable-line': {
@@ -30792,33 +32516,33 @@
 	          important: Prism.languages.sass.important
 	        }
 	      }
-	    });
-	    delete Prism.languages.sass.property;
-	    delete Prism.languages.sass.important;
+	    })
+	    delete Prism.languages.sass.property
+	    delete Prism.languages.sass.important
 	    // Now that whole lines for other patterns are consumed,
 	    // what's left should be selectors
-	    delete Prism.languages.sass.selector;
+	    delete Prism.languages.sass.selector
 	    Prism.languages.insertBefore('sass', 'punctuation', {
 	      selector: {
 	        pattern: /([ \t]*)\S(?:,?[^,\r\n]+)*(?:,(?:\r?\n|\r)\1[ \t]+\S(?:,?[^,\r\n]+)*)*/,
 	        lookbehind: true
 	      }
-	    });
-	  })(Prism);
+	    })
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 643 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 668 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-	var java = __webpack_require__(589);
-	module.exports = scala;
-	scala.displayName = 'scala';
-	scala.aliases = [];
+	'use strict'
+	var refractorJava = __webpack_require__(609)
+	module.exports = scala
+	scala.displayName = 'scala'
+	scala.aliases = []
 	function scala(Prism) {
-	  Prism.register(java);
+	  Prism.register(refractorJava)
 	  Prism.languages.scala = Prism.languages.extend('java', {
 	    keyword: /<-|=>|\b(?:abstract|case|catch|class|def|do|else|extends|final|finally|for|forSome|if|implicit|import|lazy|match|new|null|object|override|package|private|protected|return|sealed|self|super|this|throw|trait|try|type|val|var|while|with|yield)\b/,
 	    string: [
@@ -30832,23 +32556,23 @@
 	      }
 	    ],
 	    builtin: /\b(?:String|Int|Long|Short|Byte|Boolean|Double|Float|Char|Any|AnyRef|AnyVal|Unit|Nothing)\b/,
-	    number: /\b(?:0x[\da-f]*\.?[\da-f]+|\d*\.?\d+e?\d*[dfl]?)\b/i,
+	    number: /\b0x[\da-f]*\.?[\da-f]+|(?:\b\d+\.?\d*|\B\.\d+)(?:e\d+)?[dfl]?/i,
 	    symbol: /'[^\d\s\\]\w*/
-	  });
-	  delete Prism.languages.scala['class-name'];
-	  delete Prism.languages.scala['function'];
+	  })
+	  delete Prism.languages.scala['class-name']
+	  delete Prism.languages.scala['function']
 	}
 
 
-/***/ },
-/* 644 */
-/***/ function(module, exports) {
+/***/ }),
+/* 669 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = scheme;
-	scheme.displayName = 'scheme';
-	scheme.aliases = [];
+	module.exports = scheme
+	scheme.displayName = 'scheme'
+	scheme.aliases = []
 	function scheme(Prism) {
 	  Prism.languages.scheme = {
 	    comment: /;.*/,
@@ -30865,7 +32589,7 @@
 	      lookbehind: true
 	    },
 	    number: {
-	      pattern: /(\s|\))[-+]?\d*\.?\d+(?:\s*[-+]\s*\d*\.?\d+i)?\b/,
+	      pattern: /(\s|[()])[-+]?\d*\.?\d+(?:\s*[-+]\s*\d*\.?\d+i)?\b/,
 	      lookbehind: true
 	    },
 	    boolean: /#[tf]/,
@@ -30878,19 +32602,19 @@
 	      lookbehind: true
 	    },
 	    punctuation: /[()]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 645 */
-/***/ function(module, exports) {
+/***/ }),
+/* 670 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = scss;
-	scss.displayName = 'scss';
-	scss.aliases = [];
+	module.exports = scss
+	scss.displayName = 'scss'
+	scss.aliases = []
 	function scss(Prism) {
 	  Prism.languages.scss = Prism.languages.extend('css', {
 	    comment: {
@@ -30925,7 +32649,7 @@
 	        variable: /\$[-\w]+|#\{\$[-\w]+\}/
 	      }
 	    }
-	  });
+	  })
 	  Prism.languages.insertBefore('scss', 'atrule', {
 	    keyword: [
 	      /@(?:if|else(?: if)?|for|each|while|import|extend|debug|warn|mixin|include|function|return|content)/i,
@@ -30934,17 +32658,17 @@
 	        lookbehind: true
 	      }
 	    ]
-	  });
+	  })
 	  Prism.languages.scss.property = {
 	    pattern: /(?:[\w-]|\$[-\w]+|#\{\$[-\w]+\})+(?=\s*:)/i,
 	    inside: {
 	      variable: /\$[-\w]+|#\{\$[-\w]+\}/
 	    }
-	  };
+	  }
 	  Prism.languages.insertBefore('scss', 'important', {
 	    // var and interpolated vars
 	    variable: /\$[-\w]+|#\{\$[-\w]+\}/
-	  });
+	  })
 	  Prism.languages.insertBefore('scss', 'function', {
 	    placeholder: {
 	      pattern: /%[-\w]+/,
@@ -30960,22 +32684,20 @@
 	      pattern: /(\s)(?:[-+*\/%]|[=!]=|<=?|>=?|and|or|not)(?=\s)/,
 	      lookbehind: true
 	    }
-	  });
-	  Prism.languages.scss['atrule'].inside.rest = Prism.util.clone(
-	    Prism.languages.scss
-	  );
+	  })
+	  Prism.languages.scss['atrule'].inside.rest = Prism.languages.scss
 	}
 
 
-/***/ },
-/* 646 */
-/***/ function(module, exports) {
+/***/ }),
+/* 671 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = smalltalk;
-	smalltalk.displayName = 'smalltalk';
-	smalltalk.aliases = [];
+	module.exports = smalltalk
+	smalltalk.displayName = 'smalltalk'
+	smalltalk.aliases = []
 	function smalltalk(Prism) {
 	  Prism.languages.smalltalk = {
 	    comment: /"(?:""|[^"])+"/,
@@ -31003,84 +32725,76 @@
 	    },
 	    number: [
 	      /\d+r-?[\dA-Z]+(?:\.[\dA-Z]+)?(?:e-?\d+)?/,
-	      /(?:\B-|\b)\d+(?:\.\d+)?(?:e-?\d+)?/
+	      /\b\d+(?:\.\d+)?(?:e-?\d+)?/
 	    ],
 	    operator: /[<=]=?|:=|~[~=]|\/\/?|\\\\|>[>=]?|[!^+\-*&|,@]/,
 	    punctuation: /[.;:?\[\](){}]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 647 */
-/***/ function(module, exports) {
+/***/ }),
+/* 672 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = smarty;
-	smarty.displayName = 'smarty';
-	smarty.aliases = [];
+	module.exports = smarty
+	smarty.displayName = 'smarty'
+	smarty.aliases = []
 	function smarty(Prism) {
 	  /* TODO
 	Add support for variables inside double quoted strings
 	Add support for {php}
 	*/
-	  (function(Prism) {
-	    var smarty_pattern = /\{\*[\s\S]+?\*\}|\{[\s\S]+?\}/g;
-	    var smarty_litteral_start = '{literal}';
-	    var smarty_litteral_end = '{/literal}';
-	    var smarty_litteral_mode = false;
-	    Prism.languages.smarty = Prism.languages.extend('markup', {
-	      smarty: {
-	        pattern: smarty_pattern,
-	        inside: {
-	          delimiter: {
-	            pattern: /^\{|\}$/i,
-	            alias: 'punctuation'
-	          },
-	          string: /(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,
-	          number: /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee][-+]?\d+)?)\b/,
-	          variable: [
-	            /\$(?!\d)\w+/,
-	            /#(?!\d)\w+#/,
-	            {
-	              pattern: /(\.|->)(?!\d)\w+/,
-	              lookbehind: true
-	            },
-	            {
-	              pattern: /(\[)(?!\d)\w+(?=\])/,
-	              lookbehind: true
-	            }
-	          ],
-	          function: [
-	            {
-	              pattern: /(\|\s*)@?(?!\d)\w+/,
-	              lookbehind: true
-	            },
-	            /^\/?(?!\d)\w+/,
-	            /(?!\d)\w+(?=\()/
-	          ],
-	          'attr-name': {
-	            // Value is made optional because it may have already been tokenized
-	            pattern: /\w+\s*=\s*(?:(?!\d)\w+)?/,
-	            inside: {
-	              variable: {
-	                pattern: /(=\s*)(?!\d)\w+/,
-	                lookbehind: true
-	              },
-	              operator: /=/
-	            }
-	          },
-	          punctuation: [/[\[\]().,:`]|->/],
-	          operator: [
-	            /[+\-*\/%]|==?=?|[!<>]=?|&&|\|\|?/,
-	            /\bis\s+(?:not\s+)?(?:div|even|odd)(?:\s+by)?\b/,
-	            /\b(?:eq|neq?|gt|lt|gt?e|lt?e|not|mod|or|and)\b/
-	          ],
-	          keyword: /\b(?:false|off|on|no|true|yes)\b/
+	  ;(function(Prism) {
+	    Prism.languages.smarty = {
+	      comment: /\{\*[\s\S]*?\*\}/,
+	      delimiter: {
+	        pattern: /^\{|\}$/i,
+	        alias: 'punctuation'
+	      },
+	      string: /(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,
+	      number: /\b0x[\dA-Fa-f]+|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][-+]?\d+)?/,
+	      variable: [
+	        /\$(?!\d)\w+/,
+	        /#(?!\d)\w+#/,
+	        {
+	          pattern: /(\.|->)(?!\d)\w+/,
+	          lookbehind: true
+	        },
+	        {
+	          pattern: /(\[)(?!\d)\w+(?=\])/,
+	          lookbehind: true
 	        }
-	      }
-	    });
+	      ],
+	      function: [
+	        {
+	          pattern: /(\|\s*)@?(?!\d)\w+/,
+	          lookbehind: true
+	        },
+	        /^\/?(?!\d)\w+/,
+	        /(?!\d)\w+(?=\()/
+	      ],
+	      'attr-name': {
+	        // Value is made optional because it may have already been tokenized
+	        pattern: /\w+\s*=\s*(?:(?!\d)\w+)?/,
+	        inside: {
+	          variable: {
+	            pattern: /(=\s*)(?!\d)\w+/,
+	            lookbehind: true
+	          },
+	          operator: /=/
+	        }
+	      },
+	      punctuation: [/[\[\]().,:`]|->/],
+	      operator: [
+	        /[+\-*\/%]|==?=?|[!<>]=?|&&|\|\|?/,
+	        /\bis\s+(?:not\s+)?(?:div|even|odd)(?:\s+by)?\b/,
+	        /\b(?:eq|neq?|gt|lt|gt?e|lt?e|not|mod|or|and)\b/
+	      ],
+	      keyword: /\b(?:false|off|on|no|true|yes)\b/
+	    }
 	    // Comments are inserted at top so that they can
 	    // surround markup
 	    Prism.languages.insertBefore('smarty', 'tag', {
@@ -31088,107 +32802,158 @@
 	        pattern: /\{\*[\s\S]*?\*\}/,
 	        alias: ['smarty', 'comment']
 	      }
-	    });
+	    })
 	    // Tokenize all inline Smarty expressions
-	    Prism.hooks.add('before-highlight', function(env) {
-	      if (env.language !== 'smarty') {
-	        return;
-	      }
-	      env.tokenStack = [];
-	      env.backupCode = env.code;
-	      env.code = env.code.replace(smarty_pattern, function(match) {
-	        // Smarty tags inside {literal} block are ignored
-	        if (match === smarty_litteral_end) {
-	          smarty_litteral_mode = false;
-	        }
-	        if (!smarty_litteral_mode) {
-	          if (match === smarty_litteral_start) {
-	            smarty_litteral_mode = true;
+	    Prism.hooks.add('before-tokenize', function(env) {
+	      var smartyPattern = /\{\*[\s\S]*?\*\}|\{[\s\S]+?\}/g
+	      var smartyLitteralStart = '{literal}'
+	      var smartyLitteralEnd = '{/literal}'
+	      var smartyLitteralMode = false
+	      Prism.languages['markup-templating'].buildPlaceholders(
+	        env,
+	        'smarty',
+	        smartyPattern,
+	        function(match) {
+	          // Smarty tags inside {literal} block are ignored
+	          if (match === smartyLitteralEnd) {
+	            smartyLitteralMode = false
 	          }
-	          var i = env.tokenStack.length;
-	          // Check for existing strings
-	          while (env.backupCode.indexOf('___SMARTY' + i + '___') !== -1) ++i;
-	          // Create a sparse array
-	          env.tokenStack[i] = match;
-	          return '___SMARTY' + i + '___';
+	          if (!smartyLitteralMode) {
+	            if (match === smartyLitteralStart) {
+	              smartyLitteralMode = true
+	            }
+	            return true
+	          }
+	          return false
 	        }
-	        return match;
-	      });
-	    });
-	    // Restore env.code for other plugins (e.g. line-numbers)
-	    Prism.hooks.add('before-insert', function(env) {
-	      if (env.language === 'smarty') {
-	        env.code = env.backupCode;
-	        delete env.backupCode;
-	      }
-	    });
-	    // Re-insert the tokens after highlighting
-	    // and highlight them with defined grammar
-	    Prism.hooks.add('after-highlight', function(env) {
-	      if (env.language !== 'smarty') {
-	        return;
-	      }
-	      for (
-	        var i = 0, keys = Object.keys(env.tokenStack);
-	        i < keys.length;
-	        ++i
-	      ) {
-	        var k = keys[i];
-	        var t = env.tokenStack[k];
-	        // The replace prevents $$, $&, $`, $', $n, $nn from being interpreted as special patterns
-	        env.highlightedCode = env.highlightedCode.replace(
-	          '___SMARTY' + k + '___',
-	          Prism.highlight(t, env.grammar, 'smarty').replace(/\$/g, '$$$$')
-	        );
-	      }
-	      env.element.innerHTML = env.highlightedCode;
-	    });
-	  })(Prism);
+	      )
+	    })
+	    // Re-insert the tokens after tokenizing
+	    Prism.hooks.add('after-tokenize', function(env) {
+	      Prism.languages['markup-templating'].tokenizePlaceholders(env, 'smarty')
+	    })
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 648 */
-/***/ function(module, exports) {
+/***/ }),
+/* 673 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = sql;
-	sql.displayName = 'sql';
-	sql.aliases = [];
-	function sql(Prism) {
-	  Prism.languages.sql = {
-	    comment: {
-	      pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|(?:--|\/\/|#).*)/,
-	      lookbehind: true
-	    },
-	    string: {
-	      pattern: /(^|[^@\\])("|')(?:\\[\s\S]|(?!\2)[^\\])*\2/,
-	      greedy: true,
-	      lookbehind: true
-	    },
-	    variable: /@[\w.$]+|@(["'`])(?:\\[\s\S]|(?!\1)[^\\])+\1/,
-	    function: /\b(?:COUNT|SUM|AVG|MIN|MAX|FIRST|LAST|UCASE|LCASE|MID|LEN|ROUND|NOW|FORMAT)(?=\s*\()/i, // Should we highlight user defined functions too?
-	    keyword: /\b(?:ACTION|ADD|AFTER|ALGORITHM|ALL|ALTER|ANALYZE|ANY|APPLY|AS|ASC|AUTHORIZATION|AUTO_INCREMENT|BACKUP|BDB|BEGIN|BERKELEYDB|BIGINT|BINARY|BIT|BLOB|BOOL|BOOLEAN|BREAK|BROWSE|BTREE|BULK|BY|CALL|CASCADED?|CASE|CHAIN|CHAR VARYING|CHARACTER (?:SET|VARYING)|CHARSET|CHECK|CHECKPOINT|CLOSE|CLUSTERED|COALESCE|COLLATE|COLUMN|COLUMNS|COMMENT|COMMIT|COMMITTED|COMPUTE|CONNECT|CONSISTENT|CONSTRAINT|CONTAINS|CONTAINSTABLE|CONTINUE|CONVERT|CREATE|CROSS|CURRENT(?:_DATE|_TIME|_TIMESTAMP|_USER)?|CURSOR|DATA(?:BASES?)?|DATE(?:TIME)?|DBCC|DEALLOCATE|DEC|DECIMAL|DECLARE|DEFAULT|DEFINER|DELAYED|DELETE|DELIMITER(?:S)?|DENY|DESC|DESCRIBE|DETERMINISTIC|DISABLE|DISCARD|DISK|DISTINCT|DISTINCTROW|DISTRIBUTED|DO|DOUBLE(?: PRECISION)?|DROP|DUMMY|DUMP(?:FILE)?|DUPLICATE KEY|ELSE|ENABLE|ENCLOSED BY|END|ENGINE|ENUM|ERRLVL|ERRORS|ESCAPE(?:D BY)?|EXCEPT|EXEC(?:UTE)?|EXISTS|EXIT|EXPLAIN|EXTENDED|FETCH|FIELDS|FILE|FILLFACTOR|FIRST|FIXED|FLOAT|FOLLOWING|FOR(?: EACH ROW)?|FORCE|FOREIGN|FREETEXT(?:TABLE)?|FROM|FULL|FUNCTION|GEOMETRY(?:COLLECTION)?|GLOBAL|GOTO|GRANT|GROUP|HANDLER|HASH|HAVING|HOLDLOCK|IDENTITY(?:_INSERT|COL)?|IF|IGNORE|IMPORT|INDEX|INFILE|INNER|INNODB|INOUT|INSERT|INT|INTEGER|INTERSECT|INTO|INVOKER|ISOLATION LEVEL|JOIN|KEYS?|KILL|LANGUAGE SQL|LAST|LEFT|LIMIT|LINENO|LINES|LINESTRING|LOAD|LOCAL|LOCK|LONG(?:BLOB|TEXT)|MATCH(?:ED)?|MEDIUM(?:BLOB|INT|TEXT)|MERGE|MIDDLEINT|MODIFIES SQL DATA|MODIFY|MULTI(?:LINESTRING|POINT|POLYGON)|NATIONAL(?: CHAR VARYING| CHARACTER(?: VARYING)?| VARCHAR)?|NATURAL|NCHAR(?: VARCHAR)?|NEXT|NO(?: SQL|CHECK|CYCLE)?|NONCLUSTERED|NULLIF|NUMERIC|OFF?|OFFSETS?|ON|OPEN(?:DATASOURCE|QUERY|ROWSET)?|OPTIMIZE|OPTION(?:ALLY)?|ORDER|OUT(?:ER|FILE)?|OVER|PARTIAL|PARTITION|PERCENT|PIVOT|PLAN|POINT|POLYGON|PRECEDING|PRECISION|PREV|PRIMARY|PRINT|PRIVILEGES|PROC(?:EDURE)?|PUBLIC|PURGE|QUICK|RAISERROR|READ(?:S SQL DATA|TEXT)?|REAL|RECONFIGURE|REFERENCES|RELEASE|RENAME|REPEATABLE|REPLICATION|REQUIRE|RESTORE|RESTRICT|RETURNS?|REVOKE|RIGHT|ROLLBACK|ROUTINE|ROW(?:COUNT|GUIDCOL|S)?|RTREE|RULE|SAVE(?:POINT)?|SCHEMA|SELECT|SERIAL(?:IZABLE)?|SESSION(?:_USER)?|SET(?:USER)?|SHARE MODE|SHOW|SHUTDOWN|SIMPLE|SMALLINT|SNAPSHOT|SOME|SONAME|START(?:ING BY)?|STATISTICS|STATUS|STRIPED|SYSTEM_USER|TABLES?|TABLESPACE|TEMP(?:ORARY|TABLE)?|TERMINATED BY|TEXT(?:SIZE)?|THEN|TIMESTAMP|TINY(?:BLOB|INT|TEXT)|TOP?|TRAN(?:SACTIONS?)?|TRIGGER|TRUNCATE|TSEQUAL|TYPES?|UNBOUNDED|UNCOMMITTED|UNDEFINED|UNION|UNIQUE|UNPIVOT|UPDATE(?:TEXT)?|USAGE|USE|USER|USING|VALUES?|VAR(?:BINARY|CHAR|CHARACTER|YING)|VIEW|WAITFOR|WARNINGS|WHEN|WHERE|WHILE|WITH(?: ROLLUP|IN)?|WORK|WRITE(?:TEXT)?)\b/i,
-	    boolean: /\b(?:TRUE|FALSE|NULL)\b/i,
-	    number: /\b-?(?:0x)?\d*\.?[\da-f]+\b/,
-	    operator: /[-+*\/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?|\b(?:AND|BETWEEN|IN|LIKE|NOT|OR|IS|DIV|REGEXP|RLIKE|SOUNDS LIKE|XOR)\b/i,
-	    punctuation: /[;[\]()`,.]/
-	  };
+	module.exports = soy
+	soy.displayName = 'soy'
+	soy.aliases = []
+	function soy(Prism) {
+	  ;(function(Prism) {
+	    var stringPattern = /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/
+	    var numberPattern = /\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b|\b0x[\dA-F]+\b/
+	    Prism.languages.soy = {
+	      comment: [
+	        /\/\*[\s\S]*?\*\//,
+	        {
+	          pattern: /(\s)\/\/.*/,
+	          lookbehind: true,
+	          greedy: true
+	        }
+	      ],
+	      'command-arg': {
+	        pattern: /({+\/?\s*(?:alias|call|delcall|delpackage|deltemplate|namespace|template)\s+)\.?[\w.]+/,
+	        lookbehind: true,
+	        alias: 'string',
+	        inside: {
+	          punctuation: /\./
+	        }
+	      },
+	      parameter: {
+	        pattern: /({+\/?\s*@?param\??\s+)\.?[\w.]+/,
+	        lookbehind: true,
+	        alias: 'variable'
+	      },
+	      keyword: [
+	        {
+	          pattern: /({+\/?[^\S\r\n]*)(?:\\[nrt]|alias|call|case|css|default|delcall|delpackage|deltemplate|else(?:if)?|fallbackmsg|for(?:each)?|if(?:empty)?|lb|let|literal|msg|namespace|nil|@?param\??|rb|sp|switch|template|xid)/,
+	          lookbehind: true
+	        },
+	        /\b(?:any|as|attributes|bool|css|float|in|int|js|html|list|map|null|number|string|uri)\b/
+	      ],
+	      delimiter: {
+	        pattern: /^{+\/?|\/?}+$/,
+	        alias: 'punctuation'
+	      },
+	      property: /\w+(?==)/,
+	      variable: {
+	        pattern: /\$[^\W\d]\w*(?:\??(?:\.\w+|\[[^\]]+]))*/,
+	        inside: {
+	          string: {
+	            pattern: stringPattern,
+	            greedy: true
+	          },
+	          number: numberPattern,
+	          punctuation: /[\[\].?]/
+	        }
+	      },
+	      string: {
+	        pattern: stringPattern,
+	        greedy: true
+	      },
+	      function: [
+	        /\w+(?=\()/,
+	        {
+	          pattern: /(\|[^\S\r\n]*)\w+/,
+	          lookbehind: true
+	        }
+	      ],
+	      boolean: /\b(?:true|false)\b/,
+	      number: numberPattern,
+	      operator: /\?:?|<=?|>=?|==?|!=|[+*/%-]|\b(?:and|not|or)\b/,
+	      punctuation: /[{}()\[\]|.,:]/
+	    }
+	    // Tokenize all inline Soy expressions
+	    Prism.hooks.add('before-tokenize', function(env) {
+	      var soyPattern = /{{.+?}}|{.+?}|\s\/\/.*|\/\*[\s\S]*?\*\//g
+	      var soyLitteralStart = '{literal}'
+	      var soyLitteralEnd = '{/literal}'
+	      var soyLitteralMode = false
+	      Prism.languages['markup-templating'].buildPlaceholders(
+	        env,
+	        'soy',
+	        soyPattern,
+	        function(match) {
+	          // Soy tags inside {literal} block are ignored
+	          if (match === soyLitteralEnd) {
+	            soyLitteralMode = false
+	          }
+	          if (!soyLitteralMode) {
+	            if (match === soyLitteralStart) {
+	              soyLitteralMode = true
+	            }
+	            return true
+	          }
+	          return false
+	        }
+	      )
+	    })
+	    // Re-insert the tokens after tokenizing
+	    Prism.hooks.add('after-tokenize', function(env) {
+	      Prism.languages['markup-templating'].tokenizePlaceholders(env, 'soy')
+	    })
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 649 */
-/***/ function(module, exports) {
+/***/ }),
+/* 674 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = stylus;
-	stylus.displayName = 'stylus';
-	stylus.aliases = [];
+	module.exports = stylus
+	stylus.displayName = 'stylus'
+	stylus.aliases = []
 	function stylus(Prism) {
-	  (function(Prism) {
+	  ;(function(Prism) {
 	    var inside = {
 	      url: /url\((["']?).*?\1\)/i,
 	      string: {
@@ -31211,19 +32976,25 @@
 	        /~|[+!\/%<>?=]=?|[-:]=|\*[*=]?|\.+|&&|\|\||\B-\B|\b(?:and|in|is(?: a| defined| not|nt)?|not|or)\b/
 	      ],
 	      punctuation: /[{}()\[\];:,]/
-	    };
+	    }
 	    inside['interpolation'] = {
 	      pattern: /\{[^\r\n}:]+\}/,
 	      alias: 'variable',
-	      inside: Prism.util.clone(inside)
-	    };
+	      inside: {
+	        delimiter: {
+	          pattern: /^{|}$/,
+	          alias: 'punctuation'
+	        },
+	        rest: inside
+	      }
+	    }
 	    inside['func'] = {
 	      pattern: /[\w-]+\([^)]*\).*/,
 	      inside: {
 	        function: /^[^(]+/,
-	        rest: Prism.util.clone(inside)
+	        rest: inside
 	      }
-	    };
+	    }
 	    Prism.languages.stylus = {
 	      comment: {
 	        pattern: /(^|[^\\])(\/\*[\s\S]*?\*\/|\/\/.*)/,
@@ -31283,20 +33054,20 @@
 	      string: inside.string,
 	      interpolation: inside.interpolation,
 	      punctuation: /[{}()\[\];:.]/
-	    };
-	  })(Prism);
+	    }
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 650 */
-/***/ function(module, exports) {
+/***/ }),
+/* 675 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = swift;
-	swift.displayName = 'swift';
-	swift.aliases = [];
+	module.exports = swift
+	swift.displayName = 'swift'
+	swift.aliases = []
 	function swift(Prism) {
 	  // issues: nested multiline comments
 	  Prism.languages.swift = Prism.languages.extend('clike', {
@@ -31321,22 +33092,21 @@
 	    constant: /\b(?:nil|[A-Z_]{2,}|k[A-Z][A-Za-z_]+)\b/,
 	    atrule: /@\b(?:IB(?:Outlet|Designable|Action|Inspectable)|class_protocol|exported|noreturn|NS(?:Copying|Managed)|objc|UIApplicationMain|auto_closure)\b/,
 	    builtin: /\b(?:[A-Z]\S+|abs|advance|alignof(?:Value)?|assert|contains|count(?:Elements)?|debugPrint(?:ln)?|distance|drop(?:First|Last)|dump|enumerate|equal|filter|find|first|getVaList|indices|isEmpty|join|last|lexicographicalCompare|map|max(?:Element)?|min(?:Element)?|numericCast|overlaps|partition|print(?:ln)?|reduce|reflect|reverse|sizeof(?:Value)?|sort(?:ed)?|split|startsWith|stride(?:of(?:Value)?)?|suffix|swap|toDebugString|toString|transcode|underestimateCount|unsafeBitCast|with(?:ExtendedLifetime|Unsafe(?:MutablePointers?|Pointers?)|VaList))\b/
-	  });
-	  Prism.languages.swift['string'].inside[
-	    'interpolation'
-	  ].inside.rest = Prism.util.clone(Prism.languages.swift);
+	  })
+	  Prism.languages.swift['string'].inside['interpolation'].inside.rest =
+	    Prism.languages.swift
 	}
 
 
-/***/ },
-/* 651 */
-/***/ function(module, exports) {
+/***/ }),
+/* 676 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = tcl;
-	tcl.displayName = 'tcl';
-	tcl.aliases = [];
+	module.exports = tcl
+	tcl.displayName = 'tcl'
+	tcl.aliases = []
 	function tcl(Prism) {
 	  Prism.languages.tcl = {
 	    comment: {
@@ -31383,24 +33153,24 @@
 	    },
 	    operator: /!=?|\*\*?|==|&&?|\|\|?|<[=<]?|>[=>]?|[-+~\/%?^]|\b(?:eq|ne|in|ni)\b/,
 	    punctuation: /[{}()\[\]]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 652 */
-/***/ function(module, exports) {
+/***/ }),
+/* 677 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = textile;
-	textile.displayName = 'textile';
-	textile.aliases = [];
+	module.exports = textile
+	textile.displayName = 'textile'
+	textile.aliases = []
 	function textile(Prism) {
-	  (function(Prism) {
+	  ;(function(Prism) {
 	    // We don't allow for pipes inside parentheses
 	    // to not break table pattern |(. foo |). bar |
-	    var modifierRegex = '(?:\\([^|)]+\\)|\\[[^\\]]+\\]|\\{[^}]+\\})+';
+	    var modifierRegex = '(?:\\([^|)]+\\)|\\[[^\\]]+\\]|\\{[^}]+\\})+'
 	    var modifierTokens = {
 	      css: {
 	        pattern: /\{[^}]+\}/,
@@ -31420,7 +33190,7 @@
 	      },
 	      // Anything else is punctuation (the first pattern is for row/col spans inside tables)
 	      punctuation: /[\\\/]\d+|\S/
-	    };
+	    }
 	    Prism.languages.textile = Prism.languages.extend('markup', {
 	      phrase: {
 	        pattern: /(^|\r|\n)\S[\s\S]*?(?=$|\r?\n\r?\n|\r\r)/,
@@ -31435,7 +33205,7 @@
 	                  '(^[a-z]\\w*)(?:' + modifierRegex + '|[<>=()])+(?=\\.)'
 	                ),
 	                lookbehind: true,
-	                inside: Prism.util.clone(modifierTokens)
+	                inside: modifierTokens
 	              },
 	              tag: /^[a-z]\w*/,
 	              punctuation: /\.$/
@@ -31449,7 +33219,7 @@
 	              modifier: {
 	                pattern: RegExp('(^[*#]+)' + modifierRegex),
 	                lookbehind: true,
-	                inside: Prism.util.clone(modifierTokens)
+	                inside: modifierTokens
 	              },
 	              punctuation: /^[*#]+/
 	            }
@@ -31476,7 +33246,7 @@
 	                    '|[<>=()^~_]|[\\\\/]\\d+)+(?=\\.)'
 	                ),
 	                lookbehind: true,
-	                inside: Prism.util.clone(modifierTokens)
+	                inside: modifierTokens
 	              },
 	              punctuation: /\||^\./
 	            }
@@ -31533,7 +33303,7 @@
 	                  '(^\\*\\*|__|\\?\\?|[*_%@+\\-^~])' + modifierRegex
 	                ),
 	                lookbehind: true,
-	                inside: Prism.util.clone(modifierTokens)
+	                inside: modifierTokens
 	              },
 	              punctuation: /[*_%?@+\-^~]+/
 	            }
@@ -31567,7 +33337,7 @@
 	              modifier: {
 	                pattern: RegExp('(^")' + modifierRegex),
 	                lookbehind: true,
-	                inside: Prism.util.clone(modifierTokens)
+	                inside: modifierTokens
 	              },
 	              url: {
 	                pattern: /(:).+/,
@@ -31597,7 +33367,7 @@
 	              modifier: {
 	                pattern: RegExp('(^!)(?:' + modifierRegex + '|[<>=()])+'),
 	                lookbehind: true,
-	                inside: Prism.util.clone(modifierTokens)
+	                inside: modifierTokens
 	              },
 	              url: {
 	                pattern: /(:).+/,
@@ -31635,67 +33405,96 @@
 	          }
 	        }
 	      }
-	    });
+	    })
 	    var nestedPatterns = {
-	      inline: Prism.util.clone(
-	        Prism.languages.textile['phrase'].inside['inline']
-	      ),
-	      link: Prism.util.clone(Prism.languages.textile['phrase'].inside['link']),
-	      image: Prism.util.clone(
-	        Prism.languages.textile['phrase'].inside['image']
-	      ),
-	      footnote: Prism.util.clone(
-	        Prism.languages.textile['phrase'].inside['footnote']
-	      ),
-	      acronym: Prism.util.clone(
-	        Prism.languages.textile['phrase'].inside['acronym']
-	      ),
-	      mark: Prism.util.clone(Prism.languages.textile['phrase'].inside['mark'])
-	    };
+	      inline: Prism.languages.textile['phrase'].inside['inline'],
+	      link: Prism.languages.textile['phrase'].inside['link'],
+	      image: Prism.languages.textile['phrase'].inside['image'],
+	      footnote: Prism.languages.textile['phrase'].inside['footnote'],
+	      acronym: Prism.languages.textile['phrase'].inside['acronym'],
+	      mark: Prism.languages.textile['phrase'].inside['mark']
+	    }
 	    // Only allow alpha-numeric HTML tags, not XML tags
-	    Prism.languages.textile.tag.pattern = /<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
+	    Prism.languages.textile.tag.pattern = /<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i
 	    // Allow some nesting
 	    Prism.languages.textile['phrase'].inside['inline'].inside[
 	      'bold'
-	    ].inside = nestedPatterns;
+	    ].inside = nestedPatterns
 	    Prism.languages.textile['phrase'].inside['inline'].inside[
 	      'italic'
-	    ].inside = nestedPatterns;
+	    ].inside = nestedPatterns
 	    Prism.languages.textile['phrase'].inside['inline'].inside[
 	      'inserted'
-	    ].inside = nestedPatterns;
+	    ].inside = nestedPatterns
 	    Prism.languages.textile['phrase'].inside['inline'].inside[
 	      'deleted'
-	    ].inside = nestedPatterns;
+	    ].inside = nestedPatterns
 	    Prism.languages.textile['phrase'].inside['inline'].inside[
 	      'span'
-	    ].inside = nestedPatterns;
+	    ].inside = nestedPatterns
 	    // Allow some styles inside table cells
 	    Prism.languages.textile['phrase'].inside['table'].inside['inline'] =
-	      nestedPatterns['inline'];
+	      nestedPatterns['inline']
 	    Prism.languages.textile['phrase'].inside['table'].inside['link'] =
-	      nestedPatterns['link'];
+	      nestedPatterns['link']
 	    Prism.languages.textile['phrase'].inside['table'].inside['image'] =
-	      nestedPatterns['image'];
+	      nestedPatterns['image']
 	    Prism.languages.textile['phrase'].inside['table'].inside['footnote'] =
-	      nestedPatterns['footnote'];
+	      nestedPatterns['footnote']
 	    Prism.languages.textile['phrase'].inside['table'].inside['acronym'] =
-	      nestedPatterns['acronym'];
+	      nestedPatterns['acronym']
 	    Prism.languages.textile['phrase'].inside['table'].inside['mark'] =
-	      nestedPatterns['mark'];
-	  })(Prism);
+	      nestedPatterns['mark']
+	  })(Prism)
 	}
 
 
-/***/ },
-/* 653 */
-/***/ function(module, exports) {
+/***/ }),
+/* 678 */
+/***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	'use strict'
+	var refractorJsx = __webpack_require__(612)
+	var refractorTypescript = __webpack_require__(679)
+	module.exports = tsx
+	tsx.displayName = 'tsx'
+	tsx.aliases = []
+	function tsx(Prism) {
+	  Prism.register(refractorJsx)
+	  Prism.register(refractorTypescript)
+	  var typescript = Prism.util.clone(Prism.languages.typescript)
+	  Prism.languages.tsx = Prism.languages.extend('jsx', typescript)
+	}
+
+
+/***/ }),
+/* 679 */
+/***/ (function(module, exports) {
+
+	'use strict'
 	
-	module.exports = twig;
-	twig.displayName = 'twig';
-	twig.aliases = [];
+	module.exports = typescript
+	typescript.displayName = 'typescript'
+	typescript.aliases = ['ts']
+	function typescript(Prism) {
+	  Prism.languages.typescript = Prism.languages.extend('javascript', {
+	    // From JavaScript Prism keyword list and TypeScript language spec: https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#221-reserved-words
+	    keyword: /\b(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield|module|declare|constructor|namespace|abstract|require|type)\b/,
+	    builtin: /\b(?:string|Function|any|number|boolean|Array|symbol|console)\b/
+	  })
+	  Prism.languages.ts = Prism.languages.typescript
+	}
+
+
+/***/ }),
+/* 680 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = twig
+	twig.displayName = 'twig'
+	twig.aliases = []
 	function twig(Prism) {
 	  Prism.languages.twig = {
 	    comment: /\{#[\s\S]*?#\}/,
@@ -31723,7 +33522,7 @@
 	        },
 	        keyword: /\b(?:even|if|odd)\b/,
 	        boolean: /\b(?:true|false|null)\b/,
-	        number: /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee][-+]?\d+)?)\b/,
+	        number: /\b0x[\dA-Fa-f]+|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][-+]?\d+)?/,
 	        operator: [
 	          {
 	            pattern: /(\s)(?:and|b-and|b-xor|b-or|ends with|in|is|matches|not|or|same as|starts with)(?=\s)/,
@@ -31741,37 +33540,19 @@
 	      pattern: /\S(?:[\s\S]*\S)?/,
 	      inside: Prism.languages.markup
 	    }
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 654 */
-/***/ function(module, exports) {
+/***/ }),
+/* 681 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = typescript;
-	typescript.displayName = 'typescript';
-	typescript.aliases = ['ts'];
-	function typescript(Prism) {
-	  Prism.languages.typescript = Prism.languages.extend('javascript', {
-	    // From JavaScript Prism keyword list and TypeScript language spec: https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#221-reserved-words
-	    keyword: /\b(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield|false|true|module|declare|constructor|string|Function|any|number|boolean|Array|symbol|namespace|abstract|require|type)\b/
-	  });
-	  Prism.languages.ts = Prism.languages.typescript;
-	}
-
-
-/***/ },
-/* 655 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	module.exports = vbnet;
-	vbnet.displayName = 'vbnet';
-	vbnet.aliases = [];
+	module.exports = vbnet
+	vbnet.displayName = 'vbnet'
+	vbnet.aliases = []
 	function vbnet(Prism) {
 	  Prism.languages.vbnet = Prism.languages.extend('basic', {
 	    keyword: /(?:\b(?:ADDHANDLER|ADDRESSOF|ALIAS|AND|ANDALSO|AS|BEEP|BLOAD|BOOLEAN|BSAVE|BYREF|BYTE|BYVAL|CALL(?: ABSOLUTE)?|CASE|CATCH|CBOOL|CBYTE|CCHAR|CDATE|CDEC|CDBL|CHAIN|CHAR|CHDIR|CINT|CLASS|CLEAR|CLNG|CLOSE|CLS|COBJ|COM|COMMON|CONST|CONTINUE|CSBYTE|CSHORT|CSNG|CSTR|CTYPE|CUINT|CULNG|CUSHORT|DATA|DATE|DECIMAL|DECLARE|DEFAULT|DEF(?: FN| SEG|DBL|INT|LNG|SNG|STR)|DELEGATE|DIM|DIRECTCAST|DO|DOUBLE|ELSE|ELSEIF|END|ENUM|ENVIRON|ERASE|ERROR|EVENT|EXIT|FALSE|FIELD|FILES|FINALLY|FOR(?: EACH)?|FRIEND|FUNCTION|GET|GETTYPE|GETXMLNAMESPACE|GLOBAL|GOSUB|GOTO|HANDLES|IF|IMPLEMENTS|IMPORTS|IN|INHERITS|INPUT|INTEGER|INTERFACE|IOCTL|IS|ISNOT|KEY|KILL|LINE INPUT|LET|LIB|LIKE|LOCATE|LOCK|LONG|LOOP|LSET|ME|MKDIR|MOD|MODULE|MUSTINHERIT|MUSTOVERRIDE|MYBASE|MYCLASS|NAME|NAMESPACE|NARROWING|NEW|NEXT|NOT|NOTHING|NOTINHERITABLE|NOTOVERRIDABLE|OBJECT|OF|OFF|ON(?: COM| ERROR| KEY| TIMER)?|OPERATOR|OPEN|OPTION(?: BASE)?|OPTIONAL|OR|ORELSE|OUT|OVERLOADS|OVERRIDABLE|OVERRIDES|PARAMARRAY|PARTIAL|POKE|PRIVATE|PROPERTY|PROTECTED|PUBLIC|PUT|RAISEEVENT|READ|READONLY|REDIM|REM|REMOVEHANDLER|RESTORE|RESUME|RETURN|RMDIR|RSET|RUN|SBYTE|SELECT(?: CASE)?|SET|SHADOWS|SHARED|SHORT|SINGLE|SHELL|SLEEP|STATIC|STEP|STOP|STRING|STRUCTURE|SUB|SYNCLOCK|SWAP|SYSTEM|THEN|THROW|TIMER|TO|TROFF|TRON|TRUE|TRY|TRYCAST|TYPE|TYPEOF|UINTEGER|ULONG|UNLOCK|UNTIL|USHORT|USING|VIEW PRINT|WAIT|WEND|WHEN|WHILE|WIDENING|WITH|WITHEVENTS|WRITE|WRITEONLY|XOR)|\B(?:#CONST|#ELSE|#ELSEIF|#END|#IF))(?:\$|\b)/i,
@@ -31787,19 +33568,100 @@
 	        lookbehind: true
 	      }
 	    ]
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 656 */
-/***/ function(module, exports) {
+/***/ }),
+/* 682 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = verilog;
-	verilog.displayName = 'verilog';
-	verilog.aliases = [];
+	module.exports = velocity
+	velocity.displayName = 'velocity'
+	velocity.aliases = []
+	function velocity(Prism) {
+	  ;(function(Prism) {
+	    Prism.languages.velocity = Prism.languages.extend('markup', {})
+	    var velocity = {
+	      variable: {
+	        pattern: /(^|[^\\](?:\\\\)*)\$!?(?:[a-z][\w-]*(?:\([^)]*\))?(?:\.[a-z][\w-]*(?:\([^)]*\))?|\[[^\]]+])*|{[^}]+})/i,
+	        lookbehind: true,
+	        inside: {} // See below
+	      },
+	      string: {
+	        pattern: /"[^"]*"|'[^']*'/,
+	        greedy: true
+	      },
+	      number: /\b\d+\b/,
+	      boolean: /\b(?:true|false)\b/,
+	      operator: /[=!<>]=?|[+*/%-]|&&|\|\||\.\.|\b(?:eq|g[et]|l[et]|n(?:e|ot))\b/,
+	      punctuation: /[(){}[\]:,.]/
+	    }
+	    velocity.variable.inside = {
+	      string: velocity['string'],
+	      function: {
+	        pattern: /([^\w-])[a-z][\w-]*(?=\()/,
+	        lookbehind: true
+	      },
+	      number: velocity['number'],
+	      boolean: velocity['boolean'],
+	      punctuation: velocity['punctuation']
+	    }
+	    Prism.languages.insertBefore('velocity', 'comment', {
+	      unparsed: {
+	        pattern: /(^|[^\\])#\[\[[\s\S]*?]]#/,
+	        lookbehind: true,
+	        greedy: true,
+	        inside: {
+	          punctuation: /^#\[\[|]]#$/
+	        }
+	      },
+	      'velocity-comment': [
+	        {
+	          pattern: /(^|[^\\])#\*[\s\S]*?\*#/,
+	          lookbehind: true,
+	          greedy: true,
+	          alias: 'comment'
+	        },
+	        {
+	          pattern: /(^|[^\\])##.*/,
+	          lookbehind: true,
+	          greedy: true,
+	          alias: 'comment'
+	        }
+	      ],
+	      directive: {
+	        pattern: /(^|[^\\](?:\\\\)*)#@?(?:[a-z][\w-]*|{[a-z][\w-]*})(?:\s*\((?:[^()]|\([^()]*\))*\))?/i,
+	        lookbehind: true,
+	        inside: {
+	          keyword: {
+	            pattern: /^#@?(?:[a-z][\w-]*|{[a-z][\w-]*})|\bin\b/,
+	            inside: {
+	              punctuation: /[{}]/
+	            }
+	          },
+	          rest: velocity
+	        }
+	      },
+	      variable: velocity['variable']
+	    })
+	    Prism.languages.velocity['tag'].inside['attr-value'].inside.rest =
+	      Prism.languages.velocity
+	  })(Prism)
+	}
+
+
+/***/ }),
+/* 683 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = verilog
+	verilog.displayName = 'verilog'
+	verilog.aliases = []
 	function verilog(Prism) {
 	  Prism.languages.verilog = {
 	    comment: /\/\/.*|\/\*[\s\S]*?\*\//,
@@ -31820,19 +33682,19 @@
 	    number: /\B##?\d+|(?:\b\d+)?'[odbh] ?[\da-fzx_?]+|\b\d*[._]?\d+(?:e[-+]?\d+)?/i,
 	    operator: /[-+{}^~%*\/?=!<>&|]+/,
 	    punctuation: /[[\];(),.:]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 657 */
-/***/ function(module, exports) {
+/***/ }),
+/* 684 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = vhdl;
-	vhdl.displayName = 'vhdl';
-	vhdl.aliases = [];
+	module.exports = vhdl
+	vhdl.displayName = 'vhdl'
+	vhdl.aliases = []
 	function vhdl(Prism) {
 	  Prism.languages.vhdl = {
 	    comment: /--.+/,
@@ -31856,19 +33718,19 @@
 	    number: /'[01uxzwlh-]'|\b(?:\d+#[\da-f_.]+#|\d[\d_.]*)(?:e[-+]?\d+)?/i,
 	    operator: /[<>]=?|:=|[-+*/&=]|\b(?:abs|not|mod|rem|sll|srl|sla|sra|rol|ror|and|or|nand|xnor|xor|nor)\b/i,
 	    punctuation: /[{}[\];(),.:]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 658 */
-/***/ function(module, exports) {
+/***/ }),
+/* 685 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = vim;
-	vim.displayName = 'vim';
-	vim.aliases = [];
+	module.exports = vim
+	vim.displayName = 'vim'
+	vim.aliases = []
 	function vim(Prism) {
 	  Prism.languages.vim = {
 	    string: /"(?:[^"\\\r\n]|\\.)*"|'(?:[^'\r\n]|'')*'/,
@@ -31879,19 +33741,109 @@
 	    number: /\b(?:0x[\da-f]+|\d+(?:\.\d+)?)\b/i,
 	    operator: /\|\||&&|[-+.]=?|[=!](?:[=~][#?]?)?|[<>]=?[#?]?|[*\/%?]|\b(?:is(?:not)?)\b/,
 	    punctuation: /[{}[\](),;:]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 659 */
-/***/ function(module, exports) {
+/***/ }),
+/* 686 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = wiki;
-	wiki.displayName = 'wiki';
-	wiki.aliases = [];
+	module.exports = visualBasic
+	visualBasic.displayName = 'visualBasic'
+	visualBasic.aliases = []
+	function visualBasic(Prism) {
+	  Prism.languages['visual-basic'] = {
+	    comment: {
+	      pattern: /(?:['‘’]|REM\b).*/i,
+	      inside: {
+	        keyword: /^REM/i
+	      }
+	    },
+	    directive: {
+	      pattern: /#(?:Const|Else|ElseIf|End|ExternalChecksum|ExternalSource|If|Region)(?:[^\S\r\n]_[^\S\r\n]*(?:\r\n?|\n)|.)+/i,
+	      alias: 'comment',
+	      greedy: true
+	    },
+	    string: {
+	      pattern: /["“”](?:["“”]{2}|[^"“”])*["“”]C?/i,
+	      greedy: true
+	    },
+	    date: {
+	      pattern: /#[^\S\r\n]*(?:\d+([/-])\d+\1\d+(?:[^\S\r\n]+(?:\d+[^\S\r\n]*(?:AM|PM)|\d+:\d+(?::\d+)?(?:[^\S\r\n]*(?:AM|PM))?))?|(?:\d+[^\S\r\n]*(?:AM|PM)|\d+:\d+(?::\d+)?(?:[^\S\r\n]*(?:AM|PM))?))[^\S\r\n]*#/i,
+	      alias: 'builtin'
+	    },
+	    number: /(?:(?:\b\d+(?:\.\d+)?|\.\d+)(?:E[+-]?\d+)?|&[HO][\dA-F]+)(?:U?[ILS]|[FRD])?/i,
+	    boolean: /\b(?:True|False|Nothing)\b/i,
+	    keyword: /\b(?:AddHandler|AddressOf|Alias|And(?:Also)?|As|Boolean|ByRef|Byte|ByVal|Call|Case|Catch|C(?:Bool|Byte|Char|Date|Dbl|Dec|Int|Lng|Obj|SByte|Short|Sng|Str|Type|UInt|ULng|UShort)|Char|Class|Const|Continue|Date|Decimal|Declare|Default|Delegate|Dim|DirectCast|Do|Double|Each|Else(?:If)?|End(?:If)?|Enum|Erase|Error|Event|Exit|Finally|For|Friend|Function|Get(?:Type|XMLNamespace)?|Global|GoSub|GoTo|Handles|If|Implements|Imports|In|Inherits|Integer|Interface|Is|IsNot|Let|Lib|Like|Long|Loop|Me|Mod|Module|Must(?:Inherit|Override)|My(?:Base|Class)|Namespace|Narrowing|New|Next|Not(?:Inheritable|Overridable)?|Object|Of|On|Operator|Option(?:al)?|Or(?:Else)?|Out|Overloads|Overridable|Overrides|ParamArray|Partial|Private|Property|Protected|Public|RaiseEvent|ReadOnly|ReDim|RemoveHandler|Resume|Return|SByte|Select|Set|Shadows|Shared|short|Single|Static|Step|Stop|String|Structure|Sub|SyncLock|Then|Throw|To|Try|TryCast|TypeOf|U(?:Integer|Long|Short)|Using|Variant|Wend|When|While|Widening|With(?:Events)?|WriteOnly|Xor)\b/i,
+	    operator: [
+	      /[+\-*/\\^<=>&#@$%!]/,
+	      {
+	        pattern: /([^\S\r\n])_(?=[^\S\r\n]*[\r\n])/,
+	        lookbehind: true
+	      }
+	    ],
+	    punctuation: /[{}().,:?]/
+	  }
+	  Prism.languages.vb = Prism.languages['visual-basic']
+	}
+
+
+/***/ }),
+/* 687 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = wasm
+	wasm.displayName = 'wasm'
+	wasm.aliases = []
+	function wasm(Prism) {
+	  Prism.languages.wasm = {
+	    comment: [
+	      /\(;[\s\S]*?;\)/,
+	      {
+	        pattern: /;;.*/,
+	        greedy: true
+	      }
+	    ],
+	    string: {
+	      pattern: /"(?:\\[\s\S]|[^"\\])*"/,
+	      greedy: true
+	    },
+	    keyword: [
+	      {
+	        pattern: /\b(?:align|offset)=/,
+	        inside: {
+	          operator: /=/
+	        }
+	      },
+	      {
+	        pattern: /\b(?:(?:f32|f64|i32|i64)(?:\.(?:abs|add|and|ceil|clz|const|convert_[su]\/i(?:32|64)|copysign|ctz|demote\/f64|div(?:_[su])?|eqz?|extend_[su]\/i32|floor|ge(?:_[su])?|gt(?:_[su])?|le(?:_[su])?|load(?:(?:8|16|32)_[su])?|lt(?:_[su])?|max|min|mul|nearest|neg?|or|popcnt|promote\/f32|reinterpret\/[fi](?:32|64)|rem_[su]|rot[lr]|shl|shr_[su]|store(?:8|16|32)?|sqrt|sub|trunc(?:_[su]\/f(?:32|64))?|wrap\/i64|xor))?|memory\.(?:grow|size))\b/,
+	        inside: {
+	          punctuation: /\./
+	        }
+	      },
+	      /\b(?:anyfunc|block|br(?:_if|_table)?|call(?:_indirect)?|data|drop|elem|else|end|export|func|get_(?:global|local)|global|if|import|local|loop|memory|module|mut|nop|offset|param|result|return|select|set_(?:global|local)|start|table|tee_local|then|type|unreachable)\b/
+	    ],
+	    variable: /\$[\w!#$%&'*+\-./:<=>?@\\^_`|~]+/i,
+	    number: /[+-]?\b(?:\d(?:_?\d)*(?:\.\d(?:_?\d)*)?(?:[eE][+-]?\d(?:_?\d)*)?|0x[\da-fA-F](?:_?[\da-fA-F])*(?:\.[\da-fA-F](?:_?[\da-fA-D])*)?(?:[pP][+-]?\d(?:_?\d)*)?)\b|\binf\b|\bnan(?::0x[\da-fA-F](?:_?[\da-fA-D])*)?\b/,
+	    punctuation: /[()]/
+	  }
+	}
+
+
+/***/ }),
+/* 688 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = wiki
+	wiki.displayName = 'wiki'
+	wiki.aliases = []
 	function wiki(Prism) {
 	  Prism.languages.wiki = Prism.languages.extend('markup', {
 	    'block-comment': {
@@ -31957,7 +33909,7 @@
 	      }
 	    },
 	    punctuation: /^(?:\{\||\|\}|\|-|[*#:;!|])|\|\||!!/m
-	  });
+	  })
 	  Prism.languages.insertBefore('wiki', 'tag', {
 	    // Prevent highlighting inside <nowiki>, <source> and <pre> tags
 	    nowiki: {
@@ -31969,19 +33921,148 @@
 	        }
 	      }
 	    }
-	  });
+	  })
 	}
 
 
-/***/ },
-/* 660 */
-/***/ function(module, exports) {
+/***/ }),
+/* 689 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = xojo;
-	xojo.displayName = 'xojo';
-	xojo.aliases = [];
+	module.exports = xeora
+	xeora.displayName = 'xeora'
+	xeora.aliases = ['xeoracube']
+	function xeora(Prism) {
+	  ;(function(Prism) {
+	    Prism.languages.xeora = Prism.languages.extend('markup', {
+	      constant: {
+	        pattern: /\$(?:DomainContents|PageRenderDuration)\$/,
+	        inside: {
+	          punctuation: {
+	            pattern: /\$/
+	          }
+	        }
+	      },
+	      variable: {
+	        pattern: /\$@?(?:#+|[-+*~=^])?[\w.]+\$/,
+	        inside: {
+	          punctuation: {
+	            pattern: /[$.]/
+	          },
+	          operator: {
+	            pattern: /#+|[-+*~=^@]/
+	          }
+	        }
+	      },
+	      'function-inline': {
+	        pattern: /\$F:[-\w.]+\?[-\w.]+(?:,(?:\|?(?:[-#.^+*~]*(?:[\w+][^$]*)|=(?:[\S+][^$]*)|@[-#]*(?:\w+.)[\w+.]+)?)*)?\$/,
+	        inside: {
+	          variable: {
+	            pattern: /(?:[,|])@?(?:#+|[-+*~=^])?[\w.]+/,
+	            inside: {
+	              punctuation: {
+	                pattern: /[,.|]/
+	              },
+	              operator: {
+	                pattern: /#+|[-+*~=^@]/
+	              }
+	            }
+	          },
+	          punctuation: {
+	            pattern: /\$\w:|[$:?.,|]/
+	          }
+	        },
+	        alias: 'function'
+	      },
+	      'function-block': {
+	        pattern: /\$XF:{[-\w.]+\?[-\w.]+(?:,(?:\|?(?:[-#.^+*~]*(?:[\w+][^$]*)|=(?:[\S+][^$]*)|@[-#]*(?:\w+.)[\w+.]+)?)*)?}:XF\$/,
+	        inside: {
+	          punctuation: {
+	            pattern: /[$:{}?.,|]/
+	          }
+	        },
+	        alias: 'function'
+	      },
+	      'directive-inline': {
+	        pattern: /\$\w(?:#\d+\+?)?(?:\[[-\w.]+])?:[-\/\w.]+\$/,
+	        inside: {
+	          punctuation: {
+	            pattern: /\$(?:\w:|C(?:\[|#\d))?|[:{[\]]/,
+	            inside: {
+	              tag: {
+	                pattern: /#\d/
+	              }
+	            }
+	          }
+	        },
+	        alias: 'function'
+	      },
+	      'directive-block-open': {
+	        pattern: /\$\w+:{|\$\w(?:#\d+\+?)?(?:\[[-\w.]+])?:[-\w.]+:{(![A-Z]+)?/,
+	        inside: {
+	          punctuation: {
+	            pattern: /\$(?:\w:|C(?:\[|#\d))?|[:{[\]]/,
+	            inside: {
+	              tag: {
+	                pattern: /#\d/
+	              }
+	            }
+	          },
+	          attribute: {
+	            pattern: /![A-Z]+$/,
+	            inside: {
+	              punctuation: {
+	                pattern: /!/
+	              }
+	            },
+	            alias: 'keyword'
+	          }
+	        },
+	        alias: 'function'
+	      },
+	      'directive-block-separator': {
+	        pattern: /}:[-\w.]+:{/,
+	        inside: {
+	          punctuation: {
+	            pattern: /[:{}]/
+	          }
+	        },
+	        alias: 'function'
+	      },
+	      'directive-block-close': {
+	        pattern: /}:[-\w.]+\$/,
+	        inside: {
+	          punctuation: {
+	            pattern: /[:{}$]/
+	          }
+	        },
+	        alias: 'function'
+	      }
+	    })
+	    Prism.languages.insertBefore(
+	      'inside',
+	      'punctuation',
+	      {
+	        variable: Prism.languages.xeora['function-inline'].inside['variable']
+	      },
+	      Prism.languages.xeora['function-block']
+	    )
+	    Prism.languages.xeoracube = Prism.languages.xeora
+	  })(Prism)
+	}
+
+
+/***/ }),
+/* 690 */
+/***/ (function(module, exports) {
+
+	'use strict'
+	
+	module.exports = xojo
+	xojo.displayName = 'xojo'
+	xojo.aliases = []
 	function xojo(Prism) {
 	  Prism.languages.xojo = {
 	    comment: {
@@ -31994,24 +34075,24 @@
 	      pattern: /"(?:""|[^"])*"/,
 	      greedy: true
 	    },
-	    number: [/(?:\b|\B[.-])(?:\d+\.?\d*)(?:E[+-]?\d+)?/i, /&[bchou][a-z\d]+/i],
+	    number: [/(?:\b\d+\.?\d*|\B\.\d+)(?:E[+-]?\d+)?/i, /&[bchou][a-z\d]+/i],
 	    symbol: /#(?:If|Else|ElseIf|Endif|Pragma)\b/i,
 	    keyword: /\b(?:AddHandler|App|Array|As(?:signs)?|By(?:Ref|Val)|Break|Call|Case|Catch|Const|Continue|CurrentMethodName|Declare|Dim|Do(?:wnTo)?|Each|Else(?:If)?|End|Exit|Extends|False|Finally|For|Global|If|In|Lib|Loop|Me|Next|Nil|Optional|ParamArray|Raise(?:Event)?|ReDim|Rem|RemoveHandler|Return|Select|Self|Soft|Static|Step|Super|Then|To|True|Try|Ubound|Until|Using|Wend|While)\b/i,
 	    operator: /<[=>]?|>=?|[+\-*\/\\^=]|\b(?:AddressOf|And|Ctype|IsA?|Mod|New|Not|Or|Xor|WeakAddressOf)\b/i,
 	    punctuation: /[.,;:()]/
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 661 */
-/***/ function(module, exports) {
+/***/ }),
+/* 691 */
+/***/ (function(module, exports) {
 
-	'use strict';
+	'use strict'
 	
-	module.exports = yaml;
-	yaml.displayName = 'yaml';
-	yaml.aliases = [];
+	module.exports = yaml
+	yaml.displayName = 'yaml'
+	yaml.aliases = []
 	function yaml(Prism) {
 	  Prism.languages.yaml = {
 	    scalar: {
@@ -32051,19 +34132,19 @@
 	      greedy: true
 	    },
 	    number: {
-	      pattern: /([:\-,[{]\s*(?:![^\s]+)?[ \t]*)[+\-]?(?:0x[\da-f]+|0o[0-7]+|(?:\d+\.?\d*|\.?\d+)(?:e[+-]?\d+)?|\.inf|\.nan)[ \t]*(?=$|,|]|})/im,
+	      pattern: /([:\-,[{]\s*(?:![^\s]+)?[ \t]*)[+-]?(?:0x[\da-f]+|0o[0-7]+|(?:\d+\.?\d*|\.?\d+)(?:e[+-]?\d+)?|\.inf|\.nan)[ \t]*(?=$|,|]|})/im,
 	      lookbehind: true
 	    },
 	    tag: /![^\s]+/,
 	    important: /[&*][\w]+/,
 	    punctuation: /---|[:[\]{}\-,|>?]|\.\.\./
-	  };
+	  }
 	}
 
 
-/***/ },
-/* 662 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ }),
+/* 692 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -32071,7 +34152,7 @@
 	  value: true
 	});
 	
-	var _coy = __webpack_require__(663);
+	var _coy = __webpack_require__(693);
 	
 	Object.defineProperty(exports, 'coy', {
 	  enumerable: true,
@@ -32080,7 +34161,7 @@
 	  }
 	});
 	
-	var _dark = __webpack_require__(664);
+	var _dark = __webpack_require__(694);
 	
 	Object.defineProperty(exports, 'dark', {
 	  enumerable: true,
@@ -32089,7 +34170,7 @@
 	  }
 	});
 	
-	var _funky = __webpack_require__(665);
+	var _funky = __webpack_require__(695);
 	
 	Object.defineProperty(exports, 'funky', {
 	  enumerable: true,
@@ -32098,7 +34179,7 @@
 	  }
 	});
 	
-	var _okaidia = __webpack_require__(666);
+	var _okaidia = __webpack_require__(696);
 	
 	Object.defineProperty(exports, 'okaidia', {
 	  enumerable: true,
@@ -32107,7 +34188,7 @@
 	  }
 	});
 	
-	var _solarizedlight = __webpack_require__(667);
+	var _solarizedlight = __webpack_require__(697);
 	
 	Object.defineProperty(exports, 'solarizedlight', {
 	  enumerable: true,
@@ -32116,7 +34197,7 @@
 	  }
 	});
 	
-	var _tomorrow = __webpack_require__(668);
+	var _tomorrow = __webpack_require__(698);
 	
 	Object.defineProperty(exports, 'tomorrow', {
 	  enumerable: true,
@@ -32125,7 +34206,7 @@
 	  }
 	});
 	
-	var _twilight = __webpack_require__(669);
+	var _twilight = __webpack_require__(699);
 	
 	Object.defineProperty(exports, 'twilight', {
 	  enumerable: true,
@@ -32134,7 +34215,7 @@
 	  }
 	});
 	
-	var _prism = __webpack_require__(525);
+	var _prism = __webpack_require__(533);
 	
 	Object.defineProperty(exports, 'prism', {
 	  enumerable: true,
@@ -32143,7 +34224,7 @@
 	  }
 	});
 	
-	var _atomDark = __webpack_require__(670);
+	var _atomDark = __webpack_require__(700);
 	
 	Object.defineProperty(exports, 'atomDark', {
 	  enumerable: true,
@@ -32152,7 +34233,7 @@
 	  }
 	});
 	
-	var _base16Ateliersulphurpool = __webpack_require__(671);
+	var _base16Ateliersulphurpool = __webpack_require__(701);
 	
 	Object.defineProperty(exports, 'base16AteliersulphurpoolLight', {
 	  enumerable: true,
@@ -32161,7 +34242,7 @@
 	  }
 	});
 	
-	var _cb = __webpack_require__(672);
+	var _cb = __webpack_require__(702);
 	
 	Object.defineProperty(exports, 'cb', {
 	  enumerable: true,
@@ -32170,7 +34251,7 @@
 	  }
 	});
 	
-	var _darcula = __webpack_require__(673);
+	var _darcula = __webpack_require__(703);
 	
 	Object.defineProperty(exports, 'darcula', {
 	  enumerable: true,
@@ -32179,7 +34260,7 @@
 	  }
 	});
 	
-	var _duotoneDark = __webpack_require__(674);
+	var _duotoneDark = __webpack_require__(704);
 	
 	Object.defineProperty(exports, 'duotoneDark', {
 	  enumerable: true,
@@ -32188,7 +34269,7 @@
 	  }
 	});
 	
-	var _duotoneEarth = __webpack_require__(675);
+	var _duotoneEarth = __webpack_require__(705);
 	
 	Object.defineProperty(exports, 'duotoneEarth', {
 	  enumerable: true,
@@ -32197,7 +34278,7 @@
 	  }
 	});
 	
-	var _duotoneForest = __webpack_require__(676);
+	var _duotoneForest = __webpack_require__(706);
 	
 	Object.defineProperty(exports, 'duotoneForest', {
 	  enumerable: true,
@@ -32206,7 +34287,7 @@
 	  }
 	});
 	
-	var _duotoneLight = __webpack_require__(677);
+	var _duotoneLight = __webpack_require__(707);
 	
 	Object.defineProperty(exports, 'duotoneLight', {
 	  enumerable: true,
@@ -32215,7 +34296,7 @@
 	  }
 	});
 	
-	var _duotoneSea = __webpack_require__(678);
+	var _duotoneSea = __webpack_require__(708);
 	
 	Object.defineProperty(exports, 'duotoneSea', {
 	  enumerable: true,
@@ -32224,7 +34305,7 @@
 	  }
 	});
 	
-	var _duotoneSpace = __webpack_require__(679);
+	var _duotoneSpace = __webpack_require__(709);
 	
 	Object.defineProperty(exports, 'duotoneSpace', {
 	  enumerable: true,
@@ -32233,7 +34314,7 @@
 	  }
 	});
 	
-	var _ghcolors = __webpack_require__(680);
+	var _ghcolors = __webpack_require__(710);
 	
 	Object.defineProperty(exports, 'ghcolors', {
 	  enumerable: true,
@@ -32242,7 +34323,7 @@
 	  }
 	});
 	
-	var _hopscotch = __webpack_require__(681);
+	var _hopscotch = __webpack_require__(711);
 	
 	Object.defineProperty(exports, 'hopscotch', {
 	  enumerable: true,
@@ -32251,7 +34332,7 @@
 	  }
 	});
 	
-	var _pojoaque = __webpack_require__(682);
+	var _pojoaque = __webpack_require__(712);
 	
 	Object.defineProperty(exports, 'pojoaque', {
 	  enumerable: true,
@@ -32260,7 +34341,7 @@
 	  }
 	});
 	
-	var _vs = __webpack_require__(683);
+	var _vs = __webpack_require__(713);
 	
 	Object.defineProperty(exports, 'vs', {
 	  enumerable: true,
@@ -32269,7 +34350,7 @@
 	  }
 	});
 	
-	var _xonokai = __webpack_require__(684);
+	var _xonokai = __webpack_require__(714);
 	
 	Object.defineProperty(exports, 'xonokai', {
 	  enumerable: true,
@@ -32280,9 +34361,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/***/ },
-/* 663 */
-/***/ function(module, exports) {
+/***/ }),
+/* 693 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -32300,11 +34381,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none"
 	    },
@@ -32318,11 +34399,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "position": "relative",
@@ -32330,8 +34411,8 @@
 	        "overflow": "visible",
 	        "padding": "0",
 	        "backgroundColor": "#fdfdfd",
-	        "webkitBoxSizing": "border-box",
-	        "mozBoxSizing": "border-box",
+	        "WebkitBoxSizing": "border-box",
+	        "MozBoxSizing": "border-box",
 	        "boxSizing": "border-box",
 	        "marginBottom": "1em"
 	    },
@@ -32347,15 +34428,15 @@
 	    },
 	    "code[class*=\"language\"]": {
 	        "maxHeight": "inherit",
-	        "height": "100%",
+	        "height": "inherit",
 	        "padding": "0 1em",
 	        "display": "block",
 	        "overflow": "auto"
 	    },
 	    ":not(pre) > code[class*=\"language-\"]": {
 	        "backgroundColor": "#fdfdfd",
-	        "webkitBoxSizing": "border-box",
-	        "mozBoxSizing": "border-box",
+	        "WebkitBoxSizing": "border-box",
+	        "MozBoxSizing": "border-box",
 	        "boxSizing": "border-box",
 	        "marginBottom": "1em",
 	        "position": "relative",
@@ -32377,10 +34458,10 @@
 	        "height": "20%",
 	        "maxHeight": "13em",
 	        "boxShadow": "0px 13px 8px #979797",
-	        "webkitTransform": "rotate(-2deg)",
-	        "mozTransform": "rotate(-2deg)",
+	        "WebkitTransform": "rotate(-2deg)",
+	        "MozTransform": "rotate(-2deg)",
 	        "msTransform": "rotate(-2deg)",
-	        "oTransform": "rotate(-2deg)",
+	        "OTransform": "rotate(-2deg)",
 	        "transform": "rotate(-2deg)"
 	    },
 	    "pre[class*=\"language-\"]:after": {
@@ -32394,20 +34475,20 @@
 	        "height": "20%",
 	        "maxHeight": "13em",
 	        "boxShadow": "0px 13px 8px #979797",
-	        "webkitTransform": "rotate(2deg)",
-	        "mozTransform": "rotate(2deg)",
+	        "WebkitTransform": "rotate(2deg)",
+	        "MozTransform": "rotate(2deg)",
 	        "msTransform": "rotate(2deg)",
-	        "oTransform": "rotate(2deg)",
+	        "OTransform": "rotate(2deg)",
 	        "transform": "rotate(2deg)",
 	        "right": "0.75em"
 	    },
 	    ":not(pre) > code[class*=\"language-\"]:after": {
 	        "right": "0.75em",
 	        "left": "auto",
-	        "webkitTransform": "rotate(2deg)",
-	        "mozTransform": "rotate(2deg)",
+	        "WebkitTransform": "rotate(2deg)",
+	        "MozTransform": "rotate(2deg)",
 	        "msTransform": "rotate(2deg)",
-	        "oTransform": "rotate(2deg)",
+	        "OTransform": "rotate(2deg)",
 	        "transform": "rotate(2deg)"
 	    },
 	    "comment": {
@@ -32524,7 +34605,7 @@
 	        "fontStyle": "italic"
 	    },
 	    ".namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "tab:not(:empty):before": {
 	        "color": "#e0d7d1"
@@ -32558,9 +34639,9 @@
 	    }
 	};
 
-/***/ },
-/* 664 */
-/***/ function(module, exports) {
+/***/ }),
+/* 694 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -32579,11 +34660,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none"
 	    },
@@ -32598,11 +34679,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "padding": "1em",
@@ -32633,10 +34714,10 @@
 	        "color": "hsl(30, 20%, 50%)"
 	    },
 	    "punctuation": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    ".namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "property": {
 	        "color": "hsl(350, 40%, 70%)"
@@ -32720,9 +34801,9 @@
 	    }
 	};
 
-/***/ },
-/* 665 */
-/***/ function(module, exports) {
+/***/ }),
+/* 695 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -32738,11 +34819,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "black",
@@ -32757,11 +34838,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "padding": ".4em .8em",
@@ -32792,7 +34873,7 @@
 	        "color": "#999"
 	    },
 	    ".namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "property": {
 	        "color": "#0cf"
@@ -32873,9 +34954,9 @@
 	    }
 	};
 
-/***/ },
-/* 666 */
-/***/ function(module, exports) {
+/***/ }),
+/* 696 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -32894,11 +34975,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none"
 	    },
@@ -32913,11 +34994,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "padding": "1em",
@@ -32947,7 +35028,7 @@
 	        "color": "#f8f8f2"
 	    },
 	    ".namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "property": {
 	        "color": "#f92672"
@@ -33034,9 +35115,9 @@
 	    }
 	};
 
-/***/ },
-/* 667 */
-/***/ function(module, exports) {
+/***/ }),
+/* 697 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -33053,11 +35134,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none"
 	    },
@@ -33070,11 +35151,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "padding": "1em",
@@ -33128,7 +35209,7 @@
 	        "color": "#586e75"
 	    },
 	    ".namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "property": {
 	        "color": "#268bd2"
@@ -33207,9 +35288,9 @@
 	    }
 	};
 
-/***/ },
-/* 668 */
-/***/ function(module, exports) {
+/***/ }),
+/* 698 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -33227,11 +35308,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none"
 	    },
@@ -33245,11 +35326,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "padding": "1em",
@@ -33368,9 +35449,9 @@
 	    }
 	};
 
-/***/ },
-/* 669 */
-/***/ function(module, exports) {
+/***/ }),
+/* 699 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -33389,11 +35470,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none"
 	    },
@@ -33408,11 +35489,11 @@
 	        "wordBreak": "normal",
 	        "wordWrap": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "borderRadius": ".5em",
@@ -33475,10 +35556,10 @@
 	        "color": "hsl(0, 0%, 47%)"
 	    },
 	    "punctuation": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    ".namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "tag": {
 	        "color": "hsl(14, 58%, 55%)"
@@ -33626,9 +35707,9 @@
 	    }
 	};
 
-/***/ },
-/* 670 */
-/***/ function(module, exports) {
+/***/ }),
+/* 700 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -33646,11 +35727,11 @@
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none"
 	    },
@@ -33664,11 +35745,11 @@
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "padding": "1em",
@@ -33698,7 +35779,7 @@
 	        "color": "#c5c8c6"
 	    },
 	    ".namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "property": {
 	        "color": "#96CBFE"
@@ -33789,9 +35870,9 @@
 	    }
 	};
 
-/***/ },
-/* 671 */
-/***/ function(module, exports) {
+/***/ }),
+/* 701 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -33808,11 +35889,11 @@
 	        "whiteSpace": "pre",
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "#f5f7ff",
@@ -33827,11 +35908,11 @@
 	        "whiteSpace": "pre",
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "#f5f7ff",
@@ -33892,7 +35973,7 @@
 	        "color": "#5e6687"
 	    },
 	    "namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "operator": {
 	        "color": "#c76b29"
@@ -33979,8 +36060,8 @@
 	        "fontWeight": "bold"
 	    },
 	    "pre > code.highlight": {
-	        "outline": "0.4em solid #c94922",
-	        "outlineOffset": ".4em"
+	        "Outline": "0.4em solid #c94922",
+	        "OutlineOffset": ".4em"
 	    },
 	    ".line-numbers .line-numbers-rows": {
 	        "borderRightColor": "#dfe2f1"
@@ -33993,9 +36074,9 @@
 	    }
 	};
 
-/***/ },
-/* 672 */
-/***/ function(module, exports) {
+/***/ }),
+/* 702 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -34015,11 +36096,11 @@
 	        "lineHeight": "1.4",
 	        "background": "none",
 	        "border": "0",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none"
 	    },
@@ -34035,18 +36116,18 @@
 	        "lineHeight": "1.4",
 	        "background": "#222",
 	        "border": "0",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "padding": "15px",
 	        "margin": "1em 0",
 	        "overflow": "auto",
-	        "mozBorderRadius": "8px",
-	        "webkitBorderRadius": "8px",
+	        "MozBorderRadius": "8px",
+	        "WebkitBorderRadius": "8px",
 	        "borderRadius": "8px"
 	    },
 	    "pre[class*=\"language-\"] code": {
@@ -34057,8 +36138,8 @@
 	        "background": "#222",
 	        "padding": "5px 10px",
 	        "lineHeight": "1",
-	        "mozBorderRadius": "3px",
-	        "webkitBorderRadius": "3px",
+	        "MozBorderRadius": "3px",
+	        "WebkitBorderRadius": "3px",
 	        "borderRadius": "3px"
 	    },
 	    "comment": {
@@ -34083,7 +36164,7 @@
 	        "color": "#fff"
 	    },
 	    "namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "tag": {
 	        "color": "#ffd893"
@@ -34165,8 +36246,8 @@
 	        "color": "#fff",
 	        "font": "bold 65%/1.5 sans-serif",
 	        "textAlign": "center",
-	        "mozBorderRadius": "8px",
-	        "webkitBorderRadius": "8px",
+	        "MozBorderRadius": "8px",
+	        "WebkitBorderRadius": "8px",
 	        "borderRadius": "8px",
 	        "textShadow": "none"
 	    },
@@ -34181,8 +36262,8 @@
 	        "color": "#fff",
 	        "font": "bold 65%/1.5 sans-serif",
 	        "textAlign": "center",
-	        "mozBorderRadius": "8px",
-	        "webkitBorderRadius": "8px",
+	        "MozBorderRadius": "8px",
+	        "WebkitBorderRadius": "8px",
 	        "borderRadius": "8px",
 	        "textShadow": "none",
 	        "bottom": ".4em"
@@ -34196,9 +36277,9 @@
 	    }
 	};
 
-/***/ },
-/* 673 */
-/***/ function(module, exports) {
+/***/ }),
+/* 703 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -34215,11 +36296,11 @@
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none"
 	    },
@@ -34232,11 +36313,11 @@
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
 	        "lineHeight": "1.5",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "padding": "1em",
@@ -34407,9 +36488,9 @@
 	    }
 	};
 
-/***/ },
-/* 674 */
-/***/ function(module, exports) {
+/***/ }),
+/* 704 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -34426,11 +36507,11 @@
 	        "whiteSpace": "pre",
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "#2a2734",
@@ -34445,11 +36526,11 @@
 	        "whiteSpace": "pre",
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "#2a2734",
@@ -34510,7 +36591,7 @@
 	        "color": "#6c6783"
 	    },
 	    "namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "tag": {
 	        "color": "#e09142"
@@ -34618,8 +36699,8 @@
 	        "fontWeight": "bold"
 	    },
 	    "pre > code.highlight": {
-	        "outline": ".4em solid #8a75f5",
-	        "outlineOffset": ".4em"
+	        "Outline": ".4em solid #8a75f5",
+	        "OutlineOffset": ".4em"
 	    },
 	    ".line-numbers .line-numbers-rows": {
 	        "borderRightColor": "#2c2937"
@@ -34632,9 +36713,9 @@
 	    }
 	};
 
-/***/ },
-/* 675 */
-/***/ function(module, exports) {
+/***/ }),
+/* 705 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -34651,11 +36732,11 @@
 	        "whiteSpace": "pre",
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "#322d29",
@@ -34670,11 +36751,11 @@
 	        "whiteSpace": "pre",
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "#322d29",
@@ -34735,7 +36816,7 @@
 	        "color": "#6a5f58"
 	    },
 	    "namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "tag": {
 	        "color": "#bfa05a"
@@ -34843,8 +36924,8 @@
 	        "fontWeight": "bold"
 	    },
 	    "pre > code.highlight": {
-	        "outline": ".4em solid #816d5f",
-	        "outlineOffset": ".4em"
+	        "Outline": ".4em solid #816d5f",
+	        "OutlineOffset": ".4em"
 	    },
 	    ".line-numbers .line-numbers-rows": {
 	        "borderRightColor": "#35302b"
@@ -34857,9 +36938,9 @@
 	    }
 	};
 
-/***/ },
-/* 676 */
-/***/ function(module, exports) {
+/***/ }),
+/* 706 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -34876,11 +36957,11 @@
 	        "whiteSpace": "pre",
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "#2a2d2a",
@@ -34895,11 +36976,11 @@
 	        "whiteSpace": "pre",
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "#2a2d2a",
@@ -34960,7 +37041,7 @@
 	        "color": "#535f53"
 	    },
 	    "namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "tag": {
 	        "color": "#a2b34d"
@@ -35068,8 +37149,8 @@
 	        "fontWeight": "bold"
 	    },
 	    "pre > code.highlight": {
-	        "outline": ".4em solid #5c705c",
-	        "outlineOffset": ".4em"
+	        "Outline": ".4em solid #5c705c",
+	        "OutlineOffset": ".4em"
 	    },
 	    ".line-numbers .line-numbers-rows": {
 	        "borderRightColor": "#2c302c"
@@ -35082,9 +37163,9 @@
 	    }
 	};
 
-/***/ },
-/* 677 */
-/***/ function(module, exports) {
+/***/ }),
+/* 707 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -35101,11 +37182,11 @@
 	        "whiteSpace": "pre",
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "#faf8f5",
@@ -35120,11 +37201,11 @@
 	        "whiteSpace": "pre",
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "#faf8f5",
@@ -35185,7 +37266,7 @@
 	        "color": "#b6ad9a"
 	    },
 	    "namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "tag": {
 	        "color": "#063289"
@@ -35293,8 +37374,8 @@
 	        "fontWeight": "bold"
 	    },
 	    "pre > code.highlight": {
-	        "outline": ".4em solid #896724",
-	        "outlineOffset": ".4em"
+	        "Outline": ".4em solid #896724",
+	        "OutlineOffset": ".4em"
 	    },
 	    ".line-numbers .line-numbers-rows": {
 	        "borderRightColor": "#ece8de"
@@ -35307,9 +37388,9 @@
 	    }
 	};
 
-/***/ },
-/* 678 */
-/***/ function(module, exports) {
+/***/ }),
+/* 708 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -35326,11 +37407,11 @@
 	        "whiteSpace": "pre",
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "#1d262f",
@@ -35345,11 +37426,11 @@
 	        "whiteSpace": "pre",
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "#1d262f",
@@ -35410,7 +37491,7 @@
 	        "color": "#4a5f78"
 	    },
 	    "namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "tag": {
 	        "color": "#0aa370"
@@ -35518,8 +37599,8 @@
 	        "fontWeight": "bold"
 	    },
 	    "pre > code.highlight": {
-	        "outline": ".4em solid #34659d",
-	        "outlineOffset": ".4em"
+	        "Outline": ".4em solid #34659d",
+	        "OutlineOffset": ".4em"
 	    },
 	    ".line-numbers .line-numbers-rows": {
 	        "borderRightColor": "#1f2932"
@@ -35532,9 +37613,9 @@
 	    }
 	};
 
-/***/ },
-/* 679 */
-/***/ function(module, exports) {
+/***/ }),
+/* 709 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -35551,11 +37632,11 @@
 	        "whiteSpace": "pre",
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "#24242e",
@@ -35570,11 +37651,11 @@
 	        "whiteSpace": "pre",
 	        "wordSpacing": "normal",
 	        "wordBreak": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "background": "#24242e",
@@ -35635,7 +37716,7 @@
 	        "color": "#5b5b76"
 	    },
 	    "namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "tag": {
 	        "color": "#dd672c"
@@ -35743,8 +37824,8 @@
 	        "fontWeight": "bold"
 	    },
 	    "pre > code.highlight": {
-	        "outline": ".4em solid #7676f4",
-	        "outlineOffset": ".4em"
+	        "Outline": ".4em solid #7676f4",
+	        "OutlineOffset": ".4em"
 	    },
 	    ".line-numbers .line-numbers-rows": {
 	        "borderRightColor": "#262631"
@@ -35757,9 +37838,9 @@
 	    }
 	};
 
-/***/ },
-/* 680 */
-/***/ function(module, exports) {
+/***/ }),
+/* 710 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -35777,11 +37858,11 @@
 	        "wordBreak": "normal",
 	        "fontSize": "0.95em",
 	        "lineHeight": "1.2em",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none"
 	    },
@@ -35795,11 +37876,11 @@
 	        "wordBreak": "normal",
 	        "fontSize": "0.95em",
 	        "lineHeight": "1.2em",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "padding": "1em",
@@ -35856,7 +37937,7 @@
 	        "fontStyle": "italic"
 	    },
 	    "namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "string": {
 	        "color": "#e3116c"
@@ -35942,9 +38023,9 @@
 	    }
 	};
 
-/***/ },
-/* 681 */
-/***/ function(module, exports) {
+/***/ }),
+/* 711 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -35960,11 +38041,11 @@
 	        "direction": "ltr",
 	        "textAlign": "left",
 	        "wordSpacing": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "whiteSpace": "pre-wrap",
@@ -35980,11 +38061,11 @@
 	        "direction": "ltr",
 	        "textAlign": "left",
 	        "wordSpacing": "normal",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "whiteSpace": "pre-wrap",
@@ -36015,7 +38096,7 @@
 	        "color": "#b9b5b8"
 	    },
 	    ".namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "null": {
 	        "color": "#fd8b19"
@@ -36092,14 +38173,14 @@
 	        "fontWeight": "bold"
 	    },
 	    "pre > code.highlight": {
-	        "outline": ".4em solid red",
-	        "outlineOffset": ".4em"
+	        "Outline": ".4em solid red",
+	        "OutlineOffset": ".4em"
 	    }
 	};
 
-/***/ },
-/* 682 */
-/***/ function(module, exports) {
+/***/ }),
+/* 712 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -36108,11 +38189,11 @@
 	});
 	exports.default = {
 	    "code[class*=\"language-\"]": {
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "whiteSpace": "pre-wrap",
@@ -36125,11 +38206,11 @@
 	        "textShadow": "0"
 	    },
 	    "pre[class*=\"language-\"]": {
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "whiteSpace": "pre-wrap",
@@ -36154,7 +38235,7 @@
 	        "padding": "2px 6px"
 	    },
 	    "namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "comment": {
 	        "color": "#586e75",
@@ -36265,9 +38346,9 @@
 	    }
 	};
 
-/***/ },
-/* 683 */
-/***/ function(module, exports) {
+/***/ }),
+/* 713 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -36285,11 +38366,11 @@
 	        "wordBreak": "normal",
 	        "fontSize": "0.95em",
 	        "lineHeight": "1.2em",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none"
 	    },
@@ -36303,11 +38384,11 @@
 	        "wordBreak": "normal",
 	        "fontSize": "0.95em",
 	        "lineHeight": "1.2em",
-	        "mozTabSize": "4",
-	        "oTabSize": "4",
+	        "MozTabSize": "4",
+	        "OTabSize": "4",
 	        "tabSize": "4",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "padding": "1em",
@@ -36364,7 +38445,7 @@
 	        "fontStyle": "italic"
 	    },
 	    "namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "string": {
 	        "color": "#A31515"
@@ -36477,9 +38558,9 @@
 	    }
 	};
 
-/***/ },
-/* 684 */
-/***/ function(module, exports) {
+/***/ }),
+/* 714 */
+/***/ (function(module, exports) {
 
 	"use strict";
 	
@@ -36488,11 +38569,11 @@
 	});
 	exports.default = {
 	    "code[class*=\"language-\"]": {
-	        "mozTabSize": "2",
-	        "oTabSize": "2",
+	        "MozTabSize": "2",
+	        "OTabSize": "2",
 	        "tabSize": "2",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "whiteSpace": "pre-wrap",
@@ -36503,11 +38584,11 @@
 	        "textShadow": "none"
 	    },
 	    "pre[class*=\"language-\"]": {
-	        "mozTabSize": "2",
-	        "oTabSize": "2",
+	        "MozTabSize": "2",
+	        "OTabSize": "2",
 	        "tabSize": "2",
-	        "webkitHyphens": "none",
-	        "mozHyphens": "none",
+	        "WebkitHyphens": "none",
+	        "MozHyphens": "none",
 	        "msHyphens": "none",
 	        "hyphens": "none",
 	        "whiteSpace": "pre-wrap",
@@ -36535,7 +38616,7 @@
 	        "display": "block"
 	    },
 	    "namespace": {
-	        "opacity": ".7"
+	        "Opacity": ".7"
 	    },
 	    "comment": {
 	        "color": "#6f705e"
@@ -36694,6 +38775,6 @@
 	    }
 	};
 
-/***/ }
+/***/ })
 /******/ ]);
 //# sourceMappingURL=prism-build.js.map

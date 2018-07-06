@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import SyntaxHighlighter from '../dist';
+import SyntaxHighlighter from '..';
 import renderer from 'react-syntax-highlighter-virtualized-renderer';
 
 const availableStyles = [
@@ -20677,7 +20677,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 });`;
     this.state = {
       selected: 'tomorrow-night-eighties',
-      style: require('../dist/styles/hljs/tomorrow-night-eighties').default,
+      style: require('../styles/hljs/tomorrow-night-eighties').default,
       code: initialCodeString,
       showLineNumbers: false,
       width: window.innerWidth,

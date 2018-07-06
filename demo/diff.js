@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import SyntaxHighlighter from '../dist';
-import docco from '../dist/styles/hljs/docco';
+import SyntaxHighlighter from '..';
+import docco from '../styles/hljs/docco';
 
 const CODE = `const woah = fun => fun + 1;
 const dude = woah(2) + 3;
@@ -54,8 +54,8 @@ function DiffHighlight() {
             {
               `import React from 'react';
 import { render } from 'react-dom';
-import SyntaxHighlighter from '../dist';
-import docco from '../dist/styles/docco';
+import SyntaxHighlighter from '..';
+import docco from '../styles/docco';
 
 const CODE = \`const woah = fun => fun + 1;
 const dude = woah(2) + 3;
