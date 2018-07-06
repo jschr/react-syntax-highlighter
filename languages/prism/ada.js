@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _ada = require("refractor/lang/ada.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _ada2 = _interopRequireDefault(_ada);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.ada;
+;
+exports.default = _ada2.default;

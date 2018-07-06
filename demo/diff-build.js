@@ -56,7 +56,7 @@
 	
 	var _2 = _interopRequireDefault(_);
 	
-	var _docco = __webpack_require__(484);
+	var _docco = __webpack_require__(483);
 	
 	var _docco2 = _interopRequireDefault(_docco);
 	
@@ -21771,7 +21771,6 @@
 	    var value = node.children[0].value;
 	    var newLines = getNewLines(value);
 	    if (newLines) {
-	      console.log(node.properties.className, "conor");
 	      var splitValue = value.split('\n');
 	      splitValue.forEach(function (text, i) {
 	        var lineNumber = newTree.length + 1;
@@ -21786,10 +21785,10 @@
 	            var newElem = createLineElement({ children: [lastLineInPreviousSpan], className: node.properties.className });
 	            tree.splice(index + 1, 0, newElem);
 	          } else {
-	            newTree.push(createLineElement({ children: [newChild], lineNumber: lineNumber, lineProps: lineProps }));
+	            newTree.push(createLineElement({ children: [newChild], lineNumber: lineNumber, lineProps: lineProps, className: node.properties.className }));
 	          }
 	        } else {
-	          newTree.push(createLineElement({ children: [newChild], lineNumber: lineNumber, lineProps: lineProps }));
+	          newTree.push(createLineElement({ children: [newChild], lineNumber: lineNumber, lineProps: lineProps, className: node.properties.className }));
 	        }
 	      });
 	      lastLineBreakIndex = index;
@@ -40243,8 +40242,7 @@
 /* 480 */,
 /* 481 */,
 /* 482 */,
-/* 483 */,
-/* 484 */
+/* 483 */
 /***/ (function(module, exports) {
 
 	"use strict";

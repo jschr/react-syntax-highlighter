@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _stylus = require("refractor/lang/stylus.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _stylus2 = _interopRequireDefault(_stylus);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.stylus;
+;
+exports.default = _stylus2.default;

@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _git = require("refractor/lang/git.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _git2 = _interopRequireDefault(_git);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.git;
+;
+exports.default = _git2.default;

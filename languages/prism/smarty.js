@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _smarty = require("refractor/lang/smarty.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _smarty2 = _interopRequireDefault(_smarty);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.smarty;
+;
+exports.default = _smarty2.default;

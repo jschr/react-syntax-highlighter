@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _kotlin = require("refractor/lang/kotlin.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _kotlin2 = _interopRequireDefault(_kotlin);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.kotlin;
+;
+exports.default = _kotlin2.default;

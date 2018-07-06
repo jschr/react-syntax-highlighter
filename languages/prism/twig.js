@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _twig = require("refractor/lang/twig.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _twig2 = _interopRequireDefault(_twig);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.twig;
+;
+exports.default = _twig2.default;

@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _lolcode = require("refractor/lang/lolcode.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _lolcode2 = _interopRequireDefault(_lolcode);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.lolcode;
+;
+exports.default = _lolcode2.default;

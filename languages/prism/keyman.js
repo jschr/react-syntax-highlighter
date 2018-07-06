@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _keyman = require("refractor/lang/keyman.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _keyman2 = _interopRequireDefault(_keyman);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.keyman;
+;
+exports.default = _keyman2.default;

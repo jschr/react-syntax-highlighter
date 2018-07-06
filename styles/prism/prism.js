@@ -15,11 +15,11 @@ exports.default = {
         "wordBreak": "normal",
         "wordWrap": "normal",
         "lineHeight": "1.5",
-        "mozTabSize": "4",
-        "oTabSize": "4",
+        "MozTabSize": "4",
+        "OTabSize": "4",
         "tabSize": "4",
-        "webkitHyphens": "none",
-        "mozHyphens": "none",
+        "WebkitHyphens": "none",
+        "MozHyphens": "none",
         "msHyphens": "none",
         "hyphens": "none"
     },
@@ -34,11 +34,11 @@ exports.default = {
         "wordBreak": "normal",
         "wordWrap": "normal",
         "lineHeight": "1.5",
-        "mozTabSize": "4",
-        "oTabSize": "4",
+        "MozTabSize": "4",
+        "OTabSize": "4",
         "tabSize": "4",
-        "webkitHyphens": "none",
-        "mozHyphens": "none",
+        "WebkitHyphens": "none",
+        "MozHyphens": "none",
         "msHyphens": "none",
         "hyphens": "none",
         "padding": "1em",
@@ -99,7 +99,7 @@ exports.default = {
         "color": "#999"
     },
     ".namespace": {
-        "opacity": ".7"
+        "Opacity": ".7"
     },
     "property": {
         "color": "#905"
@@ -141,24 +141,24 @@ exports.default = {
         "color": "#690"
     },
     "operator": {
-        "color": "#a67f59",
+        "color": "#9a6e3a",
         "background": "hsla(0, 0%, 100%, .5)"
     },
     "entity": {
-        "color": "#a67f59",
+        "color": "#9a6e3a",
         "background": "hsla(0, 0%, 100%, .5)",
         "cursor": "help"
     },
     "url": {
-        "color": "#a67f59",
+        "color": "#9a6e3a",
         "background": "hsla(0, 0%, 100%, .5)"
     },
     ".language-css .token.string": {
-        "color": "#a67f59",
+        "color": "#9a6e3a",
         "background": "hsla(0, 0%, 100%, .5)"
     },
     ".style .token.string": {
-        "color": "#a67f59",
+        "color": "#9a6e3a",
         "background": "hsla(0, 0%, 100%, .5)"
     },
     "atrule": {
@@ -171,6 +171,9 @@ exports.default = {
         "color": "#07a"
     },
     "function": {
+        "color": "#DD4A68"
+    },
+    "class-name": {
         "color": "#DD4A68"
     },
     "regex": {

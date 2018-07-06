@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _pug = require("refractor/lang/pug.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _pug2 = _interopRequireDefault(_pug);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.pug;
+;
+exports.default = _pug2.default;

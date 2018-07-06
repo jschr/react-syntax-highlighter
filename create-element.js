@@ -67,9 +67,13 @@ function createElement(_ref) {
     return value;
   } else if (TagName) {
     var childrenCreator = createChildren(stylesheet, useInlineStyles);
-    var props = useInlineStyles ? {
+    var nonStylesheetClassNames = useInlineStyles && properties.className && properties.className.filter(function (className) {
+      return !stylesheet[className];
+    });
+    var className = nonStylesheetClassNames && nonStylesheetClassNames.length ? nonStylesheetClassNames : undefined;
+    var props = useInlineStyles ? (0, _extends3.default)({}, properties, { className: className }, {
       style: createStyleObject(properties.className, (0, _assign2.default)({}, properties.style, style), stylesheet)
-    } : { className: createClassNameString(properties.className) };
+    }) : (0, _extends3.default)({}, properties, { className: createClassNameString(properties.className) });
     var children = childrenCreator(node.children);
     return _react2.default.createElement(
       TagName,

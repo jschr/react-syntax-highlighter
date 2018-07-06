@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _groovy = require("refractor/lang/groovy.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _groovy2 = _interopRequireDefault(_groovy);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.groovy;
+;
+exports.default = _groovy2.default;

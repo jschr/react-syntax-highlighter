@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _csharp = require("refractor/lang/csharp.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _csharp2 = _interopRequireDefault(_csharp);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.csharp;
+;
+exports.default = _csharp2.default;

@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _nsis = require("refractor/lang/nsis.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _nsis2 = _interopRequireDefault(_nsis);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.nsis;
+;
+exports.default = _nsis2.default;

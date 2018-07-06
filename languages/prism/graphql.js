@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _graphql = require("refractor/lang/graphql.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _graphql2 = _interopRequireDefault(_graphql);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.graphql;
+;
+exports.default = _graphql2.default;

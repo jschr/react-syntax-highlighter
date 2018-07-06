@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _powershell = require("refractor/lang/powershell.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _powershell2 = _interopRequireDefault(_powershell);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.powershell;
+;
+exports.default = _powershell2.default;

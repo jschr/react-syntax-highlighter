@@ -15,11 +15,11 @@ exports.default = {
         "wordBreak": "normal",
         "wordWrap": "normal",
         "lineHeight": "1.5",
-        "mozTabSize": "4",
-        "oTabSize": "4",
+        "MozTabSize": "4",
+        "OTabSize": "4",
         "tabSize": "4",
-        "webkitHyphens": "none",
-        "mozHyphens": "none",
+        "WebkitHyphens": "none",
+        "MozHyphens": "none",
         "msHyphens": "none",
         "hyphens": "none"
     },
@@ -34,11 +34,11 @@ exports.default = {
         "wordBreak": "normal",
         "wordWrap": "normal",
         "lineHeight": "1.5",
-        "mozTabSize": "4",
-        "oTabSize": "4",
+        "MozTabSize": "4",
+        "OTabSize": "4",
         "tabSize": "4",
-        "webkitHyphens": "none",
-        "mozHyphens": "none",
+        "WebkitHyphens": "none",
+        "MozHyphens": "none",
         "msHyphens": "none",
         "hyphens": "none",
         "padding": "1em",
@@ -68,7 +68,7 @@ exports.default = {
         "color": "#f8f8f2"
     },
     ".namespace": {
-        "opacity": ".7"
+        "Opacity": ".7"
     },
     "property": {
         "color": "#f92672"

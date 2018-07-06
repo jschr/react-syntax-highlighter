@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _latex = require("refractor/lang/latex.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _latex2 = _interopRequireDefault(_latex);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.latex;
+;
+exports.default = _latex2.default;

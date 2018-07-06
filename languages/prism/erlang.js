@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _erlang = require("refractor/lang/erlang.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _erlang2 = _interopRequireDefault(_erlang);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.erlang;
+;
+exports.default = _erlang2.default;

@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _mizar = require("refractor/lang/mizar.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _mizar2 = _interopRequireDefault(_mizar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.mizar;
+;
+exports.default = _mizar2.default;

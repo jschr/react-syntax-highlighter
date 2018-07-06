@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _verilog = require("refractor/lang/verilog.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _verilog2 = _interopRequireDefault(_verilog);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.verilog;
+;
+exports.default = _verilog2.default;

@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _jolie = require("refractor/lang/jolie.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _jolie2 = _interopRequireDefault(_jolie);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.jolie;
+;
+exports.default = _jolie2.default;

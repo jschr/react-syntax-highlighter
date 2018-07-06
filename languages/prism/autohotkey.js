@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _autohotkey = require("refractor/lang/autohotkey.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _autohotkey2 = _interopRequireDefault(_autohotkey);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.autohotkey;
+;
+exports.default = _autohotkey2.default;

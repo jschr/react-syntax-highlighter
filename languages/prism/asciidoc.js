@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _asciidoc = require("refractor/lang/asciidoc.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _asciidoc2 = _interopRequireDefault(_asciidoc);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.asciidoc;
+;
+exports.default = _asciidoc2.default;

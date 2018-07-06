@@ -67,12 +67,30 @@ Object.defineProperty(exports, 'arduino', {
   }
 });
 
+var _arff = require('./arff');
+
+Object.defineProperty(exports, 'arff', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_arff).default;
+  }
+});
+
 var _asciidoc = require('./asciidoc');
 
 Object.defineProperty(exports, 'asciidoc', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_asciidoc).default;
+  }
+});
+
+var _asm = require('./asm6502');
+
+Object.defineProperty(exports, 'asm6502', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_asm).default;
   }
 });
 
@@ -175,21 +193,21 @@ Object.defineProperty(exports, 'clike', {
   }
 });
 
+var _clojure = require('./clojure');
+
+Object.defineProperty(exports, 'clojure', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_clojure).default;
+  }
+});
+
 var _coffeescript = require('./coffeescript');
 
 Object.defineProperty(exports, 'coffeescript', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_coffeescript).default;
-  }
-});
-
-var _core = require('./core');
-
-Object.defineProperty(exports, 'core', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_core).default;
   }
 });
 
@@ -217,6 +235,15 @@ Object.defineProperty(exports, 'csharp', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_csharp).default;
+  }
+});
+
+var _csp = require('./csp');
+
+Object.defineProperty(exports, 'csp', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_csp).default;
   }
 });
 
@@ -301,12 +328,39 @@ Object.defineProperty(exports, 'elixir', {
   }
 });
 
+var _elm = require('./elm');
+
+Object.defineProperty(exports, 'elm', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_elm).default;
+  }
+});
+
+var _erb = require('./erb');
+
+Object.defineProperty(exports, 'erb', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_erb).default;
+  }
+});
+
 var _erlang = require('./erlang');
 
 Object.defineProperty(exports, 'erlang', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_erlang).default;
+  }
+});
+
+var _flow = require('./flow');
+
+Object.defineProperty(exports, 'flow', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_flow).default;
   }
 });
 
@@ -325,6 +379,15 @@ Object.defineProperty(exports, 'fsharp', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_fsharp).default;
+  }
+});
+
+var _gedcom = require('./gedcom');
+
+Object.defineProperty(exports, 'gedcom', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_gedcom).default;
   }
 });
 
@@ -418,12 +481,39 @@ Object.defineProperty(exports, 'haxe', {
   }
 });
 
+var _hpkp = require('./hpkp');
+
+Object.defineProperty(exports, 'hpkp', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_hpkp).default;
+  }
+});
+
+var _hsts = require('./hsts');
+
+Object.defineProperty(exports, 'hsts', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_hsts).default;
+  }
+});
+
 var _http = require('./http');
 
 Object.defineProperty(exports, 'http', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_http).default;
+  }
+});
+
+var _ichigojam = require('./ichigojam');
+
+Object.defineProperty(exports, 'ichigojam', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_ichigojam).default;
   }
 });
 
@@ -451,6 +541,15 @@ Object.defineProperty(exports, 'ini', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_ini).default;
+  }
+});
+
+var _io = require('./io');
+
+Object.defineProperty(exports, 'io', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_io).default;
   }
 });
 
@@ -553,6 +652,24 @@ Object.defineProperty(exports, 'less', {
   }
 });
 
+var _liquid = require('./liquid');
+
+Object.defineProperty(exports, 'liquid', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_liquid).default;
+  }
+});
+
+var _lisp = require('./lisp');
+
+Object.defineProperty(exports, 'lisp', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_lisp).default;
+  }
+});
+
 var _livescript = require('./livescript');
 
 Object.defineProperty(exports, 'livescript', {
@@ -595,6 +712,15 @@ Object.defineProperty(exports, 'markdown', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_markdown).default;
+  }
+});
+
+var _markupTemplating = require('./markup-templating');
+
+Object.defineProperty(exports, 'markupTemplating', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_markupTemplating).default;
   }
 });
 
@@ -784,6 +910,15 @@ Object.defineProperty(exports, 'php', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_php).default;
+  }
+});
+
+var _plsql = require('./plsql');
+
+Object.defineProperty(exports, 'plsql', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_plsql).default;
   }
 });
 
@@ -1021,6 +1156,15 @@ Object.defineProperty(exports, 'smarty', {
   }
 });
 
+var _soy = require('./soy');
+
+Object.defineProperty(exports, 'soy', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_soy).default;
+  }
+});
+
 var _sql = require('./sql');
 
 Object.defineProperty(exports, 'sql', {
@@ -1066,6 +1210,15 @@ Object.defineProperty(exports, 'textile', {
   }
 });
 
+var _tsx = require('./tsx');
+
+Object.defineProperty(exports, 'tsx', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_tsx).default;
+  }
+});
+
 var _twig = require('./twig');
 
 Object.defineProperty(exports, 'twig', {
@@ -1090,6 +1243,15 @@ Object.defineProperty(exports, 'vbnet', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_vbnet).default;
+  }
+});
+
+var _velocity = require('./velocity');
+
+Object.defineProperty(exports, 'velocity', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_velocity).default;
   }
 });
 
@@ -1120,12 +1282,39 @@ Object.defineProperty(exports, 'vim', {
   }
 });
 
+var _visualBasic = require('./visual-basic');
+
+Object.defineProperty(exports, 'visualBasic', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_visualBasic).default;
+  }
+});
+
+var _wasm = require('./wasm');
+
+Object.defineProperty(exports, 'wasm', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_wasm).default;
+  }
+});
+
 var _wiki = require('./wiki');
 
 Object.defineProperty(exports, 'wiki', {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_wiki).default;
+  }
+});
+
+var _xeora = require('./xeora');
+
+Object.defineProperty(exports, 'xeora', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_xeora).default;
   }
 });
 

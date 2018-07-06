@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _vhdl = require("refractor/lang/vhdl.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _vhdl2 = _interopRequireDefault(_vhdl);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.vhdl;
+;
+exports.default = _vhdl2.default;

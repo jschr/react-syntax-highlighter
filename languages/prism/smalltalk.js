@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _smalltalk = require("refractor/lang/smalltalk.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _smalltalk2 = _interopRequireDefault(_smalltalk);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.smalltalk;
+;
+exports.default = _smalltalk2.default;

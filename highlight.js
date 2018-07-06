@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _assign = require('babel-runtime/core-js/object/assign');
-
-var _assign2 = _interopRequireDefault(_assign);
-
 var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _assign = require('babel-runtime/core-js/object/assign');
+
+var _assign2 = _interopRequireDefault(_assign);
 
 exports.default = function (astGenerator, defaultStyle) {
   return function SyntaxHighlighter(_ref6) {
@@ -31,8 +31,8 @@ exports.default = function (astGenerator, defaultStyle) {
         lineNumberContainerStyle = _ref6.lineNumberContainerStyle,
         lineNumberStyle = _ref6.lineNumberStyle,
         wrapLines = _ref6.wrapLines,
-        _ref6$lineStyle = _ref6.lineStyle,
-        lineStyle = _ref6$lineStyle === undefined ? {} : _ref6$lineStyle,
+        _ref6$lineProps = _ref6.lineProps,
+        lineProps = _ref6$lineProps === undefined ? {} : _ref6$lineProps,
         renderer = _ref6.renderer,
         _ref6$PreTag = _ref6.PreTag,
         PreTag = _ref6$PreTag === undefined ? 'pre' : _ref6$PreTag,
@@ -40,7 +40,7 @@ exports.default = function (astGenerator, defaultStyle) {
         CodeTag = _ref6$CodeTag === undefined ? 'code' : _ref6$CodeTag,
         _ref6$code = _ref6.code,
         code = _ref6$code === undefined ? Array.isArray(children) ? children[0] : children : _ref6$code,
-        rest = (0, _objectWithoutProperties3.default)(_ref6, ['language', 'children', 'style', 'customStyle', 'codeTagProps', 'useInlineStyles', 'showLineNumbers', 'startingLineNumber', 'lineNumberContainerStyle', 'lineNumberStyle', 'wrapLines', 'lineStyle', 'renderer', 'PreTag', 'CodeTag', 'code']);
+        rest = (0, _objectWithoutProperties3.default)(_ref6, ['language', 'children', 'style', 'customStyle', 'codeTagProps', 'useInlineStyles', 'showLineNumbers', 'startingLineNumber', 'lineNumberContainerStyle', 'lineNumberStyle', 'wrapLines', 'lineProps', 'renderer', 'PreTag', 'CodeTag', 'code']);
 
     /* 
      * some custom renderers rely on individual row elements so we need to turn wrapLines on 
@@ -55,9 +55,10 @@ exports.default = function (astGenerator, defaultStyle) {
     }
     var defaultPreStyle = style.hljs || style['pre[class*=\"language-\"]'] || { backgroundColor: '#fff' };
     var preProps = useInlineStyles ? (0, _assign2.default)({}, rest, { style: (0, _assign2.default)({}, defaultPreStyle, customStyle) }) : (0, _assign2.default)({}, rest, { className: 'hljs' });
-    var tree = wrapLines ? wrapLinesInSpan(codeTree, lineStyle) : codeTree.value;
+    var tree = wrapLines ? wrapLinesInSpan(codeTree, lineProps) : codeTree.value;
     var lineNumbers = showLineNumbers ? _react2.default.createElement(LineNumbers, {
       containerStyle: lineNumberContainerStyle,
+      codeStyle: codeTagProps.style || {},
       numberStyle: lineNumberStyle,
       startingLineNumber: startingLineNumber,
       codeString: code
@@ -111,6 +112,7 @@ function getLineNumbers(_ref) {
 
 function LineNumbers(_ref2) {
   var codeString = _ref2.codeString,
+      codeStyle = _ref2.codeStyle,
       _ref2$containerStyle = _ref2.containerStyle,
       containerStyle = _ref2$containerStyle === undefined ? { float: 'left', paddingRight: '10px' } : _ref2$containerStyle,
       _ref2$numberStyle = _ref2.numberStyle,
@@ -119,7 +121,7 @@ function LineNumbers(_ref2) {
 
   return _react2.default.createElement(
     'code',
-    { style: containerStyle },
+    { style: (0, _assign2.default)({}, codeStyle, containerStyle) },
     getLineNumbers({
       lines: codeString.replace(/\n$/, '').split('\n'),
       style: numberStyle,
@@ -131,17 +133,16 @@ function LineNumbers(_ref2) {
 function createLineElement(_ref3) {
   var children = _ref3.children,
       lineNumber = _ref3.lineNumber,
-      lineStyle = _ref3.lineStyle,
+      lineProps = _ref3.lineProps,
       _ref3$className = _ref3.className,
       className = _ref3$className === undefined ? [] : _ref3$className;
 
+  var properties = (typeof lineProps === 'function' ? lineProps(lineNumber) : lineProps) || {};
+  properties.className = properties.className ? className.concat(properties.className) : className;
   return {
     type: 'element',
     tagName: 'span',
-    properties: {
-      className: className,
-      style: typeof lineStyle === 'function' ? lineStyle(lineNumber) : lineStyle
-    },
+    properties: properties,
     children: children
   };
 }
@@ -165,7 +166,7 @@ function flattenCodeTree(tree) {
   return newTree;
 }
 
-function wrapLinesInSpan(codeTree, lineStyle) {
+function wrapLinesInSpan(codeTree, lineProps) {
   var tree = flattenCodeTree(codeTree.value);
   var newTree = [];
   var lastLineBreakIndex = -1;
@@ -182,7 +183,7 @@ function wrapLinesInSpan(codeTree, lineStyle) {
         var newChild = { type: 'text', value: text + '\n' };
         if (i === 0) {
           var _children = tree.slice(lastLineBreakIndex + 1, index).concat(createLineElement({ children: [newChild], className: node.properties.className }));
-          newTree.push(createLineElement({ children: _children, lineNumber: lineNumber, lineStyle: lineStyle }));
+          newTree.push(createLineElement({ children: _children, lineNumber: lineNumber, lineProps: lineProps }));
         } else if (i === splitValue.length - 1) {
           var stringChild = tree[index + 1] && tree[index + 1].children && tree[index + 1].children[0];
           if (stringChild) {
@@ -190,10 +191,10 @@ function wrapLinesInSpan(codeTree, lineStyle) {
             var newElem = createLineElement({ children: [lastLineInPreviousSpan], className: node.properties.className });
             tree.splice(index + 1, 0, newElem);
           } else {
-            newTree.push(createLineElement({ children: [newChild], lineNumber: lineNumber, lineStyle: lineStyle }));
+            newTree.push(createLineElement({ children: [newChild], lineNumber: lineNumber, lineProps: lineProps, className: node.properties.className }));
           }
         } else {
-          newTree.push(createLineElement({ children: [newChild], lineNumber: lineNumber, lineStyle: lineStyle }));
+          newTree.push(createLineElement({ children: [newChild], lineNumber: lineNumber, lineProps: lineProps, className: node.properties.className }));
         }
       });
       lastLineBreakIndex = index;
@@ -207,7 +208,7 @@ function wrapLinesInSpan(codeTree, lineStyle) {
   if (lastLineBreakIndex !== tree.length - 1) {
     var children = tree.slice(lastLineBreakIndex + 1, tree.length);
     if (children && children.length) {
-      newTree.push(createLineElement({ children: children, lineNumber: newTree.length + 1, lineStyle: lineStyle }));
+      newTree.push(createLineElement({ children: children, lineNumber: newTree.length + 1, lineProps: lineProps }));
     }
   }
   return newTree;
@@ -244,5 +245,9 @@ function getCodeTree(_ref5) {
       return astGenerator.highlightAuto(code);
     }
   }
-  return language && language !== 'text' ? { value: astGenerator.highlight(code, language) } : { value: defaultCodeValue };
+  try {
+    return language && language !== 'text' ? { value: astGenerator.highlight(code, language) } : { value: defaultCodeValue };
+  } catch (e) {
+    return { value: defaultCodeValue };
+  }
 }

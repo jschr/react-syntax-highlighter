@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _haskell = require("refractor/lang/haskell.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _haskell2 = _interopRequireDefault(_haskell);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.haskell;
+;
+exports.default = _haskell2.default;

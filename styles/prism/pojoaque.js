@@ -5,11 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
     "code[class*=\"language-\"]": {
-        "mozTabSize": "4",
-        "oTabSize": "4",
+        "MozTabSize": "4",
+        "OTabSize": "4",
         "tabSize": "4",
-        "webkitHyphens": "none",
-        "mozHyphens": "none",
+        "WebkitHyphens": "none",
+        "MozHyphens": "none",
         "msHyphens": "none",
         "hyphens": "none",
         "whiteSpace": "pre-wrap",
@@ -22,11 +22,11 @@ exports.default = {
         "textShadow": "0"
     },
     "pre[class*=\"language-\"]": {
-        "mozTabSize": "4",
-        "oTabSize": "4",
+        "MozTabSize": "4",
+        "OTabSize": "4",
         "tabSize": "4",
-        "webkitHyphens": "none",
-        "mozHyphens": "none",
+        "WebkitHyphens": "none",
+        "MozHyphens": "none",
         "msHyphens": "none",
         "hyphens": "none",
         "whiteSpace": "pre-wrap",
@@ -51,7 +51,7 @@ exports.default = {
         "padding": "2px 6px"
     },
     "namespace": {
-        "opacity": ".7"
+        "Opacity": ".7"
     },
     "comment": {
         "color": "#586e75",

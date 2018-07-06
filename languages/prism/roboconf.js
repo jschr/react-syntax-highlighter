@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _roboconf = require("refractor/lang/roboconf.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _roboconf2 = _interopRequireDefault(_roboconf);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.roboconf;
+;
+exports.default = _roboconf2.default;

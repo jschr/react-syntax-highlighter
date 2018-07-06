@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _crystal = require("refractor/lang/crystal.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _crystal2 = _interopRequireDefault(_crystal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.crystal;
+;
+exports.default = _crystal2.default;

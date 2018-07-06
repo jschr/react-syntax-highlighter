@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _clike = require("refractor/lang/clike.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _clike2 = _interopRequireDefault(_clike);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.clike;
+;
+exports.default = _clike2.default;

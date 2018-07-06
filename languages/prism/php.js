@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _prismjs = require('prismjs');
+var _php = require("refractor/lang/php.js");
 
-var _prismjs2 = _interopRequireDefault(_prismjs);
+var _php2 = _interopRequireDefault(_php);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _prismjs2.default.languages.php;
+;
+exports.default = _php2.default;

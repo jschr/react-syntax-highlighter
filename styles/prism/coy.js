@@ -14,11 +14,11 @@ exports.default = {
         "wordBreak": "normal",
         "wordWrap": "normal",
         "lineHeight": "1.5",
-        "mozTabSize": "4",
-        "oTabSize": "4",
+        "MozTabSize": "4",
+        "OTabSize": "4",
         "tabSize": "4",
-        "webkitHyphens": "none",
-        "mozHyphens": "none",
+        "WebkitHyphens": "none",
+        "MozHyphens": "none",
         "msHyphens": "none",
         "hyphens": "none"
     },
@@ -32,11 +32,11 @@ exports.default = {
         "wordBreak": "normal",
         "wordWrap": "normal",
         "lineHeight": "1.5",
-        "mozTabSize": "4",
-        "oTabSize": "4",
+        "MozTabSize": "4",
+        "OTabSize": "4",
         "tabSize": "4",
-        "webkitHyphens": "none",
-        "mozHyphens": "none",
+        "WebkitHyphens": "none",
+        "MozHyphens": "none",
         "msHyphens": "none",
         "hyphens": "none",
         "position": "relative",
@@ -44,8 +44,8 @@ exports.default = {
         "overflow": "visible",
         "padding": "0",
         "backgroundColor": "#fdfdfd",
-        "webkitBoxSizing": "border-box",
-        "mozBoxSizing": "border-box",
+        "WebkitBoxSizing": "border-box",
+        "MozBoxSizing": "border-box",
         "boxSizing": "border-box",
         "marginBottom": "1em"
     },
@@ -61,15 +61,15 @@ exports.default = {
     },
     "code[class*=\"language\"]": {
         "maxHeight": "inherit",
-        "height": "100%",
+        "height": "inherit",
         "padding": "0 1em",
         "display": "block",
         "overflow": "auto"
     },
     ":not(pre) > code[class*=\"language-\"]": {
         "backgroundColor": "#fdfdfd",
-        "webkitBoxSizing": "border-box",
-        "mozBoxSizing": "border-box",
+        "WebkitBoxSizing": "border-box",
+        "MozBoxSizing": "border-box",
         "boxSizing": "border-box",
         "marginBottom": "1em",
         "position": "relative",
@@ -91,10 +91,10 @@ exports.default = {
         "height": "20%",
         "maxHeight": "13em",
         "boxShadow": "0px 13px 8px #979797",
-        "webkitTransform": "rotate(-2deg)",
-        "mozTransform": "rotate(-2deg)",
+        "WebkitTransform": "rotate(-2deg)",
+        "MozTransform": "rotate(-2deg)",
         "msTransform": "rotate(-2deg)",
-        "oTransform": "rotate(-2deg)",
+        "OTransform": "rotate(-2deg)",
         "transform": "rotate(-2deg)"
     },
     "pre[class*=\"language-\"]:after": {
@@ -108,20 +108,20 @@ exports.default = {
         "height": "20%",
         "maxHeight": "13em",
         "boxShadow": "0px 13px 8px #979797",
-        "webkitTransform": "rotate(2deg)",
-        "mozTransform": "rotate(2deg)",
+        "WebkitTransform": "rotate(2deg)",
+        "MozTransform": "rotate(2deg)",
         "msTransform": "rotate(2deg)",
-        "oTransform": "rotate(2deg)",
+        "OTransform": "rotate(2deg)",
         "transform": "rotate(2deg)",
         "right": "0.75em"
     },
     ":not(pre) > code[class*=\"language-\"]:after": {
         "right": "0.75em",
         "left": "auto",
-        "webkitTransform": "rotate(2deg)",
-        "mozTransform": "rotate(2deg)",
+        "WebkitTransform": "rotate(2deg)",
+        "MozTransform": "rotate(2deg)",
         "msTransform": "rotate(2deg)",
-        "oTransform": "rotate(2deg)",
+        "OTransform": "rotate(2deg)",
         "transform": "rotate(2deg)"
     },
     "comment": {
@@ -238,7 +238,7 @@ exports.default = {
         "fontStyle": "italic"
     },
     ".namespace": {
-        "opacity": ".7"
+        "Opacity": ".7"
     },
     "tab:not(:empty):before": {
         "color": "#e0d7d1"
