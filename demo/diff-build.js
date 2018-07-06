@@ -93,14 +93,14 @@
 	            style: _docco2.default,
 	            wrapLines: true,
 	            showLineNumbers: true,
-	            lineStyle: function lineStyle(lineNumber) {
-	              var style = { display: 'block' };
+	            lineProps: function lineProps(lineNumber) {
+	              var props = { style: { display: 'block' } };
 	              if (ADDED.includes(lineNumber)) {
-	                style.backgroundColor = '#dbffdb';
+	                props.style.backgroundColor = '#dbffdb';
 	              } else if (REMOVED.includes(lineNumber)) {
-	                style.backgroundColor = '#ffecec';
+	                props.style.backgroundColor = '#ffecec';
 	              }
-	              return style;
+	              return props;
 	            }
 	          },
 	          CODE
